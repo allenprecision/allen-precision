@@ -198,7 +198,7 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 
 			domain = self._get_search_domain(search, category, attrib_values)
 
-			keep = QueryURL('/shop', search=search, attrib=attrib_list, order=post.get('order'))
+			keep = QueryURL('/shop', search='', attrib=attrib_list, order=post.get('order'))
 
 			pricelist_context, pricelist = self._get_pricelist_context()
 
