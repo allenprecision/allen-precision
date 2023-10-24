@@ -91,7 +91,7 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 
 
 	@http.route([])
-	def shop(self, page=0, category=None,search=search, min_price=0.0, max_price=0.0, ppg=False, **post):
+	def shop(self, page=0, category=None,search='', min_price=0.0, max_price=0.0, ppg=False, **post):
 		rating_list = request.httprequest.args.getlist('rating')
 		brand_list = request.httprequest.args.getlist('brand')
 		tag_list = request.httprequest.args.getlist('tag')
@@ -198,7 +198,7 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 
 			domain = self._get_search_domain(search, category, attrib_values)
 
-			keep = QueryURL('/shop', search='', attrib=attrib_list, order=post.get('order'))
+			keep = QueryURL('/shop', search=search, attrib=attrib_list, order=post.get('order'))
 
 			pricelist_context, pricelist = self._get_pricelist_context()
 
