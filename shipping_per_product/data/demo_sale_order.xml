@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data noupdate="1">
+        <record id="shipping_per_product.shipping_demo_product_product" model="product.product">
+            <field name="name">Dynamic Delivery</field>
+            <field name="default_code">Delivery</field>
+            <field name="type">service</field>
+            <field name="categ_id" ref="product.product_category_all"/>
+            <field name="sale_ok" eval="False"/>
+            <field name="purchase_ok" eval="False"/>
+            <field name="supplier_taxes_id" eval="False"/>
+            <field name="taxes_id" eval="False"/>
+            <field name="list_price">0.0</field>
+        </record>
+        <record id="shipping_per_product.shipping_demo_delivery_carrier" model="delivery.carrier">
+            <field name="name">Dynamic Delivery Charges</field>
+            <field name="fixed_price">0.0</field>
+            <field name="is_sol_carrier" eval="True"/>
+            <field name="active" eval="True"/>
+            <field name="website_published" eval="False"/>
+            <field name="sequence">1</field>
+            <field name="delivery_type">fixed</field>
+            <field name="product_id" ref="shipping_per_product.shipping_demo_product_product"/>
+        </record>
+
+        <record id="website.default_website" model="website">
+            <field name="enable_product_shipping">True</field>
+        </record>
+    </data>
+</odoo>

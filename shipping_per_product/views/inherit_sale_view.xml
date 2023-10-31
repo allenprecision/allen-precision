@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+        <record id="inherit_view_pre_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group/group[2]" position="after">
+                    <group>
+                        <field name="delivery_carrier_id" attrs="{'invisible': [('delivery_carrier_id','=', False)]}" readonly="1" force_save="1"/>
+                        <field name="delivery_charge" attrs="{'invisible': [('delivery_carrier_id','=', False)]}" force_save="1"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="wk_inherit_res_config_website_settings" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.shipping.per.product</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="website_sale.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='shipping_provider_easypost_setting']" position="after">
+                  <div class="col-12 col-lg-6 o_setting_box" id="shipping_per_product_enable">
+                      <div class="o_setting_left_pane">
+                          <field name="wk_enable_product_shipping"/>
+                      </div>
+                      <div class="o_setting_right_pane">
+                          <label string="Shipping Per Product" for="wk_enable_product_shipping"/>
+                          <div class="text-muted" id="wk_enable_product_shipping">
+                              Deliveries will be managed and available on the basis of products for the selected website.
+                          </div>
+                      </div>
+                  </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="wk_inherit_view_website_form" model="ir.ui.view">
+          <field name="name">inherit.website.form</field>
+          <field name="model">website</field>
+          <field name="inherit_id" ref="website.view_website_form"/>
+          <field name="arch" type="xml">
+              <group name="other" position="inside">
+                <field name="enable_product_shipping" widget="boolean_toggle"/>
+                <field name="is_grouping_items" attrs="{'invisible':[('enable_product_shipping','=',False)]}" widget="boolean_toggle"/>
+              </group>
+          </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+        <record id="inherit_product_template_form_view" model="ir.ui.view">
+			<field name="name">Product Delivery Form View</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view"/>
+			<field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook/page[@name='inventory']" position="inside">
+                    <group>
+                        <group string="Delivery">
+                            <field name="delivery_carrier_ids" string="Allowed Delivery Method(s)" widget="many2many_tags" domain="[('is_sol_carrier','=',False)]"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

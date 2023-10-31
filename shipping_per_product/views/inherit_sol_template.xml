@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+
+        <template id="remove_payment_delivery" inherit_id="website_sale_delivery.payment_delivery">
+            <xpath expr="//div[@id='delivery_carrier']" position="attributes">
+                <attribute name="t-if">(not website.enable_product_shipping) and deliveries</attribute>
+            </xpath>
+        </template>
+
+        <template id="remove_payment_delivery_shipping_method" inherit_id="website_sale_delivery.payment_delivery_shipping_method">
+            <xpath expr="//div[@id='delivery_carrier']" position="attributes">
+                <attribute name="t-if">(not website.enable_product_shipping) and deliveries and len(deliveries) == 1</attribute>
+            </xpath>
+        </template>
+
+        <template id="sol_delivery_carriers">
+            <tr>
+                <td colspan="4">
+                    <h4 class="sp_del_opt_header"><strong>Choose a delivery method</strong></h4>
+                </td>
+            </tr>
+            <tr>
+                <t t-set="line" t-value="pro_lines[0]"/>
+                <td colspan="4" style="padding:0;border: 0;">
+                    <div class="sol_delivery_carrier">
+                        <div class="empty_sol_del_error alert alert-danger" role="alert" style="margin:0;display:none;">
+                            Please first select delivery method to proceed.
+                        </div>
+                        <span class="sale_order_line_id" t-att-data-sale_order_line_ids="pro_lines.ids"/>
+                        <input type="hidden" class="line_delivery_name" t-att-name="'line_delivery_name_%i' % line.id" value="" autocomplete="off"/>
+                        <ul class="list-group" style="margin-bottom: 0;border: 0;">
+                            <t t-foreach="sol_deliveries" t-as="delivery">
+                                <li class="list-group-item" style="border: 0;">
+                                    <input t-att-value="delivery.id" t-att-id="'delivery_%i_%i' % (line.id,delivery.id)" type="radio" t-att-name="'delivery_type_%i' % line.id" autocomplete="off"/>
+                                    <label class="label-optional" t-field="delivery.name" t-att-for="'delivery_%i_%i' % (line.id,delivery.id)"/>
+                                    <t t-if="delivery.delivery_type == 'fixed'">
+                                        <span t-if="delivery.fixed_price > 0.0" class="float-right badge badge-secondary">
+                                            <t t-esc="delivery.rate_shipment(website_sale_order)['price'] if delivery.free_over else delivery.fixed_price"
+                                               t-options='{"widget": "monetary", "from_currency": delivery.product_id.company_id.currency_id,
+                                                           "display_currency": website_sale_order.currency_id}'/>
+                                        </span>
+                                        <span t-else="" class="float-right badge badge-secondary">Free</span>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-attf-class="float-right badge badge-secondary o_wsale_delivery_badge_price">Select to compute delivery rate</span>
+                                    </t>
+                                    <t t-if="delivery.website_description">
+                                        <div t-field="delivery.website_description" class="text-muted mt8"/>
+                                    </t>
+                                </li>
+                            </t>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </template>
+
+        <template id="order_lines_section_with_delivery">
+            <table class="table table-striped table-condensed" style="border: 1px solid #dddddd;">
+                <thead>
+                    <tr>
+                        <th class="border-bottom-0 td-img">Product</th>
+                        <th class="border-bottom-0"></th>
+                        <th class="border-bottom-0 td-qty">Quantity</th>
+                        <th class="border-bottom-0 text-center td-price">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="pro_lines" t-as="line">
+                        <td class='' colspan="2" t-if="not line.product_id.product_tmpl_id"></td>
+                        <td class='td-img' t-if="line.product_id.product_tmpl_id">
+                            <span t-field="line.product_id.image_128" t-options="{'widget': 'image', 'class': 'rounded'}" />
+                        </td>
+                        <td class='td-product_name' t-if="line.product_id.product_tmpl_id">
+                            <div>
+                                <strong t-field="line.name_short" />
+                            </div>
+                        </td>
+                        <td class='td-qty'>
+                            <div t-esc="line.product_uom_qty" />
+                        </td>
+                        <td class="text-center td-price">
+                            <span t-field="line.price_reduce_taxexcl" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}" groups="account.group_show_line_subtotals_tax_excluded" />
+                            <span t-field="line.price_reduce_taxinc" style="white-space: nowrap;" t-options="{'widget': 'monetary', 'display_currency': website_sale_order.currency_id}" groups="account.group_show_line_subtotals_tax_included" />
+                        </td>
+                    </tr>
+                    <t t-if="sol_deliveries" t-call="shipping_per_product.sol_delivery_carriers"/>
+                    <tr t-if="not sol_deliveries and pro_type == 'non_service'">
+                        <td colspan="4" style="padding:0;border: 0;">
+                            <div class="no_sol_deliveries alert alert-danger" role="alert" style="margin:0;">
+                                Sorry, we are unable to ship these products, No shipping method is available for these products and shipping address.
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </template>
+
+        <template id="sol_cart_summary_delivery" inherit_id="website_sale.cart_summary">
+            <xpath expr="//div[hasclass('toggle_summary_div', 'd-none', 'd-xl-block')]" position="after">
+                <div t-if="is_payment_page" class="toggle_summary_div " style="max-width: unset;">
+                    <table class="table" id="cart_products" t-if="website_sale_order and website_sale_order.website_order_line">
+                        <t t-set="website_o_lines" t-value="website_sale_order.get_lines_with_or_without_delivery()"/>
+                        <tr>
+                            <td colspan="4" style="padding-top: 22px;">
+                                <t t-foreach="website_o_lines" t-as="d_section">
+                                    <t t-if="website.is_grouping_items" t-call="shipping_per_product.order_lines_section_with_delivery">
+                                        <t t-set="pro_lines" t-value="d_section['lines']"/>
+                                        <t t-set="sol_deliveries" t-value="d_section['deliveries']"/>
+                                        <t t-set="pro_type" t-value="d_section['type']"/>
+                                    </t>
+
+                                    <t t-else="" t-foreach="d_section['lines']" t-as="d_section_lines">
+                                        <t t-call="shipping_per_product.order_lines_section_with_delivery">
+                                            <t t-set="pro_lines" t-value="d_section_lines"/>
+                                            <t t-set="sol_deliveries" t-value="d_section['deliveries']"/>
+                                            <t t-set="pro_type" t-value="d_section['type']"/>
+                                        </t>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+                    <t t-call="website_sale.total">
+                        <t t-set='redirect'>/shop/payment</t>
+                    </t>
+                </div>
+                <div id="shipping_per_product_loader">
+                    <i class="fa fa-spinner fa-spin wk_loader_icon"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[hasclass('toggle_summary_div', 'd-none', 'd-xl-block')]" position="attributes">
+                <attribute name="t-if">not is_payment_page</attribute>
+            </xpath>
+        </template>
+
+        <template id="sol_payment_delivery11" inherit_id="website_sale.payment">
+            <xpath expr="//div[hasclass('col-12', 'col-xl-auto', 'order-xl-2')]" position="attributes">
+                <attribute name="t-if" > not website.enable_product_shipping </attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('col-12', 'col-xl-auto', 'order-xl-2')]" position="after">
+                <div t-if="website.enable_product_shipping" class="col-12">
+                    <t t-call="website_sale.cart_summary">
+                        <t t-set="is_payment_page" t-value="website.enable_product_shipping"/>
+                    </t>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="sol_cart_delivery" name="Delivery Costs" inherit_id="website_sale.total">
+          <xpath expr="//tr[@id='order_delivery']" position="attributes" >
+              <attribute name="t-if">not website.enable_product_shipping</attribute>
+          </xpath>
+          <xpath expr="//tr[@id='order_delivery']" position="after">
+              <tr t-if="website.enable_product_shipping" id="order_delivery">
+                <td class="text-right border-0 text-muted"  title="Delivery will be updated after choosing a new delivery method">Delivery:</td>
+                <td class="text-xl-right border-0 text-muted" >
+                     <span t-field="website_sale_order.amount_delivery" class="monetary_field" style="white-space: nowrap;" t-options='{
+                        "widget": "monetary",
+                        "display_currency": website_sale_order.currency_id,
+                    }'/>
+                </td>
+              </tr>
+          </xpath>
+        </template>
+
+    </data>
+</odoo>

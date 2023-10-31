@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://store.webkul.com/license.html/ -->
+
+<odoo>
+    <data>
+        <record id="inherit_view_delivery_carrier_form_website_delivery" model="ir.ui.view">
+            <field name="name">Delivery Carrier Products View</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="website_sale_delivery.view_delivery_carrier_form_website_delivery"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <div class="alert alert-info oe_text_center" role="alert" attrs="{'invisible': [('is_sol_carrier','=',False)]}">
+                        This delivery method will be applicable if you want to apply shipping charges per sale order line i.e. shipping charges per product.
+                    </div>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <field name="is_sol_carrier" invisible="1"/>
+                    <page string="Shipping Per Products" name="Products" attrs="{'invisible':[('is_sol_carrier','=',True)]}">
+                        <field name="product_temp_ids" options="{'no_create': True,'no_create_edit': True,'no_open': True}" domain="[('detailed_type','!=','service')]"/>
+                         <group>
+                            <field name="product_specific"/>
+                        </group>
+                    </page>
+                    <page string="Configuration" name="sol_config" attrs="{'invisible':[('is_sol_carrier','!=',True)]}">
+                        <group>
+                            <group>
+                                <field name="sol_grouping" string="Delivery Order Grouping" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                            <group>
+                                <field name="sol_free_config" widget="radio" options="{'horizontal': true}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

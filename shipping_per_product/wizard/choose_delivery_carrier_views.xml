@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="shipping_per_pro_choose_delivery_carrier_view_form" model="ir.ui.view">
+            <field name="name">choose.delivery.carrier.form</field>
+            <field name="model">choose.delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.choose_delivery_carrier_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <field name="is_sol_carrier" invisible="1"/>
+                    <div attrs="{'invisible': ['|',('carrier_id','=', False),('is_sol_carrier','=', False)]}">
+                        <div class="text-center" style="color:#558B2F;font-size: 20px;margin-bottom: 10px;">
+                            <center>Select delivery method for each product to check delivery price.</center>
+                        </div>
+                        <field name="line_ids">
+                            <tree create="false" edit="True" delete="false" editable="bottom">
+                                <field name="product_id" readonly="1" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="available_carrier_ids" invisible = "1" />
+                                <field name="delivery_carrier_id" options="{'no_create': True, 'no_open': True}" domain="[('id', 'in', available_carrier_ids)]"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <group>
+                                <label for="display_price"/>
+                                <div class="o_row">
+                                    <field name='display_price' widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <button name="update_price" type="object">
+                                        <i class="fa fa-arrow-right mr-1"/>Get rate
+                                    </button>
+                                </div>
+                            </group>
+                        </group>
+                    </div>
+                </xpath>
+                <xpath expr="//div[hasclass('o_row')]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_sol_carrier','=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='display_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_sol_carrier','=', True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
