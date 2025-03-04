@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="custom_user_dropdown" name="Custom Portal User Dropdown" inherit_id="portal.user_dropdown">
+        <xpath expr="//div[i[contains(@class, 'fa-user')]]/i" position="attributes">
+            <attribute name="class">fa fa-1x as-h-user</attribute>
+        </xpath>
+    </template>
+</odoo>
