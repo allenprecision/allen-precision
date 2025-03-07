@@ -1,13 +1,13 @@
 <odoo>
     <data>
         <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
-        <xpath expr = "//t[@t-set='address']" position='after'>
-            <br/>
+        <xpath expr = "//t[@t-set='information_block']" position='after'>
+            <div>
             <p>
                 <span> Customer #:</span>
                 <strong><t t-esc="o.customer_number"/></strong>
             </p>
-            <br/>
+            </div>
         </xpath>
         </template>
     </data>
