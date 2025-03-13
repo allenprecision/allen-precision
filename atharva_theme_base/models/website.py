@@ -93,7 +93,6 @@ class CustomWebsite(models.Model):
     active_product_bulk_save = fields.Boolean(string="Product Bulk Save", default=True)
     active_last_month_count = fields.Boolean(string="Product Last Mount sale Count", default=True)
     active_product_inquiry = fields.Boolean(string="Inquiry Submit Action")
-    active_product_discount = fields.Boolean(string="Product Discount",default=True)
 
     inquiry_submit_action = fields.Selection(
         selection=[('email', "Send An Email"),('crm', "Create An Opportunity")],string="Product Queries Action")

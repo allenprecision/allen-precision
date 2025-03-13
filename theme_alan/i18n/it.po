@@ -4888,7 +4888,7 @@ msgstr "Non aspettare e risparmia.."
 #. module: theme_alan
 #: model_terms:theme.ir.ui.view,arch:theme_alan.as_product_content_tabs
 msgid "Download"
-msgstr "Scarica"
+msgstr "Scaricamento"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -4906,7 +4906,7 @@ msgstr "Trascina e rilascia lo snippet"
 #. module: theme_alan
 #: model_terms:theme.ir.ui.view,arch:theme_alan.filter_products_price
 msgid "Drag and drop the snippet here"
-msgstr "Trascina e rilascia qui lo snippet"
+msgstr "Trascina e rilascia lo snippet qui"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -10755,14 +10755,14 @@ msgstr "Prodotto"
 #: code:addons/theme_alan/static/src/js/AlanTouch/AlanTouch.xml:0
 #, python-format
 msgid "Product Advance Information"
-msgstr "Informazioni avanzate prodotto"
+msgstr "Informazioni sull'avanzamento del prodotto"
 
 #. module: theme_alan
 #. odoo-javascript
 #: code:addons/theme_alan/static/src/js/AlanTouch/AlanTouch.xml:0
 #, python-format
 msgid "Product Any Queries"
-msgstr "Domande sul prodotto"
+msgstr "Prodotto Qualsiasi domanda"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -10776,7 +10776,7 @@ msgstr "Marchio del prodotto"
 #: code:addons/theme_alan/static/src/js/AlanTouch/AlanTouch.xml:0
 #, python-format
 msgid "Product Bulk Save"
-msgstr "Risparmio acquisti in quantità"
+msgstr "Salvataggio in blocco del prodotto"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -15014,7 +15014,7 @@ msgstr "VISITATORI ANNUALI"
 #: code:addons/theme_alan/static/src/js/AlanTouch/AlanTouch.xml:0
 #, python-format
 msgid "Variant Advance Information"
-msgstr "Informazioni avanzate variante"
+msgstr "Informazioni sull'avanzamento della variante"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -16374,9 +16374,11 @@ msgid ""
 msgstr "Il Lorem Ipsum è semplicemente il testo fittizio dell'industria della stampa e della composizione tipografica. Il Lorem Ipsum è stato il testo fittizio standard dell'industria sin dal 1500, quando un tipografo sconosciuto prese una galea di caratteri e la strapazzò per creare un testo fittizio."
 
 #. module: theme_alan
-#: model_terms:theme.ir.ui.view,arch:theme_alan.last_month_sold
-msgid "Sold in last month"
-msgstr "Venduti lo scorso mese"
+#. odoo-javascript
+#: code:addons/theme_alan/static/src/js/frontend/variant_mixin.js:0
+#, python-format
+msgid " sold in last month"
+msgstr "venduti nell'ultimo mese"
 
 #. module: theme_alan
 #. odoo-javascript
@@ -16384,10 +16386,3 @@ msgstr "Venduti lo scorso mese"
 #, python-format
 msgid "All products are loaded."
 msgstr "Tutti i prodotti sono caricati."
-
-#. module: theme_alan
-#. odoo-javascript
-#: code:addons/theme_alan/static/src/js/AlanTouch/AlanTouch.xml:0
-#, python-format
-msgid "Product Discount"
-msgstr "Sconto sul prodotto"

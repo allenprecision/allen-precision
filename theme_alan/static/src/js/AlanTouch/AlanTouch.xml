@@ -397,15 +397,6 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-check as-edit-form-check-pill">
-                                        <input class="form-check-input" name="active_product_discount" type="checkbox" t-on-change="_setting_change" id="active_product_discount"
-                                            t-att-checked="this.configuration.active_product_discount ? 'checked' : undefined" />
-                                        <label class="form-check-label" for="active_product_discount">
-                                             <i class="fa fa-percent"></i> <span>Product Discount</span>
-                                        </label>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

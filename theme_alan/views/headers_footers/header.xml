@@ -105,7 +105,6 @@
                             <t t-call="portal.user_dropdown">
                                 <t t-set="_user_name" t-value="true"/>
                                 <t t-set="_icon" t-value="true"/>
-                                <t t-set="_icon_class" t-valuef="as-h-user"/>
                                 <t t-set="_item_class" t-valuef="dropdown"/>
                                 <t t-set="_link_class" t-valuef="hm-icon hm-icon-pill"/>
                                 <t t-set="_icon_wrap_class" t-value="'hm-icon'"/>

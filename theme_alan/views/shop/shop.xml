@@ -559,7 +559,7 @@
                             </div>
                         </div>
                     </div>
-                    <t t-if="opt_wsale_attributes or opt_wsale_attributes_top" t-call="theme_alan.as_advance_filters"/>
+                    <t t-call="theme_alan.as_advance_filters"/>
                 </div>
 
             </aside>

@@ -786,17 +786,4 @@
         </div>
     </template>
     <!-- End Free Shipping Eligibility In Mini Cart -->
-    <!-- Website mini cart coupon and discount : Start -->
-    <template id="website_sale_coupon_form_mini_cart" inherit_id="website_sale.coupon_form">
-        <xpath expr="//form/div[hasclass('input-group')]/a[hasclass('a-submit')]" position="attributes">
-            <attribute name="class" add="submit-mini-cart-coupon" separator=" "/>
-        </xpath>
-    </template>
-    <template id="modify_code_form_mini_cart" inherit_id="website_sale_loyalty.modify_code_form">
-        <xpath expr="//form[@name='claim_reward']//div[hasclass('alert-success')]//div[hasclass('justify-content-end')]/a[hasclass('a-submit')]" position="attributes">
-            <attribute name="class" add="submit-mini-cart-claim_reward" separator=" "/>
-        </xpath>
-    </template>
-    <!-- Website mini cart coupon and discount : End -->
-
 </odoo>

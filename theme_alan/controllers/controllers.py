@@ -42,10 +42,7 @@ class WebsiteSaleAlanVariant(WebsiteSaleVariantController):
 
                 get_offer_date = product_id._get_offer_timing(current_pricelist)
                 res.update({'bulk_save': template, 'offer_timer':get_offer_date})
-                product_count =  product_id.get_sale_count_last_month()
-                last_month_template =  request.env['ir.ui.view']._render_template("theme_alan.last_month_sold",{
-                            'product_count': product_count})
-            res.update({'default_code':product_id.default_code, 'last_month_count': last_month_template})
+            res.update({'default_code':product_id.default_code, 'last_month_count': product_id.get_sale_count_last_month()})
         return res
 
 class WebsiteSaleAlanShop(WebsiteSale):
@@ -373,39 +370,6 @@ class WebsiteSaleAlanShop(WebsiteSale):
                 })
             composer.sudo()._action_send_mail()
 
-    @http.route('/get_coupon_status', type='json', auth='public', website=True)
-    def get_coupon_status(self, promo, **post):
-        order = request.website.sale_get_order()
-        if not order:
-            return {"success": False, "message": "No active order"}
-        coupon_status = order._try_apply_code(promo)
-        if 'error' not in coupon_status:
-            return {"success": False}
-        else:
-            return {"success": True, "coupon_status": coupon_status}
-
-    @http.route('/get_apply_reward_status', type='json', auth='public', website=True)
-    def get_apply_reward_status(self, reward_id, coupon, **post):
-        reward_id = int(reward_id)
-        reward = request.env['loyalty.reward'].sudo().search([('id','=',reward_id)])
-        coupon = request.env['loyalty.card'].sudo().search([('code','=',coupon)], limit=1)
-        order = request.website.sale_get_order()
-        if not order:
-            return {"success": False, "message": "No active order"}
-
-        if reward and coupon:
-            product_id = request.env.context.get('product_id')
-            product = product_id and request.env['product.product'].sudo().browse(product_id)
-            try:
-                reward_status = order._apply_program_reward(reward, coupon, product=product)
-            except UserError as e:
-                return {"success": False, "message": str(e)}
-            if 'error' in reward_status:
-                return {"success": False, "message": reward_status['error']}
-            return {"success": True}
-        else:
-            return {"success": False, "message": "Reward or coupon not found"}
-
 class AlanShops(http.Controller):
 
     @route(['/shop/brands', '/shop/brands/page/<int:page>'], type='http', auth="public", website=True)
@@ -481,7 +445,6 @@ class AlanShops(http.Controller):
             'active_product_bulk_save':website.active_product_bulk_save,
             'active_last_month_count': website.active_last_month_count,
             'active_product_inquiry': website.active_product_inquiry,
-            'active_product_discount': website.active_product_discount,
             'active_free_shipping':website.active_free_shipping,
         }
         return data

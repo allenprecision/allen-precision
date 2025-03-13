@@ -23,8 +23,9 @@ class ProductBrand(models.Model):
 
     @api.depends("logo")
     def _get_logo(self):
-        self.image_1920 = self.logo
-        self.set_image_mixin = True
+        for rec in self:
+            rec.image_1920 = rec.logo
+            rec.set_image_mixin = True
 
     @api.depends("brand_product_ids")
     def _get_products_count(self):

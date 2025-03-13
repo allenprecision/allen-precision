@@ -442,25 +442,10 @@ export const HeroSlider = publicWidget.Widget.extend({
         });
     }
 });
+
 publicWidget.registry.HeroSlider = HeroSlider;
-
-export const ProductBulkOffer = publicWidget.Widget.extend({
-    selector:".as_bulk_save",
-    disabledInEditableMode: false,
-    start:function(){
-        if(!this.editableMode){
-            this.$target.removeClass("d-none")
-        }
-        else{
-            this.$target.addClass("d-none")
-        }
-    }
-});
-
-publicWidget.registry.ProductBulkOffer = ProductBulkOffer;
 
 export default {
     ImgHotSpot: publicWidget.registry.ImgHotSpot,
-    HeroSlider: publicWidget.registry.HeroSlider,
-    ProductBulkOffer: publicWidget.registry.ProductBulkOffer
+    HeroSlider: publicWidget.registry.HeroSlider
 };

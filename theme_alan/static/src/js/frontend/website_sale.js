@@ -552,8 +552,6 @@ const AlanMiniCartProduct = Dialog.extend({
     'click .js_delete_product':'_onClickRemoveProduct',
     'click .as_clr_cart':'_asClearCart',
     'click a.js_add_suggested_products': '_onClickSuggestedProduct',
-    'click a.submit-mini-cart-coupon':'_onClickCouponCode',
-    'click a.submit-mini-cart-claim_reward': '_onClickClaimReward',
     }),
     init(ele, otps) {
         this._super(ele, {
@@ -658,76 +656,6 @@ const AlanMiniCartProduct = Dialog.extend({
     },
     _onClickSuggestedProduct: function (ev) {
         $(ev.currentTarget).prev('input').val(1).trigger('change');
-    },
-    _onClickCouponCode: function(ev){
-        this.$el.find(".as_in_code").remove()
-        this.couponForm = this.$el.find("form[name='coupon_code']");
-        let promoCode = this.$el.find("input[name='promo']").val();
-        let formData = new FormData(this.couponForm[0]);
-        formData.append("csrf_token", odoo.csrf_token);
-
-        this.rpc('/get_coupon_status', { promo: promoCode }).then(status=>{
-            if(status.success && status.coupon_status){
-                let coupon_status = status.coupon_status.error
-                if(status.coupon_status.error){
-                    $(this.couponForm).append(`<div class="as_in_code alert alert-danger text-start mt16" role="alert">
-                        ${coupon_status}
-                    </div>`)
-                }
-            }
-            else{
-                fetch('/shop/pricelist', {
-                    method: 'POST',
-                    body: formData,
-                })
-                .then(data => {
-                    if(data.status=="200"){
-                        this.rpc('/get_mini_cart', { }).then((response)=>{
-                            this.$content.empty().append(response['as_mini_cart'])
-                        });
-                    }
-                })
-            }
-        });
-    },
-
-    _onClickClaimReward: function(ev){
-        this.couponForm = this.$el.find("form[name='coupon_code']");
-        let form = $(ev.currentTarget).closest("form");
-        var formData = new FormData(form[0]);
-        var rewardId = false;
-        var coupon = false;
-
-        if (form && form.length > 0 && form[0].elements){
-            if (form[0].elements['reward_id']){
-                rewardId = form[0].elements['reward_id'].value
-            }
-            if (form[0].elements['code']){
-                coupon = form[0].elements['code'].value
-            }
-        }
-        if (rewardId && coupon){
-            this.rpc('/get_apply_reward_status', { reward_id: rewardId, coupon:coupon }).then(status=>{
-                if(status.success === false && status.message){
-                    let coupon_status = status.message
-                    $(this.couponForm).append(`<div class="as_in_code alert alert-danger text-start mt16" role="alert">
-                        ${coupon_status}
-                    </div>`)
-                }
-                else{
-                    fetch('/shop/claimreward', {
-                        method: 'POST',
-                        body: formData,
-                    }).then(data => {
-                        if(data.status=="200"){
-                            this.rpc('/get_mini_cart', { }).then((response)=>{
-                                this.$content.empty().append(response['as_mini_cart'])
-                            });
-                        }
-                    })
-                }
-            })
-        }
     },
 })
 
