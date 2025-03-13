@@ -5,7 +5,7 @@
             <xpath expr="//th[@name='th_discount']" position="replace"/>
 
             <!-- Remove the Discount column values from order lines -->
-            <xpath expr="//td[span[@t-field='line.discount']]" position="replace"/>
+            <xpath expr="//td[span//span[@t-field='line.discount']]" position="replace"/>
         </template>
     </data>
 </odoo>

@@ -2,7 +2,7 @@
 {
     'name': "Theme Alan",
     'category': 'Theme/eCommerce',
-    'version': '1.9',
+    'version': '2.1',
     'license': 'OPL-1',
     'author': 'Atharva System',
     'support': 'support@atharvasystem.com',

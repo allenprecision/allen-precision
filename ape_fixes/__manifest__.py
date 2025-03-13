@@ -17,7 +17,7 @@ And to add some new generic fields
     'data': [
         'report/purchase_order.xml',
         'report/sale_report.xml',
-        # 'report/delivery_slip.xml',
+        'report/delivery_slip.xml',
         'report/invoice.xml',
         'data/sequence.xml',
         'views/product_category.xml',
@@ -26,7 +26,7 @@ And to add some new generic fields
        'views/account_view.xml', #New Feature
        'views/picking_view.xml',
        'views/print_check.xml',
-    'views/portal_templates.xml',
+    # 'views/portal_templates.xml',
        # 'views/inventory_report.xml', #Not needed
        # 'views/account_account_type_view.xml', #New feature
     ],

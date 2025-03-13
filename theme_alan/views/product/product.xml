@@ -41,10 +41,11 @@
                     <img t-att-src="request.website.image_url(product.product_brand_id,'image_128')"/>
                 </div>
                 <div class="as-b-text">
-                    <h6 t-esc="product.product_brand_id.name"/>
+                    <h6 itemprop="brand" t-esc="product.product_brand_id.name"/>
                     <p t-esc="product.product_brand_id.brand_description"/>
                 </div>
             </div>
+            <span t-if="product.barcode" itemprop="gtin13" style="display:none;" t-esc="product.barcode"/>
             <!-- Product Brand: END -->
 
             <!-- Product Advance Info: START -->
@@ -472,15 +473,53 @@
     </template>
     <!-- OFFER TABLE: END -->
 
+    <!-- Last Month Save TABLE: START -->
+    <template id="last_month_sold" name="product pricelist items">
+        <span t-if="product_count"><b><t t-esc="round(product_count)"/></b> Sold in last month</span>
+    </template>
+    <!-- Last Month Save TABLE: END -->
+
     <!-- B2B Mode -->
     <template id="theme_alan_product_price" inherit_id="website_sale.product_price">
         <xpath expr="//div[contains(@t-attf-class, 'product_price')]" position="attributes">
             <attribute name="t-attf-style">{{'display:none !important;' if request.env.user._is_public() and request.website.active_b2b_mode else ''}}</attribute>
         </xpath>
-        <xpath expr="//h3[hasclass('css_editable_mode_hidden')]" position="inside">
-            <span t-if="combination_info['has_discounted_price']" t-attf-class="as-product-discounted {{'' if combination_info['has_discounted_price'] else 'd-none'}}">
-                <t t-esc="combination_info['as_offer_discount']"/> % OFF
-            </span>
+        <xpath expr="//h3[hasclass('css_editable_mode_hidden')]" position="replace">
+             <h3 class="css_editable_mode_hidden">
+                <span class="oe_price"
+                      style="white-space: nowrap;"
+                      t-out="combination_info['price']"
+                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                <span itemprop="price" style="display:none;" t-out="combination_info['price']"/>
+                <span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>
+                <span t-attf-class="text-danger oe_default_price ms-1 h5 {{'' if combination_info['has_discounted_price'] and not combination_info['compare_list_price'] else 'd-none'}}"
+                      style="text-decoration: line-through; white-space: nowrap;"
+                      t-esc="combination_info['list_price']"
+                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                />
+                <t t-if="is_view_active('website_sale.tax_indication')" t-call="website_sale.tax_indication"/>
+                <del t-if="combination_info['compare_list_price'] and (combination_info['compare_list_price'] &gt; combination_info['price'])">
+                    <bdi dir="inherit">
+                    <span t-esc="combination_info['compare_list_price']"
+                          groups="website_sale.group_product_price_comparison"
+                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                    </bdi>
+                </del>
+                <span t-if="combination_info['has_discounted_price'] and website.active_product_discount" t-attf-class="as-product-discounted {{'' if combination_info['has_discounted_price'] else 'd-none'}}">
+                    <t t-esc="combination_info['as_offer_discount']"/> % OFF
+                </span>
+                <t t-if="product.sudo().allow_out_of_stock_order">
+                    <link itemprop="availability" href="https://schema.org/InStock" />
+                </t>
+                <t t-else="">
+                    <t t-if="product_variant.sudo().with_context(warehouse=website._get_warehouse_available()).free_qty &gt; 0">
+                        <link itemprop="availability" href="https://schema.org/InStock" />
+                    </t>
+                    <t t-else="">
+                        <link itemprop="availability" href="https://schema.org/OutOfStock" />
+                    </t>
+                </t>
+            </h3>
         </xpath>
     </template>
     <template id="theme_alan_product_quantity" inherit_id="website_sale.product_quantity" priority="99">

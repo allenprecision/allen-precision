@@ -10,9 +10,8 @@ VariantMixin._onChangeCombinationIntercalReference = function (ev, $parent, comb
     let $last_month_count = this.$target.find(".as_month_sale_count");
     let $as_bulk_save = this.$target.find(".as_bulk_save");
     let $offer_timer = this.$target.find(".as_offer_timer");
-    if(combination.last_month_count > 0){
-        let strs =  "<span><b>"+ combination.last_month_count + "</b>" +  _t(" sold in last month") + "</span>";
-        $last_month_count.empty().html(strs);
+    if(combination.last_month_count !=false){
+        $last_month_count.empty().append($(combination.last_month_count));
     }else{
         $last_month_count.empty();
     }

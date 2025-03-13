@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <template id="custom_user_dropdown" name="Custom Portal User Dropdown" inherit_id="portal.user_dropdown">
+    <!-- <template id="custom_user_dropdown" name="Custom Portal User Dropdown" inherit_id="portal.user_dropdown">
         <xpath expr="//div[i[contains(@class, 'fa-user')]]/i" position="attributes">
             <attribute name="class">fa fa-1x as-h-user</attribute>
         </xpath>
+    </template> -->
+
+
+    <template id='website_sale.coupon_form' name='Coupon form'>
+        <!-- Checkout context:
+            - redirect: The route to redirect to when a customer enters a coupon; default: `None`.
+            - website_sale_order: The current order.
+        -->
+        <form t-attf-action="/shop/pricelist#{redirect and '?r=' + redirect or ''}"
+            method="post" name="coupon_code">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
+            <div class="input-group w-100 my-2">
+                <input name="promo" class="form-control" type="text" placeholder="Discount code..." t-att-value="website_sale_order.pricelist_id.code or None"/>
+                <button href="#" role="button" class="btn btn-secondary a-submit ps-2">Apply</button>
+            </div>
+        </form>
+        <t t-if="request.params.get('code_not_available')" name="code_not_available">
+            <div class="alert alert-danger text-start" role="alert">This promo code is not available.</div>
+        </t>
     </template>
 </odoo>
