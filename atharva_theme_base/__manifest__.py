@@ -3,7 +3,7 @@
     'name': 'Atharva Theme Base',
     'category': 'Base',
     'summary': 'Atharva E-commerce themes Base module',
-    'version': '1.6',
+    'version': '1.8',
     'license': 'OPL-1',
     'author': 'Atharva System',
 	'support': 'support@atharvasystem.com',
@@ -14,11 +14,11 @@
         'website_sale_wishlist',
         'website_sale_comparison',
         'website_blog',
+        'website_sale_loyalty',
         'stock',
         'crm',
         'sale',
         'delivery',
-        'website',
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -39,7 +39,6 @@
         'views/admin/product_config.xml',
         'views/megamenu/templates.xml',
         'views/megamenu/advance_megamenu.xml'
-
      ],
     'assets': {
         'web.assets_frontend': [
@@ -56,9 +55,6 @@
         ],
 
     },
-    
-    # 'pre_init_hook': 'pre_init_hook',
-    # 'post_init_hook': 'post_init_hook',
     'price': 6.00,
     'currency': 'EUR',
     'images': ['static/description/as-theme-base.png'],
