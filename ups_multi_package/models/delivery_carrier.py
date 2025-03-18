@@ -48,11 +48,10 @@ class ProviderUPS(models.Model):
         for package in picking.package_ids:
             move_lines = picking.move_line_ids.filtered(lambda ml: ml.result_package_id == package)
             commodities = self._get_commodities_from_stock_move_lines(move_lines)
-            package_total_cost = 0.0
-            for quant in package.quant_ids:
-                package_total_cost += self._product_price_to_company_currency(
-                    quant.quantity, quant.product_id, picking.company_id
-                )
+            package_total_cost = sum(
+                self._product_price_to_company_currency(quant.quantity, quant.product_id, picking.company_id)
+                for quant in package.quant_ids
+            )
             packages.append(DeliveryPackage(
                 commodities,
                 package.shipping_weight or package.weight,
@@ -63,14 +62,13 @@ class ProviderUPS(models.Model):
                 picking=picking,
             ))
 
-        # Create one package: either everything is in pack or nothing is.
+        # Handle bulk weight scenario
         if picking.weight_bulk:
             commodities = self._get_commodities_from_stock_move_lines(picking.move_line_ids)
-            package_total_cost = 0.0
-            for move_line in picking.move_line_ids:
-                package_total_cost += self._product_price_to_company_currency(
-                    move_line.quantity, move_line.product_id, picking.company_id
-                )
+            package_total_cost = sum(
+                self._product_price_to_company_currency(move_line.quantity, move_line.product_id, picking.company_id)
+                for move_line in picking.move_line_ids
+            )
             packages.append(DeliveryPackage(
                 commodities,
                 picking.weight_bulk,
@@ -86,10 +84,31 @@ class ProviderUPS(models.Model):
                 "products in the picking is 0.0 %s",
                 picking.weight_uom_name
             ))
-        packages[0].dimension['length'] = picking.delivery_package_ids.length
-        packages[0].dimension['width'] = picking.delivery_package_ids.width
-        packages[0].dimension['height'] = picking.delivery_package_ids.height
-        packages[0].weight = picking.delivery_package_ids.weight
+
+        # **Handle multiple delivery_package_ids properly**
+        if picking.delivery_package_ids:
+            packages = []  # Reset packages to create new ones from delivery_package_ids
+            for delivery_package in picking.delivery_package_ids:
+                commodities = self._get_commodities_from_stock_move_lines(picking.move_line_ids)
+                weight = delivery_package.weight  # Ensure the correct weight is assigned per package
+                package_total_cost = sum(
+                    self._product_price_to_company_currency(move_line.quantity, move_line.product_id,
+                                                            picking.company_id)
+                    for move_line in picking.move_line_ids
+                )
+                package = DeliveryPackage(
+                    commodities,
+                    weight,  # <-- Fixed: Assigning correct weight from delivery_package
+                    default_package_type,
+                    name=f"Package {delivery_package.id}",
+                    total_cost=package_total_cost,
+                    currency=picking.company_id.currency_id,
+                    picking=picking,
+                )
+                package.dimension['length'] = delivery_package.length
+                package.dimension['width'] = delivery_package.width
+                package.dimension['height'] = delivery_package.height
+                packages.append(package)
 
         return packages
 #
