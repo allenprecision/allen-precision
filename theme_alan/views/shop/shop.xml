@@ -7,6 +7,7 @@
             <attribute name="t-if" add="and not (request.env.user._is_public() and request.website.active_b2b_mode)" separator=" "/>
         </xpath>
     </template>
+    
     <template id="theme_alan_filter_products_price" inherit_id="website_sale.filter_products_price" name="Theme Alan Filter by Prices">
         <xpath expr="//div[@id='o_wsale_price_range_option']" position="attributes">
             <attribute name="t-attf-style">{{'display:none !important;' if request.env.user._is_public() and request.website.active_b2b_mode else ''}}</attribute>
