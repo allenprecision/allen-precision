@@ -25,8 +25,7 @@ from odoo.http import request
 
 
 class UnderMaintenance(http.Controller):
-    @http.route('/maintenance', website=True, page=True,
-                auth='public', csrf=False)
+    @http.route('/maintenance', website=True, page=True, auth='public', csrf=False)
     def maintenance_request_thanks(self):
         """Maintenance Page"""
         return (request.render

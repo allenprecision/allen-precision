@@ -9,6 +9,12 @@
             </p>
             </div>
         </xpath>
+
+        <xpath expr="//div[@class='mb-3'][p[@name='payment_communication']]" position="replace"/>
+
+        </template>
+        <template id="custom_report_picking" inherit_id="stock.report_picking">
+            <xpath expr="//div[@class='row justify-content-end mb16']" position="replace"/>
         </template>
     </data>
 </odoo>

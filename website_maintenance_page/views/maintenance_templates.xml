@@ -4,13 +4,11 @@
     <template inherit_id="portal.frontend_layout"
               id="website_maintenance" name="Maintenance Page">
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
-            <attribute name="t-if">not user_id._is_public() or not
-                website.under_maintenance or
-                request.httprequest.path=='/web/login'
+           <attribute name="t-if">not user_id._is_public() and user_id.has_group('base.group_user')
             </attribute>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="before">
-            <t t-if="user_id._is_public() and website.under_maintenance == True and request.httprequest.path!='/web/login'">
+            <t t-if="website.under_maintenance == True and user_id._is_public() or user_id.has_group('base.group_portal')">
                 <html>
                     <head>
                         <nav class="navbar navbar-expand navbar-light bg-light">

@@ -27,6 +27,7 @@ Combo Products,
         'views/product_views.xml',
         'views/templates.xml'
 
+
     ],
     'assets': {
         'web.assets_frontend': [

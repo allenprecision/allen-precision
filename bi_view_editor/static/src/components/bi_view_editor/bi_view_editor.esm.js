@@ -13,6 +13,7 @@ import {useService} from "@web/core/utils/hooks";
 
 export class BiViewEditor extends Component {
     setup() {
+        this.uniqueIdCounter = {};
         this.state = useState({
             models: [],
             fields: [],
@@ -26,13 +27,12 @@ export class BiViewEditor extends Component {
             // would be quite similar to using this object.
             fieldsByID: {},
         });
-        this._uniqueIdCounter = 1;
         this.orm = useService("orm");
         this.dialogService = useService("dialog");
         onWillUpdateProps((nextProps) => {
-            this.updateFields(nextProps.value);
+            this.updateFields(nextProps.record.data[this.props.name]);
         });
-        this.updateFields(this.props.value);
+        this.updateFields(this.props.record.data[this.props.name]);
     }
     get modelIDs() {
         const model_ids = {};
@@ -51,14 +51,22 @@ export class BiViewEditor extends Component {
         }
         return model_data;
     }
+    // Replace the original loadash _.uniqueId function with a custom one that
+    uniqueId(prefix = "$uniqueId$") {
+        this.uniqueIdCounter[prefix] = this.uniqueIdCounter[prefix] || 0;
+        const id = ++this.uniqueIdCounter[prefix];
+        return prefix === "$uniqueId$" ? id.toString() : `${prefix}${id}`;
+    }
+
+    // WARNING: This is not a drop in replacement solution and
+    // it might not work for some edge cases. Test your code!
     _addField(field) {
         field.row = typeof field.row === "undefined" ? false : field.row;
         field.column = typeof field.column === "undefined" ? false : field.column;
         field.measure = typeof field.measure === "undefined" ? false : field.measure;
         field.list = typeof field.list === "undefined" ? true : field.list;
-        if (typeof field._id === "undefined") {
-            field._id = `node_${this._uniqueIdCounter++}`;
-        }
+        field._id =
+            typeof field._id === "undefined" ? this.uniqueId("node_") : field._id;
         if (field.join_node) {
             field.join_left =
                 typeof field.join_left === "undefined" ? false : field.join_left;
@@ -158,7 +166,8 @@ export class BiViewEditor extends Component {
         this.updateValue();
     }
     addField(field) {
-        const data = { ...field }
+        console.log("addField");
+        const data = Object.assign({}, field);
         const field_data = this.state.fields;
         this.orm
             .call("ir.model", "get_join_nodes", [field_data, data])
@@ -194,6 +203,7 @@ export class BiViewEditor extends Component {
         }
     }
     onDrop(e) {
+        console.log("onDrop");
         if (this.props.readonly) {
             return;
         }
@@ -204,10 +214,13 @@ export class BiViewEditor extends Component {
         }
     }
     updateValue() {
-        this.props.record.update({ [this.props.name]: JSON.stringify(this.state.fields) });
+        this.props.record.update({
+            [this.props.name]: JSON.stringify(this.state.fields || {}),
+        });
         this.updateModels();
     }
 }
+
 BiViewEditor.template = "bi_view_editor.Frame";
 BiViewEditor.components = {
     ModelList,

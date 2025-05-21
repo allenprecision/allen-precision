@@ -5,7 +5,7 @@
     'name': 'APE FIXES',
     'version': '1.0',
     'category': 'sale',
-    'license': 'AGPL-3',
+    'license': 'OPL-1',
     'description': """
 This is a module to fix some the core base things.
 And to add some new generic fields

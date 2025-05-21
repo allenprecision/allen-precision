@@ -9,11 +9,9 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/reporting-engine",
     "category": "Productivity",
-    "version": "17.0",
+    "version": "17.0.1.1.0",
     "development_status": "Beta",
-    "depends": [
-        "web", "spreadsheet_dashboard"
-    ],
+    "depends": ["web", "spreadsheet_dashboard"],
     "external_dependencies": {
         "deb": ["graphviz"],
     },
@@ -25,16 +23,7 @@
     ],
     "assets": {
         "web.assets_backend": [
-            # "bi_view_editor/static/src/components/**/*",
-            "bi_view_editor/static/src/components/bi_view_editor/bi_view_editor.css",
-            "bi_view_editor/static/src/components/bi_view_editor/bi_view_editor.esm.js",
-            "bi_view_editor/static/src/components/bi_view_editor/bi_view_editor.xml",
-            "bi_view_editor/static/src/components/bi_view_editor/field_list.esm.js",
-            "bi_view_editor/static/src/components/bi_view_editor/field_list.xml",
-            "bi_view_editor/static/src/components/bi_view_editor/join_node_dialog.esm.js",
-            "bi_view_editor/static/src/components/bi_view_editor/join_node_dialog.xml",
-            "bi_view_editor/static/src/components/bi_view_editor/model_list.esm.js",
-            "bi_view_editor/static/src/components/bi_view_editor/model_list.xml",
+            "bi_view_editor/static/src/components/**/*",
         ],
     },
     "uninstall_hook": "uninstall_hook",

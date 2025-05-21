@@ -24,7 +24,10 @@ class TestBiViewEditor(TransactionCase):
                 self.env["ir.model.fields"]
                 .sudo()
                 .search(
-                    [("model", "=", model_field[0]), ("name", "=", model_field[1])],
+                    [
+                        ("model", "=", model_field[0]),
+                        ("name", "=", model_field[1]),
+                    ],
                     limit=1,
                 )
                 for model_field in model_field_list
@@ -357,7 +360,39 @@ class TestBiViewEditor(TransactionCase):
         self.assertTrue(isinstance(data, list))
 
     def test_17_uninstall_hook(self):
-        uninstall_hook(self.cr, self.env)
+        vals = self.bi_view1_vals
+        employees_group = self.env.ref("base.group_user")
+        vals.update(
+            {"name": "Test View22", "group_ids": [(6, 0, [employees_group.id])]}
+        )
+        bi_view = self.env["bve.view"].create(vals)
+        bi_view.action_create()
+
+        self.env.cr.execute("CREATE VIEW x_bve_test_view AS SELECT 1;")
+
+        uninstall_hook(self.env)
+
+        test_model = (
+            self.env["ir.model"]
+            .sudo()
+            .search(
+                [
+                    ("model", "=", "x_bve.testview22"),
+                    ("name", "=", "Test View22"),
+                ]
+            )
+        )
+        self.assertEqual(len(test_model), 0)
+        self.env.cr.execute(
+            """
+            SELECT table_name
+              FROM information_schema.views
+             WHERE table_schema NOT IN ('pg_catalog', 'information_schema')
+               AND table_name like 'x_bve_%'
+            """
+        )
+        remaining_views = list(self.env.cr.fetchall())
+        self.assertEqual(len(remaining_views), 0)
 
     @odoo.tests.tagged("post_install", "-at_install")
     def test_19_field_selection(self):
@@ -367,7 +402,7 @@ class TestBiViewEditor(TransactionCase):
             .search(
                 [
                     ("model", "=", self.company_model_name),
-                    ("name", "=", "base_onboarding_company_state"),
+                    ("name", "=", "font"),
                 ],
                 limit=1,
             )
@@ -379,7 +414,7 @@ class TestBiViewEditor(TransactionCase):
                 "model": self.company_model_name,
                 "type": field.ttype,
                 "id": field.id,
-                "description": "State of the onboarding company step",
+                "description": "Font",
                 "table_alias": "t1",
                 "row": 0,
                 "column": 0,
@@ -387,7 +422,10 @@ class TestBiViewEditor(TransactionCase):
                 "measure": 0,
             }
         ]
-        vals = {"state": "draft", "data": json.dumps(self.data + selection_data)}
+        vals = {
+            "state": "draft",
+            "data": json.dumps(self.data + selection_data),
+        }
 
         vals.update({"name": "Test View6"})
         bi_view1 = self.env["bve.view"].create(vals)

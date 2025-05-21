@@ -5,7 +5,7 @@
 
 import {Component} from "@odoo/owl";
 import {Dialog} from "@web/core/dialog/dialog";
-import { _t } from "@web/core/l10n/translation";
+import {_t} from "@web/core/l10n/translation";
 
 export class JoinNodeDialog extends Component {
     setup() {
@@ -15,7 +15,7 @@ export class JoinNodeDialog extends Component {
         // Prepare data for view
         for (let i = 0; i < this.props.choices.length; i++) {
             // Props must not be modified
-            const choice = { ...this.props.choices[i] };
+            const choice = Object.assign({}, this.props.choices[i]);
             if (choice.join_node !== -1 && choice.table_alias !== -1) {
                 choice.model_name = model_data[choice.table_alias].model_name;
             }
