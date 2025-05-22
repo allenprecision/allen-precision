@@ -34,7 +34,7 @@ class ResConfigSettings(models.TransientModel):
         string="Under Maintenance",
         related="website_id.under_maintenance",
         readonly=False,
-        help="Enable or disable to show Maintenance page", default=True)
+        help="Enable or disable to show Maintenance page")
     maintenance_header = fields.Char(string="Maintenance Header",
                                      related="website_id.maintenance_hdr",
                                      readonly=False,
