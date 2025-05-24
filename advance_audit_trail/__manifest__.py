@@ -4,7 +4,7 @@
     # Module information
     "name": "Advance Audit Trail",
     "category": "Extra Tools",
-    "version": "17.0.1.0.0",
+    "version": "17.0.2.0.0",
     "license": "AGPL-3",
     "summary": """
     Manage full and Fast log with advance information.
