@@ -4,8 +4,7 @@
     <template inherit_id="portal.frontend_layout"
               id="website_maintenance" name="Maintenance Page">
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
-            <attribute name="t-if">not
-                website.under_maintenance or user_id.has_group('base.group_user')
+            <attribute name="t-if">not website.under_maintenance or user_id.has_group('base.group_user')
             </attribute>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="before">
@@ -48,10 +47,10 @@
                                 </h4>
                             </div>
                         </div>
-
                     </body>
                 </html>
             </t>
         </xpath>
     </template>
 </odoo>
+
