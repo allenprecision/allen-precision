@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--    Acknowledgement template-->
+    <template inherit_id="portal.frontend_layout"
+              id="website_maintenance" name="Maintenance Page">
+        <xpath expr="//div[@id='wrapwrap']" position="attributes">
+            <attribute name="t-if">not
+                website.under_maintenance or user_id.has_group('base.group_user')
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@id='wrapwrap']" position="before">
+            <t t-if="website.under_maintenance == True and user_id._is_public() or user_id.has_group('base.group_portal')">
+                <html>
+                    <head>
+                        <nav class="navbar navbar-expand navbar-light bg-light">
+                            <div class="container">
+                                <a href="/" class="navbar-brand logo">
+                                    <img t-att-src="'/logo.png?company=%s' % res_company.id"
+                                         t-att-alt="'Logo of %s' % res_company.name"
+                                         t-att-title="res_company.name"/>
+                                </a>
+                                <ul id="top_menu"
+                                    class="nav navbar-nav ms-auto">
+                                    <t t-call="portal.placeholder_user_sign_in">
+                                        <t t-set="_item_class"
+                                           t-value="'nav-item'"/>
+                                        <t t-set="_link_class"
+                                           t-value="'nav-link'"/>
+                                    </t>
+                                </ul>
+                            </div>
+                        </nav>
+                    </head>
+                    <body>
+                        <div class="page" style="text-align: center;">
+                            <!-- Centered Image -->
+                            <img t-att-src="image_data_uri(website.maintenance_img)"
+                                 style="max-width: 100%; height: auto; margin: 0 auto; display: block;"/>
+
+                            <!-- Text in a new row, centered -->
+                            <div style="margin-top: 30px;">
+                                <h2 t-att-style="'color: %s;' % website.maintenance_hdr_color"
+                                    style="margin-bottom: 10px;">
+                                    <t t-esc="website.maintenance_hdr"/>
+                                </h2>
+                                <h4 t-att-style="'color: %s;' % website.maintenance_cont_color">
+                                    <t t-esc="website.maintenance_msg"/>
+                                </h4>
+                            </div>
+                        </div>
+
+                    </body>
+                </html>
+            </t>
+        </xpath>
+    </template>
+</odoo>
