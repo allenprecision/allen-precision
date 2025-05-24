@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="email_template_product_queries" model="mail.template">
+            <field name="name">Product Inquiry</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="subject">Product Inquiry - Your Assistance Needed</field>
+            <field name="email_from">{{ (user.email_formatted) }}</field>
+            <field name="email_to">{{ ctx.get('email_to') }}</field>
+            <field name="body_html" type="html">
+                <div class="container main-container">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Hello,<br/><br/>
+                        <t t-if="user">
+                            <b><t t-esc="ctx.get('partner_name')"/></b>, reaching out to inquire about a specific product and would greatly appreciate your prompt assistance.
+                        </t>
+                    </p>
+                    <br/>
+                    <div>Product Name: <t t-esc="ctx.get('product')"/></div>
+                    <div>Question: <t t-esc="ctx.get('message')"/></div>
+                    <div>Contact Preference: <t t-esc="ctx.get('contact_preference')"/></div>
+                </div>
+            </field>
+        </record>
+    </data>
+
+</odoo>

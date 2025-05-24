@@ -9,7 +9,7 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
     <menuitem
         id="menu_bi_sql_editor"
         name="SQL Reports"
-        parent="base.menu_board_root"
+        parent="base.menu_custom"
         groups="sql_request_abstract.group_sql_request_user"
         sequence="0"
     />

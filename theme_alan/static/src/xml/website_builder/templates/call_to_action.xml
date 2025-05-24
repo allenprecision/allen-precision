@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_call_to_action_templates">
+
+<t t-name="theme_alan.cta_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-5 o_colored_level o_cc o_cc3">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9 text-center">
+                                    <div class="mb-5 h3 fw-300">AWESOME THEME FOR YOUR BUSINESS WEBSITE</div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 1</h6>
+                <label class="e-sb-label" for="e_cta_01"><input id="e_cta_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt80 pb80 o_colored_level o_cc o_cc2">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6 text-center">
+                                    <div class="pb-4">
+                                        <i class="fa fa-globe fa-5x"></i>
+                                    </div>
+                                    <div class="mb-3 h3 fw-600">Get Start With Alan.</div>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                    </div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 2</h6>
+                <label class="e-sb-label" for="e_cta_02"><input id="e_cta_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center">
+                                    <div class="mb-4 h4 fw-600">Alan is one of the most powerful, amazing and flexible theme on Odoo store.</div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 3</h6>
+                <label class="e-sb-label" for="e_cta_03"><input id="e_cta_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-5 o_cc o_cc2 o_colored_level">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9 text-center">
+                                    <div class="mb-3 h4 fw-600">ALAN IS ONE OF THE MOST POWERFUL, AMAZING AND FLEXIBLE THEME ON ODOO STORE.</div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 4</h6>
+                <label class="e-sb-label" for="e_cta_04"><input id="e_cta_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-5 o_colored_level o_cc o_cc2">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 text-center">
+                                    <div class="mb-3 h3 fw-600">Get Start With Alan.</div>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                    </div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 5</h6>
+                <label class="e-sb-label" for="e_cta_05"><input id="e_cta_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-5 o_cc o_cc4">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9 text-center">
+                                    <div class="mb-3 h3 fw-600">AWESOME THEME FOR YOUR BUSINESS WEBSITE</div>
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Call us now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 6</h6>
+                <label class="e-sb-label" for="e_cta_06"><input id="e_cta_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt80 o_colored_level o_cc o_cc3">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 my-4">
+                                    <div class="h2 fw-600 mb-3">HAVE EXTRA WEIGHT?</div>
+                                    <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <p class="">Take the First Step to Help <span class="fw-600">(800) 123 4567</span></p>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">Contact Us</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 text-center">
+                                    <img src="/theme_alan/static/src/img/snippets/540x700.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 7</h6>
+                <label class="e-sb-label" for="e_cta_07"><input id="e_cta_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-8.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 text-center text-lg-start my-3">
+                                    <div class="fw-600 h1 ">FITNESS CLASSES THIS SUMMER.</div>
+                                    <div class="h5 ">PAY NOW AND GET <span class="fw-600 h3">35%</span> DISCOUNT.</div>
+                                </div>
+                                <div class="col-lg-4 my-3 text-center text-lg-right">
+                                    <a href="#" class="btn btn-primary o_default_snippet_text ">Become a Member</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 8</h6>
+                <label class="e-sb-label" for="e_cta_08"><input id="e_cta_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-9.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <div class="h2 fw-600 mb-3">Get Online Consultation</div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <p>Take the First Step to Help <span class="fw-600">(800) 123 4567</span></p>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">Contact Us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 9</h6>
+                <label class="e-sb-label" for="e_cta_09"><input id="e_cta_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-10.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt80 o_colored_level o_cc o_cc2">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-6 text-center">
+                                    <div class="h1 fw-600 mb-4">Apply for Admission</div>
+                                    <p class="fw-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">Apply Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img class="img-fluid" src="/theme_alan/static/src/img/snippets/1920x620.jpg" />
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 10</h6>
+                <label class="e-sb-label" for="e_cta_10"><input id="e_cta_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp11">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-11.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-lg-7 my-3">
+                                    <h3 class="h3 mb-2 fw-600">Schedule Appointment</h3>
+                                    <div>
+                                        <p class="m-0">Our clinic offers comprehensive solutions for all of your dental needs</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 text-center text-lg-right my-3">
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">Book Appintment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 11</h6>
+                <label class="e-sb-label" for="e_cta_11"><input id="e_cta_11" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp12">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-12.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 my-3 text-center">
+                                    <div class="h1 mb-3 fw-600">Dr. John Boss</div>
+                                    <div class="lead">
+                                        <p class=" m-0">orem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                    </div>
+                                    <div class="pt-4">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">Book Appointments</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 12</h6>
+                <label class="e-sb-label" for="e_cta_12"><input id="e_cta_12" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp13">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-13.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt200 pb200 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 my-3 text-center">
+                                    <div class="display-4 mb-3 fw-600">WINE FOR EVERYONE</div>
+                                    <div>
+                                        <p class=" m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+                                    </div>
+                                    <div class="pt-5">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">EXPLORE OUR REGION</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 13</h6>
+                <label class="e-sb-label" for="e_cta_13"><input id="e_cta_13" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp14">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-14.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-lg-7 my-3">
+                                    <div class="h2  m-0 fw-600">Tennis your stress away in the fresh air!</div>
+                                </div>
+                                <div class="col-lg-3 text-center text-lg-end my-3">
+                                    <a class="btn btn-primary o_default_snippet_text " href="#">JOIN NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 14</h6>
+                <label class="e-sb-label" for="e_cta_14"><input id="e_cta_14" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp15">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-15.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="pt80 s_comparisons o_cc2 o_cc o_colored_level">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5 my-4 s_col_no_bgcolor">
+                                    <div class="shadow-lg card rounded p-4">
+                                        <div class="h4 fw-600 mb-3">Opening Hours</div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                        <div class="border px-3 mb-4">
+                                            <div class="row py-2 border-bottom">
+                                                <div class="col-6"><span class="theme-color">Monday to Friday :</span></div>
+                                                <div class="col-6 text-end"><span class="fw-600">09:00 – 20:00 hrs</span></div>
+                                            </div>
+                                            <div class="row py-2 border-bottom">
+                                                <div class="col-6"><span class="theme-color">Saturday :</span></div>
+                                                <div class="col-6 text-end"><span class=" fw-600">09:00 – 18:00 hrs</span></div>
+                                            </div>
+                                            <div class="row py-2">
+                                                <div class="col-6"><span class="theme-color">Sunday :</span></div>
+                                                <div class="col-6 text-end"><span class=" fw-600">09:00 – 18:00 hrs*</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="border-bottom pb-4 mb-4">Check out seasonal discounts for registered users.</div>
+                                        <div class="h5 fw-600  mb-4">Need to relax? Want a recharge?</div>
+                                        <a class="btn btn-primary o_default_snippet_text " href="#"> FIX AN APPOINTMENT</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 15</h6>
+                <label class="e-sb-label" for="e_cta_15"><input id="e_cta_15" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp16">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-16.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-6 text-center o_cc o_cc3">
+                        <div class="container">
+                            <a class="btn btn-primary o_default_snippet_text " href="#"><i class="fa fa-paper-plane"></i> Get A Free Quote Online Now!</a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 16</h6>
+                <label class="e-sb-label" for="e_cta_16"><input id="e_cta_16" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp17">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-17.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="call-to-action-17 pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-phone rounded"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="">Call us</h6>
+                                            <h5 class="h4  fw-700 m-0">+01 511-522-133</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-envelope rounded"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="">send e-mail</h6>
+                                            <h5 class="h4  fw-700 m-0">support@domain.com</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-whatsapp rounded"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="">WhatsApp</h6>
+                                            <h5 class="h4  fw-700 m-0">+01 511-522-133</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 17</h6>
+                <label class="e-sb-label" for="e_cta_17"><input id="e_cta_17" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp18">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-18.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc3">
+                        <div class="container-fluid">
+                            <section class="call-to-action-in p-8">
+                                <div class="row">
+                                    <div class="col-md-12 o_cc o_cc1">
+                                        <div class="text-center p-8 col-lg-6 m-auto">
+                                            <h2 class="fw-600 display-4 text-uppercase mb-4">don't miss our letters</h2>
+                                            <p class="mb-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa, beatae.</p>
+                                            <div class="pt-3">
+                                                <a class="btn btn-primary o_default_snippet_text " href="#">Join us now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 18</h6>
+                <label class="e-sb-label" for="e_cta_18"><input id="e_cta_18" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp19">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-19.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center py-5" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="cta-Contetnt text-center ">
+                                <h1>GET A STYLISH LOOK</h1>
+                                <p>Lorem ipsum dolor sit amet, <br />consectetur adipisicing elit, sed do eiusmod
+                                    tempor</p>
+                                <div class="btn-bar">
+                                    <a href="#" class="btn btn-primary o_default_snippet_text ">DISCOVER NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 19</h6>
+                <label class="e-sb-label" for="e_cta_19"><input id="e_cta_19" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp20">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-20.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt80 pb80 oe_img_bg o_bg_img_center call-to-action-21 s_comparisons py-8" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-4 s_col_no_bgcolor">
+                                    <div class="card text-center p-3">
+                                        <h4>New video</h4>
+                                        <h5>New collection</h5>
+                                        <p><a class="btn btn-primary o_default_snippet_text " href="#">View Promo</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 20</h6>
+                <label class="e-sb-label" for="e_cta_20"><input id="e_cta_20" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp21">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-21.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section>
+                        <div class="container">
+                            <section style="background-image: url(/theme_alan/static/src/img/snippets/1920x350.jpg);" class="pt40 pb40 o_bg_img_center oe_img_bg">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 text-center">
+                                        <h2 class="fw-700 mb-4">Interior Explore With Us</h2>
+                                        <div><a class="btn btn-primary " href="#">Explore More</a></div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 21</h6>
+                <label class="e-sb-label" for="e_cta_21"><input id="e_cta_21" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp22">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-22.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="call-to-action-23">
+                        <div class="container">
+                            <section class="call-to-action-in p-6 o_colored_level o_cc o_cc4">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8">
+                                        <h2 class="fw-600">Get 50% off on your first order</h2>
+                                    </div>
+                                    <div class="col-lg-4 text-lg-end">
+                                        <a class="btn btn-primary o_default_snippet_text " href="#">Shop Now</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 22</h6>
+                <label class="e-sb-label" for="e_cta_22"><input id="e_cta_22" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp23">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-23.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center call-to-action-24" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12 pt-8 pb-10">
+                                    <span class="h3 fw-300">SALE UP TO 30%</span>
+                                    <h1 class="display-4 fw-700  pt-3">SUSPENCE LAMP COLLECTION</h1>
+                                    <div class="mt-4">
+                                        <a href="#" class="btn btn-primary o_default_snippet_text ">Discover Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 23</h6>
+                <label class="e-sb-label" for="e_cta_23"><input id="e_cta_23" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp24">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-24.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg py-8" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-10">
+                                    <div>
+                                        <h2>Stay Updated</h2>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        <div class="pt-3">
+                                            <a class="btn btn-primary o_default_snippet_text   rounded-pill" href="#">Subscribe <i class="fa fa-arrow-up ms-1"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 24</h6>
+                <label class="e-sb-label" for="e_cta_24"><input id="e_cta_24" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp25">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-25.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-9">
+                        <div class="container">
+                            <div class="text-center">
+                                <h2>Get Inspired</h2>
+                                <p>Follow @alan on Instagram to get inspired by more stories created with us.</p>
+                                <div class="btn-bar mt-4">
+                                    <a href="#" class="btn btn-primary o_default_snippet_text  rounded-pill px-5">Follow Us <i class="fa fa-instagram ms-2"></i></a>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 25</h6>
+                <label class="e-sb-label" for="e_cta_25"><input id="e_cta_25" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp26">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-26.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="py-9">
+                        <div class="container">
+                            <div class="text-center">
+                                <h5 class="fw-600">#ALAN ON INSTAGRAM</h5>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 26</h6>
+                <label class="e-sb-label" for="e_cta_26"><input id="e_cta_26" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp27">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-27.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="as-v17-cta-01">
+                        <div class="container">
+                            <section class="pt104 pb104" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg');">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 as-header-title-01-in text-center">
+                                        <h4 class="display-4 pb-2">That one perfect chair</h4>
+                                        <p class="lead">Go Ahead Buy yourself what you really want.</p>
+                                        <div class="as-btn-bar d-flex gap-3 justify-content-center pt-3">
+                                            <a class="btn btn-outline-light" href="#">Shop accent chair</a>
+                                            <a class="btn btn-outline-light" href="#">Shop Living Room</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 27</h6>
+                <label class="e-sb-label" for="e_cta_27"><input id="e_cta_27" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.cta_temp28">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/cta-28.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt16 pb16 o_cc o_cc3">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                    <div>Spring Summer Offer Flat 50% OFF</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">CTA 28</h6>
+                <label class="e-sb-label" for="e_cta_28"><input id="e_cta_28" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

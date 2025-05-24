@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="website.s_searchbar.autocomplete" t-inherit-mode="extension">
+        <xpath expr="//b[hasclass('text-nowrap')]" position="attributes">
+            <attribute name="t-if">result['detail'] and !parts['is_b2b_mode']</attribute>
+        </xpath>
+    </t>
+</templates>

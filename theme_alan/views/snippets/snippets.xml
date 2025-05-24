@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="theme_alan.s_searchbar_000_xml" model="ir.asset">
+        <field name="name">Theme Alan Searchbar</field>
+        <field name="bundle">web.assets_frontend</field>
+        <field name="path">theme_alan/static/src/xml/searchbar.xml</field>
+    </record>
+</odoo>

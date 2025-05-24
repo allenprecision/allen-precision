@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="theme_alan.snippet_list" owl="1">
+        <div class="modal-body-in">
+            <div class="as-edit-action-menu as-snippet-list">
+                <div class="as-edit-action-in">
+                    <h2 class="text-white h4 m-0">Select Snippets</h2>
+                    <div class="as-ea-edit-col as-ea-edit-right">
+                        <button class="btn as-btn-back" t-on-click="_back_to_frame"> <i class="fa fa-arrow-left"></i> Back </button>
+                    </div>
+                </div>
+            </div>
+            <div class="as-edit-snippet-selection">
+                <div class="row g-4">
+                    <t t-foreach="this.snippet_list" t-as="a" t-key="a.name">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="as-edit-snippet-card" t-on-click="_select_snippet">
+                                <div class="as-edit-snippet-card-body as_snippet" t-att-data-snippet-name="a.component">
+                                    <div class="as-es-icon">
+                                        <img t-att-src="a.icon" title="" alt=""/>
+                                    </div>
+                                    <div class="col as-es-text">
+                                        <h6><t t-esc="a.name"/></h6>
+                                        <p><t t-esc="a.description"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="theme_alan.snippet_picker" owl="1">
+        <t t-component="activeSnippet" t-props="props"/>
+    </t>
+
+</templates>

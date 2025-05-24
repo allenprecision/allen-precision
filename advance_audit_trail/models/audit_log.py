@@ -3,7 +3,8 @@
 
 import httpagentparser
 
-from odoo import fields, models
+from odoo import _, fields, models
+from odoo.exceptions import UserError
 from odoo.http import request
 
 from odoo.addons.auditlog.models.rule import DictDiffer
@@ -16,6 +17,7 @@ class AuditlogLog(models.Model):
 
     _inherit = "auditlog.log"
 
+
     ip_address = fields.Char(string="IP Address")
     platform_info = fields.Char(
         string="Platform Information",
@@ -24,7 +26,7 @@ class AuditlogLog(models.Model):
     )
     os_type = fields.Char(string="Type of OS", help="Platform Operating system.")
     terminal = fields.Char(
-        string="Browser Name & Version", help="Browser Name & Version"
+        string="Browser Name & Version", help="Browser Name & Version."
     )
 
 
@@ -57,13 +59,12 @@ class AuditlogRule(models.Model):
         log_model = self.env["auditlog.log"]
         http_request_model = self.env["auditlog.http.request"]
         http_session_model = self.env["auditlog.http.session"]
+        model_model = self.env[res_model]
         model_id = self.pool._auditlog_model_cache[res_model]
         auditlog_rule = self.env["auditlog.rule"].search([("model_id", "=", model_id)])
         fields_to_exclude = auditlog_rule.fields_to_exclude_ids.mapped("name")
         for res_id in res_ids:
-            model_model = self.env[res_model]
-            name = model_model.browse(res_id).name_get()
-            res_name = name and name[0] and name[0][1]
+            res = model_model.browse(res_id)
             ip_add = str(
                 "X-Real-IP" in request.httprequest.headers
                 and request.httprequest.headers.get("X-Real-IP")
@@ -81,11 +82,12 @@ class AuditlogRule(models.Model):
             if platform_version == "None":
                 platform_version = ""
             platform_info = "{} {}".format(
-                str(user_agent.get("platform", {}).get("name", "")), platform_version,
+                str(user_agent.get("platform", {}).get("name", "")),
+                platform_version,
             )
             vals = {
-                "name": res_name,
-                "model_id": self.pool._auditlog_model_cache[res_model],
+                "name": res.display_name,
+                "model_id": model_id,
                 "res_id": res_id,
                 "method": method,
                 "user_id": uid,
@@ -97,18 +99,36 @@ class AuditlogRule(models.Model):
                 "platform_info": platform_info,
             }
             vals.update(additional_log_values or {})
-            log = log_model.create(vals)
             diff = DictDiffer(
                 new_values.get(res_id, EMPTY_DICT), old_values.get(res_id, EMPTY_DICT)
             )
             if method == "create":
-                self._create_log_line_on_create(log, diff.added(), new_values, fields_to_exclude)
+                vals["line_ids"] = self._create_log_line_on_create(
+                    vals, diff.added(), new_values, fields_to_exclude
+                )
             elif method == "read":
-                self._create_log_line_on_read(
-                    log, old_values.get(res_id, EMPTY_DICT).keys(), old_values, fields_to_exclude
+                vals["line_ids"] = self._create_log_line_on_read(
+                    vals,
+                    list(old_values.get(res_id, EMPTY_DICT).keys()),
+                    old_values,
+                    fields_to_exclude,
                 )
             elif method == "write":
-                self._create_log_line_on_write(
-                    log, diff.changed(), old_values, new_values, fields_to_exclude
+                vals["line_ids"] = self._create_log_line_on_write(
+                    vals, diff.changed(), old_values, new_values, fields_to_exclude
                 )
-
+            elif method == "unlink" and auditlog_rule.capture_record:
+                vals["line_ids"] = self._create_log_line_on_read(
+                    vals,
+                    list(old_values.get(res_id, EMPTY_DICT).keys()),
+                    old_values,
+                    fields_to_exclude,
+                )
+            if method == "unlink" or vals.get("line_ids", {}):
+                log_model.create(vals)
+                
+    def unlink(self):
+        for record in self:
+            if record.state == "subscribed":
+                raise UserError(_("You can not delete subscribed records."))
+        return super(AuditlogRule, self).unlink()

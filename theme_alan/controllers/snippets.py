@@ -1,568 +1,432 @@
 # -*- coding: utf-8 -*-
 
 import json
-import datetime
-from markupsafe import Markup
-from datetime import timedelta
-import datetime
-import json
+import ast
+import random
+import logging
+
 from odoo import http, _
-from odoo.http import request
-from odoo.osv import expression
-from odoo.addons.website.controllers.main import Website
+from odoo.http import request, route
 
-class AlanWebsiteSearch(Website):
+_logger = logging.getLogger(__name__)
 
-    @http.route([])
-    def autocomplete(self, search_type=None, term=None, order=None, limit=5, max_nb_chars=999, options=None):
-        res = super(AlanWebsiteSearch, self).autocomplete( search_type, term, order, limit, max_nb_chars, options)
-        if search_type == "as_advance_search":
-            brands = []
-            tags = []
-            category = []
-            products = []
-            for rec in res['results']:
-                if rec.get('_fa') == 'brand':
-                    brands.append(rec)
-                elif rec.get('_fa') == 'tag':
-                    tags.append(rec)
-                elif rec.get('_fa') == 'fa-folder-o':
-                    category.append(rec)
-                else:
-                    products.append(rec)
-            res.update({
-                'brands': brands,
-                'tags': tags,
-                'category': category,
-                'products': products,
-            })
-        return res
+class ThemeAlan(http.Controller):
 
-class ThemeAlanBaseSnippetRoute(http.Controller):
+    @route('/get_hotspot_product', auth='public', type="json", website=True)
+    def getHotSpotInfo(self, product_tmpl_id=0, style="st1"):
+        product_id = request.env['product.template'].sudo().browse(int(product_tmpl_id))
+        template = request.env['ir.ui.view']._render_template("theme_alan.as_img_hotspot_product_popover", {
+            'product':product_id,
+            'style':style,
+        })
+        return {'template':template}
 
-    @http.route('/json/alternative_product/' ,type='json',auth='public',website=True)
-    def json_alternative_product(self,**kwargs):
-        ''' Method To fetch Similar Product In quick cart template '''
-        getproduct = request.env['product.template'].search([('id','=',kwargs['prod_tmp_id'])])
-        getSimilarProd = getproduct.alternative_product_ids
-        get_temp_id = request.website.sudo().theme_id.name + ".quick_alter_prod_template"
-        get_template = request.env['ir.ui.view']._render_template(get_temp_id, {'products':getSimilarProd})
-        return {'quickAlterTemp':get_template}
-
-    @http.route(['/get/quick_product_view', '/shop/page/get/quick_product_view', '/shop/category/get/quick_product_view'], type='json', auth='public', website=True)
-    def quick_product_view(self,**kwargs):
-        ''' Method to add Quick Viee Product Data in Modal '''
-        id = kwargs.get("productId")
-        hasVariant = kwargs.get("hasVariant")
-        viewType = kwargs.get("viewType")
-        getProduct = request.env['product.template'].sudo().search([('id','=', int(id))])
-        if viewType == "as-quick-add-to-cart" and hasVariant == "True":
-            get_template = request.env['ir.ui.view']._render_template(
-            "theme_alan.quick_cart", {'product':getProduct})
-        elif viewType == "as-quick-add-to-cart" and hasVariant != "True":
-            getProduct = request.env['product.product'].sudo().search([('id','=', int(id))])
-            cartQuant = kwargs.get("cartQuant",0)
-            totalAmount = kwargs.get("totalAmount","")
-            get_template = request.env['ir.ui.view']._render_template(
-            "theme_alan.addedCart", {'product':getProduct,'cartQuant':cartQuant,'totalAmount':Markup(totalAmount)})
-        else:
-            get_template = request.env['ir.ui.view']._render_template(
-            "theme_alan.quick_view", {'product':getProduct})
-        return {'template': get_template}
-
-    @http.route(['/get/get_cat_brand_slider_content'], type='json', auth='public', website=True)
-    def get_cat_brand_slider_content(self, **kwargs):
-        '''Method to get Brand and Category slider data '''
-        values = {}
-        brand_ids = ""
-        cat_ids = ""
-        blog_ids = ""
-        snippet_type = ""
-        products=[]
+    @http.route('/select/data/fetch', auth='user', type="http", website=True)
+    def select2DataFetch(self, terms=False, searchIn=False, **kwargs):
+        results = []
+        parent_category = kwargs.get("parent_category", 0)
         website_domain = request.website.website_domain()
-        domain = website_domain + [('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True)]
-        if kwargs.get('snippet_type'):
-            snippet_type = kwargs.get('snippet_type')
-        if kwargs.get('brand_ids'):
-            brand_vals = json.loads(kwargs.get('brand_ids'))
-            seq_brand = []
-            for b in brand_vals:
-                get_brand = request.env['as.product.brand'].search([('id','=',b)] + website_domain)
-                if len(get_brand):
-                    seq_brand.append(get_brand.id)
-            brand_ids = request.env['as.product.brand'].browse(seq_brand)
-            if snippet_type == "brand_product":
-                domain += [('product_brand_id', 'in', brand_ids.ids)]
-                domain = expression.AND([domain])
-                products = request.env['product.template'].sudo().search(domain + website_domain)
-        if kwargs.get('cat_ids'):
-            cat_vals = json.loads(kwargs.get('cat_ids'))
-            seq_categ = []
-            for c in cat_vals:
-                get_categ = request.env['product.public.category'].search([('id','=',c)] + website_domain)
-                if len(get_categ):
-                    seq_categ.append(get_categ.id)
-            cat_ids = request.env['product.public.category'].browse(seq_categ)
-            if snippet_type == "category_product":
-                domain += [('public_categ_ids', 'in', cat_ids.ids)]
-                domain = expression.AND([domain])
-                products = request.env['product.template'].sudo().search(domain + website_domain)
-        if kwargs.get('blog_ids'):
-            blog_vals = json.loads(kwargs.get('blog_ids'))
-            seq_blog = []
-            for b in blog_vals:
-                get_blog = request.env['blog.post'].search([('id','=',b)] + website_domain)
-                if len(get_blog):
-                    seq_blog.append(get_blog.id)
-            blog_ids = request.env['blog.post'].browse(seq_blog)
-        mainUI = kwargs.get('mainUI')
-        tabOption = kwargs.get('tabOption')
-        styleUI = kwargs.get('styleUI')
-        recLink = kwargs.get('recordLink')
-        recName = kwargs.get('recordName')
-        aSlider = kwargs.get('autoSlider')
-        product_label = kwargs.get('prodLabel')
-        buyNow = kwargs.get('buyNow')
-        wish_list = kwargs.get('wishList')
-        compares = kwargs.get('compare')
-        ratings = kwargs.get('rating')
-        cart = kwargs.get('cart')
-        quickViews = kwargs.get('quickView')
-        infinity_slider = kwargs.get('infinity')
-        sliderType = json.loads(kwargs.get('sliderType'))
-        recordLink = False if recLink == "" else True
-        recordName = False if recName == "" else True
-        autoSlider = False if aSlider == "" else True
-        prod_label = False if product_label == "" else True
-        wishList = False if wish_list == "" else True
-        prod_buy = False if buyNow == "" else True
-        prod_compare = False if compares == "" else True
-        prod_rating = False if ratings == "" else True
-        prod_cart = False if cart == "" else True
-        quickView = False if quickViews == "" else True
-        infinity = False if infinity_slider == "" else True
-        dataCount = json.loads(kwargs.get('dataCount'))
-        if kwargs.get('sTimer'):
-            sTimer = json.loads(kwargs.get('sTimer'))
-        if "slider" in mainUI:
-            if brand_ids:
-                if snippet_type == "brand_product":
-                    tmplt = request.website.viewref("theme_alan.alan_brand_product_slider_layout")
+        if searchIn:
+            searchIn = ast.literal_eval(searchIn)
+            for search in searchIn:
+                if parent_category:
+                    kwargs.get("parent_category", 0)
+                    domain = website_domain + [('parent_id','=',int(parent_category)),('name','ilike',terms)]
+                    records = request.env[search].search(domain)
                 else:
-                    tmplt = request.website.viewref("theme_alan.alan_brand_slider_layout")
-            elif cat_ids:
-                if snippet_type == "category_product":
-                    tmplt = request.website.viewref("theme_alan.alan_cat_product_slider_layout")
-                else:
-                    tmplt = request.website.viewref("theme_alan.alan_cat_slider_layout")
-            elif blog_ids:
-                tmplt = request.website.viewref("theme_alan.alan_blog_slider_layout")
-        else :
-            if brand_ids:
-                if snippet_type == "brand_product":
-                    tmplt = request.website.viewref("theme_alan.alan_brand_product_column_layout")
-                else:
-                    tmplt = request.website.viewref("theme_alan.alan_brand_column_layout")
-            elif cat_ids:
-                if snippet_type == "category_product":
-                    tmplt = request.website.viewref("theme_alan.alan_cat_product_column_layout")
-                else:
-                    tmplt = request.website.viewref("theme_alan.alan_cat_column_layout")
-            elif blog_ids:
-                tmplt = request.website.viewref("theme_alan.alan_blog_grid_layout")
-        if tmplt:
-            values.update({'dataCount': dataCount, 'mainUI': mainUI,
-                    'autoSlider': autoSlider, 'tabOption':tabOption, 'sliderType': sliderType, 'styleUI': styleUI})
-            common_data = {'recordLink': recordLink, 'recordName': recordName, 'dataCount': dataCount , 'styleUI': styleUI}
-            if sliderType == 7:
-                common_data['sliderType'] = sliderType
-            quick_option_data = {'prod_label': prod_label, 'wish_list': wishList, 'prod_compare': prod_compare, 'prod_rating': prod_rating,
-                                 'prod_cart': prod_cart, 'quickView': quickView, 'prod_buy': prod_buy}
-            if brand_ids:
-                if products:
-                    values.update(
-                    {'slider': tmplt._render({'brands': brand_ids, 'products': products, 'tabOption': tabOption, **common_data, **quick_option_data})})
-                else:
-                    values.update(
-                    {'slider': tmplt._render({'brands': brand_ids, **common_data})})
-            elif cat_ids:
-                if products:
-                    values.update(
-                    {'slider': tmplt._render({'categories': cat_ids, 'products': products, 'tabOption': tabOption, **common_data, **quick_option_data})})
-                else:
-                    values.update(
-                    {'slider': tmplt._render({'categories': cat_ids, **common_data})})
-            elif blog_ids:
-                values.update({'slider': tmplt._render({'blogs': blog_ids,'dataCount': dataCount,'styleUI': styleUI, 'sliderType':sliderType
-                    })})
-            if kwargs.get('sTimer'):
-                values.update({'sTimer': sTimer*1000})
-            if infinity:
-                values.update({'infinity': infinity})
-            return values
+                    domain = website_domain + [('name','ilike',terms)]
+                    if search in ["product.template", "blog.post"]:
+                        domain += [('is_published','=',True)]
+                    records = request.env[search].search(domain)
+                for record in records:
+                    if search == "product.public.category":
+                        if parent_category:
+                            data = { 'id':record.id, 'name':record.name, 'modal':search,
+                            'img': request.website.image_url(record, "image_256") }
+                            results.append(data)
+                        else:
+                            # if not record.parent_id:
+                            data = { 'id':record.id, 'name':record.name, 'modal':search ,
+                            'img': request.website.image_url(record, "image_256")}
+                            results.append(data)
+                    elif search == "blog.post":
+                        data = { 'id':record.id, 'name':record.display_name, 'modal':search ,
+                                'img': request.website.image_url(record, "author_avatar")}
+                        results.append(data)
+                    else:
+                        data = { 'id':record.id, 'name':record.display_name, 'modal':search ,
+                                'img': request.website.image_url(record, "image_256")}
+                        results.append(data)
+        return json.dumps(results)
+
+    @route('/get_template', auth='user', type="json", website=True)
+    def getTemplate(self, template, context={}):
+        return request.env['ir.ui.view']._render_template(template, context)
+
+    @route('/get_select2_data', auth='user', type="json", website=True)
+    def getSelect2Data(self, **kwargs):
+        model = kwargs.get("model", False)
+        if model:
+            ids = kwargs.get("record_ids", [0])
+            data = request.env[model].browse([int(i) for i in ids])
+            if len(data) == 1:
+                return {'id':data.id, 'text':data.display_name}
+        return False
+
+    @route('/save_user_custom_frame', auth='public', type="json", website=True)
+    def saveUserFrame(self, frame=False, is_default_frame=False, default_frame_id=False, frame_config=False):
+        response = {}
+        name = request.env['ir.sequence'].sudo().next_by_code('as.frames.seq')
+        if not is_default_frame:
+            frame_id = request.env['as.snippet.frame'].create({'name':name, 'snippet_frame':frame, 'snippet_frame_html':frame})
+            response.update({'frame':frame_id.id})
         else:
-            return False
+            response.update({'frame':default_frame_id})
+        name = request.env['ir.sequence'].sudo().next_by_code('as.frame.config.seq')
+        frame_config_id = request.env['as.snippet.frame.config'].create({'name':name,'snippet_frame_config':frame_config})
+        response.update({'frame_config':frame_config_id.id})
+        return response
 
-    @http.route('/get/product_popover',type="json",auth='public',website=True)
-    def product_popover_image_hotspot(self,**kwargs):
-        ''''Image Hotspot Popover '''
-        prod_id = int(kwargs.get('id'))
-        getpd = request.env['product.template'].sudo().search([('id','=',prod_id)])
-        get_products_temp = request.env['ir.ui.view']._render_template(
-            'theme_alan.img_hotspot_product_popover',{'product':getpd,'cls':kwargs.get('popstyle')})
-        return get_products_temp
+    @route('/get_snippet_frame', auth='public', type="json", website=True)
+    def getSnippetFrame(self, frame_id=False, frame_config=False):
+        if frame_id and frame_config:
+            frame_config_id = request.env['as.snippet.frame.config'].search([('id','=', int(frame_config))])
+            frame = request.env['as.snippet.frame'].search([('id','=', int(frame_id))])
+            return {'frame_id':frame.snippet_frame, 'frame_config':frame_config_id.snippet_frame_config}
+        return { 'frame_id':False, 'frame_config':False }
 
-    @http.route(['/get/get_product_slider_content'], type='json', auth='public', website=True)
-    def get_product_slider_content(self, **kwargs):
-        '''Method to get Product Data'''
-        values = {}
-        prod_ids = ""
-        snippet_type = ""
-        mainUI = ""
+    @route('/get_default_frame', auth='public', type="json", website=True)
+    def getDefaultSnippetFrame(self):
+        frame_ids = request.env['as.snippet.frame'].search([])
+        template = request.env['ir.ui.view']._render_template("theme_alan.s_default_frame",{'frame_ids':frame_ids})
+        return { 'response':template }
+
+    @route('/delete_default_frame', auth='public', type="json", website=True)
+    def deleteDefaultSnippetFrame(self, frame_id=False):
+        if frame_id:
+            request.env['as.snippet.frame'].search([('id','=', frame_id)]).unlink()
+        return True
+
+    @route('/get_record_detail', auth='public', type="json", website=True)
+    def getDetailInfo(self, record_id=False, model=False, **kwargs):
+        if record_id and model:
+            rec_info = request.env[model].browse(record_id)
+            if model == "blog.post":
+                return {"id": rec_info.id,
+                    "display_name":rec_info.display_name,
+                    "image": request.website.image_url(rec_info,"author_avatar") }
+            else:
+                return {"id": rec_info.id,
+                    "display_name":rec_info.display_name,
+                    "image": request.website.image_url(rec_info,"image_1024") }
+
+    @route('/get_records_details', auth='public', type="json", website=True)
+    def getDetailsInfos(self, record_ids=[], model=False):
+        if record_ids and model:
+            record_ids = [int(i) for i in record_ids]
+            rec_info = request.env[model].browse(record_ids)
+            if model == "blog.post":
+                return [{"id": rec.id, "display_name":rec.display_name,
+                    "name":rec.name,
+                    "image": request.website.image_url(rec,"author_avatar") }
+                    for rec in rec_info ]
+            else:
+                return [{"id": rec.id, "display_name":rec.display_name,
+                    "name":rec.name,
+                    "image": request.website.image_url(rec,"image_1024") }
+                    for rec in rec_info ]
+
+    def sort_records(self, modal, sort, limit, domain, random_record=False):
+        if modal in ["product.template", "blog.post"]:
+            domain += [('is_published','=',True)]
+        if sort:
+            records = request.env[modal].search(domain, limit=limit, order=sort)
+        else:
+            if random_record:
+                records = request.env[modal].search(domain)
+                rec_lst = [{"id": rec.id, "display_name":rec.display_name,
+                    "image": request.website.image_url(rec,"image_1024") }
+                    for rec in records ]
+                random.shuffle(rec_lst)
+                return rec_lst[:16]
+            else:
+                records = request.env[modal].search(domain, limit=limit )
+        return records
+
+    @route('/get_quick_record', auth='public', type="json", website=True)
+    def getQuickRecords(self, mode=False):
+        website = request.website
+        limit = 50
+        from_date = 182
         website_domain = request.website.website_domain()
-        snippet_type = kwargs.get('snippet_type')
-        totalCount = kwargs.get('totalCount')
-        imgPosition = kwargs.get('imgPosition')
-        styleUI = kwargs.get('styleUI')
-        product_label = kwargs.get('prodLabel')
-        if kwargs.get('mainUI'):
-            mainUI = kwargs.get('mainUI')
-        wish_list = kwargs.get('wishList')
-        compares = kwargs.get('compare')
-        ratings = kwargs.get('rating')
-        cart = kwargs.get('cart')
-        buyNow = kwargs.get('buyNow')
-        quickViews = kwargs.get('quickView')
-        infinity_slider = kwargs.get('infinity')
-        aSlider = kwargs.get('autoSlider')
-        sliderType = json.loads(kwargs.get('sliderType'))
-        if kwargs.get('dataCount'):
-            dataCount = json.loads(kwargs.get('dataCount'))
-        prod_label = False if product_label == "" else True
-        wishList = False if wish_list == "" else True
-        prod_compare = False if compares == "" else True
-        prod_rating = False if ratings == "" else True
-        prod_cart = False if cart == "" else True
-        prod_buy = False if buyNow == "" else True
-        quickView = False if quickViews == "" else True
-        autoSlider = False if aSlider == "" else True
-        infinity = False if infinity_slider == "" else True
-        if kwargs.get('sTimer'):
-            sTimer = json.loads(kwargs.get('sTimer'))
-        if snippet_type == "best_product":
-            website_id = request.website.id
-            request.env.cr.execute("""SELECT PT.id, SUM(SO.product_uom_qty),PT.website_id
-                                      FROM sale_order S
-                                      JOIN sale_order_line SO ON (S.id = SO.order_id)
-                                      JOIN product_product P ON (SO.product_id = P.id)
-                                      JOIN product_template pt ON (P.product_tmpl_id = PT.id)
-                                      WHERE S.state in ('sale','done')
-                                      AND (S.date_order >= %s AND S.date_order <= %s)
-                                      AND (PT.website_id IS NULL OR PT.website_id = %s)
-                                      AND PT.active='t'
-                                      AND PT.is_published='t'
-                                      GROUP BY PT.id
-                                      ORDER BY SUM(SO.product_uom_qty)
-                                      DESC LIMIT %s
-                                   """, [datetime.datetime.today() - timedelta(int(totalCount)), datetime.datetime.today(), website_id, totalCount])
-            table = request.env.cr.fetchall()
-            products = []
-            for record in table:
-                if record[0]:
-                    pro_obj = request.env[
-                        'product.template'].sudo().browse(record[0])
-                    if pro_obj.sale_ok == True and pro_obj.is_published == True:
-                        products.append(pro_obj)
-        if snippet_type == "latest_product":
-            prod_ids = request.env['product.template'].sudo().search([('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True)] + website_domain, order='id desc', limit=int(totalCount))
-        if snippet_type == "prod_variant":
-            modal = "product.product"
-        else:
-            modal = "product.template"
-        if kwargs.get('prod_ids'):
-            prod_vals = json.loads(kwargs.get('prod_ids'))
-            prod_lst = []
-            for prod in prod_vals:
-                domain = [('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True),('id', '=', prod)] + website_domain
-                domain = expression.AND([domain])
-                if len(request.env[modal].sudo().search(domain)):
-                    prod_lst.append(prod)
-        if snippet_type == "prod_variant":
-            prod_ids = request.env[modal].browse(prod_lst)
-        if snippet_type == "product":
-            prod_ids = request.env[modal].browse(prod_lst)
-        if snippet_type == "best_product":
-            prod_ids = products
-        if snippet_type == "prod_banner":
-            prod_ids = request.env[modal].browse(prod_lst)
-            tmplt = request.website.viewref("theme_alan.alan_product_banner_slider_layout")
-        if "slider" in mainUI:
-            if snippet_type == "prod_variant":
-                tmplt = request.website.viewref("theme_alan.alan_product_variant_slider_layout")
-            elif snippet_type == "product":
-                tmplt = request.website.viewref("theme_alan.alan_product_slider_layout")
-            elif snippet_type == "best_product":
-                tmplt = request.website.viewref("theme_alan.alan_best_seller_product_slider_layout")
-            elif snippet_type == "latest_product":
-                tmplt = request.website.viewref("theme_alan.alan_latest_product_slider_layout")
-        else :
-            if snippet_type == "prod_variant":
-                tmplt = request.website.viewref("theme_alan.alan_product_variant_grid_layout")
-            elif snippet_type == "product":
-                tmplt = request.website.viewref("theme_alan.alan_product_grid_layout")
-            elif snippet_type == "best_product":
-                tmplt = request.website.viewref("theme_alan.alan_best_seller_product_grid_layout")
-            elif snippet_type == "latest_product":
-                tmplt = request.website.viewref("theme_alan.alan_latest_product_grid_layout")
-        if snippet_type == "prod_banner":
-            values.update({'slider': tmplt._render({'products': prod_ids, 'prod_label': prod_label, 'prod_buy': prod_buy,
-                                                'imgPosition': imgPosition, 'prod_rating': prod_rating, 'prod_cart': prod_cart,
-                                                'quickView': quickView, 'styleUI': styleUI, 'sliderType': sliderType}),
-                                                'autoSlider': autoSlider, 'sliderType': sliderType})
-        else:
-            values.update({'slider': tmplt._render({'products': prod_ids, 'prod_label': prod_label,'wish_list': wishList,
-                                                'prod_compare': prod_compare, 'prod_rating': prod_rating, 'prod_cart': prod_cart,
-                                                'quickView': quickView, 'styleUI': styleUI,'dataCount': dataCount, 'sliderType': sliderType}),
-                                                'dataCount': dataCount, 'autoSlider': autoSlider, 'sliderType': sliderType})
-        if kwargs.get('sTimer'):
-            values.update({'sTimer': sTimer*1000})
-        if infinity:
-            values.update({'infinity': infinity})
-        return values
+        if mode == "get_latest_product":
+            limit = 15
+            records = self.sort_records('product.template', 'create_date DESC', limit, website_domain)
+        elif mode == "get_top_product":
+            limit = 15
+            records = self.sort_records('product.template', 'product_rating DESC', limit, website_domain)
+        elif mode == "get_best_sold_product":
+            limit = 15
+            records = request.env['product.template']._get_best_seller_product(from_date, website.id, limit)
+        elif mode == "_get_parent_category":
+            website_domain = website_domain + [('parent_id','=', False)]
+            records = self.sort_records('product.public.category', False, limit, website_domain)
+        elif mode == "_get_a_to_z_category":
+            records = self.sort_records('product.public.category', 'name ASC', limit, website_domain)
+        elif mode == "_get_z_to_a_category":
+            records = self.sort_records('product.public.category', 'name DESC', limit, website_domain)
+        elif mode == "_get_z_to_a_brand":
+            records = self.sort_records('as.product.brand', 'name DESC', limit, website_domain)
+        elif mode == "_get_a_to_z_brand":
+            records = self.sort_records('as.product.brand', 'name ASC', limit, website_domain)
+        elif mode == "_get_random_brand":
+            return self.sort_records('as.product.brand', False, limit, website_domain, True)
+        elif mode == "_get_random_product":
+            return self.sort_records('product.template', False, limit, website_domain, True)
+        elif mode == "_get_random_category":
+            return self.sort_records('product.public.category', False, limit, website_domain, True)
+        elif mode == "_get_z_to_a_blog":
+            records = self.sort_records('blog.post', 'name DESC', limit, website_domain)
+        elif mode == "_get_a_to_z_blog":
+            records = self.sort_records('blog.post', 'name ASC', limit, website_domain)
+        elif mode == "_get_random_blog":
+            return self.sort_records('blog.post', False, limit, website_domain, True)
+        return [{"id": product_info.id, "display_name":product_info.display_name,
+                "image": request.website.image_url(product_info,"image_1024") }
+                for product_info in records ]
 
-    @http.route(['/get_website_faq_list'], type='json', auth='public', website=True)
-    def get_website_faq_list(self):
-        """ get data for FAQ slider template """
-        response = http.Response(template='atharva_theme_base.as_dynamic_faq_container')
-        return response.render()
+    @route('/get_mega_snippet_template', auth='public', type="json", website=True)
+    def getSnipprtTemplate(self, snippet, record_ids, modal, design_editor, **kw):
+        if snippet in ["MegaMenuProduct", "MegaMenuBrand"]:
+            active_view = design_editor.get("active_view",'slider');
+            col_item = int(design_editor.get("col_item",4));
+            slider_config = {}
+            if active_view == "slider":
+                style = design_editor.get("slider_style",'');
+                slider_config = {
+                    'slidesPerView': 1.5,
+                    'spaceBetween': 20,
+                    'pagination': {
+                    'el': ".swiper-pagination",
+                        'clickable': True,
+                    },
+                    'breakpoints': {
+                        767: {
+                        'slidesPerView': 2,
+                        },
+                        1024: {
+                        'slidesPerView': col_item,
+                        },
+                    },
+                    'navigation': {
+                        'nextEl': ".swiper-button-next",
+                        'prevEl': ".swiper-button-prev",
+                    },
+                }
+                if design_editor.get("auto_slider",False):
+                    slider_config.update({'autoplay': {'delay': int(design_editor.get('slider_time',4)) * 1000}})
+            else:
+                style = design_editor.get("grid_style",'');
+                col_item = int(12 / col_item);
+            template_id = design_editor.get("template_id",False);
+            product_ids = request.env[modal].browse(record_ids)
+            context = {'data':product_ids, 'style':style, 'col_item':col_item}
+            if design_editor.get("allow_link", False):
+                context.update({'allow_link':True})
+            template = request.env['ir.ui.view']._render_template(template_id, context)
+            return {'template':template, 'slider_config':slider_config}
+        elif snippet in ["MegaMenuCategory"]:
+            active_view = design_editor.get("active_view",'slider');
+            col_item = int(design_editor.get("col_item",4));
+            slider_config = {}
+            if active_view == "slider":
+                style = design_editor.get("slider_style",'as-mm-category-slider_1');
+                slider_config = {
+                    'slidesPerView': 1.5,
+                    'spaceBetween': 20,
+                    'pagination': {
+                    'el': ".swiper-pagination",
+                        'clickable': True,
+                    },
+                    'breakpoints': {
+                        767: {
+                        'slidesPerView': 2,
+                        },
+                        1024: {
+                        'slidesPerView': col_item,
+                        },
+                    },
+                    'navigation': {
+                        'nextEl': ".swiper-button-next",
+                        'prevEl': ".swiper-button-prev",
+                    },
+                }
+                if design_editor.get("auto_slider",False):
+                    slider_config.update({'autoplay': {'delay': int(design_editor.get('slider_time',4)) * 1000}})
 
-    @http.route(['/get/get_product_offer_content'], type='json', auth='public', website=True)
-    def get_product_offer_content(self, **kwargs):
-        """Get data for Product Offer snippet"""
-        values = {}
-        prod_val = json.loads(kwargs.get("prod_ids"))
-        domain = [('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True),('id', '=', prod_val[0])]
-        product = request.env['product.template'].sudo().search(domain)
-        offerTime = kwargs.get('offerTime')
-        pos = kwargs.get('imgPosition')
-        ratings = kwargs.get('rating')
-        cart = kwargs.get('cart')
-        buyNow = kwargs.get('buyNow')
-        product_label = kwargs.get('prodLabel')
-        prod_label = False if product_label == "" else True
-        prod_rating = False if ratings == "" else True
-        prod_cart = False if cart == "" else True
-        prod_buy = False if buyNow == "" else True
-        tmplt = request.website.viewref("theme_alan.alan_product_offer_layout")
-        values.update({'template': tmplt._render({'product': product, 'pos': pos, 'prod_label': prod_label, 'prod_buy': prod_buy,
-                                                  'prod_rating': prod_rating, 'prod_cart': prod_cart}),
-                        'offerTime': offerTime})
-        return values
+                cat_ids = request.env[modal].browse(record_ids)
+                template_id = design_editor.get("template_id",'theme_alan.m_category_slider');
+                context = {'data':cat_ids}
+            else:
+                style = design_editor.get("grid_style",'as-mm-category-grid_1');
+                col_item = int(12 / col_item);
+                extra_info = kw.get("extra_info", False)
+                template_id = design_editor.get("template_id",'theme_alan.m_category_grid');
+                data = {}
+                sub_data = {}
+                if extra_info:
+                    for cats in extra_info:
+                        parent_id = request.env[modal].browse(cats['parent'])
+                        child_ids = []
+                        lst = [int(i) for i in cats['childs']]
+                        if len(lst):
+                            child_ids = request.env[modal].browse(lst)
+                        sub_data.update({parent_id: child_ids})
+                    for rec in record_ids:
+                        parent_id = request.env[modal].browse([rec])
+                        if parent_id in sub_data.keys():
+                            data.update({parent_id: sub_data[parent_id]})
+                        else:
+                            data.update({parent_id: []})
+                else:
+                    for rec in record_ids:
+                        parent_id = request.env[modal].browse([rec])
+                        if parent_id in sub_data.keys():
+                            data.update({parent_id: sub_data[parent_id]})
+                        else:
+                            data.update({parent_id: []})
+                context = {'data':data}
+            context.update({'style':style, 'col_item':col_item})
+            template = request.env['ir.ui.view']._render_template(template_id, context)
+            return {'template':template, 'slider_config':slider_config}
 
-    @http.route(['/get/get_cat_prod_slider_content'], type='json', auth='public', website=True)
-    def get_cat_prod_slider_content(self, **kwargs):
-        '''Method to get Product Category slider data '''
-        values = {}
-        prod_ids = ""
+    @route('/remove_records', auth='public', type="json", website=True)
+    def getRemoveRecords(self, model, ids):
+        request.env[model].browse(ids).unlink()
+        return True
+
+    @route('/get_frame', auth='public', type="json", website=True)
+    def getFrame(self, frame_id=0):
+        return request.env["as.snippet.frame"].browse(int(frame_id)).snippet_frame
+
+    @route('/get_products_snippet_template', auth='public', type="json", website=True)
+    def getProductSnippets(self, **kw):
+        snippet_type = kw.get("snippet", False)
         website_domain = request.website.website_domain()
-        domain = website_domain + [('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True)]
-        if kwargs.get('cat_ids'):
-            cat_val = json.loads(kwargs.get('cat_ids'))
-            cat_id = request.env['product.public.category'].search([('id','in',cat_val)] + website_domain)
-            dom = [('public_categ_ids', '=', cat_id.id)]
-            prods = request.env['product.template'].sudo().search(domain + dom)
-            prodCount = len(prods)
-        styleUI = kwargs.get('styleUI')
-        product_label = kwargs.get('prodLabel')
-        wish_list = kwargs.get('wishList')
-        compares = kwargs.get('compare')
-        ratings = kwargs.get('rating')
-        cart = kwargs.get('cart')
-        quickViews = kwargs.get('quickView')
-        infinity_slider = kwargs.get('infinity')
-        aSlider = kwargs.get('autoSlider')
-        sliderType = json.loads(kwargs.get('sliderType'))
-        prod_label = False if product_label == "" else True
-        wishList = False if wish_list == "" else True
-        prod_compare = False if compares == "" else True
-        prod_rating = False if ratings == "" else True
-        prod_cart = False if cart == "" else True
-        quickView = False if quickViews == "" else True
-        autoSlider = False if aSlider == "" else True
-        infinity = False if infinity_slider == "" else True
-        if kwargs.get('sTimer'):
-            sTimer = json.loads(kwargs.get('sTimer'))
-        if kwargs.get('prod_ids'):
-            prod_vals = json.loads(kwargs.get('prod_ids'))
-            products = []
-            for prod in prod_vals:
-                dom1 = [('id', '=', prod)]
-                if len(request.env["product.template"].sudo().search(domain + dom1)):
-                    products.append(prod)
-            prod_ids = request.env["product.template"].browse(products)
-        tmplt = request.website.viewref("theme_alan.alan_cat_prod_slider_layout")
-        values.update({'slider': tmplt._render({'category':cat_id, 'products': prod_ids, 'prod_label': prod_label, 'wish_list': wishList, 'prod_rating': prod_rating, 'prod_cart': prod_cart,
-                                                'quickView': quickView, 'styleUI': styleUI, 'sliderType': sliderType, 'prodCount': prodCount, 'prod_compare': prod_compare}),
-                                                'autoSlider': autoSlider, 'sliderType': sliderType})
-        if kwargs.get('sTimer'):
-            values.update({'sTimer': sTimer*1000})
-        if infinity:
-            values.update({'infinity': infinity})
-        return values
+        return_context = {}
+        if snippet_type:
+            modal = kw.get("modal", "product.template")
+            ids = kw.get("record_ids",[0])
+            context = {}
+            # if snippet_type    products_slider_lst:
+            configuration = kw.get("design_editor",{})
+            if snippet_type == "BestSellingProduct":
+                record_ids = request.env[modal].browse(ids)
+                return_context.update({'record_ids':[i.id for i in record_ids]})
+            elif snippet_type == "LatestProduct":
+                record_ids = request.env['product.template'].search(website_domain, limit=15, order="create_date DESC")
+                return_context.update({'record_ids':[i.id for i in record_ids]})
+            elif snippet_type == "BrandProduct":
+                domain = website_domain + [('product_brand_id', 'in', ids)]
+                record_ids = request.env['product.template'].search(domain)
+                tab_ids = request.env[modal].browse(ids)
+                context.update({'tab_ids':tab_ids})
+            elif snippet_type == "CategoryProduct":
+                domain = website_domain + [('public_categ_ids', 'in', ids)]
+                record_ids = request.env['product.template'].search(domain)
+                tab_ids = request.env[modal].browse(ids)
+                context.update({'tab_ids':tab_ids})
+            else:
+                if modal == "blog.post":
+                    record_ids = request.env[modal].browse(ids)
+                    if not request.env.user._is_internal():
+                        record_ids = [blog for blog in record_ids if blog.sudo().is_published == True]
+                else:
+                    record_ids = request.env[modal].browse(ids)
 
-    @http.route(['/get/get_cat_grid_content'], type='json', auth='public', website=True)
-    def get_cat_grid_content(self, **kwargs):
-        '''Method to get Product Category grid data '''
-        prod_data = kwargs.get("prod_ids", False)
-        cat_ids = kwargs.get("cat_ids", False)
-        website_domain = request.website.website_domain()
-        data = {}
-        values = {}
-        seq_category_data = {}
-        styleUI = kwargs.get('styleUI')
-        dataCount = json.loads(kwargs.get('dataCount'))
-        if type(cat_ids) == str:
-            cat_ids = json.loads(cat_ids)
-        if type(prod_data) == str:
-            prod_data = json.loads(prod_data)
-        for i in cat_ids:
-            val = prod_data[str(i)]
-            perent_id = request.env["product.public.category"].search([('id','=',i)] + website_domain);
-            prod_ids = request.env["product.template"].browse(val[1]);
-            sub_vals = []
-            for sc in val[1]:
-                prods = request.env["product.template"].search([('id','=',sc)] + website_domain);
-                if len(prods) == 1:
-                    sub_vals.append(prods.id)
-            prod_ids = request.env["product.template"].browse(sub_vals);
-            data.update({perent_id:prod_ids})
-            seq_category_data.update({str(i):val})
-        tmplt = request.website.viewref("theme_alan.alan_cat_prod_grid_layout")
-        values.update({'grid':tmplt._render({'data': data, 'dataCount': dataCount, 'styleUI': styleUI}) })
-        return values
+            template = False
+            slider_config = {}
+            context.update({'records':record_ids, 'configuration':configuration })
+            template = request.env['ir.ui.view']._render_template(configuration.get('template_id'), context)
+            # slider config
+            return_context.update({'template':template ,'slider_config':slider_config})
+            if configuration.get("view",False) == 'slider':
+                slider_config.update({
+                    'loop':configuration.get("loop"),
+                    'spaceBetween': 15,
+                    'slidesPerView': configuration.get("default_col_mob"),
+                    'navigation': {
+                        'nextEl': ".swiper-button-next",
+                        'prevEl': ".swiper-button-prev",
+                    },
+                    'breakpoints': {
+                        640: {
+                        'slidesPerView': configuration.get("default_col_mob"),
+                        },
+                        768: {
+                        'slidesPerView': configuration.get("default_col_mob"),
+                        },
+                        1024: {
+                        'slidesPerView': configuration.get("default_col_desk"),
+                        },
+                        1200: {
+                        'slidesPerView': configuration.get("default_col_desk"),
+                        },
+                    },
+                    'observer': True,
+                    'observeSlideChildren': True,
+                    'observeParents': True,
+                })
+                if configuration.get("auto_slider"):
+                    slider_config.update({
+                        'autoplay':{ 'delay': int(configuration.get("slider_time")) * 1000,
+                                    'disableOnInteraction':False }
+                    })
+                if configuration.get("pagination"):
+                    pagination_style = {}
+                    if configuration.get("pagination") == 'simple':
+                        pagination_style = {
+                            'el': ".swiper-pagination"
+                        }
+                    elif configuration.get("pagination") == 'dynamic':
+                        pagination_style = {
+                            'el': ".swiper-pagination",
+                            'dynamicBullets': True,
+                        }
+                    elif configuration.get("pagination") == 'progress_bar':
+                        pagination_style = {
+                            'el': ".swiper-pagination",
+                            'type': "progressbar",
+                        }
+                    elif configuration.get("pagination") == 'fraction':
+                        pagination_style = {
+                            'el': ".swiper-pagination",
+                            'type': "fraction",
+                        }
+                    elif configuration.get("pagination") == 'scroll_bar':
+                        pagination_style = {
+                            'el': ".swiper-scrollbar",
+                            'hide': True,
+                        }
+                    elif configuration.get("pagination") == 'coverflow':
+                        pagination_style = {
+                            'el': ".swiper-pagination",
+                        }
+                        slider_config.update({
+                            "effect": "coverflow",
+                            "grabCursor": True,
+                            "centeredSlides": True,
+                        })
+                    elif configuration.get("pagination") == 'cards':
+                        slider_config.update({
+                            "effect": "cards",
+                            "grabCursor": True,
+                            "centeredSlides": True,
+                        })
+                    if configuration.get("pagination") == 'scroll_bar':
+                        slider_config.update({'scrollbar':pagination_style })
+                    else:
+                        slider_config.update({'pagination':pagination_style })
 
-    @http.route(['/get/get_prod_offer_slider_content'], type='json', auth='public', website=True)
-    def get_prod_offer_slider_content(self, **kwargs):
-        values = {}
-        website_domain = request.website.website_domain()
-        prod_ids = ""
-        mainUI = ""
-        pos = kwargs.get('imgPosition')
-        product_label = kwargs.get('prodLabel')
-        if kwargs.get('mainUI'):
-            mainUI = kwargs.get('mainUI')
-        wish_list = kwargs.get('wishList')
-        compares = kwargs.get('compare')
-        ratings = kwargs.get('rating')
-        cart = kwargs.get('cart')
-        quickViews = kwargs.get('quickView')
-        infinity_slider = kwargs.get('infinity')
-        aSlider = kwargs.get('autoSlider')
-        sliderType = json.loads(kwargs.get('sliderType'))
-        if kwargs.get('dataCount'):
-            dataCount = json.loads(kwargs.get('dataCount'))
-        prod_label = False if product_label == "" else True
-        wishList = False if wish_list == "" else True
-        prod_compare = False if compares == "" else True
-        prod_rating = False if ratings == "" else True
-        prod_cart = False if cart == "" else True
-        quickView = False if quickViews == "" else True
-        autoSlider = False if aSlider == "" else True
-        infinity = False if infinity_slider == "" else True
-        if kwargs.get('sTimer'):
-            sTimer = json.loads(kwargs.get('sTimer'))
-        if kwargs.get('prod_ids'):
-            prod_vals = json.loads(kwargs.get('prod_ids'))
-            prod_lst = []
-            for prod in prod_vals:
-                domain = [('website_published', '=', True),('sale_ok', '=', True),('is_published','=',True),('id', '=', prod)] + website_domain
-                domain = expression.AND([domain])
-                if len(request.env["product.template"].sudo().search(domain)):
-                    prod_lst.append(prod)
-        prod_ids = request.env["product.template"].browse(prod_lst)
-        timerData = json.loads(kwargs.get('timerData'))
-        val = {}
-        for i in prod_ids:
-            j = i.id
-            if timerData[str(j)] != "":
-                val.update({j:timerData[str(j)]})
-        if "slider" in mainUI:
-            tmplt = request.website.viewref("theme_alan.alan_product_offer_slider_layout")
-        else:
-            tmplt = request.website.viewref("theme_alan.alan_product_offer_grid_layout")
-        values.update({'template': tmplt._render({'products': prod_ids, 'prod': val, 'pos': pos, 'prod_label': prod_label,'wish_list': wishList,
-                                                'prod_compare': prod_compare, 'prod_rating': prod_rating, 'prod_cart': prod_cart, 'quickView': quickView,
-                                                'dataCount':dataCount, 'sliderType':sliderType}), 'autoSlider': autoSlider, 'dataCount':dataCount, 'sliderType':sliderType})
-        if kwargs.get('sTimer'):
-            values.update({'sTimer': sTimer*1000})
-        if infinity:
-            values.update({'infinity': infinity})
-        return values
-
-    @http.route(['/get/get_image_tab_content'], type='json', auth='public', website=True)
-    def get_image_tab_content(self, **kwargs):
-        if kwargs.get('tabData'):
-            tabData = json.loads(kwargs.get('tabData'))
-        i = 1
-        tabs = {}
-        values = {}
-        for tab in tabData:
-            tabs.update({'tab'+str(i) : {'title': tab, 'images': tabData[tab]}})
-            i += 1
-        tmplt = request.website.viewref("theme_alan.alan_image_gallery_layout")
-        values.update({'temp': tmplt._render({'tabs': tabs})})
-        return values
-
-    @http.route('/offers/editor/<model("as.product.extra.info"):offer>', auth='user', type="http", website=True)
-    def offer_design(self, offer):
-        return request.render('theme_alan.offers_design', {'layout': offer})
-
-    @http.route('/product/offer', type="json",auth="public", website=True)
-    def get_product_offer(self, **kw):
-        offer_id = kw.get('offer_id', 0)
-        offer = request.env['as.product.extra.info'].sudo().search([('id','=',offer_id)], limit=1)
-        return {'data':offer.detail_description}
-
-    @http.route('/as_clear_cart', type="json", auth="public" , website=True)
-    def as_clear_cart(self, **kw):
-        order = request.website.sale_get_order()
-        order.unlink()
-        request.website.sale_reset()
-        return {'data': True}
-
-    @http.route('/get_offer_ids', type="json", auth="public", website=True)
-    def get_offer_ids(self, **kw):
-        offer = 0
-        product = 0
-        has_future_offer = False
-        days_left = 0
-        offer_alert_msg = ''
-        date_today = datetime.datetime.now()
-        currency_id = request.env.user.currency_id.id
-        pricelist = request.env.user.property_product_pricelist.id
-        offer_ids = request.env['product.pricelist.item'].search(
-            [('show_timer', '=', True), ('currency_id', '=', currency_id),
-             ('pricelist_id', '=', pricelist), ('date_start', '!=', False)])
-        discount_incl = request.env.user.property_product_pricelist.discount_policy
-        for i in offer_ids:
-            if i.applied_on == '1_product':
-                if i.product_tmpl_id.id == kw.get('product_template_id'):
-                    offer = i
-                    product = i.product_tmpl_id
-            if i.applied_on == '0_product_variant':
-                if i.product_id.id == kw.get('product_id'):
-                    offer = i
-                    product = i.product_id
-        if offer != 0:
-            if offer.date_start > date_today:
-                has_future_offer = True
-                days_left = (offer.date_start - date_today).days
-                offer_alert_msg = offer.offer_alert_msg
-        if offer != 0:
-            return {'offer': {'product_id': product.id, 'name': product.display_name, 'show_timer': r.show_timer,
-                              'show_offers': r.show_offers, 'date_start': r.date_start, 'date_end': r.date_end,
-                              'applied_on': offer.applied_on, 'discount_include': discount_incl,
-                              'offer_msg': offer.offer_msg, 'has_future_offer': has_future_offer, 'days_left': days_left,
-                              'offer_alert_msg': offer_alert_msg} for r in offer}
-        else:
-            return False
+                return_context.update({'slider_config':slider_config})
+            return return_context

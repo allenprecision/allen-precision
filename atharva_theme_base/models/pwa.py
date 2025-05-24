@@ -60,7 +60,7 @@ class Website(models.Model):
 
 class PwaConfigs(models.TransientModel):
     _inherit = "res.config.settings"
-
+    
     is_pwa_active = fields.Boolean(string='PWA', related='website_id.is_pwa_active', readonly=False, help="Enable PWA")
     pwa_name = fields.Char(string='Name', related='website_id.pwa_name', readonly=False)
     pwa_short_name = fields.Char(string='Short Name', related='website_id.pwa_short_name', readonly=False)

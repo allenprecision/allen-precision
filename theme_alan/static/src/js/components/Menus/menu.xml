@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="theme_alan.MenuDialog" t-inherit="website.MenuDialog" t-inherit-mode="primary" owl="1">
+        <xpath expr="//div[@t-if]" position="after">
+             <div class="content_B ">
+                <div class="mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Active Tag
+                    </label>
+                    <div class="col-md-9">
+                        <input type="checkbox" t-model="is_tag_active.input.value"  />
+                    </div>
+                </div>
+                <div t-if="is_tag_active.input.value" class="o_log_form mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Tag Text
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" t-model="tag_text.input.value" class="form-control"/>
+                    </div>
+                </div>
+                <div t-if="is_tag_active.input.value" class="mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Tag Background Color
+                    </label>
+                    <div class="col-md-9">
+                        <input type="color" t-model="tag_bg_color.input.value" />
+                    </div>
+                </div>
+                <div t-if="is_tag_active.input.value" class="o_log_form mb-3 row">
+                    <label class=" col-md-3">
+                        Tag Text Color
+                    </label>
+                    <div class="col-md-9">
+                        <input type="color" t-model="tag_text_color.input.value" />
+                    </div>
+                </div>
+            </div>
+            <!-- Highlightor DIV -->
+            <div class="content_C ">
+                <div class="social-item mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Highlight Menu
+                    </label>
+                    <div class="col-md-9">
+                        <input  type="checkbox" t-model="hlt_menu.input.value"  />
+                    </div>
+                </div>
+                <div t-if="hlt_menu.input.value" class="social-item mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Icon
+                    </label>
+                    <div class="col-md-9">
+                        <input type="text" t-model="hlt_menu_icon.input.value"  class="form-control"/>
+                    </div>
+                </div>
+
+                <div t-if="hlt_menu.input.value" class="social-item mb-3 row">
+                    <label class="col-form-label col-md-3">
+                       Background Color
+                    </label>
+                    <div class="col-md-9">
+                        <input  type="color" t-model="hlt_menu_bg_color.input.value" />
+                    </div>
+                </div>
+                <div t-if="hlt_menu.input.value" class="social-item mb-3 row">
+                    <label class="col-form-label col-md-3">
+                        Font Color
+                    </label>
+                    <div class="col-md-9">
+                        <input type="color" t-model="hlt_menu_ft_col.input.value"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>

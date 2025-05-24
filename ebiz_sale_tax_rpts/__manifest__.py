@@ -15,7 +15,7 @@
 
 
     'category': 'Hidden',
-    'version': '15.0',
+    'version': '17.0',
     'license': 'OPL-1',
 
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="as_snippet_frame_view_form" model="ir.ui.view">
+    <field name="name">as.snippet.frame.view.form</field>
+    <field name="model">as.snippet.frame</field>
+    <field name="arch" type="xml">
+        <form string="Snippet Frame">
+            <sheet>
+                <group>
+                    <field name="name" />
+                    <field name="snippet_frame" />
+                </group>
+                <field name="snippet_frame_html" />
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="as_snippet_frame_view_tree" model="ir.ui.view">
+    <field name="name">as.snippet.frame.view.tree</field>
+    <field name="model">as.snippet.frame</field>
+    <field name="arch" type="xml">
+        <tree string="Snippet Frame">
+            <field name="name" />
+            <field name="snippet_frame" />
+        </tree>
+    </field>
+</record>
+
+<record id="as_snippet_frame_action" model="ir.actions.act_window">
+    <field name="name">Snippet Frame</field>
+    <field name="res_model">as.snippet.frame</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="menu_as_snippet_frame"
+            name="Snippet Frame"
+            action="as_snippet_frame_action"
+            groups="base.group_no_one"
+            parent="website_sale.menu_catalog" sequence="4"/>
+
+<record id="as_snippet_frame_config_view_form" model="ir.ui.view">
+    <field name="name">as.snippet.frame.config.view.form</field>
+    <field name="model">as.snippet.frame.config</field>
+    <field name="arch" type="xml">
+        <form string="Snippet Frame Configuration">
+            <sheet>
+                <group>
+                    <field name="name" />
+                    <field name="snippet_frame_config" />
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<record id="as_snippet_frame_config_view_tree" model="ir.ui.view">
+    <field name="name">as.snippet.frame.config.view.tree</field>
+    <field name="model">as.snippet.frame.config</field>
+    <field name="arch" type="xml">
+        <tree string="Snippet Frame Configuration">
+            <field name="name" />
+            <field name="snippet_frame_config" />
+        </tree>
+    </field>
+</record>
+
+<record id="as_snippet_frame_config_action" model="ir.actions.act_window">
+    <field name="name">Snippet Frame Configuration</field>
+    <field name="res_model">as.snippet.frame.config</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="menu_as_snippet_frame_config"
+            name="Snippet Frame Configuration"
+            action="as_snippet_frame_config_action"
+            groups="base.group_no_one"
+            parent="website_sale.menu_catalog" sequence="4"/>
+
+</odoo>

@@ -4,7 +4,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@id='header_left_group']/div[hasclass('o_td_label')]" position="before">
+            <xpath expr="//group[@id='header_right_group']/div[hasclass('o_td_label')]" position="before">
                 <field name="customer_number" string="Customer Number"/>
             </xpath>
              <xpath expr="//field[@name='line_ids']//tree//field[@name='name']" position="after">

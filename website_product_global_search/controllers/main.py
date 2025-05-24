@@ -89,6 +89,17 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 			if not qs or qs.lower() in loc:
 				yield {'loc': loc}
 
+	def _get_pricelist_context(self):
+		pricelist_context = dict(request.env.context)
+		pricelist = False
+		if not pricelist_context.get('pricelist'):
+			pricelist = request.website._get_current_pricelist()
+			pricelist_context['pricelist'] = pricelist.id
+		else:
+			pricelist = request.env['product.pricelist'].browse(pricelist_context['pricelist'])
+
+		return pricelist_context, pricelist
+
 
 	@http.route([])
 	def shop(self, page=0, category=None,search='', min_price=0.0, max_price=0.0, ppg=False, **post):
@@ -99,7 +110,7 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 		res = super(EbizWebsiteSaleExtend, self).shop(page, category, search, min_price, max_price, ppg, **post)
 		ProductAttribute = request.env['product.attribute']
 		productBrands = request.env['as.product.brand']
-		productTags = request.env['product.tags']
+		productTags = request.env['product.tag']
 		productCat = request.env['product.public.category']
 		attrib_list = request.httprequest.args.getlist('attrib')
 		attrib_values = [[int(x) for x in v.split("-")] for v in attrib_list if v]
@@ -145,12 +156,13 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 				[('product_tmpl_ids', 'in', search_product.ids), ('visibility', '=', 'visible')])
 		else:
 			attributes = ProductAttribute.browse(attributes_ids)
-		variant_count = self._variant_count(search_product, attributes)
-		common_domain = [('active', '=', True), ('website_id', 'in', (False, request.website.id))]
+		# variant_count = self._variant_count(search_product, attributes)
+		common_domain = [('website_id', 'in', (False, request.website.id))]
 		brand_ids = productBrands.search(common_domain)
 		tag_ids = productTags.search(common_domain)
-		rating_count, brand_count, tag_count = self._rbt_count(search_product, brand_ids, tag_ids)
-		category_count = self._category_count(website_domain, productCat, search_product)
+		attr_ids = ProductAttribute.search([])
+		rating_count, brand_count, tag_count, attr_count = self._rbt_count(search_product, brand_ids, tag_ids, attr_ids)
+		# category_count = self._category_count(website_domain, productCat, search_product)
 		keep = QueryURL('/shop', category=category and int(category),
 						search=search,
 						attrib=attrib_list,
@@ -283,12 +295,12 @@ class EbizWebsiteSaleExtend(WebsiteSale):
 		res.qcontext.update({
 			'keep': keep,
 			'attributes_ids': attributes_ids,
-			'variant_count': variant_count,
+			# 'variant_count': variant_count,
 			'category_tags': category_tags,
 			'brand_count': brand_count,
 			'modal_cat_list': [cat.id for cat in productCat.search([] + website_domain)],
 			"modal_brand_list": [brand.id for brand in brand_ids],
-			'category_count': category_count,
+			# 'category_count': category_count,
 			'tag_count': tag_count,
 			'sel_tag_list': tag_list,
 			'alphabets': list(string.ascii_uppercase),

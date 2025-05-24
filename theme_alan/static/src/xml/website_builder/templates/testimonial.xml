@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_testimonial_templates">
+
+<t t-name="theme_alan.testimonial_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="2" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt152 pb152" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content">
+                                            <div class="carousel-content col-lg-6 offset-lg-3 text-center o_colored_level">
+                                                <div class="mb-4"><i class="fa fa-quote-right fa-2x"></i></div>
+                                                <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="h4 m-0 pt-4">Martin Luthar, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt152 pb152" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content">
+                                            <div class="carousel-content col-lg-6 offset-lg-3 text-center o_colored_level">
+                                                <div class="mb-4"><i class="fa fa-quote-right fa-2x"></i></div>
+                                                <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="h4 m-0 pt-4">Martin Luthar, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt152 pb152" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content">
+                                            <div class="carousel-content col-lg-6 offset-lg-3 text-center o_colored_level">
+                                                <div class="mb-4"><i class="fa fa-quote-right fa-2x"></i></div>
+                                                <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="h4 m-0 pt-4">Martin Luthar, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 1</h6>
+                <label class="e-sb-label" for="e_testimonial_01"><input id="e_testimonial_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 testimonial-snippet-2 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-8 text-center">
+                                    <h1 class="h1 fw-500 mb-4 pb-4">Over 10,000 customers</h1>
+                                    <p class="lead m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="border-gray px-4 py-5 rounded shadow card">
+                                        <div class="pb-3"><i class="fa fa-2x fa-quote-left"></i></div>
+                                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2 text-right">- Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 2</h6>
+                <label class="e-sb-label" for="e_testimonial_02"><input id="e_testimonial_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 o_cc o_cc2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="p-4 text-center">
+                                        <div class="pb-4"><i class="fa fa-3x fa-quote-left"></i></div>
+                                        <p class="lead fst-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2">Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-4 text-center">
+                                        <div class="pb-4"><i class="fa fa-3x fa-quote-left"></i></div>
+                                        <p class="lead fst-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2">Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="p-4 text-center">
+                                        <div class="pb-4"><i class="fa fa-3x fa-quote-left"></i></div>
+                                        <p class="lead fst-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600 pt-2">Jennifer Lutheran</div>
+                                    </div>
+                                </div>
+                            </div> <!-- row -->
+                        </div>
+                    </section> 
+                </textarea>
+                <h6 class="text-truncate">Testimonial 3</h6>
+                <label class="e-sb-label" for="e_testimonial_03"><input id="e_testimonial_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 o_cc o_cc4">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <div class="p-4 text-center">
+                                        <div class="pb-4"><i class="fa fa-3x fa-quote-left"></i></div>
+                                        <p class="lead fst-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                        <h5 class="h5 fw-600 pt-2">Jennifer Lutheran</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 4</h6>
+                <label class="e-sb-label" for="e_testimonial_04"><input id="e_testimonial_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 testimonial-snippet-5 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-9 text-center">
+                                    <h1 class="h1 fw-400 mb-4 pb-4">What They Said.</h1>
+                                    <p class="lead m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border border-gray p-4 rounded-0">
+                                        <h5 class="border-bottom border-gray pb-3 mb-3 h5 fw-600">
+                                            Best Support
+                                        </h5>
+                                        <div class="mb-2"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i></div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <div class="fw-600">Dustin</div>
+                                        <div class="small">CEO, Alan</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 5</h6>
+                <label class="e-sb-label" for="e_testimonial_05"><input id="e_testimonial_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons o_half_screen_height" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level">
+                                                <div class="p-4 text-center mb-4">
+                                                    <div class="avatar-100 d-inline-block">
+                                                        <img style="width: 25% !important;" class="rounded-circle shadow" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </div>
+                                                    <div class="lead my-4">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                                    </div>
+                                                    <div class="h5 fw-600">Johnson Buyer / <span class="font-13">CEO, Breddy</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level">
+                                                <div class="p-4 text-center mb-4">
+                                                    <div class="avatar-100 d-inline-block">
+                                                        <img style="width: 25% !important;" class="rounded-circle shadow" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </div>
+                                                    <div class="lead my-4">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                                    </div>
+                                                    <div class="h5 fw-600">Johnson Buyer / <span class="font-13">CEO, Breddy</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 6</h6>
+                <label class="e-sb-label" for="e_testimonial_06"><input id="e_testimonial_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 bg-light testimonial-snippet-7 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-6 text-center">
+                                    <h5 class="h5 ">FITNESS EXPERT</h5>
+                                    <h1 class="h1 fw-700">CLIENT TESTIMONIALS</h1>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 box-shadow-hover hover-top">
+                                        <div class="p-4">
+                                            <i class="fa fa-quote-right mb-4 rounded fa-2x"></i>
+                                            <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        </div>
+                                        <div class="px-4 py-3 border-top border-gray">
+                                            <p class="fw-600 m-0">Martin Luthar, Expert</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 box-shadow-hover hover-top">
+                                        <div class="p-4">
+                                            <i class="fa fa-quote-right mb-4 rounded fa-2x"></i>
+                                            <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        </div>
+                                        <div class="px-4 py-3 border-top border-gray">
+                                            <p class="fw-600 m-0">Martin Luthar, Expert</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 box-shadow-hover hover-top">
+                                        <div class="p-4">
+                                            <i class="fa fa-quote-right mb-4 rounded fa-2x"></i>
+                                            <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        </div>
+                                        <div class="px-4 py-3 border-top border-gray">
+                                            <p class="fw-600 m-0">Martin Luthar, Expert</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 7</h6>
+                <label class="e-sb-label" for="e_testimonial_07"><input id="e_testimonial_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-8.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt-8 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 s_col_no_bgcolor">
+                                    <div class="card shadow py-6 px-4">
+                                        <section class="s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel">
+                                            <div class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000" id="testimonialslider8" style="background-image: none;">
+                                                <ol class="carousel-indicators o_we_no_overlay">
+                                                    <li data-bs-slide-to="0" class="active" data-bs-target="#testimonialslider8"></li>
+                                                    <li data-bs-slide-to="1" data-bs-target="#testimonialslider8"></li>
+                                                </ol>
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active pt56 pb56 oe_img_bg o_bg_img_center o_colored_level" data-name="Slide">
+                                                        <div class="container oe_unremovable">
+                                                            <div class="row content">
+                                                                <div class="carousel-content col-lg-12 o_colored_level text-center">
+                                                                    <div class="mb-4"><i class="fa fa-3x fa-quote-right"></i></div>
+                                                                    <p class="m-0 mb-4 font-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                                    <p class="fw-600 h5 m-0 my-2">Martin Luthar, CEO</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item pt56 pb56 oe_img_bg o_bg_img_center o_colored_level" data-name="Slide">
+                                                        <div class="container oe_unremovable">
+                                                            <div class="row content">
+                                                                <div class="carousel-content col-lg-12 o_colored_level text-center">
+                                                                    <div class="mb-4"><i class="fa fa-3x fa-quote-right"></i></div>
+                                                                    <p class="m-0 mb-4 font-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                                    <p class="fw-600 h5 m-0 my-2">Martin Luthar, CEO</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="carousel-control-prev o_not_editable o_we_no_overlay" contenteditable="false" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" href="#testimonialslider8">
+                                                    <!-- <span class="carousel-control-prev-icon"></span>
+                                                    <span class="visually-hidden o_default_snippet_text">Previous</span> -->
+                                                </a>
+                                                <a class="carousel-control-next o_not_editable o_we_no_overlay" contenteditable="false" data-bs-slide="next" role="img" aria-label="Next" title="Next" href="#testimonialslider8">
+                                                    <!-- <span class="carousel-control-next-icon"></span>
+                                                    <span class="visually-hidden o_default_snippet_text">Next</span> -->
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 text-center">
+                                    <img src="/theme_alan/static/src/img/snippets/520x640.jpg" title="" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </section> 
+                </textarea>
+                <h6 class="text-truncate">Testimonial 8</h6>
+                <label class="e-sb-label" for="e_testimonial_08"><input id="e_testimonial_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-9.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt96 pb96" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level text-center">
+                                                <div class="mb-4"><i class="fa fa-quote-right fa-2x"></i></div>
+                                                <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="h4 m-0 pt-4">Martin Luthar, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt96 pb96" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level text-center">
+                                                <div class="mb-4"><i class="fa fa-quote-right fa-2x"></i></div>
+                                                <p class="m-0 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="h4 m-0 pt-4">Martin Luthar, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 9</h6>
+                <label class="e-sb-label" for="e_testimonial_09"><input id="e_testimonial_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-10.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 testimonial-snippet-10 s_parallax parallax s_parallax_is_fixed s_comparisons">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 s_col_no_bgcolor">
+                                    <div class="card p-4 border-0 rounded-0 bg-transparent">
+                                        <i class="fa fa-quote-left rounded fa-2x mb-4"></i>
+                                        <div class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                        <h5 class="h5 mt-4">DAVIT HOVHANI</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 10</h6>
+                <label class="e-sb-label" for="e_testimonial_10"><input id="e_testimonial_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp11">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-11.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level">
+                                                <div class="p-4 text-center mb-4">
+                                                    <div class="avatar-100 d-inline-block">
+                                                        <img style="width: 25% !important;" class="rounded-circle shadow" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </div>
+                                                    <div class="lead my-4">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                                    </div>
+                                                    <h5 class="h5 fw-600">Will Bayers / <span class="font-13">CEO, Steady</span></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-6 o_colored_level">
+                                                <div class="p-4 text-center mb-4">
+                                                    <div class="avatar-100 d-inline-block">
+                                                        <img style="width: 25% !important;" class="rounded-circle shadow" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </div>
+                                                    <div class="lead my-4">
+                                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                                                    </div>
+                                                    <h5 class="h5 fw-600">Will Bayers / <span class="font-13">CEO, Steady</span></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 11</h6>
+                <label class="e-sb-label" for="e_testimonial_11"><input id="e_testimonial_11" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp12">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-12.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 bg-light testimonial-snippet-12">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-6 text-center">
+                                    <label class="fw-600 h5">Testimonials</label>
+                                    <div class="h1 fw-600">What Customers Say?</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-3">
+                                    <div class="px-4 text-center">
+                                        <div class="avatar-100 d-inline-block">
+                                            <img class="rounded-circle" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                        </div>
+                                        <div class="mt-3">
+                                            <h5 class="fw-600 h5 mb-2">Will Byers</h5>
+                                            <p class="font-18 fst-italic m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="px-4 text-center">
+                                        <div class="avatar-100 d-inline-block">
+                                            <img class="rounded-circle" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                        </div>
+                                        <div class="mt-3">
+                                            <h5 class="fw-600 h5 mb-2">Will Byers</h5>
+                                            <p class="font-18 fst-italic m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="px-4 text-center">
+                                        <div class="avatar-100 d-inline-block">
+                                            <img class="rounded-circle" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                        </div>
+                                        <div class="mt-3">
+                                            <h5 class="fw-600 h5 mb-2">Will Byers</h5>
+                                            <p class="font-18 fst-italic m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 12</h6>
+                <label class="e-sb-label" for="e_testimonial_12"><input id="e_testimonial_12" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp13">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-13.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center">
+                                    <p class="h2 fw-600">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD.</p>
+                                    <p class="lead fw-light fw-600 pt-2">Martin Garrix / User</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 13</h6>
+                <label class="e-sb-label" for="e_testimonial_13"><input id="e_testimonial_13" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp14">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-14.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-10 o_colored_level">
+                                                <div class="testimon-content">
+                                                    <div class="text-center avtar-150 m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img-circle rounded-circle img-responsive" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote">
+                                                            dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content justify-content-center">
+                                            <div class="carousel-content col-lg-10 o_colored_level">
+                                                <div class="testimon-content">
+                                                    <div class="text-center avtar-150 m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img-circle rounded-circle img-responsive" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote">
+                                                            dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 14</h6>
+                <label class="e-sb-label" for="e_testimonial_14"><input id="e_testimonial_14" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp15">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-15.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                            </ol>
+                            <!-- Content -->
+                            <div class="carousel-inner">
+                                <!-- #01 -->
+                                <div class="carousel-item active oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content">
+                                            <div class="carousel-content col-lg-6 o_colored_level my-3">
+                                                <div class="testimon-content">
+                                                    <div class="avtar-150 text-center m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="rounded-circle" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote border-0">
+                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis “
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-content col-lg-6 o_colored_level my-3">
+                                                <div class="testimon-content">
+                                                    <div class="avtar-150 text-center m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="rounded-circle" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote border-0">
+                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis “
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- #02 -->
+                                <div class="carousel-item oe_img_bg o_bg_img_center pt56 pb56" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                    <div class="container">
+                                        <div class="row content">
+                                            <div class="carousel-content col-lg-6 o_colored_level my-3">
+                                                <div class="testimon-content">
+                                                    <div class="avtar-150 text-center m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="rounded-circle" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote border-0">
+                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis “
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-content col-lg-6 o_colored_level my-3">
+                                                <div class="testimon-content">
+                                                    <div class="avtar-150 text-center m-auto">
+                                                        <img style="width: 25% !important;" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="rounded-circle" />
+                                                    </div>
+                                                    <figure class="text-center my-5">
+                                                        <blockquote class="blockquote border-0">
+                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                            ex ea commodog consequat. Duis “
+                                                        </blockquote>
+                                                        <figcaption class="blockquote-footer">
+                                                            Someone famous in <cite title="Source Title">Source Title</cite>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Controls -->
+                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                <span class="carousel-control-prev-icon" />
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                <span class="carousel-control-next-icon" />
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 15</h6>
+                <label class="e-sb-label" for="e_testimonial_15"><input id="e_testimonial_15" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp16">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-16.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="testimonial-snippet-16 py-5">
+                        <div class="container position-relative">
+                            <i class="fa fa-quote-left fa-2x position-absolute start-0 top-0"></i>
+                            <i class="fa fa-quote-right fa-2x position-absolute end-0 bottom-0"></i>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <section class="py-4 o_cc o_cc3" style="border-top-left-radius: 250px; border-bottom-right-radius: 250px;">
+                                        <div class="avatar-100 text-center m-auto">
+                                            <img class="rounded-circle" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                        </div>
+                                        <div class="text-center bg-transparent p-5">
+                                            <p class="lead fst-italic">
+                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua.Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                cillum dolore eu fugiat nulla pariatur."
+                                            </p>
+                                            <h4 class="text-center mt-4">Petrik Wilson</h4>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 16</h6>
+                <label class="e-sb-label" for="e_testimonial_16"><input id="e_testimonial_16" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp17">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-17.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <div class="s_carousel_wrapper testimonial-snippet-17" data-vxml="001" data-snippet="s_carousel" data-name="Carousel">
+                        <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                            <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                    <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                                </ol>
+                                <!-- Content -->
+                                <div class="carousel-inner">
+                                    <!-- #01 -->
+                                    <div class="carousel-item active oe_img_bg o_bg_img_center pt96 pb96" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                        <div class="container">
+                                            <div class="row content">
+                                                <div class="carousel-content col-lg-10 o_colored_level">
+                                                    <h2 class="mb80 fw-500">Customer Diary</h2>
+                                                    <p class="h4 fw-400 mb30">“We Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                        industry. Lorem Ipsum has been the industry's standard dummy text
+                                                        ever since the 1500s, when an unknown printer took a galley of type and
+                                                        scrambled it to make”
+                                                    </p>
+                                                    <h6 class="fw-700 mb80">- Suhan Tereca</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- #02 -->
+                                    <div class="carousel-item oe_img_bg o_bg_img_center pt96 pb96" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');" data-name="Slide">
+                                        <div class="container">
+                                            <div class="row content">
+                                                <div class="carousel-content col-lg-10 o_colored_level">
+                                                    <h2 class="mb80 fw-500">Customer Diary</h2>
+                                                    <p class="h4 fw-400 mb30">“We Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                        industry. Lorem Ipsum has been the industry's standard dummy text
+                                                        ever since the 1500s, when an unknown printer took a galley of type and
+                                                        scrambled it to make”
+                                                    </p>
+                                                    <h6 class="fw-700 mb80">- Suhan Tereca</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Controls -->
+                                <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                    <span class="carousel-control-prev-icon" />
+                                    <span class="visually-hidden">Previous</span>
+                                </a>
+                                <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                    <span class="carousel-control-next-icon" />
+                                    <span class="visually-hidden">Next</span>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 17</h6>
+                <label class="e-sb-label" for="e_testimonial_17"><input id="e_testimonial_17" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.testimonial_temp18">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/testimonial-18.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="testimonial-snippet-18 pt96 pb96 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="col-lg-10 mx-auto">
+                                <div class="row">
+                                    <div class="col-lg-4 my-3">
+                                        <img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    </div>
+                                    <div class="col-lg-8 my-3 s_col_no_bgcolor">
+                                        <section class="s_carousel_wrapper oe_snippet_body" data-vxml="001" data-snippet="s_carousel" data-name="Carousel">
+                                            <div class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000" id="testimonialslider18">
+                                                <ol class="carousel-indicators">
+                                                    <li data-bs-slide-to="0" class="active" data-bs-target="#testimonialslider18"></li>
+                                                    <li data-bs-slide-to="1" data-bs-target="#testimonialslider18"></li>
+                                                </ol>
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active" data-name="Slide">
+                                                        <div class="container oe_unremovable">
+                                                            <div class="row content">
+                                                                <div class="testimon-content text-center card border-0 rounded-0 px-4 pt80 pb80">
+                                                                    <h5 class="text-reset">Luise Philippines</h5>
+                                                                    <p class="mb-0 fst-italic">Creative Director</p>
+                                                                    <figure class="text-center my-4">
+                                                                        <blockquote class="blockquote border-0">
+                                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                                            ex ea commodog consequat. Duis “
+                                                                        </blockquote>
+                                                                    </figure>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="carousel-item" data-name="Slide">
+                                                        <div class="container oe_unremovable">
+                                                            <div class="row content">
+                                                                <div class="testimon-content text-center card border-0 rounded-0 px-4 pt80 pb80">
+                                                                    <h5 class="text-reset">Luise Philippines</h5>
+                                                                    <p class="mb-0 fst-italic">Creative Director</p>
+                                                                    <figure class="text-center my-4">
+                                                                        <blockquote class="blockquote border-0">
+                                                                            "dolorem magnadw aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                                                                            ex ea commodog consequat. Duis “
+                                                                        </blockquote>
+                                                                    </figure>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <a class="carousel-control-prev o_not_editable" contenteditable="false" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous" href="#testimonialslider18">
+                                                    <span class="carousel-control-prev-icon"></span>
+                                                    <span class="visually-hidden o_default_snippet_text">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next o_not_editable" contenteditable="false" data-bs-slide="next" role="img" aria-label="Next" title="Next" href="#testimonialslider18">
+                                                    <span class="carousel-control-next-icon"></span>
+                                                    <span class="visually-hidden o_default_snippet_text">Next</span>
+                                                </a>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Testimonial 18</h6>
+                <label class="e-sb-label" for="e_testimonial_18"><input id="e_testimonial_18" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

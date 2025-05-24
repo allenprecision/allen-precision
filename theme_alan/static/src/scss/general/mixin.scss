@@ -1,0 +1,79 @@
+@mixin as_css_quantity {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 0;
+    position: relative;
+    border: 1px solid $gray-300;
+    width: 130px;
+    border-radius: var(--btn-border-radius);
+    .btn {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: var(--btn-border-radius);
+        background: none !important;
+        position: relative;
+        padding: 0 13px;
+        height: 100%;
+        &:hover {
+            background: $gray-300 !important;
+        }
+    }
+    .btn {
+        margin: 0;
+        padding: 0;
+        height: 48px;
+        width: 30px;
+        .fa {
+            width: 100%;
+            height: 100%;
+        }
+        ~ .quantity {
+            height: 48px !important;
+        }
+        .fa-minus {
+            &:before {
+                position: absolute;
+                content: '';
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 9px;
+                height: 1px;
+                background: $dark;
+            }
+        }
+        .fa-plus {
+            &:after,
+            &:before {
+                position: absolute;
+                content: '';
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                background: $dark;
+            }
+            &:after {
+                height: 9px;
+                width: 1px;
+            }
+            &:before {
+                width: 9px;
+                height: 1px
+            }
+        }
+
+    }
+    .quantity {
+        border: none;
+        border-left: 1px solid $gray-300 !important;
+        border-right: 1px solid $gray-300 !important;
+        max-width: 100%;
+        background: $white;
+        box-shadow: none !important;
+        margin: 0 !important;
+    }
+}

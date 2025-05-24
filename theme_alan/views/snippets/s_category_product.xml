@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="s_category_product_slider" name="Product Category Slider">
+    <div class="container">
+        <div t-attf-class="#{configuration.get('slider_style')}">
+            <div class="as-nav-tabs-style">
+                <ul>
+                    <t t-set="active_category" t-value="0"/>
+                    <t t-foreach="tab_ids" t-as="tab">
+                        <li t-att-data-id="tab.id" t-attf-class="as-tab-name #{'active' if active_category == 0 else ''}"><span t-esc="tab.name"/></li>
+                        <t t-set="active_category" t-value="1"/>
+                    </t>
+                </ul>
+            </div>
+            <div class="as-tab-content">
+                <t t-set="show_content" t-value="0"/>
+                <t t-foreach="tab_ids" t-as="tab">
+                    <t t-set="products" t-value="request.env['product.template'].sudo().search(
+                        [('public_categ_ids', 'in', tab.id),('is_published','=',True),('sale_ok','=',True)] + request.website.website_domain(), limit=10)"/>
+                    <div t-attf-data-tab-id="category_{{tab.id}}" t-attf-class="as-tab-pane #{'active' if show_content == 0 else ''}">
+                        <div t-attf-class="swiper as_category_products as_page_swiper" contenteditable="false">
+                            <t t-set="show_content" t-value="1"/>
+                            <div class="swiper-button-prev asi asi-chevron-left"></div>
+                            <div class="swiper-button-next asi asi-chevron-right"></div>
+                            <div class="swiper-wrapper">
+                                <t t-if="configuration.get('slider_style') == 'as-tab-slider-1'">
+                                    <t t-foreach="products" t-as="product">
+                                        <div t-attf-class="swiper-slide" >
+                                            <t t-call="theme_alan.as_product_base_slider_01"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-elif="configuration.get('slider_style') == 'as-tab-slider-2'">
+                                    <t t-foreach="products" t-as="product">
+                                        <div t-attf-class="swiper-slide" >
+                                            <t t-call="theme_alan.as_product_base_slider_02"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-elif="configuration.get('slider_style') == 'as-tab-slider-3'">
+                                    <t t-foreach="products" t-as="product">
+                                        <div t-attf-class="swiper-slide" >
+                                            <t t-call="theme_alan.as_product_base_slider_03"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-elif="configuration.get('slider_style') == 'as-tab-slider-4'">
+                                    <t t-foreach="products" t-as="product">
+                                        <div t-attf-class="swiper-slide" >
+                                            <t t-call="theme_alan.as_product_base_slider_04"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-elif="configuration.get('slider_style') == 'as-tab-slider-5'">
+                                    <t t-foreach="products" t-as="product">
+                                        <div t-attf-class="swiper-slide" >
+                                            <t t-call="theme_alan.as_product_base_slider_05"/>
+                                        </div>
+                                    </t>
+                                </t>
+                            </div>
+                            <t t-if="configuration.get('pagination') != 'scroll_bar'">
+                                <div class="swiper-pagination"></div>
+                            </t>
+                            <t t-else="">
+                                <div class="swiper-scrollbar"></div>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="s_category_product_grid" name="Product Category Grid">
+    <div class="container">
+        <div t-attf-class="#{configuration.get('slider_style')}">
+           <div class="as-nav-tabs-style">
+                <ul>
+                    <t t-set="active_category" t-value="0"/>
+                    <t t-foreach="tab_ids" t-as="tab">
+                        <li t-att-data-id="tab.id" t-attf-class="as-tab-name #{'active' if active_category == 0 else ''}"><span t-esc="tab.name"/></li>
+                        <t t-set="active_category" t-value="1"/>
+                    </t>
+                </ul>
+            </div>
+            <div class="as-tab-content">
+                <t t-set="show_content" t-value="0"/>
+                <t t-foreach="tab_ids" t-as="tab">
+                    <t t-set="products" t-value="request.env['product.template'].sudo().search(
+                        [('public_categ_ids', 'in', tab.id),('is_published','=',True),('sale_ok','=',True)] + request.website.website_domain(), limit=10)"/>
+
+                    <t t-set="col_mob_size" t-value="configuration.get('default_col_mob')"/>
+                    <t t-if="int(configuration.get('default_col_desk')) == 5">
+                        <t t-set="col_size" t-value="'five'"/>
+                    </t>
+                    <t t-else="">
+                        <t t-set="col_size" t-value="int(12/int(configuration.get('default_col_desk')))"/>
+                    </t>
+                    <div t-attf-data-tab-id="category_{{tab.id}}" t-attf-class="as-tab-pane #{'active' if show_content == 0 else ''}">
+                        <div t-attf-data-tab-id="category_{{tab.id}}" t-attf-class="row g-2 g-md-3 as-snippets-row as_category_products
+                            #{configuration.get('grid_style')}
+                            #{'active' if show_content == 0 else ''}">
+                            <t t-set="show_content" t-value="1"/>
+                            <t t-if="configuration.get('grid_style') == 'as-tab-grid-1'">
+                                <t t-foreach="products" t-as="product">
+                                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size} as_color_variant">
+                                        <t t-call="theme_alan.as_product_base_slider_01"/>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-elif="configuration.get('grid_style') == 'as-tab-grid-2'">
+                                <t t-foreach="products" t-as="product">
+                                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size} as_color_variant">
+                                        <t t-call="theme_alan.as_product_base_slider_02"/>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-elif="configuration.get('grid_style') == 'as-tab-grid-3'">
+                                <t t-foreach="products" t-as="product">
+                                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size} as_color_variant">
+                                        <t t-call="theme_alan.as_product_base_slider_03"/>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-elif="configuration.get('grid_style') == 'as-tab-grid-4'">
+                                <t t-foreach="products" t-as="product">
+                                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size} as_color_variant">
+                                        <t t-call="theme_alan.as_product_base_slider_04"/>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-elif="configuration.get('slider_style') == 'as-tab-grid-5'">
+                                <t t-foreach="products" t-as="product">
+                                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size} as_color_variant">
+                                        <t t-call="theme_alan.as_product_base_slider_05"/>
+                                    </div>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </div>
+</template>
+
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <t t-name="theme_alan.s_static_snippet_configuration" owl="1">
+        <div class="as_s_static_snippet_configuration modal-body-in">
+            <ContentBuilder
+                snippet_content="this.props.snippet_content"
+                active_id="this.props.active_id"
+                snippet="this.props.snippet"
+            />
+        </div>
+    </t>
+</odoo>

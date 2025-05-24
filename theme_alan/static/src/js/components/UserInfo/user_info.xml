@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="theme_alan.userInformDialog" owl="1">
+    <Dialog title="this.title" header="this.header" footer="this.footer" technical="true" >
+        <div class="as-edit-warning-popup">
+            <div class="as-ew-warning-icon">
+                <i class="fa fa-exclamation-triangle"></i>
+            </div>
+            <div class="as-ew-warning-text">
+                <t t-out="this.props.warning_msg"/>
+            </div>
+            <div class="as-ew-btn-bar">
+                <button t-if="this.props.inform_type == 'remove_config'" class="btn as-e-btn-success" t-on-click="_confirm"><i class="fa fa-check"></i>  Confirm</button>
+                <button t-if="this.props.inform_type == 'no_snippet_config'" class="btn as-e-btn-danger" t-on-click="_cancel"><i class="fa fa-check"></i> Okay </button>
+                <button t-else="" class="btn as-e-btn-danger" t-on-click="_cancel"><i class="fa fa-times"></i> Cancel</button>
+            </div>
+        </div>
+    </Dialog>
+</t>
+</templates>

@@ -1,0 +1,74 @@
+// Theme colors
+$o-color-palettes: map-merge($o-color-palettes,
+    (
+        'base-1': map-merge(map-get($o-color-palettes, 'base-1'), (
+            'o-color-1': #0071ce,
+            'o-color-2': #ffc220,
+            'o-color-3': #e5edf2,
+            'o-color-4': #FFFFFF,
+            'o-color-5': #000,
+            //'o-color-5': #041f41,
+            'o-cc1-text': #51596C,
+            'o-cc1-headings': #2d374b,
+            'header-alan_topbar': 1,
+            'header-alan_topbar-custom': null,
+            //'menu': 1,
+            'menu': 1,
+            'footer': 5,
+            'copyright': 5,
+            'copyright-custom': 5,
+        )),
+    )
+);
+
+
+
+
+$o-theme-font-configs: (
+    'Outfit': (
+        'family': ('Outfit', sans-serif),
+        'url': 'Outfit:300,300i,400,400i,500,500i,700,700i,800,800i,900,900i',
+    ),
+);
+
+
+
+
+
+//------------------------------------------------------------------------------
+// Website customizations
+//------------------------------------------------------------------------------
+
+$o-website-values-palettes: (
+    (
+        'color-palettes-name': 'base-1',
+        'font-size-base': 1rem, // Need a set value as the value is used in bootstrap_overridden files
+        'google-fonts': null,
+        'google-local-fonts': null,
+        'font': 'Outfit',
+        'shop-template': 'alan_shop0', // 'alan_shop1' / 'alan_shop2' / 'alan_shop3' / 'alan_shop4'
+        'shop-layout': 'alan_shop_layout_box',
+        'shop-img-size': 'alan_shop_img_size_1_1',
+        'shop-img-fill': 'alan_shop_img_fill_cover',
+        'product-detail-layout': 'alan_product_detail_layout_box',
+        'product-detail-style': 'alan_product0',
+        'input-border-radius': 0,
+        'input-border-radius-sm': 0,
+        'input-border-radius-lg': 0,
+        'input-padding-y': 0.75rem,
+        'input-padding-x': 0.95rem,
+        'input-padding-y-sm': .3rem,
+        'input-padding-x-sm': .7rem,
+        'input-padding-y-lg': .6rem,
+        'input-padding-x-lg': 1rem,
+        'btn-border-radius': 0,
+        'btn-border-radius-lg': 0,
+        'btn-border-radius-sm': 0,
+        'btn-padding-y': 0.75rem,
+        'btn-padding-x': 1.85rem,
+        'btn-padding-y-sm': .3rem,
+        'btn-padding-x-sm': .9rem,
+        'btn-padding-y-lg': .6rem,
+        'btn-padding-x-lg': 1.8rem,
+    ),
+);

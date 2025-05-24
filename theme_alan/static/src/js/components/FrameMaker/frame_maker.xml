@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+
+<t t-name="theme_alan.frame_maker" owl="1">
+    <div id="as_snippet_frame">
+        <t t-component="activeFrameComponent" t-props="props"/>
+    </div>
+</t>
+
+<t t-name="theme_alan.frame_option" owl="1">
+    <div class="as-edit-frame-option-selection">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="as-edit-frame as-edit-cutom-frame">
+                        <img src="/theme_alan/static/src/img/megamenu/custom-frm.svg" title="Make Custom Frame" alt="Make Custom Frame" />
+                        <div class="as-e-btn-bar">
+                            <button class="btn as-e-btn-primary" t-on-click="_custom_frame">Make Custom Frame</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="as-edit-frame as-edit-default-frame">
+                        <img src="/theme_alan/static/src/img/megamenu/default-frm.svg" title="Select Default Frame" alt="Select Default Frame" />
+                        <div class="as-e-btn-bar">
+                            <button class="btn as-e-btn-secondary" t-on-click="_default_frame"> Select Default Frame</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.custom_frame" owl="1">
+    <div class="as-edit-action-menu as-editor-option">
+        <div class="as-edit-action-in">
+            <div class="as-ea-edit-col as-ea-edit-row">
+                <label for="as-row">Row</label>
+                <select class="form-select" name="as-row" id="as-row" t-on-change="_update_frame_grid">
+                    <t t-foreach="[0,1,2,3,4,5,6]" t-as="num" t-key="num">
+                        <option><t t-esc="num"/></option>
+                    </t>
+                </select>
+            </div>
+            <div class="as-ea-edit-col as-ea-edit-column">
+                <label for="as-column">Column</label>
+                <select class="form-select" name="as-colume" id="as-column" t-on-change="_update_frame_grid">
+                    <t t-foreach="[0,1,2,3,4,6]" t-as="num" t-key="num">
+                        <option><t t-esc="num"/></option>
+                    </t>
+                </select>
+            </div>
+            <div class="as-ea-edit-col as-ea-edit-right">
+                <button class="btn as-btn-merge as-frame-merge"> <i class="fa fa-compress"></i> Merge </button>
+                <button class="btn as-btn-reset as-frame-reset"> <i class="fa fa-undo"></i> Reset </button>
+                <button class="btn as-btn-back" t-on-click="_active_frame_option"> <i class="fa fa-chevron-left"></i>  Back </button>
+                <button t-if="this.controllers.frame_create" class="btn as-btn-done" t-on-click="_frame_done"> <i class="fa fa-check-circle"></i> Done </button>
+            </div>
+        </div>
+    </div>
+    <div class="container as-frame-work as-edit-workspace">
+        
+        <div class="as-edit-empty-workspace as_welcome_msg">
+            <div class="as-edit-workspace-icon">
+                <img src="/theme_alan/static/src/img/megamenu/show-your-megical-creativity.svg" />
+            </div>
+            <h2> Show Your Megical Creativity </h2>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.default_frame" owl="1">
+    <div class="as-edit-default-frame-selection">
+        <div class="as-edit-action-menu">
+            <div class="as-edit-action-in">
+                <div class="as-ea-edit-col as-ea-edit-right">
+                    <button class="btn as-btn-back" t-on-click="_active_frame_option"> <i class="fa fa-chevron-left"></i> Back </button>
+                </div>
+            </div>
+        </div>
+        <div class="as-edit-frame-history" id="as_default_frame"/>
+    </div>
+</t>
+
+</templates>

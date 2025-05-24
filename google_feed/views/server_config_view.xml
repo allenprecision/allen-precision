@@ -12,14 +12,18 @@
                     <sheet>
                         <group>
                             <group>
+                                <field name="protocol" required="1"/>
                             	<field name="name" required="1"/>
 								<field name="host" required="1"/>
                                 <field name="user_name" required="1"/>
-                                <field name="password" required="1"/>
+                                <field name="password" required="config_type == 'using_pass'" invisible = "config_type == 'using_file'"/>
                             </group>
                             <group>
                             	<field name="port" required="1"/>                            	
-                               	<field name="protocol" required="1"/>
+                               	<field name="config_type" required="1" invisible ="protocol == 'ftp'"/>
+                                <field name='server_config'  widget="binary"  filename="file_name" invisible = "protocol == 'ftp' or config_type == 'using_pass'"/>
+                                <field name='file_name' invisible="1"/>
+                                <field name="file_path" invisible="1"/>
                             </group>
                         </group>
                     </sheet>

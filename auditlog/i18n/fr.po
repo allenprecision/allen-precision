@@ -77,8 +77,6 @@ msgstr ""
 
 #. module: auditlog
 #: model:ir.actions.server,name:auditlog.ir_cron_auditlog_autovacuum_ir_actions_server
-#: model:ir.cron,cron_name:auditlog.ir_cron_auditlog_autovacuum
-#: model:ir.cron,name:auditlog.ir_cron_auditlog_autovacuum
 msgid "Auto-vacuum audit logs"
 msgstr "Vidage automatique des logs d'audit"
 
@@ -157,6 +155,7 @@ msgid "Field"
 msgstr "Champ"
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "Field 'model_id' cannot be empty."
@@ -236,17 +235,6 @@ msgstr "Requêtes HTTP"
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_rule__id
 msgid "ID"
 msgstr "ID"
-
-#. module: auditlog
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_request____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_http_session____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_log_line_view____last_update
-#: model:ir.model.fields,field_description:auditlog.field_auditlog_rule____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: auditlog
 #: model:ir.model.fields,field_description:auditlog.field_auditlog_autovacuum__write_uid
@@ -366,18 +354,21 @@ msgid "New value Text"
 msgstr "Nouvelle valeur texte"
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No field defined to create line."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "No model defined to create line."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "No model defined to create log."
@@ -524,12 +515,14 @@ msgid "Technical name"
 msgstr "Nom technique"
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'field_id' cannot be empty."
 msgstr ""
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/log.py:0
 #, python-format
 msgid "The field 'model_id' cannot be empty."
@@ -600,6 +593,7 @@ msgid "Values"
 msgstr "Valeurs"
 
 #. module: auditlog
+#. odoo-python
 #: code:addons/auditlog/models/rule.py:0
 #, python-format
 msgid "View logs"
@@ -607,7 +601,13 @@ msgstr "Consulter les journaux"
 
 #. module: auditlog
 #: model:ir.model.fields,help:auditlog.field_auditlog_rule__user_ids
-msgid "if  User is not added then it will applicable for all users"
+msgid "if no user is added then it will applicable for all users"
 msgstr ""
-"Si l'utilisateur n'est pas ajouté alors cela sera applicable à tous les "
-"utilisateurs"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
+
+#~ msgid "if  User is not added then it will applicable for all users"
+#~ msgstr ""
+#~ "Si l'utilisateur n'est pas ajouté alors cela sera applicable à tous les "
+#~ "utilisateurs"

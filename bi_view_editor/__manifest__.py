@@ -9,29 +9,22 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/reporting-engine",
     "category": "Productivity",
-    "version": "15.0.1.0.0",
+    "version": "17.0.1.1.0",
     "development_status": "Beta",
-    "depends": ["web"],
+    "depends": ["web", "spreadsheet_dashboard"],
     "external_dependencies": {
         "deb": ["graphviz"],
     },
     "data": [
+        "security/res_groups.xml",
         "security/ir.model.access.csv",
         "security/rules.xml",
         "views/bve_view.xml",
     ],
     "assets": {
         "web.assets_backend": [
-            "bi_view_editor/static/src/css/bve.css",
-            "bi_view_editor/static/src/js/bi_view_editor.js",
-            "bi_view_editor/static/src/js/bi_view_editor.JoinNodeDialog.js",
-            "bi_view_editor/static/src/js/bi_view_editor.ModelList.js",
-            "bi_view_editor/static/src/js/bi_view_editor.FieldList.js",
-        ],
-        "web.assets_qweb": [
-            "bi_view_editor/static/src/xml/bi_view_editor.xml",
+            "bi_view_editor/static/src/components/**/*",
         ],
     },
     "uninstall_hook": "uninstall_hook",
-    "installable": True,
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<templates>
+
+    <!-- Select Data Search Return Template Template -->
+    <t t-name="theme_alan.select2_fetch_info">
+        <div class="as-s2-media" style="display: flex;">
+            <div class="as-s2-img">
+                <img class="card-img o_image_64_contain" t-att-src="data.img"/>
+            </div>
+            <div class="as-s2-media-body">
+                <h6 class="mb-1" t-esc="data.text"/>
+            </div>
+        </div>
+    </t>
+
+    <!-- Select Input DialogBox Template -->
+    <t t-name="theme_alan.s_hotspot_product_selector">
+        <div class="hotspot_product">
+            <div class="row">
+                <div class="as-edit-search-bar product_selector">
+                    <input type='text' name="as_search" id="as_search" class="form-control "/>
+                </div>
+            </div>
+            <div class="as-hotspot-btn">
+                <button class="btn btn-primary as_btn_save"> Save </button>
+            </div>
+        </div>
+    </t>
+
+    <!-- Static hotspot Popover Template-->
+    <t t-name="theme_alan.s_static_hotspot_popover">
+        <t t-set="backgroundcolor" t-value="''"/>
+        <t t-set="btn_style" t-value="''"/>
+        <t t-if="data.pop_thm == 'dark_thm'">
+            <t t-set="backgroundcolor" t-value="'background-color:#14161A;color:white;'"/>
+            <t t-set="btn_style" t-value="'color:#14161A;background-color:white;'"/>
+        </t>
+        <div t-attf-class="{{ data.pop_style }} {{ data.pop_thm }}" t-attf-style="#{backgroundcolor}">
+            <div class="hp-media">
+                <div class="hp-img">
+                    <img t-if="data.img_url" t-attf-src="{{data.img_url}}" alt="Image"/>
+                    <img t-else="" t-attf-src="/theme_alan/static/src/img/hotspot.jpeg" alt="Image"/>
+                </div>
+                <div class="hp-media-body">
+                    <!--Title-->
+                    <h5 class="hp-title" t-attf-style="#{backgroundcolor}">
+                        <t t-if="data.title" t-esc="data.title"/>
+                        <t t-else="">Chair</t>
+                    </h5>
+                    <!--Description-->
+                    <p t-if="data.description" t-esc="data.description" t-attf-style="#{backgroundcolor}"/>
+                    <p t-else="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum text...</p>
+                    <!--Button-->
+                    <a t-if="data.btn_txt" t-att-href="data.btn_url" class="btn btn-primary btn-sm" t-attf-style="#{btn_style}" t-esc="data.btn_txt"/>
+                    <a t-else="" t-att-href="data.btn_url" class="btn btn-primary btn-sm" t-attf-style="#{btn_style}">Show Now</a>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- Hotspot Translation Template-->
+    <t t-name="theme_alan.as_hotspot_tr">
+        <div class="container">
+            <form class='request_form' action="#" method="post">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Language Code</th>
+                            <th scope="col">Language Name</th>
+                            <th scope="col">Custom Translation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="data.lang_code_name" t-as="lang" t-key="lang.id">
+                            <tr>
+                                <td class="o_field_translation_code" t-att-value="lang[0]">
+                                    <t t-esc="lang[0]"/>
+                                </td>
+                                <td>
+                                    <t t-esc="lang[1]" />
+                                </td>
+                                <td>
+                                    <t t-if="data.key_data == 'title_translation'">
+                                        <t t-set="custom" t-value="'data-lang-'+lang[0]"/>
+
+                                    </t>
+                                    <t t-elif="data.key_data == 'desc_translation'">
+                                        <t t-set="custom" t-value="'data-description-lang-'+lang[0]"/>
+                                    </t>
+                                    <t t-else=" ">
+                                        <t t-set="custom" t-value="'data-btn-lang-'+lang[0]"/>
+                                    </t>
+
+                                    <t t-if="data.defaultAtt[0]">
+                                        <t t-foreach="data.defaultAtt" t-as="defaultAtt" t-key="defaultAtt.id">
+                                            <t t-if="custom == defaultAtt[0]">
+                                                <input class="form-control o_field_translation_field"  t-att-value="defaultAtt[1]" type="text" placeholder="Custom Translation" />
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-else="">
+                                        <input class="form-control o_field_translation_field"  t-att-value="data.defaultTitle" type="text" placeholder="Custom Translation" />
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </t>
+</templates>

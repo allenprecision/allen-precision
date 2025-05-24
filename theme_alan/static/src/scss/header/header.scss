@@ -1,0 +1,123 @@
+// Header Color
+
+$-as-top-header-color: o-color('header-alan_topbar-custom') or o-color('header-alan_topbar');
+@if ($-as-top-header-color and color-contrast($-as-top-header-color) != $color-contrast-dark) {
+    :root {
+        --as-header-color: 255,255,255;
+    }
+}
+
+
+@if ($-as-top-header-color and color-contrast($-as-top-header-color) != $color-contrast-light) {
+    :root {
+        --as-header-color: 0,0,0;
+    }
+}
+
+
+$-menu-color: o-color('menu-custom') or o-color('menu');
+@if ($-menu-color and color-contrast($-menu-color) != $color-contrast-dark) {
+    :root {
+        --as-menu-color: 255,255,255;
+    }
+}
+
+
+@if ($-menu-color and color-contrast($-menu-color) != $color-contrast-light) {
+    :root {
+        --as-menu-color: 0,0,0;
+    }
+}
+
+
+.dropdown-toggle-none {
+    &:after {
+        display: none !important;
+    }
+}
+
+.as-main-header {
+    .dropdown-toggle {
+        &:after {
+            content: "\f107";
+            font-family: FontAwesome;
+            border: 0;
+            vertical-align: top;
+            display: inline-block;
+            margin-left: 0.255em;
+        }
+    }
+}
+
+
+// Header Icons
+.as-h-wish {
+    .fa-heart {
+        &:before {
+            content: "\e879";
+            font-family: 'feather';
+        }
+    }
+}
+.as-h-cart {
+    .fa-shopping-cart {
+        &:before {
+            content: "\e905";
+            font-family: 'feather';
+        }
+    }
+}
+
+.as-h-bag {
+    .fa-shopping-cart {
+        &:before {
+            content: "\e926";
+            font-family: 'feather';
+        }
+    }
+}
+
+.as-h-user {
+    font-size: 0px;
+    &:before {
+        content: "\e8e9";
+        font-family: 'feather';
+        font-size: 1rem;
+    }
+}
+
+
+
+.as-main-header {
+    .navbar-nav {
+        > .nav-item {
+            > .nav-link {
+                position: relative;
+            }
+        }
+    }
+}
+
+.as-menu-tags {
+    position: absolute;
+    top: -5px;
+    display: inline-block;
+    right: 7px;
+    line-height: 1;
+    font-size: 10px;
+    padding: 4px 5px 3px;
+    border-radius: 2px;
+    .as-mobile-header & {
+        right: auto;
+    }
+    &:after {
+        content: "";
+        background: inherit;
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        bottom: -3px;
+        left: 8px;
+        transform: rotate(45deg);
+    }
+}

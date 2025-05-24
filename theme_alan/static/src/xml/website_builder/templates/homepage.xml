@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_homepage_templates">
+
+    <t t-name="theme_alan.homepage_1">
+        <div class="col-md-3">
+            <div class="e_sb_snnippet_box">
+                <div class="img">
+                    <img src="/theme_alan/static/src/img/snippets/snippets_icon/main_home.jpg" />
+                </div>
+                <div class="snippet-as">
+                    <textarea class="visually-hidden snippet-textarea">
+                        <!-- Main Home Page -->
+                        <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section id="alan_v2_slider_1" class="ani-carousel carousel-arrow center dark s_carousel s_carousel_default carousel slide oe_snippet_body" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                            <li data-target="#alan_v2_slider_1" data-slide-to="0" class="active" />
+                            <li data-target="#alan_v2_slider_1" data-slide-to="1" />
+                            </ol>
+                            <div class="carousel-inner">
+                            <div class="carousel-item bg-cover bg-no-repeat bg-center active" style="background-image: url(https://odoo-snippets.atharvasystem.com/source/img/alan-v2-slider-1.jpg);">
+                                <div class="container">
+                                <div class="row screen-65 p-50px-tb align-items-center">
+                                    <div class="col-lg-6">
+                                    <div class="p-50px-r md-p-0px-r ani-fade-left ani-2">
+                                        <div class="ani-fade-left ani-1 dark-color m-20px-b white-bg d-inline-block p-15px-lr p-5px-tb border-radius-5">Furniture</div>
+                                        <div class="ani-fade-left ani-1 font-alt display-4 dark-color font-w-700 m-20px-b">Make Your Living room cozy.</div>
+                                        <p class="ani-fade-left ani-1 lead">Lorem ipsum dolor sit amet, eam et reque justo quidam, audire ius no oblique phaedrum pertinacia.</p>
+                                        <div class="ani-fade-bottom ani-3 p-15px-t">
+                                        <a class="btn-primary o_default_snippet_text btn" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                    <img class="ani-fade-right ani-1" src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-slider-in-1.png" />
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="carousel-item bg-cover bg-no-repeat bg-center" style="background-image: url(https://odoo-snippets.atharvasystem.com/source/img/alan-v2-slider-2.jpg);">
+                                <div class="container">
+                                <div class="row screen-65 p-50px-tb align-items-center">
+                                    <div class="col-lg-6">
+                                    <img class="ani-fade-left ani-1" src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-slider-in-2.png" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                    <div class="p-50px-l md-p-0px-l ani-fade-right ani-2">
+                                        <div class="ani-fade-left ani-1 dark-color m-20px-b white-bg d-inline-block p-15px-lr p-5px-tb border-radius-5">Furniture</div>
+                                        <div class="ani-fade-left ani-1 font-alt display-4 dark-color font-w-700 m-20px-b">Make Your Living room cozy.</div>
+                                        <p class="ani-fade-left ani-1 lead">Lorem ipsum dolor sit amet, eam et reque justo quidam, audire ius no oblique phaedrum pertinacia.</p>
+                                        <div class="ani-fade-bottom ani-3 p-15px-t">
+                                        <a class="btn-primary o_default_snippet_text btn" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            <a class="carousel-control carousel-control-prev" href="#alan_v2_slider_1" role="button" data-slide="prev">
+                            <span class="prev-icon" />
+                            </a>
+                            <a class="carousel-control carousel-control-next" href="#alan_v2_slider_1" role="button" data-slide="next">
+                            <span class="next-icon" />
+                            </a>
+                        </section>
+                        </section>
+                        <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section s_parallax parallax border-bottom-1 border-color-gray border-top-1" data-scroll-background-ratio="2" data-name="Parallax" style="background-image: none;">
+                            <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(https://odoo-snippets.atharvasystem.com/source/img/alan-v2-bg-1.jpg); background-position: 50% 75%; top: -186.6px; bottom: -186.6px; transform: translateY(174px);">
+                        </span>
+                            <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="col-lg-6 m-15px-tb">
+                                <img class="max-width-auto float-right" src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-1.png" data-original-title="" title="" aria-describedby="tooltip971392" />
+                                </div>
+                                <div class="col-lg-6 m-15px-tb">
+                                <div class="p-50px-l md-p-0px-l">
+                                    <div class="after-50px dark-after dark-color display-4 font-w-700 m-30px-b p-30px-b">Welcome to Furniture Store</div>
+                                    <p>Lorem ipsum dolor sit amet, eam et reque justo quidam, te est audire persius. Duis meis quas vim ex, ius no oblique phaedrum pertinacia. Ornatus referrentur</p>
+                                    <p>Lorem ipsum dolor sit amet, eam et reque justo quidam, te est audire persius. Duis meis quas vim ex, ius no oblique phaedrum pertinacia. Ornatus referrentur</p>
+                                    <div class="ani-fade-bottom ani-3 p-15px-t">
+                                    <a class="btn-primary o_default_snippet_text btn" href="#">More About</a>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </section>
+                        </section>
+                        <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section bg-100" style="">
+                            <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 text-center">
+                                <div class="seaction-head">
+                                    <h2>Monthly Offer</h2>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-6 m-20px-tb">
+                                <div class="hover-shine border-radius-50 hover-top box-shadow-lg border-10 border-color-white">
+                                    <a href="#">
+                                    <img src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-2.jpg" />
+                                    </a>
+                                </div>
+                                <div class="white-bg mt-n4 p-20px m-20px-lr position-relative border-radius-5 text-center box-shadow">
+                                    <div class="h5 font-w-700 dark-color m-0px">#top Collections</div>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 m-20px-tb">
+                                <div class="hover-shine border-radius-50 hover-top box-shadow-lg border-10 border-color-white">
+                                    <a href="#">
+                                    <img src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-3.jpg" />
+                                    </a>
+                                </div>
+                                <div class="white-bg mt-n4 p-20px m-20px-lr position-relative border-radius-5 text-center box-shadow">
+                                    <div class="h5 font-w-700 dark-color m-0px">#top Collections</div>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 m-20px-tb">
+                                <div class="hover-shine border-radius-50 hover-top box-shadow-lg border-10 border-color-white">
+                                    <a href="#">
+                                    <img src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-4.jpg" />
+                                    </a>
+                                </div>
+                                <div class="white-bg mt-n4 p-20px m-20px-lr position-relative border-radius-5 text-center box-shadow">
+                                    <div class="h5 font-w-700 dark-color m-0px">#top Collections</div>
+                                </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 m-20px-tb">
+                                <div class="hover-shine border-radius-50 hover-top box-shadow-lg border-10 border-color-white">
+                                    <a href="#">
+                                    <img src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-5.jpg" />
+                                    </a>
+                                </div>
+                                <div class="white-bg mt-n4 p-20px m-20px-lr position-relative border-radius-5 text-center box-shadow">
+                                    <div class="h5 font-w-700 dark-color m-0px">#top Collections</div>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </section>
+                        </section>
+                        <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section deal-of-day-snip-rounder" style="background-color: #f8f9fa;">
+                            <div class="container">
+                            <div class="row align-items-center justify-content-between">
+                                <div class="m-15px-tb col-lg-5">
+                                <div class="p-50px-r md-p-0px-r">
+                                    <div class="display-4 dark-color font-w-700 m-30px-b after-50px dark-after p-30px-b">Deals Of The Day</div>
+                                    <p>Lorem ipsum dolor sit amet, eam viris essent dissentiet at, nec falli percipit petentium ut. Delenit molestie sententiae ea his....</p>
+                                    <div class="dt-deal p-20px-t mb-0" id="getting-started">
+                                    <ul>
+                                        <li>
+                                        <span>1572</span>
+                                        <label>days</label>
+                                        </li>
+                                        <li>
+                                        <span>05</span>
+                                        <label>hr</label>
+                                        </li>
+                                        <li>
+                                        <span>12</span>
+                                        <label>min</label>
+                                        </li>
+                                        <li>
+                                        <span>22</span>
+                                        <label>sec</label>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-lg-6 m-15px-tb">
+                                <div class="hover-shine">
+                                    <img src="https://odoo-snippets.atharvasystem.com/source/img/alan-v2-cat-6.png" />
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </section>
+                        </section>
+                        <!-- End Main Home Page -->
+                    </textarea>
+                    <h6>Main Home</h6>
+                    <label class="e-sb-label" for="main_home"><input id="main_home" name="radio-snippet" type="radio" /><span /></label>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="theme_alan.homepage_2">
+        <div class="col-md-3">
+            <div class="e_sb_snnippet_box">
+                <div class="img">
+                    <img src="/theme_alan/static/src/img/snippets/snippets_icon/teeth-care.jpg" />
+                </div>
+                <div class="snippet-as">
+                    <textarea class="visually-hidden snippet-textarea">
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section style="background: #eee1dd;">
+                            <div class="container">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-lg-5 p-50px-tb">
+                                        <div class="h1 font-w-600 dark-color m-20px-b">Alan Gives You A Reason To Smile</div>
+                                        <p class="font-16 sm-font-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                        <div class="btn-bar m-30px-t">
+                                            <a class="btn-primary o_default_snippet_text btn" href="#">Book Appointment</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-1.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section">
+                            <div class="container">
+                                <div class="row justify-content-between">
+                                    <div class="col-lg-5">
+                                        <div class="p-15-r">
+                                            <div class="m-25px-b">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-3.png" />
+                                            </div>
+                                            <div class="dark-color h2 font-w-600 m-25px-b">Alan Dentists Care Passionate About Helping Take Care</div>
+                                            <p class="font-w-500 color-extra-dark-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <p>Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                            <div class="p-10px-t">
+                                                <a class="as-btn-theme" href="#">Learn More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 md-m-30px-t">
+                                        <div class="box-shadow-extra-large alan-img-hover border-radius-5px">
+                                            <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-2.jpg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section" style="background-color: #f6f6ff;">
+                            <div class="container">
+                                <div class="row justify-content-center m-60px-b sm-m-45px-b">
+                                    <div class="col-lg-6 text-center">
+                                        <div class="h1 font-w-400 dark-color m-10px-b">The Benefits</div>
+                                        <p class="m-0px font-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 m-15px-tb">
+                                        <div class="text-center p-30px-lr">
+                                            <div class="avatar-90px theme-bg d-inline-block border-radius-50">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/clic-icon-1.png" />
+                                            </div>
+                                            <div class="p-20px-t">
+                                                <div class="h5 font-w-600 m-10px-b theme-color">Advanced Dentistry</div>
+                                                <p>Lorem ipsum dolor sit es amet vel consectetur placerat es metus euismod convallis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 m-15px-tb">
+                                        <div class="text-center p-30px-lr">
+                                            <div class="avatar-90px theme-bg d-inline-block border-radius-50">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/clic-icon-2.png" />
+                                            </div>
+                                            <div class="p-20px-t">
+                                                <div class="h5 font-w-600 m-10px-b theme-color">Advanced Dentistry</div>
+                                                <p>Lorem ipsum dolor sit es amet vel consectetur placerat es metus euismod convallis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 m-15px-tb">
+                                        <div class="text-center p-30px-lr">
+                                            <div class="avatar-90px theme-bg d-inline-block border-radius-50">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/clic-icon-3.png" />
+                                            </div>
+                                            <div class="p-20px-t">
+                                                <div class="h5 font-w-600 m-10px-b theme-color">Advanced Dentistry</div>
+                                                <p>Lorem ipsum dolor sit es amet vel consectetur placerat es metus euismod convallis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 m-15px-tb">
+                                        <div class="text-center p-30px-lr">
+                                            <div class="avatar-90px theme-bg d-inline-block border-radius-50">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/clic-icon-4.png" />
+                                            </div>
+                                            <div class="p-20px-t">
+                                                <div class="h5 font-w-600 m-10px-b theme-color">Advanced Dentistry</div>
+                                                <p>Lorem ipsum dolor sit es amet vel consectetur placerat es metus euismod convallis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="p-60px-tb s_parallax parallax" data-scroll-background-ratio="1.2" style="background-image: none;">
+                            <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(https://odoo-snippets.atharvasystem.com/source/img/cli-9.jpg); background-position: 50% 75%; top: -111.96px; bottom: -111.96px; transform: translateY(105px);" />
+                            <div class="container">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-lg-7 m-15px-tb">
+                                        <div class="media">
+                                            <div class="icon-60px white-color">
+                                                <i class="fa fa-phone fa-2x" />
+                                            </div>
+                                            <div class="media-body p-20px-l">
+                                                <div class="h3 white-color m-10px-b font-w-600">Schedule Appointment</div>
+                                                <p class="white-color-alt">Our clinic offers comprehensive solutions for all of your dental needs</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 text-center text-lg-right m-15px-tb">
+                                        <a class="btn btn-primary" href="#">Book Appintment</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section">
+                            <div class="container">
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-lg-6 md-m-30px-b">
+                                        <div class="hover-scale border-radius-5 box-shadow">
+                                            <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-10.jpg" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div>
+                                            <div class="theme-color font-w-600">What We do?</div>
+                                            <div class="dark-color h3 font-w-600 m-20px-b">Creating a vibrant smile for a healthy lifestyle!</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                                            <ul class="list-type2">
+                                                <li>General Dental Care</li>
+                                                <li>Cosmetic Dentistry</li>
+                                                <li>Advanced Dentistry</li>
+                                            </ul>
+                                            <div class="p-30px-t">
+                                                <a class="as-btn-theme" href="#">Lear More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section id="ahealth_testimonial_v12_2" class="s_carousel s_carousel_default carousel slide oe_snippet_body carousel-dots-dark" data-ride="carousel" style="background-color: #f6f6f6;" data-name="Carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#ahealth_testimonial_v12_2" data-slide-to="0" class="active" />
+                                <li data-target="#ahealth_testimonial_v12_2" data-slide-to="1" />
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" style="">
+                                    <div class="container">
+                                        <div class="row slider align-items-center justify-content-center p-80px-tb">
+                                            <div class="col-lg-6 text-center">
+                                                <div class="m-20px-b">
+                                                    <i class="fa fa-quote-right dark-color fa-2x" />
+                                                </div>
+                                                <p class="m-0px lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="dark-color h4 m-0px p-30px-t">Martin Luther, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" style="">
+                                    <div class="container">
+                                        <div class="row slider align-items-center justify-content-center p-80px-tb">
+                                            <div class="col-lg-6 text-center">
+                                                <div class="m-20px-b">
+                                                    <i class="fa fa-quote-right dark-color fa-2x" />
+                                                </div>
+                                                <p class="m-0px lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                                <p class="dark-color h4 m-0px p-30px-t">Martin Luther, CEO</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="section">
+                            <div class="container">
+                                <div class="row justify-content-center m-60px-b sm-m-45px-b">
+                                    <div class="col-lg-6 text-center">
+                                        <div class="dark-color h1 font-w-300 m-10px-b">Team of Professionals</div>
+                                        <p class="m-0px font-1 font-w-400">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-3 m-15px-tb">
+                                        <div class="box-shadow-lg white-bg p-15px hover-top">
+                                            <div class="alan-img-hover">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-5.jpg" />
+                                            </div>
+                                            <div class="p-15px-t">
+                                                <div class="dark-color h5 font-w-600 m-5px-b">John Hagens, PhD</div>
+                                                <p class="font-w-500 m-0px p-5px-b">Professor</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                                <div class="nav social-icon si-30 dark m-15px-t">
+                                                    <a href="#">
+                                                        <i class="fa fa-facebook" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-twitter" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-instagram" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-linkedin" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-3 m-15px-tb">
+                                        <div class="box-shadow-lg white-bg p-15px hover-top">
+                                            <div class="alan-img-hover">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-6.jpg" />
+                                            </div>
+                                            <div class="p-15px-t">
+                                                <div class="dark-color h5 font-w-600 m-5px-b">John Hagens, PhD</div>
+                                                <p class="font-w-500 m-0px p-5px-b">Professor</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                                <div class="nav social-icon si-30 dark m-15px-t">
+                                                    <a href="#">
+                                                        <i class="fa fa-facebook" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-twitter" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-instagram" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-linkedin" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-3 m-15px-tb">
+                                        <div class="box-shadow-lg white-bg p-15px hover-top">
+                                            <div class="alan-img-hover">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-7.jpg" />
+                                            </div>
+                                            <div class="p-15px-t">
+                                                <div class="dark-color h5 font-w-600 m-5px-b">John Hagens, PhD</div>
+                                                <p class="font-w-500 m-0px p-5px-b">Professor</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                                <div class="nav social-icon si-30 dark m-15px-t">
+                                                    <a href="#">
+                                                        <i class="fa fa-facebook" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-twitter" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-instagram" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-linkedin" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-3 m-15px-tb">
+                                        <div class="box-shadow-lg white-bg p-15px hover-top">
+                                            <div class="alan-img-hover">
+                                                <img src="https://odoo-snippets.atharvasystem.com/source/img/cli-8.jpg" />
+                                            </div>
+                                            <div class="p-15px-t">
+                                                <div class="dark-color h5 font-w-600 m-5px-b">John Hagens, PhD</div>
+                                                <p class="font-w-500 m-0px p-5px-b">Professor</p>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                                <div class="nav social-icon si-30 dark m-15px-t">
+                                                    <a href="#">
+                                                        <i class="fa fa-facebook" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-twitter" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-instagram" />
+                                                    </a>
+                                                    <a href="#">
+                                                        <i class="fa fa-linkedin" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    <section class="alan_snippet_builder" data-name="Alan Snippet Builder">
+                        <section class="p-60px-tb s_parallax parallax" data-scroll-background-ratio="2" style="background-image: none;">
+                            <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(https://odoo-snippets.atharvasystem.com/source/img/cli-9.jpg); background-position: 50% 75%; top: -186.6px; bottom: -186.6px; transform: translateY(186px);" />
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-6 text-center">
+                                        <div class="white-color h1 font-w-600 m-20px-b">Dr. John Boss</div>
+                                        <p class="lead white-color-alt">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                                        <div class="p-10px-t">
+                                            <a class="btn btn-primary" href="#">Book Appointment</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                    </textarea>
+                    <h6>Teeth Care</h6>
+                    <label class="e-sb-label" for="teeth-care"><input id="teeth-care" name="radio-snippet" type="radio" /><span /></label>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

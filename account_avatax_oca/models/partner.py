@@ -18,6 +18,21 @@ class ResPartner(models.Model):
 
     _inherit = "res.partner"
 
+    @api.onchange("property_exemption_country_wide")
+    def _onchange_property_exemption_contry_wide(self):
+        if self.property_exemption_country_wide:
+            message = (
+                _(
+                    "Enabling the exemption status for all states"
+                    " may have tax compliance risks,"
+                    " and should be carefully considered.\n\n"
+                    " Please ensure that your tax advisor was consulted and the"
+                    " necessary tax exemption documentation was obtained"
+                    " for every state this Partner may have transactions."
+                ),
+            )
+            return {"warning": {"title": _("Tax Compliance Risk"), "message": message}}
+
     date_validation = fields.Date(
         "Last Validation Date",
         readonly=True,
@@ -25,7 +40,7 @@ class ResPartner(models.Model):
         help="The date the address was last validated by AvaTax and accepted",
     )
     validation_method = fields.Selection(
-        [("avatax", "AVALARA"), ("usps", "USPS"), ("other", "Other")],
+        [("avatax", "Avalara"), ("other", "Other")],
         "Address Validation Method",
         readonly=True,
         copy=False,
@@ -38,16 +53,19 @@ class ResPartner(models.Model):
     customer_code = fields.Char(copy=False)
     tax_exempt = fields.Boolean(
         "Is Tax Exempt (Deprecated))",
-        deprecated=True,
     )
     exemption_number = fields.Char(
         "Exemption Number (Deprecated)",
-        deprecated=True,
     )
     exemption_code_id = fields.Many2one(
         "exemption.code",
         "Exemption Code (Deprecated)",
-        deprecated=True,
+    )
+    property_exemption_country_wide = fields.Boolean(
+        "Exemption Applies Country Wide",
+        help="When enabled, the delivery address State is irrelevant"
+        " when looking up the exemption status, meaning that the exemption"
+        " is considered applicable for all states",
     )
     property_tax_exempt = fields.Boolean(
         "Is Tax Exempt",
@@ -183,27 +201,28 @@ class ResPartner(models.Model):
             "view_mode": "form",
             "view_id": view_ref.id,
             "res_model": "avalara.salestax.address.validate",
-            "nodestroy": True,
+            # "nodestroy": True, TODO: not needed
             "res_id": False,
             "target": "new",
             "context": ctx,
         }
 
-    @api.model
-    def create(self, vals):
-        partner = super(ResPartner, self).create(vals)
-        # Auto populate customer code, if not provided
-        if not partner.customer_code:
-            partner.generate_cust_code()
-        # Auto validate address, if enabled
+    @api.model_create_multi
+    def create(self, vals_list):
+        partners = super().create(vals_list)
         avatax_config = self.env.company.get_avatax_config_company()
-        if avatax_config.validation_on_save:
-            partner.multi_address_validation(validation_on_save=True)
-            partner.validated_on_save = True
-        return partner
+        for partner in partners:
+            # Auto populate customer code, if not provided
+            if not partner.customer_code:
+                partner.generate_cust_code()
+            # Auto validate address, if enabled
+            if avatax_config.validation_on_save:
+                partner.multi_address_validation(validation_on_save=True)
+                partner.validated_on_save = True
+        return partners
 
     def write(self, vals):
-        res = super(ResPartner, self).write(vals)
+        res = super().write(vals)
         address_fields = ["street", "street2", "city", "zip", "state_id", "country_id"]
         if not self.env.context.get("avatax_writing") and any(
             x in vals for x in address_fields

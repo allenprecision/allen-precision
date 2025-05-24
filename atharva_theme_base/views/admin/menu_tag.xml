@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Menu Tags  -->
+    <!-- Menu Highlightor and Tags View -->
     <record id="website_menus_form_view_inherit_website" model="ir.ui.view">
         <field name="name">website.menu.view.form.inherit</field>
         <field name="model">website.menu</field>
@@ -12,25 +12,39 @@
                 </group>
                 <group>
                     <group>
-                        <field name="hlt_menu_bg_color" widget="color" attrs="{'invisible':[('hlt_menu','=',False)],'required':[('hlt_menu','=',True)]}" />
-                        <field name="hlt_menu_ft_col" widget="color" attrs="{'invisible':[('hlt_menu','=',False)],'required':[('hlt_menu','=',True)]}" />
+                        <field name="hlt_menu_icon" invisible='hlt_menu == False' required='hlt_menu == True' placeholder="Ex. fa-tag"/>
                     </group>
                     <group>
-                        <field name="hlt_menu_icon" widget="image" width="100" height="100" attrs="{'invisible':[('hlt_menu','=',False)],'required':[('hlt_menu','=',True)]}" />
+                        <field name="hlt_menu_bg_color" widget="color" invisible='hlt_menu == False'  required='hlt_menu == True' />
+                        <field name="hlt_menu_ft_col" widget="color" invisible='hlt_menu == False'  required='hlt_menu == True' />
                     </group>
                 </group>
-                <group string="Menu Tag">
+                <group string="Add Tag">
                     <field name="is_tag_active" />
                 </group>
                 <group>
                     <group>
-                        <field name="tag_text" attrs="{'invisible':[('is_tag_active','=',False)],'required':[('is_tag_active','=',True)]}" />
+                        <field name="tag_text" invisible='is_tag_active == False'  required='is_tag_active == True'/>
                     </group>
                     <group>
-                        <field name="tag_text_color" widget="color" attrs="{'invisible':[('is_tag_active','=',False)],'required':[('is_tag_active','=',True)]}" />
-                    <field name="tag_bg_color" widget="color" attrs="{'invisible':[('is_tag_active','=',False)],'required':[('is_tag_active','=',True)]}" />
+                        <field name="tag_text_color" widget="color" invisible='is_tag_active == False'  required='is_tag_active == True' />
+                        <field name="tag_bg_color" widget="color" invisible='is_tag_active == False'  required='is_tag_active == True' />
                     </group>
                 </group>
+                <group invisible='is_mega_menu == False' string="Mega-Menu Tabs">
+                    <group>
+                        <field name="active_mega_tabs" />
+                    </group>
+                </group>
+                <group  invisible='active_mega_tabs == False or is_mega_menu == False'>
+                    <field name="megamenu_tabs" widget="many2many_tags" required='active_mega_tabs == True'/>
+                </group>
+                <group string="Advance Mega-Menu Tabs" invisible="is_mega_menu">
+                    <field name="is_advance_megamenu"/>
+                    <field name="website_id" invisible="1"/>
+                    <field name="advance_megamenu_id" domain="[('website_id', '=', website_id)]" invisible='is_advance_megamenu == False' required='is_advance_megamenu == True' options="{'no_create': True}"/>
+                </group>
+                <br/>
             </xpath>
         </field>
     </record>

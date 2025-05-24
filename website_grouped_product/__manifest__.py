@@ -21,16 +21,18 @@ Combo Products,
     Extend your product detail page with group items
 
     """,
-    'depends': ['website_sale_stock','website_sale_wishlist','website_sale_comparison'],
+    'depends': ['website_sale_stock','website_sale_wishlist','website_sale_comparison', 'web', 'website_sale', ],
     'data': [
         'security/ir.model.access.csv',
-        'views/product_views.xml',
-        'views/templates.xml'
+        # 'views/product_views.xml',
+        # 'views/templates.xml'
+
+
     ],
     'assets': {
         'web.assets_frontend': [
-            'website_grouped_product/static/src/js/product_add_to_cart_bulk.js',
-            'website_grouped_product/static/src/js/product_configure_mixin.js',
+            'website_grouped_product/static/src/js/product_add_to_cart.js',
+            'website_grouped_product/static/src/js/product_configure_mixin_new.js',
             'website_grouped_product/static/src/scss/bulk.scss'
         ],
     },

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <template id="as_megamenu_one" name="As Megamenu One" groups="base.group_user">
+        <section class="as_mega_menu as-mega-menu-preview-section">
+            <div class="container">
+                <div class="row g-3 g-xl-5">
+                    <div class="col-md-3">
+                        <h6 class="sm-title-03 mb-4">Shop By Catagory</h6>
+                        <ul class="list-unstyled link-list-style-01">
+                            <li><a href="#">Pixel Buds Pro</a></li>
+                            <li><a href="#">Pixel Buds A-Series</a></li>
+                            <li><a href="#">Pixel Tablet</a></li>
+                            <li><a href="#">Fitbit Sense 2</a></li>
+                            <li><a href="#">Google TV</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="position-relative hover-scale">
+                            <div class="hover-scale-in"><a href="#"><img src="/theme_alan/static/src/img/mm-menu-1.jpg" /></a>
+                                <h5 class="position-absolute start-0 bottom-0 p-3 text-white fw-600 m-0">Pixel Buds Pro <i class="asi asi-arrow-right"></i></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hover-scale">
+                            <div class="hover-scale-in"><a href="#"><img src="/theme_alan/static/src/img/mm-menu-2.jpg" /></a></div>
+                            <h6 class="small pt-2 m-0"><a href="#" class="small text-reset link-effect">Pixel Buds A‑Series</a></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hover-scale">
+                            <div class="hover-scale-in"><a href="#"><img src="/theme_alan/static/src/img/mm-menu-3.jpg" /></a></div>
+                            <h6 class="small pt-2 m-0"><a href="#" class="small text-reset link-effect">Pixel 8 Pro</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="as_megamenu_two" name="As Megamenu Two" groups="base.group_user">
+        <section class="as_mega_menu as-mega-menu-preview-section">
+            <div class="container">
+                <div class="row g-3 g-xl-5">
+                    <div class="col-md-3">
+                        <div class="hover-scale">
+                            <div class="hover-scale-in"><a href="#"><img src="/theme_alan/static/src/img/mm-menu-4.jpg" /></a></div>
+                            <h6 class="small pt-2 m-0"><a href="#" class="small text-reset link-effect">Google Pixel Watch 2</a></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="hover-scale">
+                            <div class="hover-scale-in"><a href="#"><img src="/theme_alan/static/src/img/mm-menu-5.jpg" /></a></div>
+                            <h6 class="small pt-2 m-0"><a href="#" class="small text-reset link-effect">Fitbit Sense 2</a></h6>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="sm-title-03 mb-4">Smartwatches</h6>
+                        <ul class="list-unstyled link-list-style-01">
+                            <li><a href="#">Google Pixel Watch 2</a></li>
+                            <li><a href="#">Google Pixel Watch</a></li>
+                            <li><a href="#">Fitbit Sense 2</a></li>
+                            <li><a href="#">Fitbit Versa 4</a></li>
+                            <li><a href="#">Fitbit Charge 6</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h6 class="sm-title-03 mb-4">Nest Cams</h6>
+                        <ul class="list-unstyled link-list-style-01">
+                            <li><a href="#">Nest Cam (battery)</a></li>
+                            <li><a href="#">Nest Cam with floodlight</a></li>
+                            <li><a href="#">Nest Cam</a></li>
+                            <li><a href="#">Compare cams</a></li>
+                            <li><a href="#">Special offers</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="as_megamenu_three" name="As Megamenu Three" groups="base.group_user">
+        <section class="as_mega_menu as-mega-menu-preview-section">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <h6 class="sm-title-04"><a class="text-reset" href="#">Mobile</a></h6>
+                        <ul class="list-unstyled link-list-style-03">
+                            <li><a href="#">Apple</a></li>
+                            <li><a href="#">Sumsung</a></li>
+                            <li><a href="#">Motorola</a></li>
+                            <li><a href="#">Mi</a></li>
+                            <li><a href="#">Realme</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <h6 class="sm-title-04"><a class="text-reset" href="#">Computer &amp; Laptop</a></h6>
+                        <ul class="list-unstyled link-list-style-03">
+                            <li><a href="#">Apple All in One</a></li>
+                            <li><a href="#">Dell Ispiration</a></li>
+                            <li><a href="#">Lenovo IdeaPad Slim 3</a></li>
+                            <li><a href="#">Hp All In One</a></li>
+                            <li><a href="#">HP 15 11th Gen</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <h6 class="sm-title-04"><a class="text-reset" href="#">Camera</a></h6>
+                        <ul class="list-unstyled link-list-style-03">
+                            <li><a href="#">Digital SLR's</a></li>
+                            <li><a href="#">Mirrorless Camera</a></li>
+                            <li><a href="#">Instant Camera</a></li>
+                            <li><a href="#">Digital Camera</a></li>
+                            <li><a href="#">DSLR Camera</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <h6 class="sm-title-04"><a class="text-reset" href="#">Tv &amp; Appliances</a></h6>
+                        <ul class="list-unstyled link-list-style-03">
+                            <li><a href="#">Smart Tv</a></li>
+                            <li><a href="#">New Arrival</a></li>
+                            <li><a href="#">Refrigerators</a></li>
+                            <li><a href="#">Refrigerators</a></li>
+                            <li><a href="#">Appliances</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row g-0 px-4 px-lg-5 py-3 align-items-center rounded bg-cover bg-fiex bg-center border mt-4" style="background-image: url(/theme_alan/static/src/img/el-banner-6.jpg);">
+                    <div class="col-md-8 my-3 text-center text-md-start">
+                        <h3 class="h3 text-white m-0">Pixel 8 and Pixel 8 Pro have arrived. And they brought deals.</h3>
+                    </div>
+                    <div class="col-md-4 my-3 text-center text-md-end"><a class="btn btn-light" href="#" tabindex="0">Discover More</a></div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="as_megamenu_four" name="As Megamenu Four" groups="base.group_user">
+        <section class="as_mega_menu as-mega-menu-preview-section">
+            <div class="container">
+                <div class="as-mm-wc-in">
+                    Hello world4
+                </div>
+            </div>
+        </section>
+    </template> -->
+
+    <template id="as_megamenus" name="Atharva Megamenu" groups="base.group_user">
+        <section class="as_mega_menu as-mega-menu-preview-section" data-as-snippet="as_mega_menu">
+            <div class="container as-mega-menu-welcome">
+                <div class="as-mm-wc-in">
+                    <button class="btn as-e-btn-primary as-config"><i class="fa fa-pencil-square-o"/> Configure Alan Mega Menu </button>
+                    <div class="as-mm-wc-img">
+                        <img src="/theme_alan/static/src/img/megamenu/configure-mega-menu.svg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- Advance Mega Menu Tag -->
+    <template id="as_advance_menu_tags" name="Advance Menu Tags">
+        <span class="as-menu-tags" t-if="menu_tab.sudo().is_menu_tag_active"  t-esc="menu_tab.sudo().menu_tag_text"
+            t-attf-style="background-color:#{menu_tab.sudo().menu_tag_bg_color};color:#{menu_tab.sudo().menu_tag_text_color}"/>
+    </template>
+
+    <!-- Advance Mega Menu Template -->
+    <template id="website_advance_megamenu" name="Atharva Advance Mega Menu">
+        <div class="as-advance-header">
+            <t t-if="advance_menu_id and website_id">
+                <t t-if="advance_menu_id.menu_bg == 'image' and  advance_menu_id.menu_bg_image" t-set="bg_image" t-value="website_id.image_url(advance_menu_id, 'menu_bg_image')"/>
+                <t t-set="style" t-value="advance_menu_id.menu_style"/>
+                <t t-if="advance_menu_id.category_first_level">
+                    <nav t-attf-class="as-ah-navbar as-advance-mm-{{style}}" t-attf-style="--as-ah-nav-bg-image: url('{{ bg_image if bg_image else '' }}'); --as-ah-nav-bg-color:{{advance_menu_id.menu_bg_color if advance_menu_id.menu_bg == 'color' else '' }}; --as-ah-nav-align:{{advance_menu_id.menu_position}}; --as-ah-link-color:{{advance_menu_id.menu_ft_color}}; --as-ah-nav-bg-repeat:{{advance_menu_id.menu_bg_img_repeat}}">
+                        <div class="as-ah-container container">
+                            <div class="as-mob-back-btn as-bbl-1 d-lg-none">
+                                <button class="as_mob_back_btn"><i class="asi asi-arrow-left"/> Back</button>
+                            </div>
+                            <ul class="as-ah-level-1">
+                                <t t-foreach="advance_menu_id.category_first_level.sorted(lambda l1:l1.sequence)" t-as="fl_tab">
+                                    <t t-if="fl_tab.menu_column" t-set="column" t-value="int(12/fl_tab.menu_column)"/>
+                                    <t t-if="fl_tab.menu_column == 5">
+                                       <t t-set="column" t-value="5"/>
+                                    </t>
+                                    <t t-set="second_level_menu" t-value="advance_menu_id.category_second_level.filtered(lambda x: x.parent_menu_id == fl_tab)"/>
+                                <!-- First Level -->
+                                <t t-set="as_ah_highlighter_bg" t-value="'--as-ah-highlighter-bg:' + str(fl_tab.menu_highlightor_bg_color)+';'"/>
+                                <t t-set="as_ah_highlighter_color" t-value="'--as-ah-highlighter-color:' + str(fl_tab.menu_highlightor_ft_col)"/>
+                                <li t-attf-class="as-l1-items #{'as-l1-dropdown' if second_level_menu else '' } #{'as-highlighter' if fl_tab.is_menu_highlightor else ''}" t-attf-style="#{as_ah_highlighter_bg if fl_tab.is_menu_highlightor else ''} #{as_ah_highlighter_color if fl_tab.is_menu_highlightor else ''}">
+                                    <a class="as-l1-link" t-att-href="fl_tab.menu_url">
+                                        <span class="as-ah-icon" t-if="fl_tab.menu_image">
+                                            <img t-att-src="website_id.image_url(fl_tab, 'menu_image')" t-att-alt="fl_tab.menu_title" class="img-fluid"/>
+                                        </span>
+                                        <t t-call="atharva_theme_base.as_advance_menu_tags">
+                                            <t t-set="menu_tab" t-value="fl_tab"/>
+                                        </t>
+                                        <span t-if="fl_tab.is_menu_highlightor" t-attf-class="as-ah-fa-icon fa {{fl_tab.highlightor_menu_icon}}"/>
+                                        <span class="as-l1-link-text"><span t-att-data-hover="fl_tab.menu_title" t-esc="fl_tab.menu_title"/></span>
+                                    </a>
+                                    <!-- Mobile Menu -->
+                                    <span t-if="second_level_menu" class="as-ah-mobile_menu as-ah-mobile_menu-l1">
+                                        <span/>
+                                    </span>
+                                    <!-- Second Level -->
+                                    <div class="as-ah-level-2" t-if="second_level_menu">
+                                        <div class="container">
+                                            <div class="as-mob-back-btn as-bbl-2 d-lg-none">
+                                                <button class="as_mob_back_btn"><i class="asi asi-arrow-left"/> Back</button>
+                                            </div>
+                                            <ul class="as-ah-level-2-in row g-0 g-lg-3" t-if="second_level_menu">
+                                                <t t-foreach="second_level_menu.sorted(lambda l2: l2.sequence)" t-as="sl_tab">
+                                                    <t t-set="sm_level_style" t-value="'as-ml-' + str(sl_tab.menu_level_style)+''"/>
+                                                    <li t-attf-class="col-lg-{{column}} as-l2-items">
+                                                        <div class="as-l2-items-in">
+                                                            <div t-attf-class="as-l2-link as-ah-img-{{sl_tab.image_style}} #{sm_level_style if sl_tab.is_level_style else ''}">
+                                                                <a t-att-href="sl_tab.menu_url">
+                                                                    <span class="as-ah-icon" t-if="sl_tab.menu_image">
+                                                                        <img t-att-src="website_id.image_url(sl_tab, 'menu_image')" t-att-alt="sl_tab.menu_title" t-attf-class="img-fluid"/>
+                                                                    </span>
+                                                                    <t t-call="atharva_theme_base.as_advance_menu_tags">
+                                                                        <t t-set="menu_tab" t-value="sl_tab"/>
+                                                                    </t>
+                                                                    <span class="as-l2-link-text as-ah-link"><span t-att-data-hover="sl_tab.menu_title" t-esc="sl_tab.menu_title" /></span>
+                                                                </a>
+                                                                <!-- Mobile Menu -->
+                                                                <span class="as-ah-mobile_menu as-ah-mobile_menu-l2">
+                                                                    <span/>
+                                                                </span>
+                                                            </div>
+                                                            <!-- Third Level -->
+                                                            <t t-set="third_level_menu" t-value="advance_menu_id.category_third_level.filtered(lambda x: x.parent_menu_id == sl_tab)"/>
+                                                            <ul class="as-ah-level-3" t-if="third_level_menu">
+                                                                <li class="as-mob-back-btn as-bbl-3 d-lg-none">
+                                                                    <button class="as_mob_back_btn"><i class="asi asi-arrow-left"/> Back</button>
+                                                                </li>
+                                                                <t t-foreach="third_level_menu" t-as="tl_tab">
+                                                                    <t t-set="fourth_level_menu" t-value="advance_menu_id.category_fourth_level.filtered(lambda x: x.parent_menu_id == tl_tab)"/>
+                                                                    <t t-set="tm_level_style" t-value="'as-ml-' + str(tl_tab.menu_level_style)+''"/>
+                                                                    <li t-attf-class="as-l3-items #{'as-l4-dropdown' if fourth_level_menu else ''}  #{tm_level_style if tl_tab.is_level_style else ''}">
+                                                                        <a class="as-l3-link" t-att-href="tl_tab.menu_url">
+                                                                            <t t-call="atharva_theme_base.as_advance_menu_tags">
+                                                                                <t t-set="menu_tab" t-value="tl_tab"/>
+                                                                            </t>
+                                                                            <span class="as-l3-link-text as-ah-link"><span t-att-data-hover="tl_tab.menu_title" t-esc="tl_tab.menu_title" /></span>
+                                                                        </a>
+                                                                        <!-- Fourth Level -->
+                                                                        <!-- Mobile Menu -->
+                                                                        <span t-if="fourth_level_menu" class="as-ah-mobile_menu as-ah-mobile_menu-l3">
+                                                                            <span/>
+                                                                        </span>
+                                                                        <ul class="as-ah-level-4" t-if="fourth_level_menu">
+                                                                            <li class="as-mob-back-btn as-bbl-4 d-lg-none">
+                                                                                <button class="as_mob_back_btn"><i class="asi asi-arrow-left"/> Back</button>
+                                                                            </li>
+                                                                            <t t-foreach="fourth_level_menu" t-as="tf_tab">
+                                                                                <t t-set="fm_level_style" t-value="'as-ml-' + str(tf_tab.menu_level_style)+''"/>
+                                                                                <li t-attf-class="as-l4-items #{fm_level_style if tf_tab.is_level_style else ''}">
+                                                                                    <a t-att-href="tf_tab.menu_url">
+                                                                                        <t t-call="atharva_theme_base.as_advance_menu_tags">
+                                                                                            <t t-set="menu_tab" t-value="tf_tab"/>
+                                                                                        </t>
+                                                                                        <span class="as-l4-link-text as-ah-link"><span t-att-data-hover="tf_tab.menu_title" t-esc="tf_tab.menu_title" /></span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </t>
+                                                                        </ul>
+                                                                    </li>
+                                                                </t>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </t>
+                            </ul>
+                        </div>
+                    </nav>
+                </t>
+            </t>
+        </div>
+    </template>
+</odoo>

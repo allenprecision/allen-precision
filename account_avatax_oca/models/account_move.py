@@ -44,8 +44,12 @@ class AccountMove(models.Model):
             exemption_addresses = (
                 invoice_partner | invoice_partner.child_ids
             ).filtered("property_tax_exempt")
+
             exemption_address_naive = exemption_addresses.filtered(
-                lambda a: a.country_id == ship_to_address.country_id
+                lambda a,
+                ship_to_address=ship_to_address,
+                invoice_partner=invoice_partner: a.country_id
+                == ship_to_address.country_id
                 and (
                     a.state_id == ship_to_address.state_id
                     or invoice_partner.property_exemption_country_wide
@@ -70,7 +74,6 @@ class AccountMove(models.Model):
     invoice_doc_no = fields.Char(
         "Source/Ref Invoice No",
         readonly=True,
-        states={"draft": [("readonly", False)]},
         help="Reference of the invoice",
     )
     exemption_code = fields.Char(
@@ -98,7 +101,7 @@ class AccountMove(models.Model):
     tax_address_id = fields.Many2one(
         "res.partner", "Tax Shipping Address", compute="_compute_tax_address_id"
     )
-    location_code = fields.Char(readonly=True, states={"draft": [("readonly", False)]})
+    location_code = fields.Char()
     warehouse_id = fields.Many2one("stock.warehouse", "Warehouse")
     avatax_amount = fields.Float(string="AvaTax", copy=False)
     calculate_tax_on_save = fields.Boolean()
@@ -125,26 +128,6 @@ class AccountMove(models.Model):
         "Also, it will show Tax based on shipping address button",
     )
 
-    @api.depends(
-        "line_ids.debit",
-        "line_ids.credit",
-        "line_ids.currency_id",
-        "line_ids.amount_currency",
-        "line_ids.amount_residual",
-        "line_ids.amount_residual_currency",
-        "line_ids.payment_id.state",
-        "avatax_amount",
-    )
-    def _compute_amount(self):
-        res = super()._compute_amount()
-        for inv in self:
-            if inv.avatax_amount:
-                inv.amount_tax = abs(inv.avatax_amount)
-                inv.amount_total = inv.amount_untaxed + inv.amount_tax
-                sign = inv.move_type in ["in_refund", "out_refund"] and -1 or 1
-                inv.amount_total_signed = inv.amount_total * sign
-        return res
-
     @api.depends("tax_on_shipping_address", "partner_id", "partner_shipping_id")
     def _compute_tax_address_id(self):
         for invoice in self:
@@ -169,7 +152,12 @@ class AccountMove(models.Model):
     # Same as v12
     def get_origin_tax_date(self):
         if self.invoice_doc_no:
-            orig_invoice = self.search([("name", "=", self.invoice_doc_no)])
+            orig_invoice = self.search(
+                [
+                    ("name", "=", self.invoice_doc_no),
+                    ("partner_id", "=", self.partner_id.id),
+                ]
+            )
             return orig_invoice.invoice_date
         return False
 
@@ -194,7 +182,7 @@ class AccountMove(models.Model):
         sign = 1 if self.move_type.startswith("out") else -1
         lines = [
             line._avatax_prepare_line(sign, doc_type)
-            for line in self.invoice_line_ids.filtered(lambda l: not l.display_type)
+            for line in self.invoice_line_ids
             if line.price_subtotal or line.quantity
         ]
         return [x for x in lines if x]
@@ -202,6 +190,7 @@ class AccountMove(models.Model):
     # Same as v12
     def _avatax_compute_tax(self, commit=False):
         """Contact REST API and recompute taxes for a Sale Order"""
+        # Override to handle lines with split taxes (e.g. TN)
         self and self.ensure_one()
         avatax_config = self.company_id.get_avatax_config_company()
         if not avatax_config:
@@ -255,21 +244,27 @@ class AccountMove(models.Model):
             for index, line in enumerate(lines):
                 tax_result_line = tax_result_lines.get(line.id)
                 if tax_result_line:
-                    rate = tax_result_line.get("rate", 0.0)
+                    # rate = tax_result_line.get("rate", 0.0)
+                    tax_calculation = 0.0
+                    if tax_result_line["taxableAmount"]:
+                        tax_calculation = (
+                            tax_result_line["taxCalculated"]
+                            / tax_result_line["taxableAmount"]
+                        )
+                    rate = round(tax_calculation * 100, 4)
                     tax = Tax.get_avalara_tax(rate, doc_type)
                     if tax and tax not in line.tax_ids:
-                        line_taxes = (
-                            tax
-                            if avatax_config.override_line_taxes
-                            else line.tax_ids.filtered(lambda x: not x.is_avatax)
-                        )
+                        line_taxes = line.tax_ids.filtered(lambda x: not x.is_avatax)
                         taxes_to_set.append((index, line_taxes | tax))
                     line.avatax_amt_line = tax_result_line["tax"]
-            self.avatax_amount = tax_result["totalTax"]
+            self.with_context(check_move_validity=False).avatax_amount = tax_result[
+                "totalTax"
+            ]
+            container = {"records": self}
             self.with_context(
                 avatax_invoice=self, check_move_validity=False
-            )._recompute_dynamic_lines(True, False)
-            self.line_ids.mapped("move_id")._check_balanced()
+            )._sync_dynamic_lines(container)
+            self.line_ids.mapped("move_id")._check_balanced(container)
 
             # Set Taxes on lines in a way that properly triggers onchanges
             # This same approach is also used by the official account_taxcloud connector
@@ -339,13 +334,13 @@ class AccountMove(models.Model):
     def _reverse_move_vals(self, default_values, cancel=True):
         # OVERRIDE
         # Don't keep anglo-saxon lines if not cancelling an existing invoice.
-        move_vals = super(AccountMove, self)._reverse_move_vals(
-            default_values, cancel=cancel
-        )
+        move_vals = super()._reverse_move_vals(default_values, cancel=cancel)
         move_vals.update(
             {
                 "invoice_doc_no": self.name,
-                "invoice_date": self.invoice_date,
+                "invoice_date": default_values
+                and default_values.get("invoice_date")
+                or self.invoice_date,
                 "tax_on_shipping_address": self.tax_on_shipping_address,
                 "warehouse_id": self.warehouse_id.id,
                 "location_code": self.location_code,
@@ -366,7 +361,7 @@ class AccountMove(models.Model):
             and invoice.fiscal_position_id.is_avatax
             and invoice.state == "posted"
         )
-        res = super(AccountMove, self).button_draft()
+        res = super().button_draft()
         for invoice in posted_invoices:
             avatax_config = invoice.company_id.get_avatax_config_company()
             if avatax_config:
@@ -398,12 +393,12 @@ class AccountMove(models.Model):
                     line._origin.price_unit != line.price_unit
                     or line._origin.discount != line.discount
                     or line._origin.quantity != line.quantity
-                ) and not line.display_type:
+                ) and line.display_type == "product":
                     self.calculate_tax_on_save = True
                     break
 
     def write(self, vals):
-        result = super(AccountMove, self).write(vals)
+        result = super().write(vals)
         avatax_config = self.env.company.get_avatax_config_company()
         for record in self:
             if (
@@ -418,20 +413,21 @@ class AccountMove(models.Model):
                 record.avatax_compute_taxes()
         return result
 
-    @api.model
-    def create(self, vals):
-        record = super(AccountMove, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        moves = super().create(vals_list)
         avatax_config = self.env.company.get_avatax_config_company()
-        if (
-            avatax_config.invoice_calculate_tax
-            and record.calculate_tax_on_save
-            and not self._context.get("skip_second_write", False)
-        ):
-            record.with_context(skip_second_write=True).write(
-                {"calculate_tax_on_save": False}
-            )
-            record.avatax_compute_taxes()
-        return record
+        for move in moves:
+            if (
+                avatax_config.invoice_calculate_tax
+                and move.calculate_tax_on_save
+                and not self._context.get("skip_second_write", False)
+            ):
+                move.with_context(skip_second_write=True).write(
+                    {"calculate_tax_on_save": False}
+                )
+                move.avatax_compute_taxes()
+        return moves
 
 
 class AccountMoveLine(models.Model):
@@ -513,23 +509,3 @@ class AccountMoveLine(models.Model):
         for line in self:
             line.avatax_amt_line = 0.0
             line.move_id.avatax_amount = 0.0
-
-    def _get_price_total_and_subtotal(
-        self,
-        price_unit=None,
-        quantity=None,
-        discount=None,
-        currency=None,
-        product=None,
-        partner=None,
-        taxes=None,
-        move_type=None,
-    ):
-        """Override tax amount, if we have an Avatax calculated amount"""
-        self.ensure_one()
-        res = super()._get_price_total_and_subtotal(
-            price_unit, quantity, discount, currency, product, partner, taxes, move_type
-        )
-        if self.avatax_amt_line:
-            res["price_total"] = res["price_total"] + self.avatax_amt_line
-        return res

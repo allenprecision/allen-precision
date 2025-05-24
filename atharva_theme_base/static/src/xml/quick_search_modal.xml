@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<templates>
-    <div t-name="atharva_theme_base.core_quick_dialog">
-        <t t-out="widget.options.subTemplate"/>
-    </div>
-</templates>

@@ -1,0 +1,208 @@
+/*:root {
+    // Navbar
+    --as-ah-nav-align: center;
+    --as-ah-nav-bg-image: null;
+    --as-ah-nav-bg-color: null;
+    --as-ah-link-color: null;
+    --as-ah-nav-bg-repeat:null;
+
+    --as-ah-nav-link-color: null;
+
+    // Menu tag
+    --as-ah-tag-bg: null;
+    --as-ah-tag-color: null;
+
+    // Level 1 
+    --as-ah-l1-bg: null;
+    --as-ah-l1-color: null;
+
+    --as-ah-l1-link-bg: null;
+    --as-ah-l1-link-color: null;
+
+}
+
+.as-menu-tags {
+    position: absolute;
+    top: -5px;
+    display: inline-block;
+    right: 7px;
+    line-height: 1;
+    font-size: 10px;
+    padding: 4px 5px 3px;
+    border-radius: 2px;
+    .as-mobile-header & {
+        right: auto;
+    }
+    &:after {
+        content: "";
+        background: inherit;
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        bottom: -3px;
+        left: 8px;
+        transform: rotate(45deg);
+    }
+}
+
+.as-ah-navbar {
+    position: relative;
+    background-color: var(--as-ah-nav-bg-color);
+    background-image: var(--as-ah-nav-bg-image);
+    background-repeat: var(--as-ah-nav-bg-repeat);
+
+    a {
+        text-decoration: none;
+    }
+
+
+
+    // Level 1
+    .as-ah-level-1 {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: var(--as-ah-nav-align);
+    }
+
+    .as-l1-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        text-decoration: none;
+        gap: 8px;
+        color: var(--as-ah-link-color);
+        background-color: var(--as-ah-l1-link-bg);
+        line-height: 28px;
+        .as-ah-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // Level 2
+    .as-ah-level-2 {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $white;
+        padding: 25px 0;
+        box-shadow: $box-shadow;
+        ul {
+            list-style: none;
+        }
+    }
+    .as-ah-level-2-in {
+        padding: 0;
+        list-style: none;
+    }
+
+    .as-l2-link {
+        font-size: 17px;
+        font-weight: 600;
+        width: 100%;
+        border-bottom: 1px solid $gray-300;
+        margin: 0 0 15px;
+        padding: 0 0 8px;
+        position: relative;
+        a {
+            color: $dark;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+
+    // Level 3
+    .as-ah-level-3 {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .as-l3-items {
+        position: relative;
+        + .as-l3-items {
+            padding-top: 10px;
+        }
+    }
+
+    .as-ah-level-3 {
+        a {
+            color: var(--body-color);
+            background-image: linear-gradient(45deg, $primary, $primary);
+            background-repeat: no-repeat;
+            background-size: 0 1px;
+            background-position: bottom left;
+            transition: ease background 0.35s;
+            &:hover {
+                color: $primary;
+                background-size: 100% 1px;
+            }
+        }
+    }
+
+    // Level 4
+    .as-ah-level-4 {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        padding: 15px;
+        background: $white;
+        border: 1px solid $gray-300;
+        box-shadow: $box-shadow-sm;
+        min-width: 200px;
+        z-index: 1;
+    }
+    .as-l4-items {
+        + .as-l4-items {
+            padding-top: 10px;
+        }
+    }
+
+    // Hover Effect
+    .as-l1-items {
+        &:hover {
+            > .as-ah-level-2 {
+                display: block
+            }
+        }
+    }
+
+    .as-ah-level-3 {
+        .as-l3-items {
+            &:hover {
+                > .as-ah-level-4 {
+                    display: block;
+                }
+            }
+        }
+    }
+
+}
+
+
+// Simple
+.as-advance-mm-simple {
+
+}
+
+
+
+.as_custom_dialog{
+    .o_field_html{
+        min-height: 30rem;
+    }
+    .note-editable{
+        overflow: visible;
+    }
+}*/

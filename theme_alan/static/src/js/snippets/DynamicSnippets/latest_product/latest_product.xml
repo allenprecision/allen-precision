@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <t t-name="theme_alan.s_latest_product_configuration" owl="1">
+        <div class="as_s_latest_product_configuration modal-body-in">
+            <SelectData search="this.props.search"
+                init_record_ids="this.props.init_record_ids"
+                frame_col_size="this.props.col_siz"
+                selete_data_config="this.props.selete_data_config"
+                quick_search="this.props.quick_search"
+                design_and_edit="this.props.design_and_edit"
+                slider_styles="this.props.slider_styles"
+                grid_styles="this.props.grid_styles"
+                pagination="this.props.pagination"
+                only_preview="this.props.only_preview" />
+        </div>
+    </t>
+</odoo>

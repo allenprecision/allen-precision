@@ -1,0 +1,52 @@
+// $gray-100:              #f7faff !default;
+// $gray-200:              #eaecf3 !default;
+// $gray-300:              #e2e8f0 !default;
+// $gray-400:              #CBD5E0 !default;
+// $gray-500:              #A0AEC0 !default;
+// $gray-600:              #718096 !default;
+// $gray-700:              #4A5568 !default;
+// $gray-800:              #2D3748 !default;
+// $gray-900:              #273444 !default;
+
+
+$spacer: 1rem !default; // Need to predefine as used below
+$spacers: (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3),
+    6: $spacer * 3.5,
+    7: $spacer * 4,
+    8: $spacer * 5,
+    9: $spacer * 6,
+    10: $spacer * 7,
+) !default; // BS default
+
+
+// Dropdowns
+//
+// Dropdown menu container and contents.
+// $dropdown-border-width: 0 !default;
+// $dropdown-border-radius: 0 !default;
+
+
+// $dropdown-link-color: $gray-900 !default;
+// $dropdown-link-hover-color: var(--primary) !default;
+// $dropdown-link-hover-bg: transparent !default;
+
+// $dropdown-link-active-color: var(--primary) !default;
+// $dropdown-link-active-bg: transparent !default;
+
+// $dropdown-item-padding-y:   0.50rem !default;
+
+
+// $input-btn-focus-color: transparent !default;
+// $input-btn-focus-width:       0 !default;
+// $input-btn-focus-box-shadow: 0 0 0 0 $input-btn-focus-color !default;
+
+
+// .dropdown-menu {
+// 	box-shadow: 0px 4px 8px -2px rgba(var(--dark-rgb), 0.1), 0px 2px 4px -2px rgba(var(--dark-rgb), 0.06);
+// }

@@ -1,0 +1,52 @@
+@if o-website-value('footer-template') == 'alan_footer5' {
+    #footer {
+        .footer-col-bg {
+            background-color: rgba(var(--as-footer-color), 0.1);
+            .footer-title {
+                text-align: left;
+            }
+        }
+
+        .footer-address {
+            li {
+                align-items: center;
+                + li {
+                    padding-top: 16px;
+                }
+            }
+            .f-icon {
+                max-width: 40px;
+                height: 40px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 40px;
+                border-radius: 50%;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+            }
+            .f-text {
+                padding-left: 15px;
+            }
+        }
+
+        .footer-title {
+            text-align: center;
+            h5 {
+                margin: 0;
+                padding: 0 0 20px;
+                font-size: 0.95rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+        }
+        .footer-link {
+            text-align: center;
+            li {
+                + li {
+                    padding-top: 12px;
+                }
+            }
+        }
+    }
+}

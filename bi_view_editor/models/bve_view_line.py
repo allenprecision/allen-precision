@@ -29,7 +29,9 @@ class BveViewLine(models.Model):
     measure = fields.Boolean()
     in_list = fields.Boolean()
     list_attr = fields.Selection(
-        [("sum", "Sum"), ("avg", "Average")], string="List Attribute", default="sum"
+        [("sum", "Sum"), ("avg", "Average")],
+        string="List Attribute",
+        default="sum",
     )
     view_field_type = fields.Char(compute="_compute_view_field_type")
 
@@ -44,11 +46,11 @@ class BveViewLine(models.Model):
     @api.constrains("row", "column", "measure")
     def _constrains_options_check(self):
         measure_types = ["float", "integer", "monetary"]
-        for line in self.filtered(lambda l: l.row or l.column):
+        for line in self.filtered(lambda line: line.row or line.column):
             if line.join_model_id or line.ttype in measure_types:
                 err_msg = _("This field cannot be a row or a column.")
                 raise ValidationError(err_msg)
-        for line in self.filtered(lambda l: l.measure):
+        for line in self.filtered(lambda line: line.measure):
             if line.join_model_id or line.ttype not in measure_types:
                 err_msg = _("This field cannot be a measure.")
                 raise ValidationError(err_msg)
@@ -83,14 +85,14 @@ class BveViewLine(models.Model):
         for line in self:
             line.name = False
             if line.field_id:
-                line.name = "x_bve_{}_{}".format(line.table_alias, line.field_id.name)
+                line.name = f"x_bve_{line.table_alias}_{line.field_id.name}"
 
     @api.depends("field_id")
     def _compute_model_field_name(self):
         for line in self:
             line.field_name = False
             if line.field_id:
-                line.field_name = "{} ({})".format(line.description, line.model_name)
+                line.field_name = f"{line.description} ({line.model_name})"
 
     def _prepare_field_vals(self):
         vals_list = []
@@ -101,12 +103,16 @@ class BveViewLine(models.Model):
                 "complete_name": field.complete_name,
                 "model": line.bve_view_id.model_name,
                 "relation": field.relation,
+                # FIXME: this sets the en_US value from the current language's
+                # translation. instead, all translations should be set with
+                # their corresponding value.
                 "field_description": line.description,
                 "ttype": field.ttype,
                 "selection": field.selection,
                 "size": field.size,
                 "state": "manual",
                 "readonly": True,
+                "translate": field.translate,
                 "groups": [(6, 0, field.groups.ids)],
             }
             if vals["ttype"] == "monetary":

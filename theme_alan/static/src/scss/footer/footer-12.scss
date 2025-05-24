@@ -1,0 +1,107 @@
+@if o-website-value('footer-template')=='alan_footer12' {
+    #footer {
+
+        .footer-top {
+            position: relative;
+
+            p {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+                pointer-events: none;
+                background: currentColor;
+                opacity: 0.1;
+            }
+        }
+
+
+        .s_newsletter_subscribe_form {
+            .form-control {
+                border: none;
+                border-radius: 0;
+                padding: 0.675rem 0.75rem;
+            }
+
+            .btn {
+                border-radius: 0;
+                border: none;
+                padding: 0.675rem 0.75rem;
+            }
+        }
+
+        .s_social_media {
+            a {
+                width: 35px;
+                height: 35px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 3px;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+
+                &:hover {
+                    background-color: $primary;
+                    color: $white;
+                }
+
+            }
+        }
+
+
+        .footer-title {
+            margin: 0 0 20px;
+            position: relative;
+
+            h5 {
+                margin: 0;
+                font-size: 1.1rem;
+            }
+        }
+
+
+        .footer-link {
+            li {
+                position: relative;
+
+                +li {
+                    margin-top: 12px;
+                }
+            }
+
+            a {
+                font-size: 1em;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    height: 1px;
+                    width: 100%;
+                    background-color: currentColor;
+                    transition: ease all 0.35s;
+                    opacity: 0;
+                }
+
+                &:hover {
+                    &:after {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+    }
+}

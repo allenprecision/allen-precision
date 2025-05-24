@@ -1,5 +1,5 @@
 
-from odoo.addons.delivery_ups.models.ups_request import Package,UPSRequest
+from odoo.addons.delivery_ups.models.ups_request import UPSRequest
 import logging 
 from odoo import _, _lt
 _logger = logging.getLogger(__name__)
@@ -85,7 +85,7 @@ UPS_ERROR_MAP = {
     '9120200': _lt("Please provide at least one item to ship")
 }
 
-class Package(Package):
+class Package():
     def __init__(self, carrier, weight, quant_pack=False, name='',delivery_package=False):
         if delivery_package:
             weight = delivery_package.weight
@@ -101,7 +101,7 @@ class Package(Package):
             self.dimension = {'length': carrier.ups_default_package_type_id.packaging_length, 'width': carrier.ups_default_package_type_id.width, 'height': carrier.ups_default_package_type_id.height}
         self.packaging_type = quant_pack and quant_pack.shipper_package_code or False
 
-class UPSRequest(UPSRequest):
+class UPSRequest():
 
     def check_required_value(self, shipper, ship_from, ship_to, order=False, picking=False):
         required_field = {'city': 'City', 'country_id': 'Country', 'phone': 'Phone'}

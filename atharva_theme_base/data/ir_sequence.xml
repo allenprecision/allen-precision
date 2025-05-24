@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_snippet_frame_config" model="ir.sequence">
+            <field name="name">AS-Frame-Config</field>
+            <field name="code">as.frame.config.seq</field>
+            <field name="prefix">ASFC</field>
+            <field name="padding">4</field>
+        </record>
+        <record id="sequence_snippe_frames" model="ir.sequence">
+            <field name="name">AS-Frames</field>
+            <field name="code">as.frames.seq</field>
+            <field name="prefix">ASF</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

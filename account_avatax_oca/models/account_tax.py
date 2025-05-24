@@ -62,6 +62,7 @@ class AccountTax(models.Model):
         is_refund=False,
         handle_price_include=True,
         include_caba_tags=False,
+        fixed_multiplicator=1,
     ):
         """
         Adopted as the central point to inject custom tax computations.
@@ -77,7 +78,8 @@ class AccountTax(models.Model):
             partner,
             is_refund,
             handle_price_include,
-            include_caba_tags=False,
+            include_caba_tags,
+            fixed_multiplicator,
         )
         avatax_invoice = self.env.context.get("avatax_invoice")
         if avatax_invoice:
@@ -104,9 +106,9 @@ class AccountTax(models.Model):
                 avatax_amount = 0.0
                 raise exceptions.UserError(
                     _(
-                        "Incorrect retrieval of Avatax amount for Invoice %(avatax_invoice)s:"
-                        " product %(product.display_name)s, price_unit %(-price_unit)f"
-                        " , quantity %(quantity)f"
+                        "Incorrect retrieval of Avatax amount for Invoice "
+                        "%(avatax_invoice)s: product %(product.display_name)s, "
+                        "price_unit %(-price_unit)f , quantity %(quantity)f"
                     )
                 )
             for tax_item in res["taxes"]:

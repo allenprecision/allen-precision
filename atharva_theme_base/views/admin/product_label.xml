@@ -17,7 +17,6 @@
             </form>
         </field>
     </record>
-
     <!-- Label tree view -->
     <record id="as_product_label_tree_view" model="ir.ui.view">
         <field name="name">as.product.label.tree</field>
@@ -31,26 +30,6 @@
             </tree>
         </field>
     </record>
-
-    <!-- Inherit Product template form view for label -->
-    <record id="as_label_product_template_inherit" model="ir.ui.view">
-        <field name="name">product.template.label.inherit</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
-        <field name="arch" type="xml">
-             <xpath expr="//page[@name='purchase']" position="after">
-                <page name="product_lables" string="Labels">
-                    <field name="pro_label_line_ids" widget="one2many_list" >
-                        <tree string="Labels" editable="bottom">
-                            <field name="website_id"/>
-                            <field name="label"/>
-                        </tree>
-                 </field>
-                </page>
-            </xpath>
-        </field>
-    </record>
-
     <!-- Product label action view -->
     <record id="action_product_label_menu" model="ir.actions.act_window">
         <field name="name">Product Labels</field>
@@ -62,7 +41,6 @@
             </p>
         </field>
     </record>
-
     <!-- Product label menu-->
     <menuitem id="menu_action_product_label" name="Product Labels" action="action_product_label_menu" parent="website_sale.menu_catalog" sequence="5"/>
 </odoo>

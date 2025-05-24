@@ -1,0 +1,120 @@
+.as-advance-mm-modern {
+    @include media-breakpoint-up(lg) {
+        .as-ah-level-1 {
+            gap: 12px;
+        }
+    }
+    .as-l1-items {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        @include media-breakpoint-up(lg) {
+            &:hover {
+                &:not(.as-highlighter) {
+                    .as-l1-link {
+                        background-color: $white !important;
+                        color: $dark  !important;
+                        box-shadow: 1px 1px 1px 1px rgba($black,.1);
+                        .as-ah-icon {
+                            background-color: var(--as-ah-nav-bg-color);
+                        }
+                    }
+                }
+            }
+        }
+    }  
+
+    .as-l1-link {
+        padding: 3px 12px;
+        text-decoration: none;
+        line-height: 28px;
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: 2px;
+        border-radius: 8px;
+        transition: ease all 0.35s;
+        .as-ah-icon {
+            width: 26px;
+            height: 26px;
+            padding: 3px;
+            border-radius: 3px;
+            transition: ease all 0.35s;
+        }
+    }
+
+    .as-l2-link {
+        font-size: 16px;
+        font-weight: 600;
+        width: 100%;
+        position: relative;
+        @include media-breakpoint-up(lg) {
+            margin: 0 0 15px;
+            padding: 0 0 8px;
+            border-bottom: 1px dashed $gray-300;
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                width: 25px;
+                height: 3px;
+                background-color: $primary;
+            }
+        }   
+        a {
+            color: $dark;
+        }
+        &.as-ah-img-full_size {
+            .as-ah-icon {
+                img {
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+
+    .as-ah-level-3 {
+        position: relative;
+        a {
+            color: var(--body-color);
+            display: block;
+            font-size: 15px;
+            >  span {
+                transition: ease all 0.35s;
+                display: inline-flex;
+                position: relative;
+                @include media-breakpoint-up(lg) {
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        transition: ease all 0.35s;
+                        border-radius: 10px;
+                    }
+                }
+            }
+            &:hover {
+                color: $primary;
+                @include media-breakpoint-up(lg) {
+                    > span {
+                        &:after {
+                            top: -4px;
+                            left: -10px;
+                            right: -10px;
+                            bottom: -4px;
+                            background-color: rgba($primary, 0.1);
+                            box-shadow: 1px 1px 1px 1px rgba($black,.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .as-ah-level-4 {
+        border-radius: 10px;
+    }
+
+}

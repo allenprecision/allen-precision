@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_banner_templates">
+
+<t t-name="theme_alan.banner_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-between">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="h1 fw-600 mb-3">Professional Online Courses Platform</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text me-3 mb-3" href="#">Buy Now</a>
+                                        <a class="btn btn-primary o_default_snippet_text me-3 mb-3" href="#">Read More</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3">
+                                    <img class="img-fluid" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 1</h6>
+                <label class="e-sb-label" for="e_banner_01"><input id="e_banner_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-center">
+                                <div class="col-lg-8 my-3 text-center">
+                                    <h3 class="display-3 fw-300 mb-3">A passionate Forward thinking Design Agency</h3>
+                                    <div class="lead">
+                                        <p>Graphic design | Passionate video art fan | Brand evangelist | UI/UX super hero</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Call us now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 2</h6>
+                <label class="e-sb-label" for="e_banner_02"><input id="e_banner_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-center">
+                                <div class="col-lg-8 my-3  text-center">
+                                    <h6>Welcome to Alan Construction</h6>
+                                    <h3 class="display-3 fw-300 mb-3">We Build Big Things For Our Peoples!</h3>
+                                    <div class=" lead">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Buy Now</a>
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 3</h6>
+                <label class="e-sb-label" for="e_banner_03"><input id="e_banner_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center pt-10 pb-5 alan-banner-3" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row pb-8 align-items-center justify-content-between pt-lg-8">
+                                <div class="col-lg-6 my-3">
+                                    <h3 class="display-4 fw-300 mb-4 ">A passionate Forward thinking Design Agency</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text me-3" href="#">Buy Now</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-5 d-flex justify-content-center">
+                                    <a class="video-btn white popup-youtube" href="#"></a>
+                                </div>
+                            </div>
+                            <div class="row pt-4">
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-television rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5>Creative</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-object-ungroup rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5>Strategy</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-cogs rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5>Design</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-paint-brush rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5>Development</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 4</h6>
+                <label class="e-sb-label" for="e_banner_04"><input id="e_banner_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-center">
+                                <div class="col-lg-7 my-3 text-center">
+                                    <h3 class="display-4 fw-600 mb-3">With Alan, You Can Create Anything.</h3>
+                                    <div class=" ">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text mr-3 mb-3" href="#">Read More</a>
+                                        <a class="btn btn-primary o_default_snippet_text mb-3" href="#">Call us now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 5</h6>
+                <label class="e-sb-label" for="e_banner_05"><input id="e_banner_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-center">
+                                <div class="col-lg-7 my-3 text-center">
+                                    <h3 class="display-4 fw-600 mb-3">WE CARE ABOUT YOUR HEALTH</h3>
+                                    <div class=" ">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 6</h6>
+                <label class="e-sb-label" for="e_banner_06"><input id="e_banner_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="home-banner-7 oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center justify-content-center">
+                                <div class="col-lg-7 my-3 text-center pb-10">
+                                    <h3 class="display-4  fw-600 mb-3">Committed To Care &amp; Education</h3>
+                                    <div class=" ">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">ADMISSION OPEN</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="home-banner-7-2nd mt-n10 s_comparisons">
+                        <div class="container">
+                            <div class="row g-0">
+                                <div class="col-lg-4 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 text-center bg-o-color-5 card rounded-0 border-0">
+                                        <div>
+                                            <i class="fa fa-book m-auto rounded-circle text-reset border fa-2x text-o-color-2"></i>
+                                            <h5 class="mt-4 mb-2 text-reset">Programs</h5>
+                                            <p class="mb-3 text-reset">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                            </p>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">More About</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 text-center bg-o-color-2 card rounded-0 border-0">
+                                        <div>
+                                            <i class="fa fa-book m-auto rounded-circle text-reset border fa-2x text-o-color-2"></i>
+                                            <h5 class="mt-4 mb-2 text-reset">Programs</h5>
+                                            <p class="mb-3 text-reset">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                            </p>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">More About</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 text-center bg-o-color-1 card rounded-0 border-0">
+                                        <div>
+                                            <i class="fa fa-book m-auto rounded-circle text-reset border fa-2x text-o-color-2"></i>
+                                            <h5 class="mt-4 mb-2 text-reset">Programs</h5>
+                                            <p class="mb-3 text-reset">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                            </p>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">More About</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 7</h6>
+                <label class="e-sb-label" for="e_banner_07"><input id="e_banner_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-8.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center" style="background: #eee1dd;">
+                        <div class="container">
+                            <div class="row pt-8 align-items-center justify-content-center">
+                                <div class="col-lg-5 my-3 py-5">
+                                    <h3 class="display-4 fw-600 mb-3">Alan Gives You A Reason To Smile</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Read More</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <img class="img-fluid" src="/theme_alan/static/src/img/snippets/1000x700.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 8</h6>
+                <label class="e-sb-label" for="e_banner_08"><input id="e_banner_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-9.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="display-4 fw-600 mb-3">CLASSIC BRANDS</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">View Features</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 9</h6>
+                <label class="e-sb-label" for="e_banner_09"><input id="e_banner_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-10.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="h1 fw-600 mb-3">The Lifestyle That Keeps Your Energized</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Book A Court</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 10</h6>
+                <label class="e-sb-label" for="e_banner_10"><input id="e_banner_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp11">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-11.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-inline-block px-3 py-1 small bg-white rounded-pill mb-3">Moving Without The Hassle</div>
+                                    <h3 class="h1 fw-600 mb-3">We Make It Simple</h3>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Call Us Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 11</h6>
+                <label class="e-sb-label" for="e_banner_11"><input id="e_banner_11" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp12">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-12.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-inline-block px-3 py-1 small bg-white rounded-pill mb-3">Clean Your House</div>
+                                    <h3 class="display-3 fw-600 mb-3">Like Never</h3>
+                                    <h3 class="display-3 fw-600 mb-3"><span class="px-3 py-1 bg-warning ">Before</span></h3>
+                                    <div class="pt-4">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Call Us Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 12</h6>
+                <label class="e-sb-label" for="e_banner_12"><input id="e_banner_12" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp13">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-13.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section style="background-color: #043b34;">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-4 py-4">
+                                    <h6 class=" mb-2">Women</h6>
+                                    <div class="display-4 mb-2 fw-600">New Arrival</div>
+                                    <h3>$189.00</h3>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Browse All Products</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 py-4">
+                                    <img class="img-fluid" src="/theme_alan/static/src/img/snippets/540x700.jpg" />
+                                </div>
+                                <div class="col-lg-4 py-4 text-right">
+                                    <h6 class=" mb-2">Summer Sale</h6>
+                                    <div class="display-4 mb-2 fw-600">Get 50% Off</div>
+                                    <h3>Start with $100.00</h3>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Browse All Products</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 13</h6>
+                <label class="e-sb-label" for="e_banner_13"><input id="e_banner_13" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp14">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-14.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center pb-5 pt-lg-6 s_comparisons" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row pt-8 pb-6">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="display-3 fw-600 mb-3">Check our collections</h3>
+                                    <div class="lead ">Final Clearance Up to 80% Off</div>
+                                    <div class="pt-4">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">SHOP NOW</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 shadow-lg p-3 bg-white">
+                                <section class="py-6 col-lg-4 d-flex align-items-center justify-content-center oe_img_bg o_bg_img_center" style="background-image: url(/theme_alan/static/src/img/snippets/1000x700.jpg);">
+                                    <div class="w-100 p-4">
+                                        <h3 class=" fw-500 h4 mb-4">What's the best <br/>digital radio for you</h3>
+                                        <div>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="py-6 col-lg-4 d-flex align-items-center justify-content-center oe_img_bg o_bg_img_center" style="background-image: url(/theme_alan/static/src/img/snippets/1000x700.jpg);">
+                                    <div class="w-100 p-4">
+                                        <h3 class=" fw-500 h4 mb-4">What's the best <br/>digital radio for you</h3>
+                                        <div>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="py-6 col-lg-4 d-flex align-items-center justify-content-center oe_img_bg o_bg_img_center" style="background-image: url(/theme_alan/static/src/img/snippets/1000x700.jpg);">
+                                    <div class="w-100 p-4">
+                                        <h3 class=" fw-500 h4 mb-4">What's the best <br/>digital radio for you</h3>
+                                        <div>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 14</h6>
+                <label class="e-sb-label" for="e_banner_14"><input id="e_banner_14" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp15">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-15.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row py-6 align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="display-3  fw-600 mb-3">Get all the good stuff</h3>
+                                    <div class="lead ">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 15</h6>
+                <label class="e-sb-label" for="e_banner_15"><input id="e_banner_15" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp16">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-16.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-lg-4 my-3 text-center py-6 bg-white d-flex align-items-center justify-content-center">
+                                    <div class="w-100">
+                                        <h5 class="fw-600 ">BIG</h5>
+                                        <h1 class="fw-600 m-0">INTERIOR</h1>
+                                        <div class="display-2 fw-700 mb-2">SALE</div>
+                                        <div class="lead">Up to 50% off</div>
+                                        <div class="pt-4">
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 16</h6>
+                <label class="e-sb-label" for="e_banner_16"><input id="e_banner_16" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp17">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-17.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center s_comparisons o_full_screen_height" style="background-image: url(/theme_alan/static/src/img/snippets/1920x620.jpg);">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 s_col_no_bgcolor">
+                                    <div class="card">
+                                        <div class="p-5">
+                                            <h2 class="display-4 fw-600 mb-4">Get all the good stuff</h2>
+                                            <div class="lead">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                                            </div>
+                                            <div class="pt-4">
+                                                <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 17</h6>
+                <label class="e-sb-label" for="e_banner_17"><input id="e_banner_17" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp18">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-18.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center s_comparisons o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="o_colored_level col-lg-5 offset-lg-7">
+                                    <div class="card bg-o-color-2" style="border-width: 0px !important;">
+                                        <div class="p-5">
+                                            <h2 class="display-4 fw-600 mb-4">Get all the good stuff</h2>
+                                            <div class="lead">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
+                                            </div>
+                                            <div class="pt-4">
+                                                <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 18</h6>
+                <label class="e-sb-label" for="e_banner_18"><input id="e_banner_18" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp19">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-19.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-between py-5">
+                                <div class="col-lg-5">
+                                    <div class="h3 ">MacBook Pro</div>
+                                    <h2 class="display-3 fw-600 mb-4 ">Power. Moves.</h2>
+                                    <div class="lead ">Starting from $1,200.</div>
+                                    <div class="pt-4">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 19</h6>
+                <label class="e-sb-label" for="e_banner_19"><input id="e_banner_19" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp20">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-20.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center pt120 pb120 o_half_screen_height" style="background-image: url(/theme_alan/static/src/img/snippets/1920x800.jpg);">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-center py-5">
+                                <div class="col-lg-6 text-center">
+                                    <h2 class="display-4 fw-600 mb-4">Get all the good stuff</h2>
+                                    <div class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</div>
+                                    <div class="pt-4">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 20</h6>
+                <label class="e-sb-label" for="e_banner_20"><input id="e_banner_20" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp21">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-21.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                   <section class="oe_img_bg o_bg_img_center py-9" style="background-image: url('/theme_alan/static/src/img/snippets/1920x800.jpg');">
+                        <div class="container">
+                            <div class="position-relative">
+                                <div class="containe">
+                                    <div class="row">
+                                        <div class="col-lg-7 my-3">
+                                        </div>
+                                        <div class="col-lg-5 my-3 ml-auto">
+                                            <div class="text-left">
+                                                <h1 class=" display-4 mb-5">Brand Mordern<br /> Furniture.</h1>
+                                                <p>Lorem Ipsum is simply dummy text of the printing. Lorem Ipsum is simply dummy text of the printing </p>
+                                                <div class="btn-bar mt-5">
+                                                    <a href="#" class="btn btn-primary o_default_snippet_text">ADD TO CART</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section> 
+                </textarea>
+                <h6 class="text-truncate">Banner 21</h6>
+                <label class="e-sb-label" for="e_banner_21"><input id="e_banner_21" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp22">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-22.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center py-9 home-banner-22 o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row content align-items-center">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <div class="carousel-content text-center">
+                                        <h1 class="upto display-4 fw-600"><span class="fw-100">MODERN</span> FURNITURE</h1>
+                                        <p>STORE</p>
+                                        <div class="btn-bar">
+                                            <a href="#" class="btn btn-primary o_default_snippet_text">Discover Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 22</h6>
+                <label class="e-sb-label" for="e_banner_22"><input id="e_banner_22" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp23">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-23.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center py-9 home-banner-23 o_full_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row content align-items-center">
+                                <div class="col-12 d-flex justify-content-center">
+                                    <div class="carousel-content text-center">
+                                        <h1 class="upto display-4 fw-600"><span class="fw-100">modern</span> furniture</h1>
+                                        <p class="text-uppercase">store</p>
+                                        <div class="btn-bar">
+                                            <a href="#" class="btn btn-primary o_default_snippet_text">Discover Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 23</h6>
+                <label class="e-sb-label" for="e_banner_23"><input id="e_banner_23" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp24">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-24.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="bg-light o_full_screen_height">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="carousel-content text-center">
+                                            <h1 class="fw-600 display-1"><span class="fw-100">modern</span><br /> furniture</h1>
+                                            <p class="text-uppercase">store</p>
+                                            <div class="btn-bar">
+                                                <a href="#" class="btn btn-primary">Discover Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 24</h6>
+                <label class="e-sb-label" for="e_banner_24"><input id="e_banner_24" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp25">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-25.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-9" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-end">
+                                <div class="text-center py-5 col-lg-8 card" style="background-color: rgba(255,255,255,0.4);">
+                                    <h6 class="fw-300 ">Get Discount 30% off For All Product</h6>
+                                    <h1 class="display-3">Morden Furniture <br /> Special Offer </h1>
+                                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.</p>
+                                    <div class="mt-4">
+                                        <a href="#" class="btn btn-primary o_default_snippet_text ">Discover Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 25</h6>
+                <label class="e-sb-label" for="e_banner_25"><input id="e_banner_25" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp26">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-26.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center py-9 s_comparisons o_half_screen_height" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-lg-4 col-lg-7 s_col_no_bgcolor">
+                                    <div class="card rounded-0 bg-white border-0 p-5 text-center">
+                                        <div>
+                                            <span class="h4 fw-500">Get Upto</span>
+                                            <h1 class="after-before border-top border-dark border-bottom py-2 display-4 font-weight-bold"><span class="text-danger">50%</span> OFF</h1>
+                                            <p>Limited Period Offer</p>
+                                            <div class="btn-bar">
+                                                <a href="#" class="btn btn-primary rounded-pill w-100">Start Shopping <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 26</h6>
+                <label class="e-sb-label" for="e_banner_26"><input id="e_banner_26" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp27">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-27.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-banner-snippet-27 oe_img_bg o_bg_img_center pt80 pb80" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <h6 class="fw-500 px-3 py-1 bg-primary rounded d-inline-block mb-3 ">Top Collection</h6>
+                                    <h3 class="display-3 fw-700 mb-3">Designed for your Comfort</h3>
+                                    <div class="lead">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="btn-bar pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Explore All Products </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 my-3">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 27</h6>
+                <label class="e-sb-label" for="e_banner_27"><input id="e_banner_27" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>    
+<t t-name="theme_alan.banner_temp28">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-28.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-banner-snippet-28 s_text_image oe_snippet_body pt80 pb80" style="background-image: linear-gradient(90deg, rgb(255, 240, 240) 0%, rgb(255, 240, 240) 77%, rgb(255, 255, 255) 77%, rgb(255, 255, 255) 100%) !important;">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16">
+                                    <h3 class="h1">Choose The Modern Furniture For Better Living</h3>
+                                    <div class="lead">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <div class="col-6 col-lg-6 pb24">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-book fa-3x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h6>Sofa Collections</h6>
+                                                    <p class="m-0">18 Items</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-lg-6 pb24">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-book fa-3x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h6>Sofa Collections</h6>
+                                                    <p class="m-0">18 Items</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-lg-6 pb24">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-book fa-3x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h6>Sofa Collections</h6>
+                                                    <p class="m-0">18 Items</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-lg-6 pb24">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-book fa-3x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h6>Sofa Collections</h6>
+                                                    <p class="m-0">18 Items</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-bar pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">Explore All Products </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 pt16 pb16">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 28</h6>
+                <label class="e-sb-label" for="e_banner_28"><input id="e_banner_28" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.banner_temp29">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/banner-29.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-banner-snippet-29 oe_img_bg o_bg_img_center pt80 pb80" style="background-image: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 14%, rgb(255, 240, 240) 14%, rgb(255, 240, 240) 100%) !important;">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8 py-3">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x400.jpg" />
+                                </div>
+                                <div class="col-lg-4 py-3">
+                                    <h3 class="h2 fw-700 mb-3">Choose <br/>The Mordern <br/>Furniture.</h3>
+                                    <div class="lead">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="btn-bar pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">New Collections</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Banner 29</h6>
+                <label class="e-sb-label" for="e_banner_29"><input id="e_banner_29" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+</templates>

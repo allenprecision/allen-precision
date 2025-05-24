@@ -7,7 +7,7 @@
 			<field name="arch" type="xml">
 				<form string="Google Feed Configuration">
 					<header>
-						<button name="add_to_google_feed" string="Generate Feed" type="object" class="oe_highlight" attrs="{'invisible':[('auto_generate','=','byschedule')]}"/>
+						<button name="add_to_google_feed" string="Generate Feed" type="object" class="oe_highlight" invisible="auto_generate == 'byschedule'"/>
 					</header>
 					<sheet>
 						<group>
@@ -25,23 +25,50 @@
 						            </span>
 						        </div>
 									<field name="feed_file" filename="file_name" widget="download_link" readonly="1"/>
+									<field name="feed_url" widget="url"/>
+									<field name="product_type"/>
+									<field name="product_model_id" invisible="1"/>
 							</group>
 						</group>
 						<notebook>
 							<page string="Field Mapping" name="field_mapping_info">
 								<group>
 									<group>
-										<field name="product_g_id" options="{'no_create': True, 'no_open': True}" required="1" domain="[('model_id','=','product.template'),('ttype','not in',['many2many','one2many'])]"/>
-										<field name="title" options="{'no_create': True, 'no_open': True}" required="1" domain="[('model_id','=','product.template'),('ttype','not in',['many2many','one2many'])]"/>
-										<field name="description" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=','product.template')],('ttype','not in',['many2many','one2many'])"/>
+										<field name="product_g_id" options="{'no_create': True, 'no_open': True}" required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+										<field name="title" options="{'no_create': True, 'no_open': True}" required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+										<field name="description" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
 										<field name="condition" required="1" />
 									</group>
 									<group>
-										<field name="gtin" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=','product.template'),('ttype','not in',['many2many','one2many'])]"/>
-										<field name="brand" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=','product.template'),('ttype','not in',['many2many','one2many'])]"/>
-										<field name="mpn" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=','product.template'),('ttype','not in',['many2many','one2many'])]"/>
+										<field name="gtin" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+										<field name="brand" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+										<field name="mpn" options="{'no_create': True, 'no_open': True}"  required="1" domain="[('model_id','=',product_model_id),('ttype','not in',['many2many','one2many'])]"/>
 									</group>
-								</group>	
+								</group>
+								<group string="Optional Field List">
+									<field name="optional_fields_ids" colspan="2" nolabel="1">
+										<tree>
+											<field name="google_tag_name" required="1"/>
+											<field name="product_field"  column_invisible="parent.product_model_id == 'product.product'" domain="[('model_id','=',parent.product_model_id),('ttype','in',['many2one','char','text','integer','float','binary'])]"/>
+											<field name="variant_field"  column_invisible="parent.product_model_id == 'product.template'" domain="[('model_id','=',parent.product_model_id),('ttype','in',['many2one','char','text','integer','float','binary'])]"/>
+											<field name="product_type" optional="hide"/>
+										</tree>
+										<form>
+											<sheet>
+												<group>
+													<group>
+														<field name="google_tag_name" required="1" placeholder="g:adult..."/>
+													</group>
+													<group>
+														<field name="product_field" invisible="parent.product_model_id == 'product.product'" domain="[('model_id','=',parent.product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+														<field name="variant_field"  invisible="parent.product_model_id == 'product.template'" domain="[('model_id','=',parent.product_model_id),('ttype','not in',['many2many','one2many'])]"/>
+														<field name="product_type" optional="hide" invisible="1"/>
+													</group>
+												</group>
+											</sheet>
+										</form>
+									</field>
+								</group>
 							</page>
 							<page string="Feed Configuration" name="feed_configuration">
 								<group>
@@ -52,31 +79,32 @@
 										<field name="exclude_out_of_stock_products"/>
 									</group>
 								</group>
-								<group string="Select Products" attrs="{'invisible':[('is_add_all_products', '=', True)]}">
-									<field name="product_ids" nolabel="1"/>
+								<group  colspan="4" string="Select Products" invisible="is_add_all_products == True" >
+									<field name="product_ids" colspan="2" nolabel="1" invisible="product_model_id=='product.product'"/>
+									<field name="variant_ids" colspan="2" nolabel="1" invisible="product_model_id == 'product.template'"/>
 								</group>
 							</page>
 							<page string="Server Configuration" name="Server_congiguration">
 								<group>
 									<field name="is_upload_to_server" />
 								</group>
-								<group attrs="{'invisible':[('is_upload_to_server','=',False)]}">
+								<group invisible="is_upload_to_server == False">
 									<group>
-										<field name="server_id" attrs="{'required':[('is_upload_to_server', '=', True)]}"/>
+										<field name="server_id" required="is_upload_to_server == True"/>
 									</group>
 									<group>
-										<field name="server_path" attrs="{'required':[('is_upload_to_server', '=', True)]}"/>
+										<field name="server_path" required="is_upload_to_server == True" />
 									</group>
 								</group>
 							</page>
-							<page string="Cron Schedule" name="cron_schedule" attrs="{'invisible':[('auto_generate','=',False)]}">
+							<page string="Cron Schedule" name="cron_schedule" invisible = "auto_generate == False">
 								<group>
 									<group>
 										<label for="interval_number" string="Execute Every"/>
 						            <div class="o_row">
-						                <field name="interval_number" attrs="{'required':[('auto_generate','=',True)]}"/>
+						                <field name="interval_number" required = "auto_generate == True"/>
 						                <span style="margin-left:10px;">
-						                  	<field name="interval_type" attrs="{'required':[('auto_generate','=',True)]}"/>
+						                  	<field name="interval_type" required = "auto_generate == True"/>
 						                </span>
 						            </div>
 									</group>
@@ -86,17 +114,20 @@
 								</group>
 							</page>
 							<page string="Log History" name="error_history_info">
-								<group>
-									<field name="error_log_ids" nolabel="1">
-										<tree string="Error Message" create="0" edit="0" editable="bottom">
-											<field name="id"/>
-											<field name="feed_id"/>										
-											<field name="error_datetime"/>
-											<field name="product_id"/>
-											<field name="error_message"/>
-										</tree>										
-									</field>
-								</group>
+								<form>
+									<group>
+										<field name="error_log_ids" colspan="2" nolabel="1">
+											<tree>
+												<field name="id"/>
+												<field name="feed_id"/>
+												<field name="error_datetime"/>
+												<field name="product_id" string="Template"/>
+												<field name="variant_id" string="Variant"/>
+												<field name="error_message"/>
+											</tree>
+										</field>
+									</group>
+								</form>
 							</page>
 						</notebook>
 					</sheet>

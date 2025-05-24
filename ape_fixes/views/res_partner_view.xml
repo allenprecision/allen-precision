@@ -30,7 +30,7 @@
             </field>
             <field name="user_ids" position="after">
                 <field name="ref" string="Customer Number" force_save="1" readonly="1"/>
-                <field name='contact_type' attrs="{'required': [('type', '=','contact')]}" />
+                <field name='contact_type' required="type == 'contact'" />
                 <field name="customer_type"/>
             </field>
             <field name='category_id' position='replace'>

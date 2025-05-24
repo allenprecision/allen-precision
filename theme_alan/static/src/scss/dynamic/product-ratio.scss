@@ -1,0 +1,55 @@
+.as-media-ratio {
+    padding-top: calc(100% / (var(--as-product-aspect-ratio, 1)));
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    position: relative; 
+    .as-media-ratio-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: var(--as-product-aspect-fill);
+        }
+    }
+}
+
+@if o-website-value('shop-img-size')=='alan_shop_img_size_1_1' {
+    .as-media-ratio {
+        --as-product-aspect-ratio: 1/1;
+    }
+}
+
+@if o-website-value('shop-img-size')=='alan_shop_img_size4_3' {
+    .as-media-ratio {
+        --as-product-aspect-ratio: 4/3;
+    }
+}
+
+@if o-website-value('shop-img-size')=='alan_shop_img_size4_5' {
+    .as-media-ratio {
+        --as-product-aspect-ratio: 4/5;
+    }
+}
+
+@if o-website-value('shop-img-size')=='alan_shop_img_size2_3' {
+    .as-media-ratio {
+        --as-product-aspect-ratio: 2/3;
+    }
+}
+
+@if o-website-value('shop-img-fill')=='alan_shop_img_fill_cover' {
+    .as-media-ratio {
+        --as-product-aspect-fill: cover;
+    }
+}
+
+@if o-website-value('shop-img-fill')=='alan_shop_img_fill_contain' {
+    .as-media-ratio {
+        --as-product-aspect-fill: contain;
+    }
+}

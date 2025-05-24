@@ -1,0 +1,76 @@
+@if o-website-value('footer-template') == 'alan_footer2' {
+	#footer {
+        .footer-title {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                width: 30px;
+                background-color: currentColor;
+            }
+            h5 {
+                margin: 0;
+                font-size: 18px;
+            }
+        }
+        .footer-link {
+            li {
+                position: relative;
+                + li {
+                    padding-top: 12px;
+                }
+            }
+            a {
+                position: relative;
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    height: 1px;
+                    width: 0;
+                    background-color: currentColor;
+                    transition: ease all 0.35s;
+                }
+                &:hover {
+                    &:after {
+                        width: 100%;
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        .footer-address {
+            li {
+                align-items: center;
+                + li {
+                    padding-top: 10px;
+                }
+            }
+            .f-icon {
+                max-width: 40px;
+                height: 40px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 40px;
+                border-radius: 50%;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+            }
+            .f-text {
+                padding-left: 15px;
+            }
+        }
+
+    }
+}

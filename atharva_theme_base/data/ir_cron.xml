@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record id="ir_cron_data_frame" model="ir.cron">
+        <field name="name">Alan Snippet Data Frame Cleaner</field>
+        <field name="model_id" ref="model_ir_ui_view"/>
+        <field name="state">code</field>
+        <field name="code">model.remove_unused_data_frame()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active">False</field>
+    </record> -->
+
+</odoo>

@@ -1,0 +1,212 @@
+.hotspot {
+    position: relative;
+}
+
+
+.hotspot {
+    .hs_icon {
+        margin: 0;
+        a.icon {
+            position: relative;
+            color: transparent;
+            font-size: 0px;
+            width: 40px;
+            height: 40px;
+            background: $primary;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-radius: 50%;
+        }
+        &.st1 {
+            a.icon {
+                animation: hotspot_2 1.5s infinite;
+                &:before,
+                &:after {
+                    content: "";
+                    background: $white;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                }
+                &:after {
+                    width: 2px;
+                    height: 12px;
+                }
+                &:before {
+                    width: 12px;
+                    height: 2px;
+                }
+            }
+        }
+        &.st2 {
+            a.icon {
+                background: $white;
+                animation: hotspot_2 1.5s infinite;
+                &:after {
+                    content: "\f290";
+                    font-family: "FontAwesome" !important;
+                    font-size: 18px;
+                    color: $primary;
+                }
+                &:before {
+                    display: none;
+                }
+            }
+        }
+        &.st3 {
+            a.icon {
+                width: 40px;
+                height: 40px;
+                
+                background: $primary;
+                border-radius: 50% 50% 0% 50%;
+                animation: translateY 1.5s infinite;
+                &:before {
+                    display: none;
+                }
+                &:after {
+                    content: "\f07a";
+                    font-family: "FontAwesome" !important;
+                    transform: rotate(-45deg);
+                    color: $white;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+
+@keyframes hotspot_2 {
+    from {
+        box-shadow: 0 0 0 0px rgba($primary, 1);
+    }
+
+    to {
+        box-shadow: 0 0 0 15px rgba($primary, 0.3);
+    }
+}
+
+@keyframes translateY {
+    0% {
+        transform: translateY(10px) rotate(45deg);
+    }
+
+    50% {
+        transform: translateY(0px) rotate(45deg);
+    }
+
+    100% {
+        transform: translateY(10px) rotate(45deg);
+    }
+}
+
+.as-popover {
+    border: none;
+    box-shadow: $box-shadow-sm;
+    border-radius: 0;
+    .popover-body {
+        padding: 0;
+    }
+    .hp-norecord {
+        padding: 15px;
+        h3 {
+            font-size: 14px;
+            margin: 0;
+            color: #c10a0a;
+        }
+    }
+    .st1 {
+        .hp-img {
+            img {
+                max-width: 200px;
+            }
+        }
+        .hp-media-body {
+            padding: 15px;
+        }
+        .hp-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: $dark;
+        }
+        .product_price {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+    }
+
+    .st2 {
+        .hp-media {
+            display: flex;
+        }
+        .hp-img {
+            flex: 0 0 90px;
+            max-width: 90px;
+        }
+        .hp-media-body {
+            padding: 15px;
+        }
+        .hp-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: $dark;
+            margin-bottom: 5px;
+        }
+        .product_price {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+    }
+    .st3 {
+        .hp-img {
+            img {
+                max-width: 200px;
+            }
+        }
+        .hp-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: $dark;
+        }
+        .product_price {
+            font-size: 14px;
+        }
+        .hp-media-body {
+            position: relative;
+            padding: 10px;
+            .as-btn {
+                position: absolute;
+                bottom: 100%;
+                right: 15px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .dark_thm {
+        background: $dark;
+        .popover-body {
+            background: $dark;
+        }
+        .hp-title {
+            color: $white;
+        }
+        p {
+            color: rgba($white, 0.8);
+        }
+        .product_price {
+            color: rgba($white, 0.8);
+        }
+        .btn-primary {
+            background: $white !important;
+            border: 1px solid $white !important;
+            color: $dark !important;
+        }
+    }
+}

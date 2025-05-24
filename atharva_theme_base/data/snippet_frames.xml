@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="snippet_frame_1" model="as.snippet.frame">
+            <field name="name">DEF0001</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="12" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid" data-size="12" data-pos-id="00" data-row-id="0"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_2" model="as.snippet.frame">
+            <field name="name">DEF0002</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="6" data-id="0">
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid" data-size="6" data-pos-id="00" data-row-id="0"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid" data-size="6" data-pos-id="10" data-row-id="0"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_3" model="as.snippet.frame">
+            <field name="name">DEF0003</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="12" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid" data-size="12" data-pos-id="00" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="12" data-id="1">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid" data-size="12" data-pos-id="01" data-row-id="1"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-12 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_4" model="as.snippet.frame">
+            <field name="name">DEF0004</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_5" model="as.snippet.frame">
+            <field name="name">DEF0005</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="6" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="12" data-pos-id="012" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="6" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid" data-size="6" data-pos-id="01" data-row-id="1"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid" data-size="6" data-pos-id="11" data-row-id="1"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_6" model="as.snippet.frame">
+            <field name="name">DEF0006</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="2" data-id="0">
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="4" data-pos-id="04" data-row-id="0"></div>
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="8" data-pos-id="08" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="2" data-id="1">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="8" data-pos-id="18" data-row-id="1"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="4" data-pos-id="14" data-row-id="1"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_7" model="as.snippet.frame">
+            <field name="name">DEF0007</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="2" data-id="0">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="8" data-pos-id="08" data-row-id="0"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="4" data-pos-id="04" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="2" data-id="1">
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="4" data-pos-id="14" data-row-id="1"></div>
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="8" data-pos-id="18" data-row-id="1"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-4 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-8 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_8" model="as.snippet.frame">
+            <field name="name">DEF0008</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="4" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="12" data-pos-id="012" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="4" data-id="1">
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid" data-size="4" data-pos-id="01" data-row-id="1"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid" data-size="4" data-pos-id="11" data-row-id="1"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid" data-size="4" data-pos-id="21" data-row-id="1"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-4 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_9" model="as.snippet.frame">
+            <field name="name">DEF0009</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="3" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="12" data-pos-id="012" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="3" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="6" data-pos-id="16" data-row-id="1"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="21" data-row-id="1"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="31" data-row-id="1"></div>
+                </div>
+                <div class="row" data-col-size="3" data-id="2">
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="02" data-row-id="2"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="12" data-row-id="2"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="6" data-pos-id="26" data-row-id="2"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="2">
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+
+        <record id="snippet_frame_10" model="as.snippet.frame">
+            <field name="name">DEF0010</field>
+            <field name="snippet_frame" type="html">
+                <div class="row" data-col-size="3" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="12" data-pos-id="012" data-row-id="0"></div>
+                </div>
+                <div class="row" data-col-size="3" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="6" data-pos-id="16" data-row-id="1"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid" data-size="6" data-pos-id="16" data-row-id="1"></div>
+                </div>
+                <div class="row" data-col-size="3" data-id="2">
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="02" data-row-id="2"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="12" data-row-id="2"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="22" data-row-id="2"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid" data-size="3" data-pos-id="32" data-row-id="2"></div>
+                </div>
+            </field>
+            <field name="snippet_frame_html" type="html">
+                <div class="row" data-id="0">
+                    <div class="col-lg-12 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="1">
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                    <div class="col-lg-6 as-grid as-min-height as-rest-grid as-ghost-grid"></div>
+                </div>
+                <div class="row" data-id="2">
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                    <div class="col-lg-3 as-grid as-min-height as-ghost-grid"></div>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

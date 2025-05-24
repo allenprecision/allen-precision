@@ -29,7 +29,7 @@ class AccountMove(models.Model):
 
             # Check if the accounting move record is posted and has payment data for a check payment
             if move.state == 'posted' and move.payment_state in ('in_payment', 'paid') and move.invoice_payments_widget:
-                data = json.loads(move.invoice_payments_widget)
+                data = move.invoice_payments_widget
 
                 # Extract payment data from the invoice payments widget
                 if data and data.get('content', False):

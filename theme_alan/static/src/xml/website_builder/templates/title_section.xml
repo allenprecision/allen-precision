@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_title_templates">
+
+<t t-name="theme_alan.title_1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                     <section class="section-title-01 text-center">
+                        <h3 class="fw-600">Shop By Category</h3>
+                    </section> 
+                </textarea>
+                <h6 class="text-truncate">Title 1</h6>
+                <label class="e-sb-label" for="e_title_01"><input id="e_title_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.title_2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-2.jpg" />
+            </div>
+            <div class="snippet-as w-100">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="section-title-02 d-flex justify-content-center align-items-center flex-column text-center">
+                        <p class="section__heading-subtitle text-danger lead fw-400 spacing-2px mb-1">For You</p>
+                        <h3 class="fw-600">NEW PRODUCT</h3>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 2</h6>
+                <label class="e-sb-label" for="e_title_02"><input id="e_title_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.title_3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="section-title-04 d-flex justify-content-center align-items-center flex-column text-center">
+                        <span class="section__heading-subtitle text-danger lead fw-400 spacing-2px mb-1 fst-italic">For You</span>
+                        <h3 class="fw-600">NEW PRODUCT</h3>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 3</h6>
+                <label class="e-sb-label" for="e_title_03"><input id="e_title_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.title_4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="section-title-05 d-flex justify-content-center align-items-center flex-column text-center">
+                        <span class="section__heading-subtitle text-danger lead fw-400 spacing-2px mb-1">For You</span>
+                        <h3 class="fw-600">NEW PRODUCT</h3>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 4</h6>
+                <label class="e-sb-label" for="e_title_04"><input id="e_title_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.title_5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="d-flex justify-content-center align-items-center flex-column text-center o_colored_level pt56" style="background-image: none;">
+                      <p class="section__heading-subtitle text-danger text-uppercase fw-400 mb-1">
+                        Explore other products
+                      </p>
+                      <h1 class="fw-600">NEW PRODUCTS</h1>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 5</h6>
+                <label class="e-sb-label" for="e_title_05"><input id="e_title_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.title_6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt56">
+                      <div class="container">
+                          <div class="row align-items-center">
+                              <div class="col-lg-8 text-lg-start text-center py-1 py-lg-0">
+                                  <h5 class="fw-600 m-0">SHOP BY CATEGORY</h5>
+                              </div>
+                              <div class="col-lg-4 text-lg-end text-center py-1 py-lg-0">
+                                  <a class="btn btn-primary o_default_snippet_text" href="#">View All</a>
+                              </div>
+                          </div>
+                      </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 6</h6>
+                <label class="e-sb-label" for="e_title_06"><input id="e_title_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.title_7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt56">
+                      <div class="container">
+                          <div class="row justify-content-center">
+                              <div class="col-lg-6 text-center">
+                                  <h5 class="h2 m-0 pb-3">Featured Products</h5>
+                                  <div class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+                              </div>
+                          </div>
+                      </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 7</h6>
+                <label class="e-sb-label" for="e_title_07"><input id="e_title_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.title_8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-8.png" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt56">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="h2 m-0 pb-1">Most Popular</h5>
+                                    <h6 class="lead">Our Collection</h6>
+                                    <div class="s_hr text-start pt8 pb8 oe_snippet_body" data-snippet="s_hr" data-name="Separator">
+                                        <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 8</h6>
+                <label class="e-sb-label" for="e_title_08"><input id="e_title_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.title_9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-9.png" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt56">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-lg-12">
+                                    <div class="d-flex justify-content-between section-title-03">
+                                        <h5 class="h2 m-0">Most Popular</h5>
+                                    </div>
+                                    <div class="s_hr text-start pt8 pb8 oe_snippet_body" data-snippet="s_hr" data-name="Separator">
+                                        <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;" />
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 9</h6>
+                <label class="e-sb-label" for="e_title_09"><input id="e_title_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+<t t-name="theme_alan.title_10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/title-10.png" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-v17-title-01 pt32 pb16">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 s_col_no_bgcolor">
+                                    <div class="as-header-title-01-in">
+                                        <h4>MORE TO DISCOVER</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Title 10</h6>
+                <label class="e-sb-label" for="e_title_10"><input id="e_title_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+
+</templates>

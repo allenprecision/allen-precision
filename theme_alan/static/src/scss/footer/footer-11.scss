@@ -1,0 +1,86 @@
+@if o-website-value('footer-template')=='alan_footer11' {
+    #footer {
+        .footer-title {
+            margin: 0 0 25px;
+            padding-bottom: 10px;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                width: 20px;
+                background-color: $primary;
+            }
+
+            h5 {
+                margin: 0;
+                font-size: 1.1rem;
+            }
+        }
+
+        .s_social_media {
+            padding-bottom: 30px;
+
+            a {
+                width: 35px;
+                height: 35px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                margin: 0 6px 0 0;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+
+                &:hover {
+                    background-color: $primary;
+                    color: $white;
+                }
+
+            }
+        }
+
+
+        .footer-link {
+            li {
+                position: relative;
+
+                +li {
+                    margin-top: 8px;
+                }
+            }
+
+            a {
+                font-size: 1em;
+                position: relative;
+
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    height: 1px;
+                    width: 0;
+                    background-color: currentColor;
+                    transition: ease all 0.35s;
+                    opacity: 0;
+                }
+
+                &:hover {
+                    &:after {
+                        opacity: 1;
+                        width: 100%;
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+    }
+}

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="megamenu_snippets" name="Megamenu" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='MegaMenuLayout']/we-select/t[@t-set]" position="before">
+            <t t-set="_label">Alan Mega Menu</t>
+            <we-button t-att-data-select-label="_label"
+                data-select-template="atharva_theme_base.as_megamenus"
+                t-out="_label"/>
+        </xpath>
+        <xpath expr="//div[@data-js='MegaMenuLayout']" position="after">
+            <div data-js="as_snippet_configure" data-selector=".as_mega_menu">
+                <we-checkbox string="Alan Snippet Editor" data-select-class="as_static_menu" />
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Product Slider Templates: START -->
+    <template id="m_product_slider" name="MegaMenu Product Slider">
+        <div t-attf-class="swiper as_swiper {{style}}">
+            <div class="swiper-button-prev asi asi-chevron-left"></div>
+            <div class="swiper-button-next asi asi-chevron-right"></div>
+            <div class="swiper-wrapper">
+                <t t-foreach="data" t-as="d">
+                    <div class="swiper-slide as-thumb-size-4-3">
+                        <div class="as-mm-product-card">
+                            <div class="as-mm-product-card-media as-media-wrap">
+                                <div class="as-media-wrap-in">
+                                    <a t-attf-href="/shop/{{slug(d.sudo())}}">
+                                        <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="as-mm-product-card-body">
+                                <div class="as-mm-product-title">
+                                    <a t-attf-href="/shop/{{slug(d.sudo())}}">
+                                        <t t-esc="d.sudo().display_name"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Product Slider Templates: END -->
+
+    <!-- Product Grid Templates: START -->
+    <template id="m_product_grid" name="MegaMenu Product Grid">
+        <div t-attf-class="as_m_product_grid {{style}}">
+            <div class="row g-3 as-snippets-row as-thumb-size-4-3">
+                <t t-foreach="data" t-as="d">
+                    <div t-attf-class="col-lg-{{col_item}}">
+                        <div class="as-mm-product-card">
+                            <div class="as-mm-product-card-media as-media-wrap">
+                                <div class="as-media-wrap-in">
+                                    <a t-attf-href="/shop/{{slug(d)}}">
+                                        <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="as-mm-product-card-body">
+                                <div class="as-mm-product-title">
+                                    <a t-attf-href="/shop/{{slug(d)}}">
+                                        <t t-esc="d.sudo().display_name"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Product Grid Templates: END -->
+
+    <!-- Category Slider Templates: START -->
+    <template id="m_category_slider" name="MegaMenu Category Slider">
+        <div t-attf-class="swiper as_swiper {{style}}">
+
+            <div class="swiper-button-prev asi asi-chevron-left"></div>
+            <div class="swiper-button-next asi asi-chevron-right"></div>
+            <div class="swiper-wrapper">
+                <t t-foreach="data" t-as="d">
+                    <div class="swiper-slide">
+                        <div class="as-mm-cat-slider-card">
+                            <div class="as-mm-cat-card-media">
+                                 <a t-attf-href="/shop/category/{{slug(d.sudo())}}">
+                                    <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                </a>
+                            </div>
+                            <div class="as-mm-cat-card-body">
+                                <div class="as-mm-cat-title">
+                                    <a t-attf-href="/shop/category/{{slug(d.sudo())}}">
+                                        <t t-esc="d.sudo().name"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Category Slider Templates: END -->
+
+    <!-- Category Grid Templates: START -->
+    <template id="m_category_grid" name="MegaMenu category Slider">
+        <div t-attf-class="as_m_category_grid {{style}}">
+            <div class="row g-3 as-snippets-row">
+                <t t-foreach="data" t-as="d">
+                    <div t-attf-class="col-lg-{{col_item}}">
+                        <div class="as-mm-cat-card">
+                            <div t-if="style != 'as-mm-category-grid-5'" class="as-mm-cat-card-media">
+                                <a t-attf-href="/shop/category/{{slug(d.sudo())}}">
+                                    <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                </a>
+                            </div>
+                            <div class="as-mm-cat-title">
+                                <span>
+                                    <a t-attf-href="/shop/category/{{slug(d.sudo())}}">
+                                        <t t-esc="d.sudo().name"/>
+                                    </a>
+                                </span>
+                            </div>
+                            <div class="as-mm-sub-cat">
+                                <ul>
+                                    <t t-foreach="data[d]" t-as="sub">
+                                        <li>
+                                            <a t-attf-href="/shop/category/{{slug(sub.sudo())}}">
+                                                <t t-esc="sub.name"/>
+                                            </a>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Category Grid Templates: END -->
+
+    <!-- Brand Slider Templates: START -->
+    <template id="m_brand_slider" name="MegaMenu Brand Slider">
+        <div t-attf-class="swiper as_swiper {{style}}">
+            <div class="swiper-button-prev asi asi-chevron-left"></div>
+            <div class="swiper-button-next asi asi-chevron-right"></div>
+            <div class="swiper-wrapper">
+                <t t-foreach="data" t-as="d">
+                    <div t-if="d.active" class="swiper-slide">
+                        <div class="as-mm-brand-card">
+                            <div class="as-mm-brand-card-media">
+                                <a t-attf-href="/shop?brand={{d.id}}">
+                                    <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                </a>
+                            </div>
+                            <div t-if="allow_link" class="as-mm-brand-title">
+                                <a t-attf-href="/shop?brand={{d.id}}">
+                                    <t t-esc="d.sudo().display_name"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Brand Slider Templates: END -->
+
+    <!-- Brand Grid Templates: START -->
+    <template id="m_brand_grid" name="MegaMenu Brand Grid">
+        <div t-attf-class="as_m_brand_grid {{style}}">
+            <div class="row g-3 as-snippets-row">
+                <t t-foreach="data" t-as="d">
+                    <div t-if="d.active" t-attf-class="col-lg-{{col_item}}">
+                        <div class="as-mm-brand-card">
+                            <div class="as-mm-brand-card-media">
+                                <a t-attf-href="/shop?brand={{d.id}}">
+                                    <img t-att-src="request.website.image_url(d,'image_1024')"/>
+                                </a>
+                            </div>
+                            <div t-if="allow_link" class="as-mm-brand-title">
+                                <a t-attf-href="/shop?brand={{d.id}}">
+                                    <t t-esc="d.sudo().display_name"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </template>
+    <!-- Brand Grid Templates: END -->
+
+</odoo>

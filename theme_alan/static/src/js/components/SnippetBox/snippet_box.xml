@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="theme_alan.snippet_box" owl="1">
+        <SnippetBoxDialog contentClass="this.props.contentClass" size="this.props.size" footer="false" header="false">
+            <SnippetPicker/>
+        </SnippetBoxDialog>
+    </t>
+</templates>

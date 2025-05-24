@@ -1,0 +1,96 @@
+@if o-website-value('footer-template') == 'alan_footer8' {
+    #footer {
+        .footer-title {
+            margin: 0 0 20px;
+            position: relative;
+            h5 {
+                margin: 0;
+                text-transform: uppercase;
+                font-size: 1rem;
+            }
+        }
+
+
+        .footer-link {
+            li {
+                + li {
+                    padding-top: 10px; 
+                }
+            }
+            a {
+                font-size: 1em;
+                position: relative;
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    height: 1px;
+                    width: 0;
+                    background-color: currentColor;
+                    transition: ease all 0.35s;
+                    opacity: 0;
+                }
+                &:hover {
+                    &:after {
+                        opacity: 1;
+                        width: 100%;
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        .footer-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            margin-right: 5px;
+            border-radius: 5px;
+            margin-right: 5px;
+            background-color: rgba(var(--as-footer-color), 0.1);
+            color: rgba(var(--as-footer-color), 1);
+
+            &:hover {
+                background-color: $primary;
+                color: $white;
+            }
+            .fa {
+                margin-right: 8px;
+            }
+        }
+
+        .footer-address {
+            li {
+                align-items: center;
+                + li {
+                    padding-top: 10px;
+                }
+            }
+            .f-icon {
+                max-width: 40px;
+                height: 40px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 40px;
+                border-radius: 50%;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+
+                &:hover {
+                    background-color: $primary;
+                    color: $white;
+                }
+            }
+            .f-text {
+                padding-left: 15px;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_collection_templates">
+
+<t t-name="theme_alan.collection_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt80 pb80 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-7 s_col_no_bgcolor">
+                                            <div class="p-2 shadow hover-scale">
+                                                <img src="/theme_alan/static/src/img/snippets/1000x700.jpg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 s_col_no_bgcolor">
+                                            <div class="shadow w-100 w-lg-auto card position-relative overflow-hidden shadow-lg p-4 d-inline-block ms-lg-n10">
+                                                <h2 class="fw-600 text-uppercase mb-2">STYLE AND CONFORT</h2>
+                                                <p>JUST SIT BACK AND ENJOY THE VIEW</p>
+                                                <div class="pt-2">
+                                                    <a href="#" class="btn btn-primary o_default_snippet_text"> Shop Now </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row align-items-center mt-5">
+                                <div class="col-lg-5 text-end">
+                                    <div class="shadow w-100 w-lg-auto shadow-lg card position-relative overflow-hidden p-4 d-inline-block me-lg-n10 z-index-1">
+                                        <h2 class="fw-600 text-uppercase mb-2">STYLE AND CONFORT</h2>
+                                        <p>JUST SIT BACK AND ENJOY THE VIEW</p>
+                                        <div class="pt-2">
+                                            <a href="#" class="btn btn-primary o_default_snippet_text"> Shop Now </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="p-2 shadow hover-scale">
+                                        <img src="/theme_alan/static/src/img/snippets/1000x700.jpg"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 1</h6>
+                <label class="e-sb-label" for="e_collections_01"><input id="e_collections_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center pt112 pb112" style="background-image: url('/theme_alan/static/src/img/snippets/1920x620.jpg');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="slide-hover">
+                                        <div class="fw-300 h1 mb-4">
+                                            GET OUR CATALOGUE
+                                        </div>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                    <div class="pt-2">
+                                        <a href="#" class="btn btn-primary o_default_snippet_text"> Shop Now </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 2</h6>
+                <label class="e-sb-label" for="e_collections_02"><input id="e_collections_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc3 o_half_screen_height">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <section class="col-lg-6 oe_img_bg o_bg_img_center text-center text-lg-end py-10" style="background-image: url('/theme_alan/static/src/img/snippets/1000x1000.jpg');">
+                                    <div class="d-flex flex-column justify-content-center h-100 me-lg-n10 position-relative z-index-2 text-lg-end text-center">
+                                        <h2 class="display-3 fw-700">Lamp Living<br />Collections</h2>
+                                        <p class="h5">LAMPS START WITH $45.00</p>
+                                    </div>
+                                </section>
+                                <div class="col-lg-6 text-center">
+                                    <div class="d-flex align-items-center h-100 py-5">
+                                        <div class="border border-white-rgba d-inline-block mx-auto py-4">
+                                            <div class="img">
+                                                <a href="#">
+                                                    <img src="/theme_alan/static/src/img/snippets/400x480.jpg" title="" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="border-top border-white-rgba p-4">
+                                                <p class="h5 fw-700 mb-3">Only $45.00</p>
+                                                <a href="#" class="btn btn-primary o_default_snippet_text"> Shop Now </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 3</h6>
+                <label class="e-sb-label" for="e_collections_03"><input id="e_collections_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section style="background-color: #000;">
+                        <div class="container-fluid">
+                            <div class="row min-vh-80">
+                                <div class="col-lg-6 text-center">
+                                    <div class="d-flex align-items-center h-100 py-5">
+                                        <div class="border border-white-rgba d-inline-block mx-auto py-4">
+                                            <div class="img">
+                                                <a href="#">
+                                                    <img src="/theme_alan/static/src/img/snippets/400x480.jpg" title="" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="border-top border-white-rgba p-4">
+                                                <p class="h5 fw-700 mb-3">Only $45.00</p>
+                                                <a href="#" class="btn btn-primary o_default_snippet_text"> Shop Now </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <section class="col-lg-6 oe_img_bg o_bg_img_center text-center text-lg-start py-10" style="background-image: url('/theme_alan/static/src/img/snippets/1000x1000.jpg');">
+                                    <div class="d-flex flex-column justify-content-center h-100 ms-lg-n10 position-relative z-index-2 text-lf-start">
+                                        <h2 class="display-3 fw-700">Lamp Living<br />Collections</h2>
+                                        <p class="h5">LAMPS START WITH $45.00</p>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 4</h6>
+                <label class="e-sb-label" for="e_collections_04"><input id="e_collections_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-5 s_comparisons">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale card border-0 rounded-0">
+                                        <div class="px-4 pb-5 text-center">
+                                            <h2 class="h5 fw-700 mb-3">NEW ARRIVAL 2018</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                                            <div class="pt-2">
+                                                <a class="line-btn text-dark" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" title="" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale card border-0 rounded-0">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" title="" alt="" class="o_we_selected_image" />
+                                        </div>
+                                        <div class="pt-4 text-center px-4">
+                                            <h2 class="h5 fw-700 mb-3">NEW ARRIVAL 2018</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                                            <div class="pt-2">
+                                                <a class="line-btn text-dark" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale card border-0 rounded-0">
+                                        <div class="px-4 pb-5 text-center">
+                                            <h2 class="h5 fw-700 mb-3">NEW ARRIVAL 2018</h2>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+                                            <div class="pt-2">
+                                                <a class="line-btn text-dark" href="#">Shop Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" title="" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 5</h6>
+                <label class="e-sb-label" for="e_collections_05"><input id="e_collections_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt80 pb80">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 my-3">
+                                    <div class="row align-items-center hover-scale g-0">
+                                        <div class="col-lg-7">
+                                            <div class="overflow-hidden">
+                                                <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="ms-lg-n5 position-relative">
+                                                <h2 class="h4 mb-3 mt-3 mt-lg-0">WOMEN COLLECTIONS</h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                                                <div class="btn-bar">
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">SHOP NOW</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3">
+                                    <div class="row align-items-center hover-scale g-0">
+                                        <div class="col-lg-7">
+                                            <div class="overflow-hidden">
+                                                <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="ms-lg-n5 position-relative">
+                                                <h2 class="h4 mb-3 mt-3 mt-lg-0">MEN COLLECTIONS</h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                                                <div class="btn-bar">
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">SHOP NOW</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 6</h6>
+                <label class="e-sb-label" for="e_collections_06"><input id="e_collections_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2 class="h1 fw-600 mb-3 m-0">SEE OUR COLLECTIONS</h2>
+                                    <div class="pt-3">
+                                        <a class="btn btn-primary o_default_snippet_text" href="#">MORE COLLECTIONS</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 7</h6>
+                <label class="e-sb-label" for="e_collections_07"><input id="e_collections_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-8.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt80 pb80">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">New Arrival</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">Man Collections</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mt-4">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">Man Collections</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">Upcoming Sales</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">50% Off</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="position-relative mb-3 mb-lg-0 hover-scale">
+                                                <section class="overflow-hidden" style="background-color: #e0e0e0;">
+                                                    <a href="#">
+                                                        <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                                    </a>
+                                                </section>
+                                                <div class="position-absolute top-0 left-0 p-4">
+                                                    <h5 class="mb-3">Start With 10$</h5>
+                                                    <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 8</h6>
+                <label class="e-sb-label" for="e_collections_08"><input id="e_collections_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-9.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt24 pb24">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 my-3">
+                                    <div class="position-relative hover-scale">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        </div>
+                                        <div class="position-absolute top-0 left-0 p-4">
+                                            <h4 class="h4 fw-600 mb-3">Start With 10$</h4>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="position-relative hover-scale">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        </div>
+                                        <div class="position-absolute top-0 left-0 p-4">
+                                            <h4 class="h4 fw-600 mb-3">Start With 10$</h4>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="position-relative hover-scale">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        </div>
+                                        <div class="position-absolute top-0 left-0 p-4">
+                                            <h4 class="h4 fw-600 mb-3">Start With 10$</h4>
+                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section> 
+                </textarea>
+                <h6 class="text-truncate">Collection 9</h6>
+                <label class="e-sb-label" for="e_collections_09"><input id="e_collections_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-10.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="pt8 pb8">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-4 my-3">
+                                    <section class="d-flex justify-content-center flex-column pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="p-4">
+                                            <label class="fw-600 dark-color m-0">EXTRA</label>
+                                            <h4 class="fw-700 h1 mb-3">20% OFF</h4>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <section class="d-flex justify-content-center flex-column pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="p-4">
+                                            <label class="fw-600 dark-color m-0">NEW</label>
+                                            <h4 class="fw-700 h1 mb-3">KID'S WEAR</h4>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <section class="d-flex justify-content-center flex-column pt80 pb80 oe_img_bg o_bg_img_center" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="p-4">
+                                            <label class="fw-600 dark-color m-0">NEW</label>
+                                            <h4 class="fw-700 h1 mb-3">COLLECTIONS</h4>
+                                            <a class="btn btn-primary o_default_snippet_text" href="#">Shop Now</a>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 10</h6>
+                <label class="e-sb-label" for="e_collections_10"><input id="e_collections_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp11">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-11.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_colored_level s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="card rounded-0 border-0 text-center bg-transparent">
+                                        <img src="/theme_alan/static/src/img/snippets/540x700.jpg" />
+                                        <h2 class="py-4 mb-0">SALE 75% OFF </h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="card rounded-0 border-0 text-center bg-transparent">
+                                        <img src="/theme_alan/static/src/img/snippets/540x700.jpg" />
+                                        <h2 class="py-4 mb-0">SALE 75% OFF </h2>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="card rounded-0 border-0 text-center bg-transparent">
+                                        <img src="/theme_alan/static/src/img/snippets/540x700.jpg" />
+                                        <h2 class="py-4 mb-0">SALE 75% OFF </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 11</h6>
+                <label class="e-sb-label" for="e_collections_11"><input id="e_collections_11" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp12">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-12.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-static-snippet-28 o_colored_level s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="sbs-tyop-wrap">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img img-fluid" />
+                                        </div>
+                                        <div class="card border-0 p-4 text-center shadow mt-n5 position-relative mx-4">
+                                            <h5 class="mb-2 text-reset fw-600">Ear Stack Magic</h5>
+                                            <p>Lorem ipsum dolor sit consectetur adipis</p>
+                                            <div class="btn-bar">
+                                                <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="sbs-tyop-wrap">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img img-fluid" />
+                                        </div>
+                                        <div class="card border-0 p-4 text-center shadow mt-n5 position-relative mx-4">
+                                            <h5 class="mb-2 text-reset fw-600">Ear Stack Magic</h5>
+                                            <p>Lorem ipsum dolor sit consectetur adipis</p>
+                                            <div class="btn-bar">
+                                                <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 s_col_no_bgcolor my-3">
+                                    <div class="sbs-tyop-wrap">
+                                        <div class="overflow-hidden">
+                                            <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img img-fluid" />
+                                        </div>
+                                        <div class="card border-0 p-4 text-center shadow mt-n5 position-relative mx-4">
+                                            <h5 class="mb-2 text-reset fw-600">Ear Stack Magic</h5>
+                                            <p>Lorem ipsum dolor sit consectetur adipis</p>
+                                            <div class="btn-bar">
+                                                <a class="btn btn-primary o_default_snippet_text" href="#">Explore Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 12</h6>
+                <label class="e-sb-label" for="e_collections_12"><input id="e_collections_12" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.collection_temp13">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/collection-13.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="oe_img_bg o_bg_img_center s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="d-flex justify-content-center flex-column oe_img_bg o_bg_img_center p-3" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="card rounded-0 bg-transparent pt240">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h6 class="m-2">BURBERRY 90ML</h6>
+                                                </div>
+                                                <div class="offer">
+                                                    <a href="#" class="btn btn-secondary flat oe_edited_link">SHOP NOW</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="d-flex justify-content-center flex-column oe_img_bg o_bg_img_center p-3" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="card rounded-0 bg-transparent pt240">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h6 class="m-2">KNIGHT 90ML</h6>
+                                                </div>
+                                                <div class="offer">
+                                                    <a href="#" class="btn btn-secondary flat oe_edited_link">SHOP NOW</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="d-flex justify-content-center flex-column oe_img_bg o_bg_img_center p-3" style="background-image: url('/theme_alan/static/src/img/snippets/1000x800.jpg');">
+                                        <div class="card rounded-0 bg-transparent pt240">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div>
+                                                    <h6 class="m-2">CALANTI 90ML</h6>
+                                                </div>
+                                                <div class="offer">
+                                                    <a href="#" class="btn btn-secondary flat oe_edited_link">SHOP NOW</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Collection 13</h6>
+                <label class="e-sb-label" for="e_collections_13"><input id="e_collections_13" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- offer form view -->
-    <record id="as_product_offer_form_view" model="ir.ui.view">
+    <record id="as_product_info_form_view" model="ir.ui.view">
         <field name="name">as.product.extra.info.form</field>
         <field name="model">as.product.extra.info</field>
         <field name="arch" type="xml">
@@ -11,65 +11,71 @@
                         <button class="oe_stat_button" type="object" name="as_product_info_design" icon="fa-edit">
                             <div class="o_stat_info">
                                 <span class="o_stat_value">
-                                    Design Info
+                                    Design Dialog
                                 </span>
                             </div>
                         </button>
                     </div>
-                    <group string="Extra Information">
-                        <group>
-                            <field name="types"/>
-                        </group>
-                        <group>
-                            <field name="icon"/>
-                        </group>
-                        <span class=" float-right text-muted"> <b>Note</b>: Select icon from <a href="https://fontawesome.com/v4/icons/"> Font Awesome </a></span>
-                    </group>
                     <group>
                         <group>
                             <field name="name"/>
                         </group>
                         <group>
-                            <field name="short_description" attrs="{'required':[('types','=','offer')]}"/>
+                            <field name="types" widget="radio"/>
                         </group>
                     </group>
-                    <group string="Products">
-                        <field name="product_ids" widget="many2many_tags"/>
+                    <group>
+                        <group>
+                            <field name="icon" placeholder="For example: write 'tags'"/>
+                        </group>
+                        <span class="text-muted align-right"> <b>Note</b>: Select icon from <a href="https://fontawesome.com/v4/icons/"> Font Awesome </a></span>
                     </group>
+                    <notebook>
+                        <page name="adv_product" string="Products" invisible="types == 'attrib'">
+                            <group>
+                                <field name="product_ids" widget="many2many_tags"/>
+                            </group>
+                        </page>
+                        <page name="adv_descrption" string="Description" invisible="types == 'attrib'">
+                            <group>
+                                <field name="short_description" required="types == 'offer'"/>
+                            </group>
+                        </page>
+                        <page name="adv_modal" string="Dialog">
+                            <group>
+                                <field name="detail_description" />
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
     </record>
-
     <!-- offer tree view -->
-    <record id="as_product_offer_tree_view" model="ir.ui.view">
+    <record id="as_product_info_tree_view" model="ir.ui.view">
         <field name="name">as.product.extra.info.tree</field>
         <field name="model">as.product.extra.info</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
-                <field name="product_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
-
     <!-- Inherit Product template form view for offer -->
-    <record id="as_offer_product_template_inherit" model="ir.ui.view">
+    <record id="as_product_template_offers_inherit" model="ir.ui.view">
         <field name="name">product.template.offer.inherit</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='alternative_product_ids']" position="after">
                 <field name="product_offer_ids" widget="many2many_tags"/>
-                <field name="hover_image" widget="image"/>
             </xpath>
         </field>
     </record>
-
     <!-- Product offer action view -->
     <record id="action_product_info_menu" model="ir.actions.act_window">
-        <field name="name">Product Extra Info</field>
+        <field name="name">Product Advance Info</field>
         <field name="res_model">as.product.extra.info</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
@@ -78,7 +84,7 @@
             </p>
         </field>
     </record>
-
+    <!-- Product Extra Info Field -->
     <record id="product_attribute_view_form_extend" model="ir.ui.view">
         <field name="name">product.attribute.view.form.inherit</field>
         <field name="model">product.attribute</field>
@@ -89,7 +95,6 @@
             </xpath>
         </field>
     </record>
-
     <!-- Product offer menu-->
-    <menuitem id="menu_action_product_info" name="Product Info" action="action_product_info_menu" parent="website_sale.menu_catalog" sequence="5"/>
+    <menuitem id="menu_action_product_info" name="Product Advance Info" action="action_product_info_menu" parent="website_sale.menu_catalog" sequence="2"/>
 </odoo>

@@ -1,0 +1,38 @@
+.as-main-header {
+    .navbar-nav {
+        .nav-item {
+            &.as-advance-nav-dropdown {
+                > a {
+                    &:after {
+                        content: "\f107";
+                        font-family: FontAwesome;
+                        border: 0;
+                        vertical-align: top;
+                        display: inline-block;
+                        margin-left: 0.255em;
+                    }
+                }
+            }
+        }
+        .as-advance-nav-dropdown {
+            position: static !important;
+            .as-advance-header {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                display: none;
+                z-index: 1;
+            }
+            &:hover {
+                .as-advance-header {
+                    display: block;
+                }
+            }
+        }
+        .as-l1-link {
+            color: var(--as-ah-link-color) !important;
+            background-color: var(--as-ah-l1-link-bg) !important;
+        }
+    }
+}

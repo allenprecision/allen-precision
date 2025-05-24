@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_our_client_templates">
+
+<t t-name="theme_alan.our_client_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/our_client-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Client 1</h6>
+                <label class="e-sb-label" for="e_our_client_01"><input id="e_our_client_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.our_client_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/our_client-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 client-snippet-2 s_parallax parallax s_parallax_is_fixed o_half_screen_height">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-9 text-center">
+                                    <div class="h1 mb-4 pb-4">30.000 Users Worldwide.</div>
+                                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                                <div class="col-lg-2 col-md-4 col-6">
+                                    <img src="/theme_alan/static/src/img/snippets/800x400.jpg" title="" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Client 2</h6>
+                <label class="e-sb-label" for="e_our_client_02"><input id="e_our_client_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

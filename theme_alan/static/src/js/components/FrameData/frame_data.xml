@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="theme_alan.frame_data" owl="1">
+    <div class="modal-body-in">
+        <div class="as-edit-action-menu">
+            <div class="as-edit-action-in">
+                <div class="as-ea-edit-col as-ea-edit-right">
+                    <button class="btn as-btn-back" t-on-click="_backToFrame"> <i class="fa fa-chevron-left"></i> Back </button>
+                    <button class="btn as-btn-preview" t-on-click="_showPreview"> <i class="fa fa-eye"></i> Preview </button>
+                </div>
+            </div>
+        </div>
+        <div class="as-edit-ui-workspace">
+            <div class="container as-frame-data d-none"/>
+        </div>
+
+    </div>
+</t>
+
+</templates>

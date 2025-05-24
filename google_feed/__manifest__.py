@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Google Feed for Products',
-    'version': '14.0',
-    'category': 'hidden',
+    'version': '17.0',
+    'category': 'Extra Tools',
     'license': 'OPL-1',
     'support':'info@simbeez.com',
     'author':'SimBeez IT solutions LLP',
@@ -17,9 +17,10 @@
         'views/google_feed_config_view.xml',
         'views/server_config_view.xml', 
         'views/feed_process_error_log.xml',
+        'views/sequence_feed_order.xml',
         'data/cron_google_feed_views.xml',],
     'currency': 'EUR',
-    'price': 70.0,
+    'price': 80.0,
     'installable': True,
     'application': False,
     'auto_install': False,

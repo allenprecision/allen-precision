@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Product FAQ Form View -->
+    <record id="view_product_faqs_form" model="ir.ui.view">
+        <field name="name">product.faqs.form</field>
+        <field name="model">product.faqs</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="question"/>
+                        </group>
+                        <group>
+                            <field name="website_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="answer" widget="html"/>
+                    </group>
+                    <notebook>
+                        <page name="product" string="Products">
+                            <field name="products"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Product FAQ Tree View -->
+    <record id="view_product_faqs_tree" model="ir.ui.view">
+        <field name="name">product.faqs.tree</field>
+        <field name="model">product.faqs</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="question"/>
+            </tree>
+        </field>
+    </record>
+
+     <!-- Product FAQS action view -->
+     <record id="action_product_faqs_menu" model="ir.actions.act_window">
+        <field name="name">Product FAQs</field>
+        <field name="res_model">product.faqs</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No FAQs found
+            </p>
+        </field>
+    </record>
+
+    <!-- FAQs Menu -->
+    <menuitem id="menu_action_product_faqs" name="Product FAQs" action="action_product_faqs_menu" parent="website_sale.menu_catalog" sequence="2"/>
+</odoo>

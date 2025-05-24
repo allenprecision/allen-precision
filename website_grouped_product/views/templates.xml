@@ -4,21 +4,26 @@
     <template id="groupo_products" inherit_id="website_sale.products_item" name="Group Product Item">
         <xpath expr="//div[hasclass('product_price')]/span" position="attributes">
             <attribute name="t-if">not product.is_combo</attribute>
-            <attribute add="#{'product_price hide-product_price' if product.is_combo else ''}" name="t-attf-class" separator=" "/>
+            <attribute add="#{'product_price hide-product_price' if product.is_combo else ''}" name="t-attf-class"
+                       separator=" "/>
         </xpath>
     </template>
 
     <!-- Add to Cart Shop Page -->
-    <template id="custom_products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
-        <xpath expr="//t[@t-if='product_variant_id']" position="replace">
-            <t t-if="product_variant_id and product.is_combo">
-                <a aria-label="Shopping cart" class="btn btn-secondary" role="button" t-att-href="keep('/shop/product/%s' % slug(product), page=(None))" title="Shopping cart">
+    <template id="website_sale.products_add_to_cart" inherit_id="website_sale.products_item" active="False" name="Add to Cart">
+        <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="inside">
+            <t t-set="product_variant_id" t-value="product._get_first_possible_variant_id()"/>
+            <input name="product_id" t-att-value="product_variant_id" type="hidden"/>
+            <t t-if="product_variant_id and product.is_combo and template_price_vals['price_reduce'] or not website.prevent_zero_price_sale ">
+                <a aria-label="Shopping cart" class="btn btn-secondary" role="button"
+                   t-att-href="keep('/shop/product/%s' % slug(product), page=(None))" title="Shopping cart">
                     <span class="fa fa-shopping-cart"/>
                 </a>
             </t>
             <t t-else="">
-                <t t-if="product_variant_id">
-                    <a aria-label="Shopping cart" class="btn btn-secondary a-submit" href="#" role="button" title="Shopping cart">
+                <t t-if="product_variant_id and template_price_vals['price_reduce'] or not website.prevent_zero_price_sale">
+                    <a aria-label="Shopping cart" class="btn btn-secondary a-submit" href="#" role="button"
+                       title="Shopping cart">
                         <span class="fa fa-shopping-cart"/>
                     </a>
                 </t>
@@ -29,14 +34,17 @@
     <!-- Hide Shop Product Price -->
     <template id="custom_product_price" inherit_id="website_sale.product_price" name="Group Product Item">
         <xpath expr="//div[@itemprop='offers']" position="attributes">
-            <attribute add="#{'product_price hide-product_price' if product.is_combo else ''}" name="t-attf-class" separator=" "/>
+            <attribute add="#{'product_price hide-product_price' if product.is_combo else ''}" name="t-attf-class"
+                       separator=" "/>
         </xpath>
     </template>
 
     <!-- Shop Compare -->
     <template id="custom_grp_shop_compare" inherit_id="website_sale_comparison.add_to_compare">
         <xpath expr="//button[hasclass('o_add_compare')]" position="replace">
-            <button aria-label="Compare" class="d-none d-md-inline-block btn btn-secondary o_add_compare" data-action="o_comparelist" role="button" t-att-data-product-product-id="product_variant_id" t-if="product_variant_id and not product.is_combo" title="Compare" type="button">
+            <button aria-label="Compare" class="d-none d-md-inline-block btn btn-secondary o_add_compare"
+                    data-action="o_comparelist" role="button" t-att-data-product-product-id="product_variant_id"
+                    t-if="product_variant_id and not product.is_combo" title="Compare" type="button">
                 <span class="fa fa-exchange"/>
             </button>
         </xpath>
@@ -45,36 +53,46 @@
     <!-- shop wishlist -->
     <template id="custom_grp_shop_wishlist" inherit_id="website_sale_wishlist.add_to_wishlist">
         <xpath expr="//button[hasclass('o_add_wishlist')]" position="replace">
-            <button class="btn btn-secondary o_add_wishlist" data-action="o_wishlist" role="button" t-att-data-product-product-id="product_variant_id" t-att-data-product-template-id="product.id" t-att-disabled="in_wish or None" t-if="product_variant_id and not product.is_combo" title="Add to Wishlist" type="button">
+            <button class="btn btn-secondary o_add_wishlist" data-action="o_wishlist" role="button"
+                    t-att-data-product-product-id="product_variant_id" t-att-data-product-template-id="product.id"
+                    t-att-disabled="in_wish or None" t-if="product_variant_id and not product.is_combo"
+                    title="Add to Wishlist" type="button">
                 <span aria-label="Add to wishlist" class="fa fa-heart" role="img"/>
             </button>
         </xpath>
     </template>
     <template id="group_product_item_add_class" inherit_id="website_sale.product">
         <xpath expr="//form" position="attributes">
-            <attribute add="#{'pro_combo' if product.is_combo and product.combo_product_id else ''}" name="t-attf-class" separator=" "/>
+            <attribute add="#{'pro_combo' if product.is_combo and product.combo_product_id else ''}" name="t-attf-class"
+                       separator=" "/>
         </xpath>
     </template>
 
     <!-- Product Detail Compare -->
-    <template id="custom_grp_product_compare" inherit_id="website_sale_comparison.add_to_compare_button">
-        <xpath expr="//button[hasclass('o_add_compare_dyn')]" position="replace">
-            <button aria-label="Compare" class="d-none d-md-inline-block btn btn-link mt16 o_add_compare_dyn" data-action="o_comparelist" role="button" t-att-data-product-product-id="product_variant.id" t-if="product_variant and not product.is_combo" type="button">
-                <span class="fa fa-exchange"/>Add to compare</button>
-        </xpath>
-    </template>
+<!--    <template id="custom_grp_product_compare" inherit_id="website_sale_comparison.product_add_to_compare">-->
+<!--        <xpath expr="//button[hasclass('o_add_compare_dyn')]" position="replace">-->
+<!--            <button aria-label="Compare" class="d-none d-md-inline-block btn btn-link mt16 o_add_compare_dyn"-->
+<!--                    data-action="o_comparelist" role="button" t-att-data-product-product-id="product_variant.id"-->
+<!--                    t-if="product_variant and not product.is_combo" type="button">-->
+<!--                <span class="fa fa-exchange"/>Add to compare-->
+<!--            </button>-->
+<!--        </xpath>-->
+<!--    </template>-->
 
     <!-- Product Detail Wishlist -->
     <template id="custom_grp_product_wishlist" inherit_id="website_sale_wishlist.product_add_to_wishlist">
         <xpath expr="//button[hasclass('o_add_wishlist_dyn')]" position="replace">
-            <button class="btn btn-link mt16 o_add_wishlist_dyn" data-action="o_wishlist" role="button" t-att-data-product-product-id="product_variant.id" t-att-data-product-template-id="product.id" t-att-disabled="in_wish or None" t-if="product_variant and not product.is_combo" type="button">
-                <span aria-label="Add to wishlist" class="fa fa-heart" role="img"/>Add to wishlist</button>
+            <button class="btn btn-link mt16 o_add_wishlist_dyn" data-action="o_wishlist" role="button"
+                    t-att-data-product-product-id="product_variant.id" t-att-data-product-template-id="product.id"
+                    t-att-disabled="in_wish or None" t-if="product_variant and not product.is_combo" type="button">
+                <span aria-label="Add to wishlist" class="fa fa-heart" role="img"/>Add to wishlist
+            </button>
         </xpath>
     </template>
 
     <!-- Product Quantity Template -->
     <template id="product_quantity" inherit_id="website_sale.product_quantity">
-        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
+        <xpath expr="//div[contains(@t-attf-class, 'css_quantity')]" position="attributes">
             <attribute name="t-if">not product.is_combo</attribute>
         </xpath>
     </template>
@@ -83,13 +101,14 @@
     <template id="group_product_item" inherit_id="website_sale.product" name="Group Product">
         <xpath expr="//div[@id='product_details']//span[@itemprop='url']" position="after">
             <t t-if="product.is_combo">
-                <input class="main_product_id" name="main_product_id" t-att-value="product.product_variant_id.id" type="hidden"/>
+                <input class="main_product_id" name="main_product_id" t-att-value="product.product_variant_id.id"
+                       type="hidden"/>
                 <t t-call="website_grouped_product.group_child_products"/>
             </t>
         </xpath>
     </template>
     <template id="group_child_products" name="Child Products">
-        <div class="cs-group-table cs_group_table" id="p_variants">
+        <div class="cs-group-table cs_group_table" id="p_vaiants">
             <div class="row csg-head">
                 <div class="col-3 col-name">Name</div>
                 <div class="col-3 col-qty">Qty.</div>
@@ -100,31 +119,39 @@
                     <input name="csrf_token" t-att-value="request.csrf_token()" type="hidden"/>
                     <t t-if="combo_line.product_id.product_tmpl_id.website_id">
                         <t t-if="combo_line.product_id.product_tmpl_id.website_id.id == request.website.id">
-                            <div class="row p_variant js_product js_main_product">
+                            <div class="row p_variant js_main_product">
                                 <t t-placeholder="select">
-                                    <input class="product_id" name="product_id" t-att-value="combo_line.product_id.id" type="hidden"/>
-                                    <input class="product_template_id" name="product_template_id" t-att-value="combo_line.product_id.product_tmpl_id.id" type="hidden"/>
+                                    <input class="product_id" name="product_id" t-att-value="combo_line.product_id.id"
+                                           type="hidden"/>
+                                    <input class="product_template_id" name="product_template_id"
+                                           t-att-value="combo_line.product_id.product_tmpl_id.id" type="hidden"/>
                                     <t t-call="sale.variants" t-if="first_possible_combination">
                                         <t t-set="ul_class" t-value="'flex-column'"/>
                                         <t t-set="parent_combination" t-value="None"/>
                                     </t>
                                     <t t-else="">
-                                        <ul class="d-none js_add_cart_variants" t-att-data-attribute_exclusions="{'exclusions: []'}"/>
+                                        <ul class="d-none js_add_cart_variants"
+                                            t-att-data-attribute_exclusions="{'exclusions: []'}"/>
                                     </t>
                                 </t>
                                 <input name="combo_product_id" t-att-value="combo_line.product_id.id" type="hidden"/>
                                 <t t-set="pro_template" t-value="combo_line.product_id.product_tmpl_id"/>
                                 <div class="col-3 col-name" t-esc="combo_line.product_id.display_name"/>
                                 <div class="col-3 col-qty">
-                                    <div class="css_quantity input-group oe_website_spinner custom" contenteditable="false">
+                                    <div class="css_quantity input-group oe_website_spinner custom"
+                                         contenteditable="false">
                                         <div class="input-group-prepend">
-                                            <a aria-label="Remove one" class="btn btn-secondary js_add_cart_json" t-attf-href="#" title="Remove one">
+                                            <a aria-label="Remove one" class="btn btn-secondary js_add_cart_json"
+                                               t-attf-href="#" title="Remove one">
                                                 <i class="fa fa-minus"/>
                                             </a>
                                         </div>
-                                        <input class="form-control quantity" data-min="0" name="add_qty" placeholder="0" t-att-value="0" type="text"/>
+                                        <input class="form-control quantity" data-min="0" name="add_qty" placeholder="0"
+                                               t-att-value="0" type="text"/>
                                         <div class="input-group-append">
-                                            <a aria-label="Add one" class="btn btn-secondary float_left js_add_cart_json" t-attf-href="#" title="Add one">
+                                            <a aria-label="Add one"
+                                               class="btn btn-secondary float_left js_add_cart_json" t-attf-href="#"
+                                               title="Add one">
                                                 <i class="fa fa-plus"/>
                                             </a>
                                         </div>
@@ -133,8 +160,10 @@
                                 <div class="col-3 col-price">
                                     <t t-call="website_sale.product_price">
                                         <t t-set="product_id" t-value="combo_line.product_id"/>
-                                        <t t-set="first_possible_combination" t-value="combo_line.product_id.product_tmpl_id._get_first_possible_combination()"/>
-                                        <t t-set="combination_info" t-value="combo_line.product_id.product_tmpl_id._get_combination_info(product_id=combo_line.product_id,only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                        <t t-set="first_possible_combination"
+                                           t-value="combo_line.product_id.product_tmpl_id._get_first_possible_combination()"/>
+                                        <t t-set="combination_info"
+                                           t-value="combo_line.product_id.product_tmpl_id._get_combination_info(product_id=combo_line.product_id,only_template=True, add_qty=add_qty or 1)"/>
                                     </t>
                                 </div>
                                 <div class="col-3 col-inventory">
@@ -144,16 +173,19 @@
                         </t>
                     </t>
                     <t t-else="">
-                        <div class="row p_variant js_product js_main_product">
+                        <div class="row p_variant js_main_product">
                             <t t-placeholder="select">
-                                <input class="product_id" name="product_id" t-att-value="combo_line.product_id.id" type="hidden"/>
-                                <input class="product_template_id" name="product_template_id" t-att-value="combo_line.product_id.product_tmpl_id.id" type="hidden"/>
+                                <input class="product_id" name="product_id" t-att-value="combo_line.product_id.id"
+                                       type="hidden"/>
+                                <input class="product_template_id" name="product_template_id"
+                                       t-att-value="combo_line.product_id.product_tmpl_id.id" type="hidden"/>
                                 <t t-call="sale.variants" t-if="first_possible_combination">
                                     <t t-set="ul_class" t-value="'flex-column'"/>
                                     <t t-set="parent_combination" t-value="None"/>
                                 </t>
                                 <t t-else="">
-                                    <ul class="d-none js_add_cart_variants" t-att-data-attribute_exclusions="{'exclusions: []'}"/>
+                                    <ul class="d-none js_add_cart_variants"
+                                        t-att-data-attribute_exclusions="{'exclusions: []'}"/>
                                 </t>
                             </t>
                             <input name="combo_product_id" t-att-value="combo_line.product_id.id" type="hidden"/>
@@ -162,13 +194,16 @@
                             <div class="col-3 col-qty">
                                 <div class="css_quantity input-group oe_website_spinner" contenteditable="false">
                                     <div class="input-group-prepend">
-                                        <a aria-label="Remove one" class="btn btn-secondary js_add_cart_json" t-attf-href="#" title="Remove one">
+                                        <a aria-label="Remove one" class="btn btn-secondary js_add_cart_json"
+                                           t-attf-href="#" title="Remove one">
                                             <i class="fa fa-minus"/>
                                         </a>
                                     </div>
-                                    <input class="form-control quantity" data-min="0" name="add_qty" placeholder="0" t-att-value="int('0')" type="text"/>
+                                    <input class="form-control quantity" data-min="0" name="add_qty" placeholder="0"
+                                           t-att-value="int('0')" type="text"/>
                                     <div class="input-group-append">
-                                        <a aria-label="Add one" class="btn btn-secondary float_left js_add_cart_json" t-attf-href="#" title="Add one">
+                                        <a aria-label="Add one" class="btn btn-secondary float_left js_add_cart_json"
+                                           t-attf-href="#" title="Add one">
                                             <i class="fa fa-plus"/>
                                         </a>
                                     </div>
@@ -177,8 +212,10 @@
                             <div class="col-3 col-price">
                                 <t t-call="website_sale.product_price">
                                     <t t-set="product_id" t-value="combo_line.product_id"/>
-                                    <t t-set="first_possible_combination" t-value="combo_line.product_id.product_tmpl_id._get_first_possible_combination()"/>
-                                    <t t-set="combination_info" t-value="combo_line.product_id.product_tmpl_id._get_combination_info(product_id=combo_line.product_id,only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                    <t t-set="first_possible_combination"
+                                       t-value="combo_line.product_id.product_tmpl_id._get_first_possible_combination()"/>
+                                    <t t-set="combination_info"
+                                       t-value="combo_line.product_id.product_tmpl_id._get_combination_info(product_id=combo_line.product_id,only_template=True, add_qty=add_qty or 1)"/>
                                 </t>
                             </div>
                             <div class="col-3 col-inventory">

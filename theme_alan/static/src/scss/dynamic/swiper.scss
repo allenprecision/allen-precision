@@ -1,0 +1,104 @@
+:root {
+    --swiper-theme-color: #{$primary};
+}
+
+
+
+.swiper {
+    opacity: 0;
+    &.swiper-initialized {
+        opacity: 1;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 25px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: $dark;
+        color: $white;
+        font-size: 1.5rem;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: auto;
+        margin: auto;
+        z-index: 2;
+        transition: ease all 0.35s;
+        opacity: 0 !important;
+        &:hover {
+            background: $primary;
+            color: $white;
+        }
+        &.swiper-button-disabled {
+            opacity: 0.5 !important;
+        }
+        &:after {
+            display: none;
+        }
+    }
+    .swiper-button-next {
+        left: auto;
+        right: 0;
+    }
+    &:hover {
+        .swiper-button-prev,
+        .swiper-button-next {
+            opacity: 1 !important;
+            &.swiper-button-disabled {
+                opacity: 0.5 !important;
+            }
+        }
+    }
+    &.swiper-cards {
+        .swiper-button-prev,
+        .swiper-button-next {
+            display: none !important;
+        }
+    }
+    
+    .swiper-pagination-bullets {
+        position: relative;
+        padding-top: 30px;
+        bottom: 0px;
+    }
+
+    .swiper-pagination-progressbar {
+        position: relative;
+        top: auto !important;
+        margin-top: 30px;
+    }
+
+    .swiper-pagination-fraction {
+        position: relative;
+        bottom: auto !important;
+        margin-top: 30px;
+        color: $gray-300;
+        font-size: 14px;
+        line-height: 1;
+        .swiper-pagination-total {
+            font-size: 13px;
+            color: $dark;
+            font-weight: 600;
+        }
+        .swiper-pagination-current {
+            font-size: 18px;
+            color: $primary;
+            font-weight: 600;
+        }
+    }
+
+}
+
+
+.s_dynamic_snippets {
+    .swiper-wrapper {
+        display: flex;
+        .swiper-slide {
+            height: auto;            
+        }
+    }
+}

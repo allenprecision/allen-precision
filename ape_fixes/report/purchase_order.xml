@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="report_purchaseorder_document_inherit" inherit_id="purchase.report_purchaseorder_document">
+            <!-- Remove the Discount column header -->
+            <xpath expr="//th[@name='th_discount']" position="replace"/>
+
+            <!-- Remove the Discount column values from order lines -->
+            <xpath expr="//td[span//span[@t-field='line.discount']]" position="replace"/>
+
+            <xpath expr="//th[@name='th_taxes']" position="replace"/>
+        <xpath expr="//td[@name='td_taxes']" position="replace"/>
+    <xpath expr="//th[@name='th_date_req']" position="replace"/>
+    <xpath expr="//td[span[@t-field='line.date_planned']]" position="replace"/>
+    <xpath expr="//div[@id='informations']//p[@t-field='o.date_order']" position="replace">
+            <p>
+                <t t-esc="o.date_order.strftime('%Y-%m-%d')"/>
+            </p>
+        </xpath>
+
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="ppg_1" model="as.ppg">
+            <field name="name">20</field>
+        </record>
+        <record id="ppg_2" model="as.ppg">
+            <field name="name">30</field>
+        </record>
+        <record id="ppg_3" model="as.ppg">
+            <field name="name">40</field>
+        </record>
+        <record id="ppg_4" model="as.ppg">
+            <field name="name">50</field>
+        </record>
+        <record id="ppg_5" model="as.ppg">
+            <field name="name">60</field>
+        </record>
+    </data>
+</odoo>

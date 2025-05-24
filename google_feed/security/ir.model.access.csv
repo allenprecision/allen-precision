@@ -2,3 +2,4 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_module_google_feed,google_feed_config,model_google_feed_config,google_feed.group_google_feed_generate,1,1,1,1
 access_module_server_config,server_config_model,model_server_config,google_feed.group_google_feed_generate,1,1,1,1
 access_module_server_config_for_admin,server_config_model_for_admin,model_feed_process_error_log,google_feed.group_google_feed_generate,1,1,1,1
+access_optional_field_info,access.optional.field.info,model_google_optional_fields,,1,1,1,1

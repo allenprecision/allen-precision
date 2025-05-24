@@ -32,22 +32,22 @@
         </xpath>
     </template>
 
-    <template id="report_invoice_document_inherit_sale_inherit" inherit_id='sale.report_invoice_document_inherit_sale'>
-        <xpath expr="//t[@t-set='address']" position='before'>
+<!--    <template id="report_invoice_document_inherit_sale_inherit" inherit_id='sale.report_saleorder_document'>-->
+<!--        <xpath expr="//t[@t-set='address']" position='before'>-->
 
-            <div class='row' >
-                <div class='col-6' name="inovice_address_block">
-                    <strong>Invoice Address:</strong>
-                    <div t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-                </div>
-                <div class='col-6' groups="sale.group_delivery_invoice_address" name="shipping_address_block">
-                    <strong>Shipping Address:</strong>
-                    <div t-field="o.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-                </div>
-            </div>
-        </xpath>
-        <xpath expr="//t[@t-set='address']" position='replace'>
-            <t t-set="address"/>
-        </xpath>
-    </template>
+<!--            <div class='row' >-->
+<!--                <div class='col-6' name="inovice_address_block">-->
+<!--                    <strong>Invoice Address:</strong>-->
+<!--                    <div t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+<!--                </div>-->
+<!--                <div class='col-6' groups="sale.group_delivery_invoice_address" name="shipping_address_block">-->
+<!--                    <strong>Shipping Address:</strong>-->
+<!--                    <div t-field="doc.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </xpath>-->
+<!--        <xpath expr="//t[@t-set='address']" position='replace'>-->
+<!--            <t t-set="address"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
 </odoo>

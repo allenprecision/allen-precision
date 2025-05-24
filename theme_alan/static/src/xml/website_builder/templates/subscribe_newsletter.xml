@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_subscbie_newsletter_templates">
+
+<t t-name="theme_alan.subscribe_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-1">
+                        <div class="container">
+                            <section class="o_colored_level o_cc o_cc4 py-7 px-lg-5 px-4">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4">
+                                        <div class="my_subscribe_snippet_1 d-flex align-items-center py-4">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-envelope fa-3x"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-4">
+                                                <h5 class="mb-0">SIGN UP <br />FOR NEWS LETTERS</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <p class="m-0 py-4">
+                                            Subscribe to the  monthly newsletter  for all the latest updates.
+                                        </p>
+                                    </div>
+                                    <div class="col-lg-5 py-4 as_s_newsletter_1">
+                                        <p class="mb-0"></p>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 1</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_01"><input id="e_subscbie_newsletter_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-2 o_cc o_cc2 py-7">
+                        <div class="container">
+                            <div class="text-center">
+                                <h1 class="mb-lg-5 mb-4 fw-500">Follow products and discounts on Instagram</h1>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-6 col-md-3 col-lg-2 my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-12 mt-6">
+                                    <div class="text-center">
+                                        <h1 class="mb-lg-5 mb-4 fw-500">Or subscribe to the newsletter</h1>
+                                    </div>
+                                    <div class="as_s_newsletter_2">
+                                        <div class="col-lg-6 mx-auto">
+                                            <p class="mb-0"></p>
+                                        </div>                                  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 2</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_02"><input id="e_subscbie_newsletter_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-3 o_cc o_cc2 py-7">
+                        <div class="container">
+                            <div class="text-center">
+                                <h1 class="fw-500">Sign up for Our Latest Updates</h1>
+                                <p class="mb-5">Be first to receive early access to our latest collections, exclusive events and news.</p>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="text-center">
+                                    <div class="as_s_newsletter_3">
+                                        <div class="col-lg-5 mx-auto">
+                                            <p class="mb-0"></p>
+                                        </div>                                  
+                                    </div>
+                                    <p class="small mt-3">By entering your email address you are accepting our <a class="text-reset" href="#">Terms &amp; Conditions</a> and <a class="text-reset" href="#">Privacy &amp; Cookie Policy.</a></p>
+                                    <div class="text-center my-4">OR</div>
+                                    <h5 class="mb-4">Follow us</h5>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <a class="text-reset" href="#"><i class="fa fa-github rounded m-1"></i></a>
+                                        <a class="text-reset" href="#"><i class="fa fa-linkedin rounded m-1"></i></a>
+                                        <a class="text-reset" href="#"><i class="fa fa-instagram rounded m-1"></i></a>
+                                        <a class="text-reset" href="#"><i class="fa fa-facebook rounded m-1"></i></a>
+                                        <a class="text-reset" href="#"><i class="fa fa-dribbble rounded m-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 3</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_03"><input id="e_subscbie_newsletter_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-4 o_cc o_cc2 pt96">
+                        <div class="container-fluid p-lg-0">
+                            <div class="text-center">
+                                <h1 class="fw-500 mb-5">subscribe to the newsletter</h1>
+                                <div class="as_s_newsletter_4 text-center">
+                                   <div class="col-lg-5 mx-auto">
+                                       <p class="mb-0"></p>
+                                       <p class="small mt-3">By entering your email address you are accepting our <a class="text-reset" href="#">Terms &amp; Conditions</a>and <a class="text-reset" href="#">Privacy &amp; Cookie Policy.</a></p>
+                                   </div> 
+                                </div>
+                            </div>
+                            <div class="row g-0 align-items-center mt-10">
+                                <div class="col-lg my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg my-3">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 4</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_04"><input id="e_subscbie_newsletter_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-5 o_cc o_cc2 pt96">
+                        <div class="container-fluid p-lg-0">
+                            <div class="row g-0 align-items-center mt-10">
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                                <div class="col-lg-2 my-3 my-lg-0">
+                                    <a href="#"><img class="img img-fluid mx-auto" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 5</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_05"><input id="e_subscbie_newsletter_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-2 as-subscribe-snippet-5 pt40 pb40">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-7 my-3">
+                                    <div>
+                                        <h5 class="h1">
+                                            Join now and get <font class="text-o-color-1">20% OFF</font> <br/>your next purchase !
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 my-3 as_s_newsletter_2 as_s_newsletter_5">
+                                    <p class="mb-0"></p>
+                                    <p class="small mt-3">By entering your email address you are accepting our <a class="text-reset" href="#">Terms &amp; Conditions</a> and <a class="text-reset" href="#">Privacy &amp; Cookie Policy.</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 6</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_06"><input id="e_subscbie_newsletter_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.subscribe_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/subscbie_newsletter-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-subscribe-snippet-2 as-subscribe-snippet-5 pt40 pb40 o_cc o_cc2">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 my-3">
+                                    <div>
+                                        <h5 class="h2">Sign up Newsletter</h5>
+                                        <p class="mb-0">Be first to receive early access to our latest collections, exclusive events and news.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 my-3 as_s_newsletter_2 as_s_newsletter_5">
+                                    <p class="mb-0"></p>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex align-items-center justify-content-end">
+                                        <a href="#" class="text-reset"><i class="fa fa-dribbble rounded mx-1"></i></a>
+                                        <a href="#" class="text-reset"><i class="fa fa-facebook rounded mx-1"></i></a>
+                                        <a href="#" class="text-reset"><i class="fa fa-linkedin rounded mx-1"></i></a>
+                                        <a href="#" class="text-reset"><i class="fa fa-instagram rounded mx-1"></i></a>
+                                        <a href="#" class="text-reset"><i class="fa fa-github rounded mx-1"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Newsletter 7</h6>
+                <label class="e-sb-label" for="e_subscbie_newsletter_07"><input id="e_subscbie_newsletter_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

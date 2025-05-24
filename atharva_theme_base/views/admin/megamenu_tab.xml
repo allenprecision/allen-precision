@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="megamenu_tabs_view_tree" model="ir.ui.view">
+    <field name="name">megamenu_tabs.view.tree</field>
+    <field name="model">as.megamenu.tabs</field>
+    <field name="arch" type="xml">
+        <tree editable="bottom">
+            <field name="name"/>
+            <field name="redirect"/>
+            <field name="icon" widget="image" options="{'size': [30, 30]}" />
+        </tree>
+    </field>
+</record>
+
+<record id="megamenu_tabs_ppg" model="ir.actions.act_window">
+    <field name="name">Megamenu Tabs</field>
+    <field name="res_model">as.megamenu.tabs</field>
+    <field name="view_mode">tree</field>
+     <field name="help" type="html">
+        <p class="o_view_nocontent_empty_folder">
+            No Megamenu Tabs Available!
+        </p>
+    </field>
+</record>
+
+<menuitem id="megamenu_tab_menu"
+            name="Megamenu Tabs"
+            groups="base.group_no_one"
+            action="megamenu_tabs_ppg"
+            parent="website.menu_website_global_configuration"
+            sequence="45"/>
+
+</odoo>

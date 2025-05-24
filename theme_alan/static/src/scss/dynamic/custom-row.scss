@@ -1,0 +1,92 @@
+.s_dynamic_snippets {
+    .as-frame-data {
+        > .row {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            --gutter-y: 1rem;
+            --gutter-x: 1rem;
+        }
+    }
+}
+
+
+
+.as-snippets-row {
+
+    //Col 5
+    .col-lg-2 {
+        @include media-breakpoint-down(xl) {
+            @include media-breakpoint-up(lg) {
+                max-width: calc(100% / 4);
+                flex: 0 0 calc(100% / 4);
+            }
+        }
+        @include media-breakpoint-down(lg) {
+            @include media-breakpoint-up(md) {
+                max-width: calc(100% / 3);
+                flex: 0 0 calc(100% / 3);
+            }
+        }
+    }
+
+
+    //Col 5
+    .col-lg-five {
+        @include media-breakpoint-up(md) {
+            flex: 0 0 calc(100% / 3);
+            max-width: calc(100% / 3);
+        }
+        @include media-breakpoint-up(lg) {
+            flex: 0 0 calc(100% / 4);
+            max-width: calc(100% / 4);
+        }
+        @include media-breakpoint-up(xl) {
+            flex: 0 0 calc(100% / 5);
+            max-width: calc(100% / 5);
+        }
+    }
+
+    // Mobile
+    @include media-breakpoint-down(lg) {
+        .mob-col-2 {
+            max-width: calc(100% / 2);
+            flex: 0 0 calc(100% / 2);
+        }
+        .mob-col-1 {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
+    }
+
+}
+
+
+
+
+// Mega Menu Welcome Screens
+.as-mega-menu-welcome {
+    background-color: $white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    .as-mm-wc-in {
+        text-align: center;
+        .as-e-btn-primary {
+            top: 20px;
+            position: relative;
+            z-index: 1;
+            transform: rotate(-9deg) scale(1);
+            border: 2px solid #fff;
+            box-shadow: 0 1px 6px 0 rgba(27,29,33, 0.28) !important;
+            transition: ease all 0.35s;
+            background-color: $primary;
+            color: $white;
+            &:hover {
+                transform: rotate(-5deg) scale(1.05);
+            }
+        }
+        .as-mm-wc-img {
+            max-width: 350px;
+            margin: -65px auto 0;
+        }
+    }
+}

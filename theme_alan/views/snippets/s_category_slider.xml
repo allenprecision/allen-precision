@@ -1,27 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Category Slider Snippet -->
-    <template id="as_cat_slider" name="Category Snippet">
-        <section class="as_cat_slider as_snippet as-load" data-cat-ids="" data-mainUI="slider" data-styleUI="style1" data-dataCount="" data-recordLink="" data-autoSlider="" data-sTimer="" data-slider="1">
-            Category Snippet
-        </section>
-    </template>
 
-    <!-- Category Slider Snippet Options -->
-    <template id="s_cat_slider_options" inherit_id="website.snippet_options">
-        <xpath expr="." position="inside">
-            <div data-js="AsCategorySlider" data-selector=".as_cat_slider">
-                <we-row string="Configuration">
-                    <we-button data-name="cat-config" data-select-class="activate" class="fa fa-cog w-100 set-cat-config" data-no-preview="true"/>
-                </we-row>
+<template id="base_category_card_01">
+    <div class="as-category-card as-category-card-01">
+        <div class="as-category-card-media">
+            <img t-att-src="request.website.image_url(category,'image_1024')"/>
+        </div>
+        <div class="as-category-card-body">
+            <div class="as-category-card-title">
+                <h3>
+                    <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                        <t t-esc="category.name"/>
+                    </a>
+                </h3>
             </div>
-        </xpath>
-    </template>
+            <div class="as-category-card-link">
+                <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                    Products <t t-esc="request.env['product.template'].sudo().search_count([('public_categ_ids', 'child_of', int(category.id)),('active','=',True),('is_published','=',True)])"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</template>
 
-    <!-- Category Slider Snippet Thumbnail -->
-    <template id="s_cat_slider_snippet" inherit_id="website.snippets">
-        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
-            <t t-snippet="theme_alan.as_cat_slider" t-thumbnail="/theme_alan/static/src/img/snippets_thumbs/category-slider.jpg" />
-        </xpath>
-    </template>
+
+<template id="base_category_card_02">
+    <div class="as-category-card as-category-card-02">
+        <div class="as-category-card-media">
+            <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                <img t-att-src="request.website.image_url(category,'image_1024')"/>
+            </a>
+        </div>
+        <div class="as-category-card-title">
+            <h3>
+                <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                    <t t-esc="category.name"/>
+                </a>
+            </h3>
+            <span>Products <t t-esc="request.env['product.template'].sudo().search_count([('public_categ_ids', 'child_of', int(category.id)),('active','=',True),('is_published','=',True)])"/></span>
+        </div>
+        <div class="as-category-card-link">
+            <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                <i class="asi asi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</template>
+
+<template id="base_category_card_03">
+    <div class="as-category-card as-category-card-03">
+        <div class="as-category-card-media">
+            <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                <img t-att-src="request.website.image_url(category,'image_1024')"/>
+            </a>
+        </div>
+        <div class="as-category-card-title">
+            <h3>
+                <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                    <t t-esc="category.name"/>
+                </a>
+            </h3>
+            <span>Products <t t-esc="request.env['product.template'].sudo().search_count([('public_categ_ids', 'child_of', int(category.id)),('active','=',True),('is_published','=',True)])"/></span>
+        </div>
+    </div>
+</template>
+
+<template id="base_category_card_04">
+    <div class="as-category-card as-category-card-04">
+        <div class="as-category-card-media">
+            <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                <img t-att-src="request.website.image_url(category,'image_1024')"/>
+            </a>
+        </div>
+        <div class="as-category-card-title">
+            <h3>
+                <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                    <t t-esc="category.name"/>
+                </a>
+            </h3>
+            <span>Products <t t-esc="request.env['product.template'].sudo().search_count([('public_categ_ids', 'child_of', int(category.id)),('active','=',True),('is_published','=',True)])"/></span>
+        </div>
+    </div>
+</template>
+
+
+<template id="base_category_card_05">
+    <div class="as-category-card as-category-card-05">
+        <div class="as-category-card-media">
+            <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                <img t-att-src="request.website.image_url(category,'image_1024')"/>
+            </a>
+        </div>
+        <div class="as-category-card-title">
+            <h3>
+                <a t-attf-href="/shop/category/{{slug(category.sudo())}}">
+                    <t t-esc="category.name"/>
+                </a>
+            </h3>
+            <span>Products <t t-esc="request.env['product.template'].sudo().search_count([('public_categ_ids', 'child_of', int(category.id)),('active','=',True),('is_published','=',True)])"/></span>
+        </div>
+    </div>
+</template>
+
+<template id="as_category_slider_one" name="Category Slider 1">
+    <t t-call="theme_alan.base_category_card_01"/>
+</template>
+<template id="as_category_slider_two" name="Category Slider 2">
+    <t t-call="theme_alan.base_category_card_02"/>
+</template>
+<template id="as_category_slider_three" name="Category Slider 3">
+    <t t-call="theme_alan.base_category_card_03"/>
+</template>
+<template id="as_category_slider_four" name="Category Slider 4">
+    <t t-call="theme_alan.base_category_card_04"/>
+</template>
+<template id="as_category_slider_five" name="Category Slider 5">
+    <t t-call="theme_alan.base_category_card_05"/>
+</template>
+
+
+<template id="s_category_slider" name="Category Slider">
+    <div t-attf-class="swiper as_page_swiper" contenteditable="false">
+        <div class="swiper-button-prev asi asi-chevron-left"></div>
+        <div class="swiper-button-next asi asi-chevron-right"></div>
+        <div class="swiper-wrapper">
+            <t t-foreach="records" t-as="category">
+                <div t-attf-class="swiper-slide" >
+                    <t t-if="configuration.get('slider_style') == 'as-slider-1'">
+                        <t t-call="theme_alan.as_category_slider_one"/>
+                    </t>
+                    <t t-if="configuration.get('slider_style') == 'as-slider-2'">
+                        <t t-call="theme_alan.as_category_slider_two"/>
+                    </t>
+                    <t t-if="configuration.get('slider_style') == 'as-slider-3'">
+                        <t t-call="theme_alan.as_category_slider_three"/>
+                    </t>
+                    <t t-if="configuration.get('slider_style') == 'as-slider-4'">
+                        <t t-call="theme_alan.as_category_slider_four"/>
+                    </t>
+                    <t t-if="configuration.get('slider_style') == 'as-slider-5'">
+                        <t t-call="theme_alan.as_category_slider_five"/>
+                    </t>
+                </div>
+            </t>
+        </div>
+        <t t-if="configuration.get('pagination') != 'scroll_bar'">
+            <div class="swiper-pagination"></div>
+        </t>
+        <t t-else="">
+            <div class="swiper-scrollbar"></div>
+        </t>
+
+    </div>
+</template>
+
+
+<template id="as_category_grid_one" name="Category Grid 1">
+    <t t-call="theme_alan.base_category_card_01"/>
+</template>
+<template id="as_category_grid_two" name="Category Grid 2">
+    <t t-call="theme_alan.base_category_card_02"/>
+</template>
+<template id="as_category_grid_three" name="Category Grid 3">
+    <t t-call="theme_alan.base_category_card_03"/>
+</template>
+<template id="as_category_grid_four" name="Category Grid 4">
+    <t t-call="theme_alan.base_category_card_04"/>
+</template>
+<template id="as_category_grid_five" name="Category Grid 5">
+    <t t-call="theme_alan.base_category_card_05"/>
+</template>
+
+
+<template id="s_category_grid" name="Category Grid">
+    <div class="container">
+        <div t-attf-class="row g-3 as-snippets-row">
+            <t t-foreach="records" t-as="category">
+                <t t-set="col_mob_size" t-value="configuration.get('default_col_mob')"/>
+                <t t-if="int(configuration.get('default_col_desk')) == 5">
+                    <t t-set="col_size" t-value="'five'"/>
+                </t>
+                <t t-else="">
+                    <t t-set="col_size" t-value="int(12/int(configuration.get('default_col_desk')))"/>
+                </t>
+                 <t t-if="configuration.get('grid_style') == 'as-grid-1'">
+                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size}">
+                        <t t-call="theme_alan.as_category_grid_one"/>
+                    </div>
+                </t>
+                <t t-if="configuration.get('grid_style') == 'as-grid-2'">
+                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size}">
+                        <t t-call="theme_alan.as_category_grid_two"/>
+                    </div>
+                </t>
+                <t t-if="configuration.get('grid_style') == 'as-grid-3'">
+                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size}">
+                        <t t-call="theme_alan.as_category_grid_three"/>
+                    </div>
+                </t>
+                <t t-if="configuration.get('grid_style') == 'as-grid-4'">
+                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size}">
+                        <t t-call="theme_alan.as_category_grid_four"/>
+                    </div>
+                </t>
+                <t t-if="configuration.get('grid_style') == 'as-grid-5'">
+                    <div t-attf-class="col-lg-#{col_size} mob-col-#{col_mob_size}">
+                        <t t-call="theme_alan.as_category_grid_five"/>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </div>
+</template>
+
 </odoo>

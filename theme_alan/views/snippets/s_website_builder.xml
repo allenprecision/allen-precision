@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Alan Builder Snippet -->
+    <template id="website_builder" name="Alan Website Builder">
+        <section class="as-alan-snippet-builder as_snippet as-load">
+            Alan Website Builder
+        </section>
+    </template>
+
+    <!-- Alan Builder Snippet Options -->
+    <template id="s_website_builder_options" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+            <div data-js="alan_website_builder" data-selector=".as-alan-snippet-builder">
+                <we-button data-webisite_snippet_configure="" data-no-preview="true">Change Collection</we-button>
+            </div>
+           <div data-selector=".carousel-content">
+                <we-row class="o_we_full_row">
+                    <we-title data-bs-original-title="" title="" style="">Content Shapes</we-title>
+                    <div>
+                        <we-select class="o_we_user_value_widget">
+                            <div>
+                                <we-toggler class="">None</we-toggler>
+                                <we-selection-items>
+                                    <we-button class="o_we_user_value_widget">
+                                        <div>Shape One</div>
+                                    </we-button>
+                                </we-selection-items>
+                            </div>
+                        </we-select>
+                    </div>
+                </we-row>
+           </div>
+        </xpath>
+    </template>
+
+    <!-- Alan Builder Snippet Thumbnail -->
+    <template id="alan_websiite_builder" name="Website builder" inherit_id="website.snippets">
+        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">
+            <t t-snippet="theme_alan.website_builder" t-thumbnail="/theme_alan/static/src/img/snippets/alan-builder.svg"/>
+        </xpath>
+    </template>
+</odoo>

@@ -41,16 +41,11 @@ class ResPartner(models.Model):
                 self.ref=''
 
 
-
+    #
     # def write(self, vals):
     #     # Limitation: renaming a sparse field or changing the storing system is
     #     # currently not allowed
-    #     old_parameter=self.ref
-    #     if  vals.get('type') != 'delivery':
-    #         vals.
-    #         self.get_partner_ref()
-    #
-    #
+    #     self.get_partner_ref()
     #     return super(ResPartner, self).write(vals)
 
 
@@ -67,37 +62,37 @@ class ResPartner(models.Model):
 
 
 
-    # @api.model
-    # def create(self, vals):
-    #     res = super(ResPartner,self).create(vals)
-    #     if not res.ref and not res.type == 'delivery' and res.contact_type  in ['cust','ven']:
-    #         seq_date = None
-    #         prefix = ''
-    #
-    #
-    #         if res.customer_rank and res.customer_rank > 0 and not res.parent_id:
-    #             prefix='C'
-    #             res.contact_type = 'cust'
-    #             res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.customer', sequence_date=seq_date) or _('New')}"
-    #
-    #         elif res.supplier_rank and res.supplier_rank > 0 and not res.parent_id:
-    #             prefix = 'V'
-    #             res.contact_type = 'ven'
-    #             res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.vendor', sequence_date=seq_date) or _('New')}"
-    #
-    #         else:
-    #             if res.contact_type == 'cust':
-    #                 res.customer_rank = 1
-    #                 prefix='C'
-    #                 res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.customer', sequence_date=seq_date) or _('New')}"
-    #
-    #             else:
-    #                 res.supplier_rank = 1
-    #                 prefix = 'V'
-    #                 res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.vendor', sequence_date=seq_date) or _('New')}"
-    #
-    #
-    #     return res
+    @api.model
+    def create(self, vals):
+        res = super(ResPartner,self).create(vals)
+        if not res.ref and not res.type == 'delivery' and res.contact_type  in ['cust','ven']:
+            seq_date = None
+            prefix = ''
+
+
+            if res.customer_rank and res.customer_rank > 0 and not res.parent_id:
+                prefix='C'
+                res.contact_type = 'cust'
+                res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.customer', sequence_date=seq_date) or _('New')}"
+
+            elif res.supplier_rank and res.supplier_rank > 0 and not res.parent_id:
+                prefix = 'V'
+                res.contact_type = 'ven'
+                res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.vendor', sequence_date=seq_date) or _('New')}"
+
+            else:
+                if res.contact_type == 'cust':
+                    res.customer_rank = 1
+                    prefix='C'
+                    res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.customer', sequence_date=seq_date) or _('New')}"
+
+                else:
+                    res.supplier_rank = 1
+                    prefix = 'V'
+                    res.ref =f"{prefix}{self.env['ir.sequence'].next_by_code('res.partner.vendor', sequence_date=seq_date) or _('New')}"
+
+
+        return res
 
     ref = fields.Char(string='Reference',track_visibility='always',index=True)
     contact_1 = fields.Char(string='Contact 1',track_visibility='always')

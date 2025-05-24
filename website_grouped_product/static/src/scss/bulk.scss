@@ -25,16 +25,16 @@
     border-left: 1px solid rgba(#000000, 0.20);
     margin: 0 !important;
     background: #fff;
-    .fa-minus {
-      &:before {
-        content: "\f0d7";
-      }
-    }
-    .fa-plus {
-      &:before {
-        content: "\f0d8";
-      }
-    }
+//     .fa-minus {
+//       &:before {
+//         content: "\f0d7";
+//       }
+//     }
+//     .fa-plus {
+//       &:before {
+//         content: "\f0d8";
+//       }
+//     }
 
     &.float_left  {
       top: 1px;
@@ -45,28 +45,28 @@
   .input-group-append,
   .input-group-prepend {
     border-radius: 0;
-    position: absolute;
+//     position: absolute;
     right: 1px;
     z-index: 3;
     border: none;
     width: 16px !important;
-    height: 17px !important;
+    height: 13px !important;
     text-align: center;
     padding: 0;
     line-height: 23px;
     border-left: 1px solid rgba(#000000, 0.20);
     margin: 0 !important;
     background: #fff;
-    .fa-minus {
-      &:before {
-        content: "\f0d7";
-      }
-    }
-    .fa-plus {
-      &:before {
-        content: "\f0d8";
-      }
-    }
+//     .fa-minus {
+//       &:before {
+//         content: "\f0d7";
+//       }
+//     }
+//     .fa-plus {
+//       &:before {
+//         content: "\f0d8";
+//       }
+//     }
     .btn {
       background:#fff;
       border:none;
@@ -82,7 +82,7 @@
         right: 0;
         bottom: 0;
         margin: auto;
-        font-size: 11px;
+        font-size: 8px;
         width: 5px;
         height: 11px;
       }
@@ -100,14 +100,13 @@
   .form-control{
     text-align: center;
     height: 35px;
-    padding: 0 15px 0 0px;
+//     padding: 0 15px 0 0px;
     box-shadow: none;
     border: 1px solid rgba(#000000, 0.20);
     background: none;
     color: #000000;
     z-index:1;
     background: #fff;
-    width: 100%;
   }
 }
 
@@ -213,10 +212,13 @@
         font-size: 14px;
       }
     }
+.css_quantity .btn{
+    height:auto;
+    }
     .css_quantity {
       max-width: 100% !important;
       margin: 0 !important;
-      width: 70px !important;
+//       width: 70px !important;
       @include g_css_quantity;
     }
     .oe_price_h4 {

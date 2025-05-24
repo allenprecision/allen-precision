@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_portfolio_templates">
+
+<t t-name="theme_alan.portfolio_temp_1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/portfolio-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 portfolio-snippet-1 alan-our-works s_com s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5 mb-lg-7">
+                                <div class="col-lg-6 text-center">
+                                    <h2 class="h2 fw-300 text-uppercase letter-spacing-2 m-0 mb-3 font-alt">Our Works</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale position-relative">
+                                        <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        <div class="position-absolute bottom-0 start-0 end-0 p-4 bg-black-50 card rounded-0 border-0">
+                                            <div>
+                                                <h5 class="h5 fw-600">OUR NEW WORKS</h5>
+                                                <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">READ MORE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale position-relative">
+                                        <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        <div class="position-absolute bottom-0 start-0 end-0 p-4 bg-black-50 card rounded-0 border-0">
+                                            <div>
+                                                <h5 class="h5 fw-600">OUR NEW WORKS</h5>
+                                                <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">READ MORE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="hover-scale position-relative">
+                                        <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                        <div class="position-absolute bottom-0 start-0 end-0 p-4 bg-black-50 card rounded-0 border-0">
+                                            <div>
+                                                <h5 class="h5 fw-600">OUR NEW WORKS</h5>
+                                                <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">READ MORE</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Portfolio 1</h6>
+                <label class="e-sb-label" for="e_portfolio_01"><input id="e_portfolio_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.portfolio_temp_2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/portfolio-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 portfolio-snippet-2 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-6 text-center">
+                                    <h1 class="fw-600 h1 mb-4">Our Latest Work</h1>
+                                    <p class="fw-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 position-relative hover-opacity grayscale-hover hover-scale s_col_no_bgcolor">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                    <div class="position-absolute bottom-0 start-0 end-0 d-flex flex-column justify-content-center p-4 hover-opacity-in">
+                                        <div class="card border-0 px-3 py-4 text-center shadow-lg rounded">
+                                            <h5 class="h5 fw-600 mb-2">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link p-0 text-reset" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- row -->
+                        </div> <!-- container -->
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Portfolio 2</h6>
+                <label class="e-sb-label" for="e_portfolio_02"><input id="e_portfolio_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.portfolio_temp_3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/portfolio-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 portfolio-snippet-3 s_comparisons">
+                        <div class="container">
+                            <div class="row mb-4 mb-md-5">
+                                <div class="col-lg-8">
+                                    <h1 class="h1 fw-700 mb-4 pb-4">OUR RECENT PROJECTS</h1>
+                                    <p class="w-75 mw-100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                </div> <!-- col -->
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="rounded hover-scale shadow">
+                                        <a href=""> <img class="rounded" src="/theme_alan/static/src/img/snippets/1000x1000.jpg" /> </a>
+                                    </div>
+                                    <div class="card border-0 p-4 mt-n5 position-relative mx-3 shadow rounded">
+                                        <div>
+                                            <h5 class="h5 fw-600 mb-3">Recent Projects</h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+                                            <a class="btn btn-link text-reset p-0" href="#">Learn More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- row -->
+                        </div> <!-- container -->
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Portfolio 3</h6>
+                <label class="e-sb-label" for="e_portfolio_03"><input id="e_portfolio_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.portfolio_temp_4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/portfolio-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 portfolio-snippet-4 alan-our-works s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-5">
+                                <div class="col-lg-6 text-center">
+                                    <h1 class="h1 fw-600">Our Works</h1>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                                            </ol>
+                                            <!-- Content -->
+                                            <div class="carousel-inner">
+                                                <!-- #01 -->
+                                                <div class="carousel-item active" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #02 -->
+                                                <div class="carousel-item" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Controls -->
+                                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                                <span class="carousel-control-prev-icon" />
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                                <span class="carousel-control-next-icon" />
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- col -->
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                                            </ol>
+                                            <!-- Content -->
+                                            <div class="carousel-inner">
+                                                <!-- #01 -->
+                                                <div class="carousel-item active" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #02 -->
+                                                <div class="carousel-item" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Controls -->
+                                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                                <span class="carousel-control-prev-icon" />
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                                <span class="carousel-control-next-icon" />
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- col -->
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <section class="s_carousel_wrapper s_comparisons" data-vxml="001">
+                                        <div t-attf-id="myCarousel{{uniq}}" class="s_carousel s_carousel_default carousel slide" data-bs-interval="10000">
+                                            <!-- Indicators -->
+                                            <ol class="carousel-indicators">
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="0" class="active" />
+                                                <li t-attf-data-bs-target="#myCarousel{{uniq}}" data-bs-slide-to="1" />
+                                            </ol>
+                                            <!-- Content -->
+                                            <div class="carousel-inner">
+                                                <!-- #01 -->
+                                                <div class="carousel-item active" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- #02 -->
+                                                <div class="carousel-item" data-name="Slide">
+                                                    <div class="container">
+                                                        <div class="row content">
+                                                            <div class="col-lg-12 carousel-content">
+                                                                <div class="hover-scale">
+                                                                    <img src="/theme_alan/static/src/img/snippets/1000x800.jpg" />
+                                                                    <div class="card bg-o-color-2 border-0 rounded-0 position-relative p-3">
+                                                                        <div>
+                                                                            <div class="mb-2">
+                                                                                Our New Works
+                                                                            </div>
+                                                                            <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read More</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Controls -->
+                                            <a class="carousel-control-prev o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="prev" role="img" aria-label="Previous" title="Previous">
+                                                <span class="carousel-control-prev-icon" />
+                                                <span class="visually-hidden">Previous</span>
+                                            </a>
+                                            <a class="carousel-control-next o_not_editable" contenteditable="false" t-attf-href="#myCarousel{{uniq}}" data-bs-slide="next" role="img" aria-label="Next" title="Next">
+                                                <span class="carousel-control-next-icon" />
+                                                <span class="visually-hidden">Next</span>
+                                            </a>
+                                        </div>
+                                    </section>
+                                </div>
+                                <!-- col -->
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Portfolio 4</h6>
+                <label class="e-sb-label" for="e_portfolio_04"><input id="e_portfolio_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

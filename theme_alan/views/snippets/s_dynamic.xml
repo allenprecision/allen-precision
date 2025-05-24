@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="s_alan_dynamic_snippets" name="Alan Dynamic Snippets">
+    <section class="s_dynamic_snippets container" data-as-snippet="as_dynamic_snippets">
+        <div class="container text-center">
+            <h2> Alan Dynamic Snippets</h2>
+        </div>
+    </section>
+</template>
+
+<template id="s_alan_dynamic_snippets_opts" name="Alan Snippet Option"
+    inherit_id="website.snippet_options">
+    <xpath expr="." position="inside">
+        <div data-js="as_snippet_configure" data-selector=".s_dynamic_snippets">
+            <we-checkbox string="Alan Snippet Editor" data-select-class="as_static_menu" />
+        </div>
+    </xpath>
+</template>
+
+<template id="snippets" name="template_name" inherit_id="website.snippets">
+    <xpath expr="//div[@id='snippet_effect']/div[hasclass('o_panel_body')]/t" position="before">
+        <t t-snippet="theme_alan.s_alan_dynamic_snippets"
+            t-thumbnail="/theme_alan/static/src/img/snippets/alan-dynamic.svg"
+        />
+    </xpath>
+</template>
+</odoo>

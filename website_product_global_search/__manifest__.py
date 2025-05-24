@@ -20,7 +20,7 @@
 ###############################################################################
 {
     'name': 'Website Product Global Search',
-    "version": "15.0.0.1",
+    "version": "17.0.0.1",
     'category': 'Website',
     'summary': """Website Product Global Search""",
     'website': 'www.geminatecs.com',

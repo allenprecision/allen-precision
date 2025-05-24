@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Data Configurations -->
+    <record id="as_product_configuration" model="ir.ui.view">
+        <field name="name">product.template.configuration</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="as_product_configure_tab" string="Alan Product Configuration">
+                    <group name="as_label" string="Product Labels"/>
+                    <field name="pro_label_line_ids" widget="one2many_list" >
+                        <tree string="Labels" editable="bottom">
+                            <field name="website_id"/>
+                            <field name="label"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <group name="as_hover_image" string="Product Hover Image">
+                            <field name="hover_image" widget="image" options="{'size': [100, 100]}"/>
+                        </group>
+                        <group name="as_annoucement" string="Product Advance Info">
+                            <field name="product_offer_ids" widget="many2many_tags" domain="[('types','=','offer')]"/>
+                        </group>
+                    </group>
+                    <group string="User Documents">
+                        <group name="is_active" string="">
+                            <field name="is_active_doc" />
+                        </group>
+                        <group name="document_name" string="">
+                            <field name="doc_name" readonly='is_active_doc == False' invisible='is_active_doc == False' />
+                        </group>
+                    </group>
+                    <field name="doc_attachments" invisible='is_active_doc == False' class="oe_inline" colspan="3" widget="many2many_binary" />
+                    <group string="Product Tabs"/>
+                    <field name="pro_tab_ids" mode="kanban">
+                        <kanban>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_details oe_kanban_global_click">
+                                        <field name="tab_name"/>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <form string="Product Tab">
+                            <sheet>
+                                <group>
+                                    <field name="tab_name"/>
+                                    <field name="tab_content"/>
+                                    <field name="website_ids" options="{'no_create': True}" widget="many2many_tags"
+                                    groups="website.group_multi_website" domain="[('theme_id.author','ilike','Atharva System')]"/>
+                                    <field name="sequence"/>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                    <group string="Product FAQS"/>
+                    <field name="product_faqs_ids" mode="kanban">
+                        <kanban>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_details oe_kanban_global_click">
+                                        <field name="question"/>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <form string="Product Tab">
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="question"/>
+                                    </group>
+                                    <group>
+                                        <field name="website_ids" widget="many2many_tags"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="answer" widget="html"/>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                    <group string="Tab Description"/>
+                    <field name="product_tab_description" nolabel="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

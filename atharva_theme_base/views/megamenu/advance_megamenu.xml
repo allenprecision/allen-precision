@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="dyanmic_megamenu_view" model="ir.actions.act_window">
+        <field name="name">Advance MegaMenu</field>
+        <field name="res_model">advance.megamenu</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+                No Megamenu Available!
+            </p>
+        </field>
+    </record>
+
+    <!-- MengaMenu Tree View -->
+    <record id="dyanmic_megamenu_tree_view" model="ir.ui.view">
+        <field name="name">Advance MegaMenu Tree</field>
+        <field name="model">advance.megamenu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="website_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- MengaMenu Form View -->
+    <record id="Advance_megamenu_view_form" model="ir.ui.view">
+        <field name="name">advance.megamenu.view.form</field>
+        <field name="model">advance.megamenu</field>
+        <field name="arch" type="xml">
+            <form string="Advance Megamenu">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Name"/></h1>
+                    </div>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_menu_preview"
+                                class="oe_stat_button"
+                                type="object"
+                                icon="fa-eye">
+                            <div class="o_stat_info o_field_widget">
+                                <span class="o_stat_text text-info">Preview</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="website_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="menu_configuration" string="Menu Configuration">
+                            <!-- First Level -->
+                            <group string="Top Level"/>
+                            <field name="show_category_second_level" invisible="True"/>
+                            <field name="show_category_third_level" invisible="True"/>
+                            <field name="show_category_fourth_level" invisible="True"/>
+                            <field name="category_first_level" context="{'default_level': 1}" mode="kanban">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <field name="is_menu_tag_active" invisible="True"/>
+                                            <div class="oe_kanban_details oe_kanban_global_click  d-flex">
+                                                <div>
+                                                    <div>
+                                                        <b>Title: </b><span><field name="menu_title"/></span>
+                                                    </div>
+                                                    <div invisible="not category_id">
+                                                        <b>Category:</b> <span><field name="category_id"/></span>
+                                                    </div>
+                                                    <div invisible="menu_url == '/' or menu_url == ''">
+                                                        <b>URL:</b> <span><field name="menu_url"/></span>
+                                                    </div>
+                                                    <div invisible="not is_menu_tag_active">
+                                                        <b>Tag: </b> <span><field name="menu_tag_text"/></span>
+                                                    </div>
+                                                    <div invisible="child_count == 0">
+                                                        <b> Sub Categories : <field name="child_count" widget="badge"/></b>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-left: 95px;">
+                                                    <span>
+                                                        <field invisible="not menu_image" name="menu_image" widget="image" options="{'size': [50, 40]}"/>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Menu">
+                                    <sheet>
+                                        <field name="menu_image" widget="image" class="oe_avatar" options="{'preview_image': 'menu_image'}"/>
+                                        <group>
+                                            <field name="menu_title" placeholder="Ex. Furniture"/>
+                                            <field name="website_id" invisible="1"/>
+                                            <field name="category_id" domain ="[('parent_id','=', False),('website_id', 'in', (False,website_id))]"/>
+                                            <field name="sequence"/>
+                                            <field name="child_menu_ids" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page name="url_config" string="Url Configuration">
+                                                <group>
+                                                    <field name="menu_link_type"/>
+                                                    <field name="product_url" domain ="[('website_id', 'in', (False,website_id)),('sale_ok','=', True),('is_published','=', True)]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="brand_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="blog_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="page_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="menu_url"/>
+                                                </group>
+                                            </page>
+                                            <page name="highlightor" string="Highlightor">
+                                                <group>
+                                                    <field name="is_menu_highlightor"/>
+                                                    <field name="highlightor_menu_icon" invisible="not is_menu_highlightor" required='is_menu_highlightor' placeholder="Ex. fa-tag"/>
+                                                    <field name="menu_highlightor_bg_color" widget="color" required='is_menu_highlightor' invisible="not is_menu_highlightor"/>
+                                                    <field name="menu_highlightor_ft_col" widget="color" required='is_menu_highlightor' invisible="not is_menu_highlightor"/>
+                                                </group>
+                                            </page>
+                                            <page name="tag" string="Tag">
+                                                <group>
+                                                    <field name="is_menu_tag_active"/>
+                                                    <field name="menu_tag_text_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_bg_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_text" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                </group>
+                                            </page>
+                                            <page name="child_tab" string="Child Tab">
+                                                <group>
+                                                    <field name="menu_column" class="w-25"/>
+                                                </group>
+                                            </page>
+                                        </notebook>
+                                        <field name="level" invisible="True" />
+                                        <field name="megamenu_id" invisible="True"/>
+
+                                    </sheet>
+                                </form>
+                            </field>
+                            <!-- Second Level -->
+                            <group string="Second Level" invisible="not show_category_second_level"/>
+                            <field name="category_second_level" context="{'default_level': 2}" mode="kanban" invisible="not show_category_second_level">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <field name="is_menu_tag_active" invisible="True"/>
+                                            <div class="oe_kanban_details oe_kanban_global_click">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <div>
+                                                            <b>Parent:</b> <span class="badge text-bg-info"><field name="parent_menu_id" options="{'title':'Parent Menu'}" title="Parent Menu"/></span>
+                                                        </div>
+                                                        <div>
+                                                            <b>Title: </b><span><field name="menu_title"/></span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-left: 163px;">
+                                                        <span>
+                                                            <field invisible="not menu_image" name="menu_image" widget="image" options="{'size': [50, 40]}"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div invisible="not category_id">
+                                                    <b>Category:</b> <span><field name="category_id"/></span>
+                                                </div>
+                                                <div invisible="menu_url == '/' or menu_url == ''">
+                                                    <b>URL:</b> <span><field name="menu_url"/></span>
+                                                </div>
+                                                <div invisible="not is_menu_tag_active">
+                                                    <b>Tag: </b> <span><field name="menu_tag_text"/></span>
+                                                </div>
+                                                <div invisible="child_count == 0">
+                                                    <b> Sub Categories : <field name="child_count" widget="badge"/></b>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Menu">
+                                    <sheet>
+                                        <field name="menu_image" widget="image" class="oe_avatar" options="{'preview_image': 'menu_image'}"/>
+                                        <group>
+                                            <field name="menu_title" placeholder="Ex. Furniture"/>
+                                            <field name="parent_menu_id" domain="[('megamenu_id', '=', megamenu_id), ('level', '=', 1)]" required="True" options="{'no_create': True}"/>
+                                            <field name="parent_categ_id" invisible="1"/>
+                                            <field name="category_id" domain ="[('parent_id','=', parent_categ_id)]" invisible="not parent_menu_id"/>
+                                            <field name="sequence"/>
+                                            <field name="child_menu_ids" invisible="1"/>
+                                            <field name="website_id" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page name="url_config" string="Url Configuration">
+                                                <group>
+                                                    <field name="menu_link_type"/>
+                                                    <field name="product_url" domain ="[('website_id', 'in', (False,website_id)),('sale_ok','=', True),('is_published','=', True)]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="brand_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="blog_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="page_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="menu_url"/>
+                                                </group>
+                                            </page>
+                                            <page name="tag" string="Tag">
+                                                <group>
+                                                    <field name="is_menu_tag_active"/>
+                                                    <field name="menu_tag_text_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_bg_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_text" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                </group>
+                                            </page>
+                                            <page name="style" string="Style">
+                                                <group>
+                                                    <field name="is_level_style"/>
+                                                    <field name="menu_level_style" invisible="not is_level_style"/>
+                                                    <field name="image_style"/>
+                                                </group>
+                                            </page>
+                                        </notebook>
+                                        <field name="level" invisible="True" />
+                                        <field name="megamenu_id" invisible="True"/>
+                                    </sheet>
+                                </form>
+                            </field>
+                            <!-- Third Level -->
+                            <group string="Third Level" invisible="not show_category_third_level"/>
+                            <field name="category_third_level" context="{'default_level': 3}" mode="kanban" invisible="not show_category_third_level">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <field name="is_menu_tag_active" invisible="True"/>
+                                            <div class="oe_kanban_details oe_kanban_global_click">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <div>
+                                                            <b>Parent:</b> <span class="badge text-bg-info"><field name="parent_menu_id" options="{'title':'Parent Menu'}" title="Parent Menu"/></span>
+                                                        </div>
+                                                        <div>
+                                                            <b>Title: </b><span><field name="menu_title"/></span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-left: 163px;">
+                                                        <span>
+                                                            <field invisible="not menu_image" name="menu_image" widget="image" options="{'size': [50, 40]}"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div invisible="not category_id">
+                                                    <b>Category:</b> <span><field name="category_id"/></span>
+                                                </div>
+                                                <div invisible="menu_url == '/' or menu_url == ''">
+                                                    <b>URL:</b> <span><field name="menu_url"/></span>
+                                                </div>
+                                                <div invisible="not is_menu_tag_active">
+                                                    <b>Tag: </b> <span><field name="menu_tag_text"/></span>
+                                                </div>
+                                                <div invisible="child_count == 0">
+                                                    <b> Sub Categories : <field name="child_count" widget="badge"/></b>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Menu">
+                                    <sheet>
+                                        <group>
+                                            <field name="menu_title" placeholder="Ex. Furniture"/>
+                                            <field name="parent_menu_id" domain="[('megamenu_id', '=', megamenu_id), ('level', '=', 2)]" required="True" options="{'no_create': True}"/>
+                                            <field name="parent_categ_id" invisible="1"/>
+                                            <field name="category_id" domain ="[('parent_id','=', parent_categ_id)]" invisible="not parent_menu_id"/>
+                                            <field name="sequence"/>
+                                            <field name="child_menu_ids" invisible="1"/>
+                                            <field name="website_id" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page name="url_config" string="Url Configuration">
+                                                <group>
+                                                    <field name="menu_link_type"/>
+                                                    <field name="product_url" domain ="[('website_id', 'in', (False,website_id)),('sale_ok','=', True),('is_published','=', True)]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="brand_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="blog_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="page_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="menu_url"/>
+                                                </group>
+                                            </page>
+                                            <page name="tag" string="Tag">
+                                                <group>
+                                                    <field name="is_menu_tag_active"/>
+                                                    <field name="menu_tag_text_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_bg_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_text" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                </group>
+                                            </page>
+                                            <page name="style" string="Style">
+                                                <group>
+                                                    <field name="is_level_style"/>
+                                                    <field name="menu_level_style" invisible="not is_level_style"/>
+                                                    <field name="image_style"/>
+                                                </group>
+                                            </page>
+                                        </notebook>
+                                        <field name="level" invisible="True" />
+                                        <field name="megamenu_id" invisible="True"/>
+
+                                    </sheet>
+                                </form>
+                            </field>
+                            <!-- Fourth Level -->
+                            <group string="Fourth Level" invisible="not show_category_fourth_level"/>
+                            <field name="category_fourth_level" context="{'default_level': 4}" mode="kanban" invisible="not show_category_fourth_level">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <field name="is_menu_tag_active" invisible="True"/>
+                                            <div class="oe_kanban_details oe_kanban_global_click">
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <div>
+                                                            <b>Parent:</b> <span class="badge text-bg-info"><field name="parent_menu_id" options="{'title':'Parent Menu'}" title="Parent Menu"/></span>
+                                                        </div>
+                                                        <div>
+                                                            <b>Title: </b><span><field name="menu_title"/></span>
+                                                        </div>
+                                                    </div>
+                                                    <div style="margin-left: 163px;">
+                                                        <span>
+                                                            <field invisible="not menu_image" name="menu_image" widget="image" options="{'size': [50, 40]}"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div invisible="not category_id">
+                                                    <b>Category:</b> <span><field name="category_id"/></span>
+                                                </div>
+                                                <div invisible="menu_url == '/' or menu_url == ''">
+                                                    <b>URL:</b> <span><field name="menu_url"/></span>
+                                                </div>
+                                                <div invisible="not is_menu_tag_active">
+                                                    <b>Tag: </b> <span><field name="menu_tag_text"/></span>
+                                                </div>
+                                                <div invisible="child_count == 0">
+                                                    <b> Sub Categories : <field name="child_count" widget="badge"/></b>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form string="Menu">
+                                    <sheet>
+                                        <group>
+                                            <field name="menu_title" placeholder="Ex. Furniture"/>
+                                            <field name="parent_menu_id" domain="[('megamenu_id', '=', megamenu_id), ('level', '=', 3)]" required="True" options="{'no_create': True}"/>
+                                            <field name="parent_categ_id" invisible="1"/>
+                                            <field name="category_id" domain ="[('parent_id','=', parent_categ_id)]" invisible="not parent_menu_id"/>
+                                            <field name="sequence"/>
+                                            <field name="website_id" invisible="1"/>
+                                        </group>
+                                        <notebook>
+                                            <page name="url_config" string="Url Configuration">
+                                                <group>
+                                                    <field name="menu_link_type"/>
+                                                    <field name="product_url" domain ="[('website_id', 'in', (False,website_id)),('sale_ok','=', True),('is_published','=', True)]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="brand_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="blog_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="page_url" domain ="[('website_id', 'in', (False,website_id))]" invisible="menu_link_type != 'dynamic'"/>
+                                                    <field name="menu_url"/>
+                                                </group>
+                                            </page>
+                                            <page name="tag" string="Tag">
+                                                <group>
+                                                    <field name="is_menu_tag_active"/>
+                                                    <field name="menu_tag_text_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_bg_color" widget="color" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                    <field name="menu_tag_text" required='is_menu_tag_active' invisible="not is_menu_tag_active"/>
+                                                </group>
+                                            </page>
+                                            <page name="style" string="Style">
+                                                <group>
+                                                    <field name="is_level_style"/>
+                                                    <field name="menu_level_style" invisible="not is_level_style"/>
+                                                    <field name="image_style"/>
+                                                </group>
+                                            </page>
+                                        </notebook>
+                                        <field name="level" invisible="True" />
+                                        <field name="megamenu_id" invisible="True"/>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page name="top_menu_style" string="Top Menu Style">
+                            <group name="style" string="Style">
+                                <group>
+                                    <field name="menu_style"/>
+                                    <field name="menu_position"/>
+                                </group>
+                                <group>
+                                    <div class="mx-lg-auto o_preview_questions" colspan="2">
+                                        <div invisible="menu_style != 'simple'" role="img" aria-label="simple" title="simple">
+                                            <img src="/atharva_theme_base/static/src/img/simple_ss.jpg" alt="Image" class="img-fluid" />
+                                        </div>
+                                        <div invisible="menu_style != 'modern'" role="img" aria-label="modern" title="modern">
+                                            <img src="/atharva_theme_base/static/src/img/modern_ss.jpg" alt="Image" class="img-fluid" />
+                                        </div>
+                                        <div invisible="menu_style != 'clean'" role="img" aria-label="clean" title="clean">
+                                            <img src="/atharva_theme_base/static/src/img/clean_ss.jpg" alt="Image" class="img-fluid" />
+                                        </div>
+                                        <div invisible="menu_style != 'trendy'" role="img" aria-label="trendy" title="trendy">
+                                            <img src="/atharva_theme_base/static/src/img/trendy_ss.jpg" alt="Image" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                </group>
+                            </group>
+                            <group name="bg_color" string="Background &amp; Color">
+                                    <group>
+                                        <field name="menu_ft_color" widget="color"/>
+                                        <field name="menu_bg" widget="radio"/>
+                                    </group>
+                                    <group>
+                                        <field name="menu_bg_image" widget="image" options="{'size': [100, 100]}" invisible="menu_bg != 'image'"/>
+                                        <field name="menu_bg_color" widget="color" invisible="menu_bg != 'color'"/>
+                                        <field name="menu_bg_img_repeat" widget="radio" invisible="menu_bg != 'image'"/>
+                                    </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="as_website_menu_preview" model="ir.ui.view">
+        <field name="name">as.website.menu.preview</field>
+        <field name="model">advance.megamenu</field>
+        <field name="priority" eval="99"/>
+        <field name="arch" type="xml">
+            <form class="as_custom_dialog mh-100">
+                <field name="menu_preview"/>
+                <footer>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_website_advance_mega_menu_form" model="ir.ui.view">
+        <field name="name">advance_mega_menu.website.form</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Advance Mega Menu" name="advance_mega_menu">
+                    <group>
+                        <field name="is_advance_megamenu"/>
+                        <field name="advance_megamenu_id" required="is_advance_megamenu" invisible="not is_advance_megamenu" options="{'no_create': True}"/>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <menuitem id="advance_mega_menu" name="Advance MegaMenu"
+            groups="base.group_no_one"
+            action="dyanmic_megamenu_view"
+            parent="website.menu_website_global_configuration"
+            sequence="45"/>
+</odoo>

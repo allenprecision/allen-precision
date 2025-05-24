@@ -16,11 +16,15 @@ class ExemptionCode(models.Model):
     code = fields.Char()
 
     @api.depends("name", "code")
-    def name_get(self):
-        def name(r):
-            return r.code and "({}) {}".format(r.code, r.name) or r.name
-
-        return [(r.id, name(r)) for r in self]
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        for exemption in self:
+            exemption.display_name = (
+                exemption.code
+                and f"({exemption.code}) {exemption.name}"
+                or exemption.name
+            )
+        return res
 
 
 class AvalaraSalestax(models.Model):
@@ -90,8 +94,8 @@ class AvalaraSalestax(models.Model):
         help="No tax calculation requests will be sent to the AvaTax web service.",
     )
     # TODO: Control - Disable Document Recording
-    # In order for this connector to be used in conjunction
-    # with other integrations to AvaTax, the user must be able to control which connector
+    # In order for this connector to be used in conjunction with other integrations to
+    # AvaTax, the user must be able to control which connector
     # is used for recording documents to AvaTax.
     # From a technical standpoint, simply use DocType: 'SalesOrder' on all calls
     # and suppress any non-getTax calls (i.e. cancelTax, postTax).
@@ -243,7 +247,8 @@ class AvalaraSalestax(models.Model):
             if not shipping_address.date_validation:
                 raise UserError(
                     _(
-                        "Please validate the shipping address for the partner %(partner.name)s."
+                        "Please validate the shipping address for the partner "
+                        "%(partner.name)s."
                     )
                 )
 

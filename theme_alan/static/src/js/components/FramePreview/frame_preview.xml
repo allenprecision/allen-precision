@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="theme_alan.frame_preview" owl="1">
+    <div class="modal-body-in">
+        <div class="as-edit-action-menu">
+            <div class="as-edit-action-in as-save-section">
+                <div class="as-ea-edit-col as-ea-edit-right">
+                    <button class="btn as-btn-back" t-on-click="_backToDataConfig"><i class="fa fa-chevron-left"></i> Back </button>
+                    <button t-if="this.env.SnippetBuilder.props.allow_save" class="btn as-btn-preview" t-on-click="_save"><i class="fa fa-floppy-o"></i> Save </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="as-mega-menu-preview-section as-preview-section"/>
+    </div>
+</t>
+
+</templates>

@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve" id="as_features_templates">
+
+<t t-name="theme_alan.feature_temp1">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-1.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc2 s_comparisons s_col_no_bgcolor py-5">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 my-3 text-left">
+                                    <h5 class="h5 mb-2">OUR WORK FLOW</h5>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore</p>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                        <i class="fa fa-comments-o d-inline-block border rounded-circle"></i>
+                                    <div class="mt-3">1. DISCUSS</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                        <i class="fa fa-paint-brush d-inline-block border rounded-circle"></i>
+                                    <div class="mt-3">2. DESIGN</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                        <i class="fa fa-cog d-inline-block border rounded-circle"></i>
+                                    <div class="mt-3">3. DEVELOPMENT</div>
+                                </div>
+                                <div class="col-lg-2 my-3 text-center">
+                                        <i class="fa fa-paper-plane-o d-inline-block border rounded-circle"></i>
+                                    <div class="mt-3">4. LIVE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    
+                </textarea>
+                <h6 class="text-truncate">Feature 1</h6>
+                <label class="e-sb-label" for="e_feature_01"><input id="e_feature_01" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp2">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-2.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc2 s_comparisons s_col_no_bgcolor py-5 features-snippet-2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-truck fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-700">FREE SHIPPING</div>
+                                            <label class="small">ALL ORDER OVER $45</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-headphones fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-700">CUSTOMER SUPPORT</div>
+                                            <label class="small">SUPPORT 24/7</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-lock fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-700">PAYMENT SECURITY</div>
+                                            <label class="small">100 SECURE PAYMENT</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-refresh fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-700">RETURNS POLICY</div>
+                                            <label class="small">BEST RETURNS POLICY</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 2</h6>
+                <label class="e-sb-label" for="e_feature_02"><input id="e_feature_02" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp3">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-3.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc2 s_comparisons s_col_no_bgcolor py-5 features-snippet-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-4x fa-user-o"></i>
+                                        <div class="ms-3">
+                                            <div class="h2 fw-300 m-0">60</div>
+                                            <p class="m-0">EMPLOYEES</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-4x fa-smile-o"></i>
+                                        <div class="ms-3">
+                                            <div class="h2 fw-300 m-0">980</div>
+                                            <p class="m-0">SATISFIED CLIENTS</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-4x fa-clock-o"></i>
+                                        <div class="ms-3">
+                                            <div class="h2 fw-300 m-0">15</div>
+                                            <p class="m-0">EXPERIENCE</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-4x fa-rss"></i>
+                                        <div class="ms-3">
+                                            <div class="h2 fw-300 m-0">400</div>
+                                            <p class="m-0">BLOGS</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 3</h6>
+                <label class="e-sb-label" for="e_feature_03"><input id="e_feature_03" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp4">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-4.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_cc o_cc2 s_comparisons py-5 features-snippet-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-truck fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-400">FREE SHIPPING</div>
+                                            <label class="small ">ALL ORDER OVER $45</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                        <i class="fa fa-headphones fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-400">CUSTOMER SUPPORT</div>
+                                            <label class="small ">SUPPORT 24/7</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                            <i class="fa fa-lock fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-400">PAYMENT SECURITY</div>
+                                            <label class="small ">100 SECURE PAYMENT</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3">
+                                    <div class="d-flex">
+                                            <i class="fa fa-refresh fa-2x"></i>
+                                        <div class="ms-3">
+                                            <div class="fw-400">RETURNS POLICY</div>
+                                            <label class="small ">BEST RETURNS POLICY</label>
+                                            <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 4</h6>
+                <label class="e-sb-label" for="e_feature_04"><input id="e_feature_04" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp5">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-5.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-6 features-snippet-5 s_parallax parallax s_parallax_is_fixed">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-truck fa-2x border rounded border-white mb-4"></i>
+                                        <div class="feature-content">
+                                            <div class="h5 mb-2 fw-600 text-uppercase">Free Shipping</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-headphones fa-2x border rounded border-white mb-4"></i>
+                                        <div class="feature-content">
+                                            <div class="h5 mb-2 fw-600 text-uppercase">Customer support</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-lock fa-2x border rounded border-white mb-4"></i>
+                                        <div class="feature-content">
+                                            <div class="h5 mb-2 fw-600 text-uppercase">Payment Security</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-refresh fa-2x border rounded border-white mb-4"></i>
+                                        <div class="feature-content">
+                                            <div class="h5 mb-2 fw-600 text-uppercase">Returns Policy</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 5</h6>
+                <label class="e-sb-label" for="e_feature_05"><input id="e_feature_05" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp6">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-6.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-4 features-snippet-6 o_cc o_cc2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-truck"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase ">Free Shipping</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-headphones"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase ">Customer support</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-lock"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase ">Payment Security</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-refresh"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase ">Returns Policy</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 6</h6>
+                <label class="e-sb-label" for="e_feature_06"><input id="e_feature_06" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp7">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-7.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-4 features-snippet-7 border-top border-gray o_cc o_cc2">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-truck"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase">Free Shipping</h5>
+                                        <div class="fw-400">On all orders over $250</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-headphones"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase">Customer support</h5>
+                                        <div class="fw-400">100% Security Payment.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="my-3 text-center px-4">
+                                        <i class="fa fa-2x fa-lock"></i>
+                                        <h5 class="h5 mt-4 fw-700 text-uppercase">Payment Security</h5>
+                                        <div class="fw-400">15 days money back guarante</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 7</h6>
+                <label class="e-sb-label" for="e_feature_07"><input id="e_feature_07" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp8">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-8.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-6 features-snippet-8 s_parallax parallax s_parallax_is_fixed">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x350.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3 text-center">
+                                    <div><i class="fa-3x fa fa-list-ul"></i></div>
+                                    <div class="mt-4">
+                                        <span class=" h2 fw-700 d-block">25</span>
+                                        <span>year of experience</span> 
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center">
+                                    <div><i class="fa-3x fa fa-users"></i></div>
+                                    <div class="mt-4">
+                                        <span class=" h2 fw-700 d-block">55</span>
+                                        <span>Expert</span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center">
+                                    <div><i class="fa-3x fa fa-thumbs-o-up"></i></div>
+                                    <div class="mt-4">
+                                        <span class=" h2 fw-700 d-block">1756</span>
+                                        <span>Happy Customer</span> </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center">
+                                    <div><i class="fa-3x fa fa-trophy"></i></div>
+                                    <div class="mt-4">
+                                        <span class=" h2 fw-700 d-block">88</span>
+                                        <span>Professional Awards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 8</h6>
+                <label class="e-sb-label" for="e_feature_08"><input id="e_feature_08" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp9">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-9.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-9 s_parallax parallax s_parallax_is_fixed s_comparisons">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row justify-content-center mb-4 mb-md-6">
+                                <div class="col-lg-6 text-center">
+                                    <h5 class="fw-600 h5">WHAT WE OFFER</h5>
+                                    <div class="fw-600 h1">DEFINE YOUR GOAL</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 border-4 border-white card bg-black-15 rounded">
+                                        <i class="fa fa-crosshairs fa-5x"></i>
+                                        <h5 class="fw-600 h5 mt-4 mb-2">CROSSFIT</h5>
+                                        <p class="m-0 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 border-4 border-white card bg-black-15 rounded">
+                                        <i class="fa fa-heartbeat fa-5x"></i>
+                                        <h5 class="fw-600 h5 mt-4 mb-2">HEALTHY LIFE</h5>
+                                        <p class="m-0 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 border-4 border-white card bg-black-15 rounded">
+                                        <i class="fa fa-pencil-square-o fa-5x"></i>
+                                        <h5 class="fw-600 h5 mt-4 mb-2">STRATEGIES</h5>
+                                        <p class="m-0 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-5 border-4 border-white card bg-black-15 rounded">
+                                        <i class="fa fa-trophy fa-5x"></i>
+                                        <h5 class="fw-600 h5 mt-4 mb-2">WORKOUT</h5>
+                                        <p class="m-0 ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 9</h6>
+                <label class="e-sb-label" for="e_feature_09"><input id="e_feature_09" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp10">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-10.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="features-snippet-10 s_comparisons">
+                        <div class="container-fluid p-0">
+                            <div class="row g-0">
+                                <div class="col-lg-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-6 card border-0 rounded-0" style="background: #22b0ca;">
+                                        <i class="fa fa-heart rounded-circle mb-3 fa-2x text-o-color-5"></i>
+                                        <h5 class="text-uppercase h5 mb-3 fw-600">Heart rate</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-6 card border-0 rounded-0" style="background: #2ebad4;">
+                                        <i class="fa fa-hourglass-half fa-2x rounded-circle mb-3 text-o-color-5"></i>
+                                        <h5 class="text-uppercase h5 mb-3 fw-600">TEST LAB</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-6 card border-0 rounded-0" style="background: #16afcc;">
+                                        <i class="fa fa-snowflake-o fa-2x rounded-circle mb-3 text-o-color-5"></i>
+                                        <h5 class="text-uppercase h5 mb-3 fw-600">SYMPHTOM CHECK</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 s_col_no_bgcolor">
+                                    <div class="px-4 py-6 card border-0 rounded-0" style="background: #1899b1;">
+                                        <i class="fa fa-ambulance fa-2x rounded-circle mb-3 text-o-color-5"></i>
+                                        <h5 class="text-uppercase h5 mb-3 fw-600">ONLINE HELP</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 10</h6>
+                <label class="e-sb-label" for="e_feature_10"><input id="e_feature_10" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp11">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-11.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-11 bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa-2x fa fa-scissors"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="h5 fw-600 mb-2">Top Groomers</h5>
+                                            <p class="font-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa-2x fa fa-certificate"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="h5 fw-600 mb-2">V.I.P. Service</h5>
+                                            <p class="font-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa-2x fa fa-paw"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="h5 fw-600 mb-2">We Love Every Pet</h5>
+                                            <p class="font-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 11</h6>
+                <label class="e-sb-label" for="e_feature_11"><input id="e_feature_11" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp12">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-12.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 s_parallax parallax s_parallax_is_fixed s_comparisons">
+                        <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url('/theme_alan/static/src/img/snippets/1920x900.jpg'); background-position: 50% 75%;"></span>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3 text-center s_col_no_bgcolor">
+                                    <div class="border border-white p-4 card bg-black-15 text-center">
+                                        <div><i class="fa-3x fa fa-thumbs-o-up"></i></div>
+                                        <div class="mt-4">
+                                            <span class="h2 fw-700 d-block">100%</span>
+                                            <span>Passing to Universities</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center s_col_no_bgcolor">
+                                    <div class="border border-white p-4 card bg-black-15 text-center">
+                                        <div><i class="fa-3x fa fa-users"></i></div>
+                                        <div class="mt-4">
+                                            <span class=" h2 fw-700 d-block">126</span>
+                                            <span>People working</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center s_col_no_bgcolor">
+                                    <div class="border border-white p-4 card bg-black-15 text-center">
+                                        <div><i class="fa-3x fa fa-certificate"></i></div>
+                                        <div class="mt-4">
+                                            <span class=" h2 fw-700 d-block">2480</span>
+                                            <span>Students Enrolled</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 text-center s_col_no_bgcolor">
+                                    <div class="border border-white p-4 card bg-black-15 text-center">
+                                        <div><i class="fa-3x fa fa-calendar-o"></i></div>
+                                        <div class="mt-4">
+                                            <span class=" h2 fw-700 d-block">38</span>
+                                            <span>Years of experience</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 12</h6>
+                <label class="e-sb-label" for="e_feature_12"><input id="e_feature_12" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp13">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-13.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-5 features-snippet-13">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">WORLDWIDE SHIPPING</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-bookmark"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">CERTIFICATED</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">30 DAYS MONEY BACK</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-smile-o"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h6 class="mb-0">99% POSITIVE FEEDBACK</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 13</h6>
+                <label class="e-sb-label" for="e_feature_13"><input id="e_feature_13" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp14">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-14.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-4 features-snippet-14 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 p-4">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-globe fa-2x"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Free Shipping</h5>
+                                                <p class="mb-0">Lorem Ipsue Is Dummy Text Used In Laying Out Print.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 p-4">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-bookmark fa-2x"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Festival Offer</h5>
+                                                <p class="mb-0">Lorem Ipsue Is Dummy Text Used In Laying Out Print.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 p-4">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-calendar fa-2x"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">24 X 7 Service</h5>
+                                                <p class="mb-0">Lorem Ipsue Is Dummy Text Used In Laying Out Print.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 p-4">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-smile-o fa-2x"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">9Big Saving</h5>
+                                                <p class="mb-0">Lorem Ipsue Is Dummy Text Used In Laying Out Print.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 14</h6>
+                <label class="e-sb-label" for="e_feature_14"><input id="e_feature_14" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp15">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-15.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-15 o_cc o_cc2 o_colored_level s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-lg-6 text-center">
+                                    <h3 class="h1 mb-2 fw-600">Why Choose us?</h3>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-globe rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Free Shipping</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-bookmark rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Festival Offer</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-calendar rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">24 X 7 Service</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-smile-o rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">9Big Saving</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-globe rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Free Shipping</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 rounded-0 p-4 box-shadow-hover hover-top">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-bookmark rounded-circle"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Festival Offer</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 15</h6>
+                <label class="e-sb-label" for="e_feature_15"><input id="e_feature_15" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp16">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-16.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-16 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-lg-6 text-center">
+                                    <h3 class="h1 mb-2 fw-600">Why Choose us?</h3>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="box-shadow-hover card p-4 hover-top rounded text-center">
+                                        <i class="fa fa-globe mb-4 rounded-circle fa-2x mx-auto"></i>
+                                        <h5 class="text-reset">Free Shipping</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="box-shadow-hover card p-4 hover-top rounded text-center">
+                                        <i class="fa fa-bookmark mb-4 rounded-circle fa-2x mx-auto"></i>
+                                        <h5 class="text-reset">Festival Offer</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="box-shadow-hover card p-4 hover-top rounded text-center">
+                                        <i class="fa fa-calendar mb-4 rounded-circle fa-2x mx-auto"></i>
+                                        <h5 class="text-reset">24 X 7 Service</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 my-3 s_col_no_bgcolor">
+                                    <div class="box-shadow-hover card p-4 hover-top rounded text-center">
+                                        <i class="fa fa-smile-o mb-4 rounded-circle fa-2x mx-auto"></i>
+                                        <h5 class="text-reset">9Big Saving</h5>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 16</h6>
+                <label class="e-sb-label" for="e_feature_16"><input id="e_feature_16" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp17">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-17.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-17 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-lg-6 text-center">
+                                    <h3 class="h1 mb-2 fw-600">Why Choose us?</h3>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 my-3 s_col_no_bgcolor">
+                                    <div class="shadow p-4 card rounded">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-globe rounded"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Free Shipping</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3 s_col_no_bgcolor">
+                                    <div class="shadow p-4 card rounded">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-bookmark rounded"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">Festival Offer</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3 s_col_no_bgcolor">
+                                    <div class="shadow p-4 card rounded">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-calendar rounded"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">24 X 7 Service</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3 s_col_no_bgcolor">
+                                    <div class="shadow p-4 card rounded">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0">
+                                                <i class="fa fa-smile-o rounded"></i>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h5 class="text-reset">9Big Saving</h5>
+                                                <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 17</h6>
+                <label class="e-sb-label" for="e_feature_17"><input id="e_feature_17" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp18">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-18.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-18 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="pb-4">
+                                        <h3 class="h1 mb-2 fw-600">Why Choose us?</h3>
+                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 my-3 s_col_no_bgcolor">
+                                            <div class="shadow p-4 card">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fa fa-globe rounded"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="text-reset">Free Shipping</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 my-3 s_col_no_bgcolor">
+                                            <div class="shadow p-4 card">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fa fa-bookmark"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="text-reset">Festival Offer </h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 my-3 s_col_no_bgcolor">
+                                            <div class="shadow p-4 card">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fa fa-calendar rounded"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <h5 class="text-reset">24 X 7 Service</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 18</h6>
+                <label class="e-sb-label" for="e_feature_18"><input id="e_feature_18" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp19">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-19.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-19 s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 mb-3">
+                                    <h3 class="h1 fw-700 mb-3">Digital Products for Your Ideas</h3>
+                                    <div class="lead fw-500 mb-4">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text btn-lg" href="#">Contact Today</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 my-3">
+                                    <div class="row s_comparisons">
+                                        <div class="col-lg-6 s_col_no_bgcolor">
+                                            <div class="row">
+                                                <div class="col-lg-12 s_col_no_bgcolor bg-o-color-1">
+                                                    <div class="card shadow rounded p-4">
+                                                        <i class="fa fa-cloud-upload rounded mb-4 text-o-color-1"></i>
+                                                        <h5 class="fw-600">Cloud Service</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 s_col_no_bgcolor">
+                                                    <div class="card shadow rounded p-4 mt-4 bg-o-color-1">
+                                                        <i class="fa fa-bug rounded mb-4 text-o-color-1"></i>
+                                                        <h5 class="fw-600">Bug free code</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 s_col_no_bgcolor">
+                                            <div class="row">
+                                                <div class="col-lg-12 s_col_no_bgcolor">
+                                                    <div class="card shadow rounded p-4 mt-4 bg-o-color-1">
+                                                        <i class="fa fa-check-square rounded mb-4 text-o-color-1"></i>
+                                                        <h5 class="fw-600 ">Well Documented</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 s_col_no_bgcolor">
+                                                    <div class="card shadow rounded p-4 mt-4 bg-o-color-1">
+                                                        <i class="fa fa-diamond rounded mb-4 text-o-color-1"></i>
+                                                        <h5 class="fw-600">Clean Code</h5>
+                                                        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 19</h6>
+                <label class="e-sb-label" for="e_feature_19"><input id="e_feature_19" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp20">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-20.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-20 o_cc o_cc2">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <h3 class="h1 fw-600">Save Time &amp; Effort With the Limpid</h3>
+                                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing</p>
+                                    <div class="row g-0 pt-2">
+                                        <div class="col-lg-12 my-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-check rounded-circle"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h5 class="fw-600 mb-2">Content Marketing</h5>
+                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 my-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-check rounded-circle"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h5 class="fw-600 mb-2">Social Marketing</h5>
+                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="media col-lg-12 my-3">
+                                            <div class="d-flex">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-check rounded-circle"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <h5 class="fw-600 mb-2">App Development</h5>
+                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 my-3">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 20</h6>
+                <label class="e-sb-label" for="e_feature_20"><input id="e_feature_20" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp21">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-21.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-21 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-lg-6 text-center">
+                                    <h3 class="h1 mb-2 fw-600">Connect with us.</h3>
+                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-4 s_col_no_bgcolor">
+                                    <div class="shadow-lg card p-4 p-md-5 h-100 text-center">
+                                        <i class="fa fa-phone rounded-circle mb-4 mx-auto fa-2x"></i>
+                                        <h5 class="fw-600 text-reset mb-2">+01 856 965 8595</h5>
+                                        <h5 class="fw-600 text-reset m-0">+44 7256 865 3249</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-4 s_col_no_bgcolor">
+                                    <div class="shadow-lg card p-4 p-md-5 rounded h-100 text-center">
+                                        <i class="fa fa-envelope rounded-circle mb-4 mx-auto fa-2x"></i>
+                                        <h5 class="fw-600 text-reset mb-2">info@domain.com</h5>
+                                        <h5 class="fw-600 text-reset m-0">support@domain.com</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-4 s_col_no_bgcolor">
+                                    <div class="shadow-lg card p-4 p-md-5 rounded h-100 text-center">
+                                        <i class="fa fa-map rounded-circle mb-4 mx-auto fa-2x"></i>
+                                        <h5 class="fw-600 text-reset m-0">301 The Greenhouse, Factory, LD, E2 8DY</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 21</h6>
+                <label class="e-sb-label" for="e_feature_21"><input id="e_feature_21" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp22">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-22.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="features-snippet-22">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6 pt48 pb48">
+                                    <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+                                        <div class="col-lg-10 text-center py-6">
+                                            <div>
+                                                <i class="fa fa-bookmark mb-4 fa-2x rounded-circle"></i>
+                                                <div>
+                                                    <h5 class="text-reset">Festival Offer</h5>
+                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 pt48 pb48 o_colored_level o_cc o_cc2">
+                                    <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+                                        <div class="col-lg-10 text-center">
+                                            <div>
+                                                <i class="fa fa-globe mb-4 fa-2x rounded-circle"></i>
+                                                <div>
+                                                    <h5 class="text-reset">Free Shipping</h5>
+                                                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 22</h6>
+                <label class="e-sb-label" for="e_feature_22"><input id="e_feature_22" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp23">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-23.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 o_colored_level o_cc o_cc4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-5">
+                                    <h3 class="display-4 ">Do the math.</h3>
+                                </div>
+                                <div class="col-lg-7">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                            </div>
+                            <div class="row pt-5">
+                                <div class="col-lg-4">
+                                    <div class="display-3 fw-600 mb-3">8/10</div>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read more</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="display-3 fw-600 mb-3">85%</div>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read more</a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="display-3 fw-600 mb-3">92%</div>
+                                    <div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                    </div>
+                                    <div class="pt-2">
+                                        <a class="btn btn-primary o_default_snippet_text btn-sm" href="#">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 23</h6>
+                <label class="e-sb-label" for="e_feature_23"><input id="e_feature_23" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp24">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-24.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-24 o_cc o_cc2 s_comparisons">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12 text-center mb-4">
+                                    <h3 class="h1 fw-600">We like to make it easy</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 px-5 py-7 rounded text-center box-shadow-hover">
+                                        <i class="fa fa-shopping-basket fa-2x rounded-circle mb-4 mx-auto"></i>
+                                        <h5 class="fw-600 mb-3 text-reset">You Collect</h5>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                        </div>
+                                        <div class="pt-2">
+                                            <a class="btn-sm btn btn-primary o_default_snippet_text" href="#">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 px-5 py-7 rounded text-center box-shadow-hover">
+                                        <i class="fa fa-shopping-basket fa-2x rounded-circle mb-4 mx-auto"></i>
+                                        <h5 class="fw-600 mb-3 text-reset">We Build</h5>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                        </div>
+                                        <div class="pt-2">
+                                            <a class="btn-sm btn btn-primary o_default_snippet_text" href="#">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 my-3 s_col_no_bgcolor">
+                                    <div class="card border-0 px-5 py-7 rounded text-center box-shadow-hover">
+                                        <i class="fa fa-shopping-basket fa-2x rounded-circle mb-4 mx-auto"></i>
+                                        <h5 class="fw-600 mb-3 text-reset">You Manage</h5>
+                                        <div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan, odio nec vulputate ultricies, sem neque venenatis risus, sed euismod lectus ipsum sed elit</p>
+                                        </div>
+                                        <div class="pt-2">
+                                            <a class="btn-sm btn btn-primary o_default_snippet_text" href="#">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 24</h6>
+                <label class="e-sb-label" for="e_feature_24"><input id="e_feature_24" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp25">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-25.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="py-8 features-snippet-25">
+                        <div class="container">
+                            <div class="row justify-content-center mb-4">
+                                <div class="col-lg-6 text-center">
+                                    <div class="h1 fw-600">The Best Features</div>
+                                    <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-globe rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="fw-600 text-reset">Free Shipping</h5>
+                                            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-bookmark rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="fw-600 text-reset">Festival Offer</h5>
+                                            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-calendar rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="fw-600 text-reset">24 X 7 Service</h5>
+                                            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 my-3">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fa fa-smile-o rounded-circle"></i>
+                                        </div>
+                                        <div class="flex-grow-1 ms-3">
+                                            <h5 class="fw-600 text-reset">Big Saving</h5>
+                                            <div>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>    
+                </textarea>
+                <h6 class="text-truncate">Feature 25</h6>
+                <label class="e-sb-label" for="e_feature_25"><input id="e_feature_25" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp26">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-26.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="features-snippet-26 s_comparisons">
+                        <div class="container">
+                            <section class="features-snippet-in position-relative p-4 o_cc o_cc2 s_comparisons">
+                                <div class="row">
+                                    <div class="col-lg-3 s_col_no_bgcolor">
+                                        <div class="card text-center px-3 py-4 border bg-white-25" style="border-style: dashed !important; border-width: 3px !important;">
+                                            <i class="fa fa-truck mb-3 mx-auto rounded-circle"></i>
+                                            <h6 class="fw-600">Free Shipping</h6>
+                                            <p class="text-dark-50">Lorem ipsum dolor sit amet, consectetur</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 s_col_no_bgcolor">
+                                        <div class="card text-center px-3 py-4 border bg-white-25" style="border-style: dashed !important; border-width: 3px !important;">
+                                            <i class="fa fa-bolt mb-3 mx-auto rounded-circle"></i>
+                                            <h6 class="fw-600">Weekly Flash Sale</h6>
+                                            <p class="text-dark-50">Lorem ipsum dolor sit amet, consectetur</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 s_col_no_bgcolor">
+                                        <div class="card text-center px-3 py-4 border bg-white-25" style="border-style: dashed !important; border-width: 3px !important;">
+                                            <i class="fa fa-credit-card-alt mb-3 mx-auto rounded-circle"></i>
+                                            <h6 class="fw-600">Payment Discount</h6>
+                                            <p class="text-dark-50">Lorem ipsum dolor sit amet, consectetur</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 s_col_no_bgcolor">
+                                        <div class="card text-center px-3 py-4 border bg-white-25" style="border-style: dashed !important; border-width: 3px !important;">
+                                            <i class="fa fa-money mb-3 mx-auto rounded-circle"></i>
+                                            <h6 class="fw-600">Reward Program</h6>
+                                            <p class="text-dark-50">Lorem ipsum dolor sit amet, consectetur</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 26</h6>
+                <label class="e-sb-label" for="e_feature_26"><input id="e_feature_26" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp27">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-27.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="as-alan-snippet-builder o_colored_level" data-snippet="website_snippet_builder" data-name="Alan Snippet Builder" style="background-image: none;">
+                        <section class="features-snippet-27">
+                            <div class="container-fluide">
+                                <div class="position-relative">
+                                    <div class="row g-0">
+                                        <div class="col-lg-3 d-flex justify-content-lg-center my-2">
+                                            <div class="d-flex align-items-center p-3">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-truck fa-2x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="h6 fw-500 m-0">FREE SHIPPING</div>
+                                                    <p class="m-0 fs-6">Carrier information</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 d-flex justify-content-lg-center my-2">
+                                            <div class="d-flex align-items-center p-3">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa-2x fa fa-credit-card"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="h6 fw-500 m-0">ONLINE PAYMENT</div>
+                                                    <p class="m-0 fs-6">Payment methods</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 d-flex justify-content-lg-center my-2">
+                                            <div class="d-flex align-items-center p-3">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-shield fa-2x"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="h6 fw-500 m-0">100% SAFE AND SECURE</div>
+                                                    <p class="m-0 fs-6">Unlimited help Desk</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 d-flex justify-content-lg-center my-2">
+                                            <div class="d-flex align-items-center p-3">
+                                                <div class="flex-shrink-0">
+                                                    <i class="fa fa-2x fa-globe"></i>
+                                                </div>
+                                                <div class="flex-grow-1 ms-3">
+                                                    <div class="h6 fw-500 m-0">GLOBAL DELIVERY</div>
+                                                    <p class="m-0 fs-6">Track or off orders</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 27</h6>
+                <label class="e-sb-label" for="e_feature_27"><input id="e_feature_27" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+<t t-name="theme_alan.feature_temp28">
+    <div class="col-md-3">
+        <div class="e_sb_snnippet_box">
+            <div class="img">
+                <img src="/theme_alan/static/src/img/snippets/snippets_icon/feature-32.jpg" />
+            </div>
+            <div class="snippet-as">
+                <textarea class="visually-hidden snippet-textarea">
+                    <section class="o_colored_level s_comparisons">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-5 my-3">
+                                    <div class="row justify-content-end">
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <div class="text-end"><i class="fa fa-truck fa-3x mb-3"></i></div>
+                                                <h3 class="text-end mb-2">Complimentary Shipping &amp; Returns</h3>
+                                                <p class="text-end">
+                                                    Lorem ipsum dolor sit consectetur adipisicing xpedita<br /> dicta amet olor ut eveniet commodi...
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <div class="text-end"><i class="fa fa-truck fa-3x mb-3"></i></div>
+                                                <h3 class="text-end mb-2">At Your Services</h3>
+                                                <p class="text-end">
+                                                    Lorem ipsum dolor sit consectetur adipisicing xpedita<br /> dicta amet olor ut eveniet commodi...
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <div class="text-end"><i class="fa fa-truck fa-3x mb-3"></i></div>
+                                                <h3 class="text-end mb-2">The Iconic Box Packing</h3>
+                                                <p class="text-end">
+                                                    Lorem ipsum dolor sit consectetur adipisicing xpedita<br /> dicta amet olor ut eveniet commodi...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 my-3">
+                                    <img src="/theme_alan/static/src/img/snippets/1000x1000.jpg" class="img img-fluid mx-auto" />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </textarea>
+                <h6 class="text-truncate">Feature 28</h6>
+                <label class="e-sb-label" for="e_feature_28"><input id="e_feature_28" name="radio-snippet" type="radio" /><span /></label>
+            </div>
+        </div>
+    </div>
+</t>
+</templates>

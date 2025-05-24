@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="theme_alan.snippetBuilder" owl="1">
+    <FrameDialog contentClass="this.props.contentClass" size="this.props.size" title="this.props.title" footer="false">
+        <t t-component="activeComponent" t-props="props"/>
+    </FrameDialog>
+</t>
+
+</templates>

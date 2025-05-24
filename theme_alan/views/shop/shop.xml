@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- B2B Mode -->
+    <template id="theme_alan_products_add_to_cart" inherit_id="website_sale.products_add_to_cart" name="Theme Alan Add to Cart">
+        <xpath expr="//a[contains(@t-if, 'product._website_show_quick_add()')]" position="attributes">
+            <attribute name="t-if" add="and not (request.env.user._is_public() and request.website.active_b2b_mode)" separator=" "/>
+        </xpath>
+    </template>
+    
+    <template id="theme_alan_filter_products_price" inherit_id="website_sale.filter_products_price" name="Theme Alan Filter by Prices">
+        <xpath expr="//div[@id='o_wsale_price_range_option']" position="attributes">
+            <attribute name="t-attf-style">{{'display:none !important;' if request.env.user._is_public() and request.website.active_b2b_mode else ''}}</attribute>
+        </xpath>
+    </template>
+    <template id="as_header_cart_link" inherit_id="website_sale.header_cart_link" name="Theme Alan Header Cart Link">
+        <xpath expr="//t[@t-set='show_cart']" position="attributes">
+            <attribute name="t-value">not (request.env.user._is_public() and request.website.active_b2b_mode)</attribute>
+        </xpath>
+    </template>
+    <template id="as_product_wishlist" inherit_id="website_sale_wishlist.product_wishlist" name="Theme Alan Wishlist Page">
+        <xpath expr="//td[hasclass('o_wish_price')]" position="attributes">
+            <attribute name="t-if">not (request.env.user._is_public() and request.website.active_b2b_mode)</attribute>
+        </xpath>
+        <xpath expr="//td[hasclass('td-wish-btn')]" position="attributes">
+            <attribute name="t-if">not (request.env.user._is_public() and request.website.active_b2b_mode)</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('checkbox')]" position="attributes">
+            <attribute name="t-if">not (request.env.user._is_public() and request.website.active_b2b_mode)</attribute>
+        </xpath>
+    </template>
+
+    <!-- Alan Shop Indentifier -->
+    <template id="as_page_identifier" name="Page identifier" inherit_id="web.frontend_layout" priority="1">
+        <xpath expr="//div[@id='wrapwrap']" position="attributes">
+            <attribute name="t-attf-class" add="#{'as_shop_page' if as_shop else ''}" separator=" "/>
+        </xpath>
+    </template>
+
+    <!-- Clear Filter: START -->
+    <template id="as_shop_clear_filter" name="Clear Filter" inherit_id="website_sale.products">
+        <xpath expr="//div[hasclass('o_wsale_products_main_row')]" position="before">
+            <t t-if="website.active_shop_clear_filter">
+                <div t-if="(len(attrib_set) or (round(max_price or 0) != round(available_max_price or 0) or round(min_price or 0) != round(available_min_price or 0)) or len(selected_brands) or len(selected_tags) or len(rating_set))" class="as-shop-top-filter" id="as_shop_top_filter">
+                    <ul>
+                        <li class="as-clear-filter-all" >
+                            <a t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, attrib=0, rating=0, tags=0, brand=0, min_price=0, max_price=0)">Clear All Filter <b class="asi asi-x"/></a>
+                        </li>
+                        <t t-foreach="attributes" t-as="a">
+                            <t t-if="a.value_ids and len(a.value_ids) &gt; 1" t-foreach="a.value_ids" t-as="v">
+                                <li t-if="v.id in attrib_set" data-name="attrib" t-att-data-value="'%s-%s' % (a.id,v.id)" class="as-clear-filter">
+                                    <span><t t-esc="a.name"/>: </span>
+                                    <span t-esc="v.name"/><b class="asi asi-x"/>
+                                </li>
+                            </t>
+                        </t>
+                        <t t-foreach="selected_tags" t-as="tag">
+                            <li class="as-clear-filter" data-name="tags" t-att-data-value="tag.id">
+                                <span>Tag: </span>
+                                <span t-esc="tag.name"/><b class="asi asi-x" />
+                            </li>
+                        </t>
+                        <t t-foreach="selected_brands" t-as="brand">
+                            <li class="as-clear-filter" data-name="brand" t-att-data-value="brand.id">
+                                <span>Brand: </span>
+                                <span t-esc="brand.name"/><b class="asi asi-x" />
+                            </li>
+                        </t>
+                        <t t-foreach="rating_set" t-as="rating">
+                            <li class="as-clear-filter" data-name="rating" t-att-data-value="rating">
+                                <span>Rating: </span>
+                                <span><em t-esc="rating"/><b class="asi asi-x" /></span>
+                            </li>
+                        </t>
+                        <div class="clear_price_filter"  style="display: contents;">
+                            <li t-if="round(max_price or 0) != round(available_max_price or 0)" class="as-clear-filter">
+                                <span><a t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, max_price=0)">Max Price <t t-esc="max_price"/><b class="asi asi-x" /></a></span>
+                            </li>
+                            <li t-if="round(min_price or 0) != round(available_min_price or 0)" class="as-clear-filter">
+                                <span><a t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, min_price=0)"> Min Price <t t-esc="min_price"/><b class="asi asi-x" /></a></span>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-call='website_sale.products_breadcrumb']" position="replace"/>
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="before">
+            <div class="shop-breadcrumbs">
+                <div class="container">
+                    <ol t-attf-class="breadcrumb #{_classes}">
+                        <li class="breadcrumb-item">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="/shop">Products</a>
+                        </li>
+                        <t t-foreach="category.parents_and_self" t-as="cat">
+                            <li t-if="cat == category" class="breadcrumb-item">
+                                <span class="d-inline-block" t-field="cat.name"/>
+                            </li>
+                            <li t-else="" class="breadcrumb-item">
+                                <a t-att-href="keep('/shop/category/%s' % slug(cat), category=0)" t-field="cat.name"/>
+                            </li>
+                        </t>
+                    </ol>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <!-- Clear Filter: END -->
+
+    <!-- PPG: START -->
+    <template id="as_shop_filter" name="Filter Bar" inherit_id="website_sale.products">
+        <xpath expr="//div[hasclass('products_header')]" position="inside">
+            <div t-if="website.active_shop_ppg" class="as-ppg-dropdown dropdown">
+                <label>Show</label>
+                <button type="button" class="dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span><t t-esc="ppg or request.session['ppg']"/></span>
+                </button>
+                <div class="dropdown-menu">
+                    <t t-foreach="ppg_list" t-as="ppg">
+                        <a class="dropdown-item" t-att-href="keep('/shop', ppg=ppg.name)"><t t-esc="ppg.name"/></a>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <!-- PPG: END -->
+
+    <template id="as_shop_info" inherit_id="website_sale.products_item" name="Shop Page">
+        <xpath expr="//div[hasclass('product_price')]" position="attributes">
+            <attribute name="t-if">not (request.env.user._is_public() and request.website.active_b2b_mode)</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('product_price')]" position="after">
+            <div t-if="request.env.user._is_public() and request.website.active_b2b_mode" class="as-b2b-price">
+                <a role="button" href="/web/login" t-attf-class="#{'as_login_popup' if request.website.active_login_popup else ''}">
+                    <i class="asi asi-lock"></i> <span>Login for price</span>
+                </a>
+            </div>
+        </xpath>
+
+        <!-- Load More: START -->
+        <xpath expr="//form[hasclass('oe_product_cart')]" position="inside">
+            <input type="hidden" name="product_ref_id" class="product_ref_id" t-att-value="product.id"/>
+        </xpath>
+        <xpath expr="//t[@t-set='product_href']" position="attributes">
+            <attribute name="t-if">pager</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set='product_href']" position="after">
+            <t t-else="" t-set="product_href" t-value="keep(product.website_url)" />
+        </xpath>
+        <!-- Load More: END -->
+        <!-- Color Icon and Offer Timer: START -->
+        <xpath expr="//div[hasclass('product_price')]" position="after">
+            <div t-if="product.have_color_attribute and website.active_shop_color_variant" class="as-color-variant">
+                <ul>
+                    <t t-foreach="product.get_variant_color_images()" t-as="vc">
+                        <li  t-att-data-product_tmpl_id="product.id">
+                            <label t-att-data-product_tmpl_id="product.id" class="as_color_variant_img css_attribute_color_tag p-3" t-attf-style="background-image: url({{vc}}); background-size: cover;">
+                                <span t-att-data-color-image="vc" />
+                            </label>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+            <t t-set="offer_timer" t-value="product.sudo().product_variant_id._get_offer_timing(website._get_current_pricelist())"/>
+            <div t-if="website.active_product_offer_timer and offer_timer" class="as-product-offer-time">
+                <div class="as_offer_timer" t-att-data-offer="offer_timer"/>
+            </div>
+        </xpath>
+        <!-- Color Icon and Offer Timer: END -->
+        <!-- Similar Product and Quick View and Label: START -->
+        <xpath expr="//div[hasclass('oe_product_image')]" position="inside">
+            <div class="as-product-card-actions">
+               <a t-if="website.active_shop_quick_view" href="#" role="button" class="btn btn-primary as_quick_view" t-att-data-product_tmpl_id="product.id" title="Quick View">
+                   <span class="fa fa-eye"/>
+               </a>
+               <a t-if="product.alternative_product_ids and website.active_shop_similar_product" href="#"
+                       role="button" class="btn btn-primary as_similar_product"
+                       t-att-data-product_tmpl_id="product.id" title="Similar Product">
+                   <span class="fa fa-search"/>
+               </a>
+           </div>
+           <t t-if="website.active_shop_label" t-call="theme_alan.product_label"/>
+       </xpath>
+        <!-- Similar Product and Quick View and Label: END -->
+        <!-- Out of Stock Labels: START -->
+        <xpath expr="//div[hasclass('o_wsale_product_sub')]" position="after">
+            <t t-if="not product.sudo().allow_out_of_stock_order
+                    and product.sudo().with_context(warehouse=website._get_warehouse_available()).virtual_available &lt; 1
+                    and website.active_shop_stock_info">
+                <div id="out_of_stock_message" class="as-product-stock-message">
+                    <span>Out of stock</span>
+                </div>
+            </t>
+        </xpath>
+        <!-- Out of Stock Labels: END -->
+        <!-- Hover Image: START -->
+        <xpath expr="//span[hasclass('oe_product_image_img_wrapper')]" position="after">
+            <div t-if="product.hover_image and website.active_shop_hover_image" class="as-hover-image">
+                <span t-field="product.hover_image" t-options="{'widget': 'image'}"/>
+            </div>
+        </xpath>
+        <!-- Hover Image: END -->
+        <!-- Brand, Rating Info : START -->
+        <xpath expr="//h6[hasclass('o_wsale_products_item_title')]" position="before">
+            <span t-if="is_view_active('website_sale.product_comment') and product.sudo().rating_avg and website.active_shop_rating" class="as_product_rating">
+                <i class="fa fa-star"/>
+                <t t-if="product.sudo().rating_avg % 1 == 0"><t t-esc="int(product.sudo().rating_avg)"/></t>
+                <t t-else=""><t t-esc='"{:.1f}".format(product.rating_avg)'/></t>
+                <span class="rating-count" t-if="product.rating_count"  t-esc="product.rating_count"/>
+            </span>
+            <div t-if="website.active_shop_brand_info" class="as-brand">
+                <span t-esc="product.product_brand_id.name" />
+            </div>
+        </xpath>
+        <xpath expr="//h6[hasclass('o_wsale_products_item_title')]" position="after">
+            <div t-if="website.active_shop_product_reference and product.product_variant_id.default_code" class="as-brand">
+                <b style="color: black;font-weight: 500;">SKU:</b><span t-esc="product.product_variant_id.default_code" />
+            </div>
+        </xpath>
+        <!-- Brand, Rating Info: END -->
+    </template>
+
+    <!-- Load More: START -->
+    <template id="as_shop_products" name="Lazy Load More Products" inherit_id="website_sale.products">
+        <xpath expr="//tr[@t-foreach='bins']//t//div" position="replace">
+            <div t-attf-class="o_wsale_product_grid_wrapper as_color_variant position-relative h-100 o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
+                <t t-call="website_sale.products_item">
+                    <t t-set="product" t-value="td_product['product']"/>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('products_pager')]" position="before">
+            <t t-if="website.active_load_more">
+                <div class="as-shop-load-more">
+                    <a href="#" class="btn btn-primary" id="loadMoreproducts">Load More</a>
+                    <span class="all_loaded d-none"/>
+                </div>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('products_pager')]" position="attributes">
+            <attribute name="t-attf-style">#{'display:none !important;' if as_shop and website.active_load_more else ''}</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('products_pager')]" position="after">
+            <div t-if="website.active_load_more" class="alan_pager d-none">
+                <t t-call="website.pager">
+                    <t t-set="pager" t-value="alan_pager"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="as_load_more_pager" name="Lazy Load More Pager" inherit_id="website.pager">
+        <xpath expr="//ul/t/li[contains(@t-attf-class, 'page-item')]" position="attributes">
+            <attribute name="t-att-data-prd_ids">page.get('prd_ids')</attribute>
+            <attribute name="t-att-data-ppr">ppr</attribute>
+            <attribute name="t-att-data-ppg">ppg</attribute>
+        </xpath>
+    </template>
+
+    <template id="shop_page_next_products" name="Shop next Products">
+        <tr t-foreach="bins" t-as="tr_product">
+            <t t-foreach="tr_product" t-as="td_product">
+                <t t-if="td_product">
+                    <td t-att-colspan="td_product['x'] != 1 and td_product['x']"
+                        t-att-rowspan="td_product['y'] != 1 and td_product['y']"
+                        t-attf-class="oe_product"
+                        t-att-data-ribbon-id="td_product['ribbon'].id"
+                        data-name="Product">
+                        <div t-attf-class="o_wsale_product_grid_wrapper as_color_variant position-relative h-100 o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
+                            <t t-call="website_sale.products_item">
+                                <t t-set="product" t-value="td_product['product']"/>
+                            </t>
+                        </div>
+                    </td>
+                </t>
+                <td t-else=""/>
+            </t>
+        </tr>
+    </template>
+    <!-- Load More: END -->
+
+    <!-- Shop Attributes Filter:Start -->
+
+    <template id="as_advance_filters" name="Alan Advance Filters">
+        <div>
+            <form class="js_attributes position-relative mb-2" method="get">
+                <input t-if="category" type="hidden" name="category" t-att-value="category.id" />
+                <input type="hidden" name="search" t-att-value="search" />
+                <input type="hidden" name="order" t-att-value="order"/>
+                <a t-if="not website.active_shop_clear_filter and (attrib_values or tags)" t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, attrib=0, tags=0)" t-attf-class="btn btn-{{navClass}} d-flex py-1 mb-2">
+                    <small class="mx-auto"><b>Clear Filters</b></small>
+                    <i class="oi oi-close"/>
+                </a>
+                <!-- Attributes -->
+                <t t-foreach="attributes" t-as="a">
+                    <t t-cache="a,attrib_set">
+                        <div class="accordion-item nav-item" t-if="a.value_ids and len(a.value_ids) &gt; 1">
+                            <h6 class="accordion-button collapsed" data-bs-toggle="collapse" t-attf-data-bs-target="#o_products_attributes_{{a.id}}" aria-expanded="false" t-attf-aria-controls="o_products_attributes_{{a.id}}" style="display: flex;">
+                                <b class="o_products_attributes_title" t-field="a.name"/>
+                                <i class="f-arrow"></i>
+                            </h6>
+                            <div t-attf-id="o_products_attributes_{{a.id}}" t-attf-class="accordion-collapse collapse {{'show' if len(attrib_values) else ''}}">
+                                <div class="accordion-body">
+                                    <div t-if="a.display_type not in ('select',) and website.active_attribute_search" class="as-aside-attr-search">
+                                        <input class="form-control as_attribute_search as_filter_search" placeholder="Search" type="text"/>
+                                        <i class="fa fa-search"/>
+                                    </div>
+                                    <t t-if="a.display_type == 'select'">
+                                        <select class="form-select css_attribute_select mb-2" name="attrib">
+                                        <option value="" selected="true">-</option>
+                                        <t t-foreach="a.value_ids" t-as="v">
+                                            <option t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not attr_count.get(v.id)>0)" t-att-value="'%s-%s' % (a.id,v.id)"  t-att-selected="v.id in attrib_set" >
+                                                <span t-esc="v.name"/>
+                                                <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="attr_count.get(v.id)"/>)</span></t>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    </t>
+                                    <div t-elif="a.display_type == 'color'" class="as-aside-color-list as-aside-scroll">
+                                        <t t-foreach="a.value_ids" t-as="v">
+                                            <t t-set="img_style" t-value="'background:url(/web/image/product.attribute.value/%s/image); background-size:cover;' % v.id if v.image else ''"/>
+                                            <t t-set="color_style" t-value="'background: ' + str(v.html_color or v.name if not v.is_custom else '')"/>
+                                            <label t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not attr_count.get(v.id)>0)" t-attf-style="#{img_style or color_style}" t-attf-class="css_attribute_color mb-1 #{'active' if v.id in attrib_set else ''}">
+                                                <input type="checkbox" name="attrib" t-att-value="'%s-%s' % (a.id, v.id)" t-att-checked="'checked' if v.id in attrib_set else None" t-att-title="v.name"/>
+                                                <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="attr_count.get(v.id)"/>)</span></t>
+                                            </label>
+                                        </t>
+                                    </div>
+                                    <div t-elif="a.display_type in ('radio', 'pills', 'multi')" class="flex-column as-aside-scroll">
+                                        <t t-foreach="a.value_ids" t-as="v">
+                                            <div t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not attr_count.get(v.id)>0)" class="form-check mb-1">
+                                                <input type="checkbox" name="attrib" class="form-check-input" t-att-id="'%s-%s' % (a.id,v.id)" t-att-value="'%s-%s' % (a.id,v.id)" t-att-checked="'checked' if v.id in attrib_set else None"/>
+                                                <label class="form-check-label fw-normal" t-att-for="'%s-%s' % (a.id,v.id)" t-field="v.name"/>
+                                                <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="attr_count.get(v.id)"/>)</span></t>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+                <!-- Tags -->
+                <div class="accordion-item nav-item" t-if="all_tags and sum(tag_count.values()) > 0">
+                    <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_products_attributes_tags" aria-expanded="false" aria-controls="o_products_attributes_tags" style="display: flex;">
+                        <b class="o_products_attributes_title">Tags</b>
+                        <i class="f-arrow"></i>
+                    </h6>
+                    <div id="o_products_attributes_tags" t-attf-class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <div t-if="website.active_attribute_search" class="as-aside-attr-search">
+                                <input class="form-control as_tag_search as_filter_search" placeholder="Search" type="text"/>
+                                <i class="fa fa-search"/>
+                            </div>
+                            <div class="as-aside-scroll">
+                                <t t-foreach="all_tags" t-as="tag" class="list-group-item border-0 ps-0 pb-0">
+                                    <div t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not tag_count.get(tag.id)>0)" class="form-check mb-1">
+                                        <input type="checkbox" name="tags" class="form-check-input" t-att-id="'%s-%s' % (tag.name,tag.id)" t-att-value="tag.id" t-att-checked="'checked' if tag.id in tags else None"/>
+                                        <label class="form-check-label fw-normal" t-att-for="'%s-%s' % (tag.name,tag.id)" t-field="tag.name"/>
+                                        <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="tag_count.get(tag.id)"/>)</span></t>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Brands -->
+                <t t-if="website.active_brand_filter and sum(brand_count.values()) > 0">
+                    <t t-set="brand_status" t-value="'inactive'"/>
+                    <t t-foreach="brands" t-as="b" t-if="b.id in brand_set" t-set="brand_status" t-value="'active'"/>
+                    <div class="accordion-item nav-item" t-if="brands">
+                        <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_products_attributes_brands" aria-expanded="false" aria-controls="o_products_attributes_brands" style="display: flex;">
+                            <b class="o_products_attributes_title" >Brands</b>
+                            <i class="f-arrow"></i>
+                        </h6>
+                        <div id="o_products_attributes_brands" t-attf-class="accordion-collapse collapse {{'show' if len(brand_set) else ''}}">
+                            <div class="accordion-body">
+                                <div t-if="website.active_attribute_search" class="as-aside-attr-search">
+                                    <input class="form-control as_filter_search" placeholder="Search" type="text"/>
+                                    <i class="fa fa-search"/>
+                                </div>
+                                <div class="as-aside-brand-list as-aside-scroll">
+                                    <t t-foreach="brands" t-as="brand">
+                                        <label t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not brand_count.get(brand.id)>0)" t-attf-class="as_brand_attr_image #{'active' if brand.id in brand_set else ''} as_attr" t-att-data-name="brand.name">
+                                            <img t-att-src="request.website.image_url(brand,'image_128')"/>
+                                            <input type="checkbox" name="brand" t-att-value="brand.id" t-att-checked="'checked' if brand.id in brand_set else None" t-att-title="brand.name" />
+                                            <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="brand_count.get(brand.id)"/>)</span></t>
+                                        </label>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <!-- Ratings -->
+                <t t-set="rating_status" t-value="'active' if len(rating_set) else 'inactive'"/>
+                <div class="accordion-item nav-item" t-if="ratings != 1 and website.active_rating_filter">
+                    <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_products_attributes_ratings" aria-expanded="false" aria-controls="o_products_attributes_ratings" style="display: flex;">
+                        <b class="o_products_attributes_title">Ratings</b>
+                        <i class="f-arrow"></i>
+                    </h6>
+                    <div id="o_products_attributes_ratings" t-attf-class="accordion-collapse collapse {{'show' if len(rating_set) else ''}}">
+                        <div class="accordion-body">
+                            <div class="as-aside-star-list">
+                                <t t-foreach="range(1,6)" t-as="rating">
+                                    <label t-if=" not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not rating_count.get(rating)>0)" class="form-check">
+                                        <input class="form-check-input" t-attf-id="rating_{{rating}}" type="checkbox" name="rating" t-att-value="rating" t-att-checked="'checked' if rating in rating_set else None" t-att-title="rating" />
+                                        <span t-attf-class="form-check-label as_rating_attr star-{{rating}} #{'active' if rating in rating_set else ''}" t-attf-for="rating_{{rating}}">
+                                            <span t-esc="rating"/>
+                                            <i class="fa fa-star-o"/>
+                                            &amp; up
+                                        </span>
+                                        <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="rating_count.get(rating)"/>)</span></t>
+                                    </label>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stock Only -->
+                <div t-if="website.active_stock_only" class="as-product-stock">
+                    <a class="active" t-if="stock_only" t-att-href="keep('/shop', stock='inactive')"><span>Hide Out Of Stock</span></a>
+                    <a class="inactive" t-else="" t-att-href="keep('/shop', stock='active')"><span>Hide Out Of Stock</span></a>
+                </div>
+            </form>
+        </div>
+    </template>
+
+    <template id="as_advance_filters_brand_extend" name="Brand Name Filter" inherit_id="theme_alan.as_advance_filters" customize_show="True">
+        <xpath expr="//div[@t-if='brands']" position="replace">
+            <div class="accordion-item nav-item" t-if="brands">
+                <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_products_attributes_brands" aria-expanded="false" aria-controls="o_products_attributes_brands" style="display: flex;">
+                    <b class="o_products_attributes_title" >Brands</b>
+                    <i class="f-arrow"></i>
+                </h6>
+                <div id="o_products_attributes_brands" t-attf-class="accordion-collapse collapse {{'show' if len(brand_set) else ''}}">
+                    <div class="accordion-body">
+                        <div t-if="website.active_attribute_search" class="as-aside-attr-search">
+                            <input class="form-control as_filter_search" placeholder="Search" type="text"/>
+                            <i class="fa fa-search"/>
+                        </div>
+                        <div class="as-aside-brand-list as-aside-scroll">
+                            <t t-foreach="brands" t-as="brand">
+                                <label t-if="not website.active_hide_zero_attribute or not (website.active_hide_zero_attribute and not brand_count.get(brand.id)>0)" t-attf-class="as_brand_attr_image #{'active' if brand.id in brand_set else ''} as_attr" t-att-data-name="brand.name">
+                                    <span t-esc="brand.name"/>
+                                    <input type="checkbox" name="brand" t-att-value="brand.id" t-att-checked="'checked' if brand.id in brand_set else None" t-att-title="brand.name" />
+                                    <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="brand_count.get(brand.id)"/>)</span></t>
+                                </label>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="as_products_attributes" name="Alan Product Attributes" inherit_id="website_sale.products_attributes">
+        <xpath expr="//div[@id='wsale_products_attributes_collapse']" position="replace">
+            <div id="wsale_products_attributes_collapse" class=" position-relative">
+                <t t-call="theme_alan.as_advance_filters"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="as_o_wsale_offcanvas" name="Website Offcanvas Extend" inherit_id="website_sale.o_wsale_offcanvas">
+        <xpath expr="." position="replace">
+            <aside id="o_wsale_offcanvas"
+               class="o_website_offcanvas offcanvas offcanvas-end p-0">
+                <div class="offcanvas-header justify-content-end">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"/>
+                </div>
+                <div t-if="category" class="offcanvas-body d-lg-none flex-grow-0 overflow-visible">
+                    <t t-call="website_sale.search">
+                        <t t-set="search" t-value="original_search or search"/>
+                        <t t-set="_s_searchbar_autocomplete_classes" t-valuef="bg-primary"> </t>
+                    </t>
+                </div>
+
+                <div id="o_wsale_offcanvas_content" class="accordion accordion-flush flex-grow-1 overflow-auto">
+                    <div class="accordion-item nav-item" t-if="hasPricelistDropdown">
+                        <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_wsale_offcanvas_pricelist" aria-expanded="false" aria-controls="o_wsale_offcanvas_pricelist" style="display: flex;">
+                            <b class="o_products_attributes_title">Pricelist</b>
+                            <i class="f-arrow"></i>
+                        </h6>
+                        <t t-set="curr_pl" t-value="website.pricelist_id"/>
+                        <div id="o_wsale_offcanvas_pricelist"
+                                class="accordion-collapse collapse"
+                                aria-labelledby="o_wsale_offcanvas_orderby_header">
+                                <div class="accordion-body pt-0">
+                                    <div class="list-group list-group-flush">
+                                        <a t-foreach="website_sale_pricelists" t-as="pl"
+                                            role="menuitem"
+                                            rel="noindex,nofollow"
+                                            t-att-href="'/shop/change_pricelist/%s' % pl.id"
+                                            class="list-group-item border-0 ps-0 pb-0"
+                                            >
+                                            <div class="form-check d-inline-block">
+                                                <input type="radio"
+                                                    t-attf-onclick="location.href='/shop/change_pricelist/#{pl.id}';"
+                                                    class="form-check-input o_not_editable"
+                                                    name="wsale_pricelist_radios_offcanvas"
+                                                    t-att-checked="curr_pl == pl">
+                                                    <label class="form-check-label fw-normal" t-out="pl.name"/>
+                                                </input>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div t-if="is_view_active('website_sale.sort')" class="accordion-item">
+                        <t t-if="isSortingBy" t-set="isSortingBy" t-value="isSortingBy[0][1]"/>
+                        <t t-else="" t-set="isSortingBy" t-value="website.shop_default_sort"/>
+                        <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_wsale_offcanvas_orderby" aria-expanded="false" aria-controls="o_wsale_offcanvas_orderby" style="display: flex;">
+                            <b class="o_products_attributes_title">Sort By</b>
+                            <i class="f-arrow"></i>
+                        </h6>
+                        <div id="o_wsale_offcanvas_orderby"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="o_wsale_offcanvas_orderby_header">
+                            <div class="accordion-body pt-0">
+                                <div class="list-group list-group-flush">
+                                    <a t-foreach="website_sale_sortable" t-as="sortby"
+                                    role="menuitem"
+                                    rel="noindex,nofollow"
+                                    t-att-href="keep('/shop', order=sortby[0])"
+                                    class="list-group-item border-0 ps-0 pb-0">
+                                        <div class="form-check d-inline-block">
+                                            <input type="radio"
+                                                t-attf-onclick="location.href='#{keep('/shop', order=sortby[0])}';"
+                                                class="form-check-input o_not_editable"
+                                                name="wsale_sortby_radios_offcanvas"
+                                                t-att-checked="isSortingBy and isSortingBy == sortby[1]">
+                                                <label class="form-check-label fw-normal" t-out="sortby[1]"/>
+                                            </input>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div t-if="opt_wsale_categories"
+                        class="accordion-item">
+                        <h6 class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#o_wsale_offcanvas_categories" aria-expanded="false" aria-controls="o_wsale_offcanvas_categories" style="display: flex;">
+                            <b class="o_products_attributes_title">Categories</b>
+                            <i class="f-arrow"></i>
+                        </h6>
+                        <div id="o_wsale_offcanvas_categories"
+                            class="accordion-collapse collapse"
+                            aria-labelledby="o_wsale_offcanvas_categories_header">
+                            <div class="accordion-body pt-0">
+                                <t t-call="website_sale.products_categories_list">
+                                    <t t-set="isOffcanvas" t-value="true"/>
+                                    <t t-set="_titleClasses" t-valuef="d-none"/>
+                                    <t t-set="_radioGroup" t-valuef="_offcanvas"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-if="opt_wsale_attributes or opt_wsale_attributes_top" t-call="theme_alan.as_advance_filters"/>
+                </div>
+
+            </aside>
+
+        </xpath>
+    </template>
+
+    <template id="categorie_link_product_count" name="Alan Category Counts" inherit_id="website_sale.categorie_link">
+        <xpath expr="//div[hasclass('form-check')]" position="inside">
+                <t t-if="website.active_attribute_count"><span class="as-attr-count">(<t t-esc="category_count.get(c.id)"/>)</span></t>
+        </xpath>
+    </template>
+
+    <template id="filter_products_price" name="Price Filter Extend" inherit_id="website_sale.filter_products_price">
+        <xpath expr="//div[@id='o_wsale_price_range_option']" position="after">
+            <div class="oe_structure" t-field="request.website.shop_special_offer" data-editor-message="Drag and drop the snippet here"/>
+        </xpath>
+    </template>
+
+    <!-- Shop Attributes Filter:END -->
+
+    <!-- Shop Page Layout -->
+    <template id="as_shop_style_layout" name="Shop Style" inherit_id="website.snippet_options">
+        <xpath expr="//div[@data-js='OptionsTab']/we-collapse" position="after">
+            <we-title>Alan Shop Setting</we-title>
+            <we-select string="Shop Style" data-variable="shop-template">
+                <we-button title="Default"
+                    data-name="button_shop0_opt"
+                    data-customize-website-variable="'alan_shop0'">Default</we-button>
+                <we-button title="Shadow"
+                    data-name="button_shop1_opt"
+                    data-customize-website-variable="'alan_shop1'">Shadow</we-button>
+                <we-button title="Glass Blur"
+                    data-name="button_shop2_opt"
+                    data-customize-website-variable="'alan_shop2'">Glass Blur</we-button>
+                <we-button title="Simple"
+                    data-name="button_shop3_opt"
+                    data-customize-website-variable="'alan_shop3'">Simple</we-button>
+                <we-button title="Modern"
+                    data-name="button_shop4_opt"
+                    data-customize-website-variable="'alan_shop4'">Modern</we-button>
+                <we-button title="Clean"
+                    data-name="button_shop5_opt"
+                    data-customize-website-variable="'alan_shop5'">Clean</we-button>
+                <we-button title="Trendy"
+                    data-name="button_shop6_opt"
+                    data-customize-website-variable="'alan_shop6'">Trendy</we-button>
+            </we-select>
+
+            <we-select string="Shop Layout" data-variable="shop-layout">
+                <we-button title="Alan Shop Full Layout"
+                    data-name="shop_layout_opt1"
+                    data-customize-website-variable="'alan_shop_layout_full'">Full</we-button>
+                <we-button title="Alan Shop Box Layout"
+                    data-name="shop_layout_opt2"
+                    data-customize-website-variable="'alan_shop_layout_box'">Box</we-button>
+            </we-select>
+
+            <we-select string="Product Images Size" data-variable="shop-img-size">
+                <we-button title="Default (1/1)"
+                    data-name="shop_img_size1_1"
+                    data-customize-website-variable="'alan_shop_img_size_1_1'">Default (1/1)</we-button>
+                <we-button title="Landscape (4/3)"
+                    data-name="shop_img_size4_3"
+                    data-customize-website-variable="'alan_shop_img_size4_3'">Landscape (4/3)</we-button>
+                <we-button title="Portrait (4/5)"
+                    data-name="shop_img_size4_5"
+                    data-customize-website-variable="'alan_shop_img_size4_5'">Portrait (4/5)</we-button>
+                <we-button title="Vertical (2/3)"
+                    data-name="shop_img_size2_3"
+                    data-customize-website-variable="'alan_shop_img_size2_3'">Vertical (2/3)</we-button>
+            </we-select>
+
+            <we-select string="Product Images Fill" data-variable="shop-img-fill">
+                <we-button title="Cover"
+                    data-name="shop_img_fil_cover"
+                    data-customize-website-variable="'alan_shop_img_fill_cover'">Cover</we-button>
+                <we-button title="Contain"
+                    data-name="shop_img_fill_contain"
+                    data-customize-website-variable="'alan_shop_img_fill_contain'">Contain</we-button>
+            </we-select>
+
+            <we-title>Alan Product Page Setting</we-title>
+            <we-select string="Product Detail Layout" data-variable="product-detail-layout">
+                <we-button title="Alan Product Detail Full Layout"
+                    data-name="product_detail_layout_opt1"
+                    data-customize-website-variable="'alan_product_detail_layout_full'">Full</we-button>
+                <we-button title="Alan Product Detail Box Layout"
+                    data-name="product_detail_layout_opt2"
+                    data-customize-website-variable="'alan_product_detail_layout_box'">Box</we-button>
+            </we-select>
+
+            <we-select string="Product Detail Style" data-variable="product-detail-style">
+                <we-button title="Default"
+                    data-name="button_product0_opt"
+                    data-customize-website-variable="'alan_product0'">Default</we-button>
+                <we-button title="Shadow"
+                    data-name="button_product1_opt"
+                    data-customize-website-variable="'alan_product1'">Shadow</we-button>
+                <we-button title="Clean"
+                    data-name="button_product2_opt"
+                    data-customize-website-variable="'alan_product2'">Clean</we-button>
+                <we-button title="Simple"
+                    data-name="button_product3_opt"
+                    data-customize-website-variable="'alan_product3'">Simple</we-button>
+                <we-button title="Modern"
+                    data-name="button_product4_opt"
+                    data-customize-website-variable="'alan_product4'">Modern</we-button>
+                <we-button title="Trendy"
+                    data-name="button_product5_opt"
+                    data-customize-website-variable="'alan_product5'">Trendy</we-button>
+            </we-select>
+        </xpath>
+    </template>
+
+    <!-- Rating Info Template-->
+    <template id="as_rating_template" name="Rating Template">
+        <t t-if="website.active_shop_rating">
+            <span t-if="is_view_active('website_sale.product_comment') and product.rating_avg" class="as_product_rating">
+                <i class="fa fa-star"/>
+                <t t-if="product.rating_avg % 1 == 0"><t t-esc="int(product.rating_avg)"/></t>
+                <t t-else=""><t t-esc='"{:.1f}".format(product.rating_avg)'/></t>
+                <span class="rating-count" t-if="product.rating_count"  t-esc="product.rating_count"/>
+            </span>
+        </t>
+    </template>
+
+    <!-- Category Slider -->
+    <template id="as_shop_filmstrip_categories" name="AS Shop Filmstrip Category" inherit_id="website_sale.filmstrip_categories">
+        <xpath expr="//ul" position="replace">
+            <!-- Top Category Slider -->
+            <div class="o_wsale_filmstip as_wsale_filmstip swiper">
+                <t t-foreach="entries" t-as="c" t-if="c.image_128" t-set="atLeastOneImage" t-value="True"/>
+                <t t-if="category.parent_id" t-set="backUrl" t-value="keep('/shop/category/' + slug(category.parent_id), category=0)"/>
+                <t t-else="" t-set="backUrl" t-value="'/shop'"/>
+                <div class="swiper-button-prev asi asi-chevron-left"></div>
+                <div class="swiper-button-next asi asi-chevron-right"></div>
+                <div class="swiper-wrapper">
+                    <div t-foreach="entries" t-as="c"
+                        t-attf-class="swiper-slide {{'' if not c_last else ''}}"
+                        t-att-data-link-href="keep('/shop/category/' + slug(c), category=0)">
+                        <input type="radio" t-attf-name="wsale_categories_top_radios_{{parentCategoryId}}" class="btn-check pe-none" t-att-id="c.id" t-att-value="c.id" t-att-checked="'true' if c.id == category.id else None"/>
+
+                        <div t-attf-class="as-filmstip-cat {{navClass}} {{'' if c.image_128 else ''}} {{ 'border-primary' if c.id == category.id else '' }}" t-att-for="c.id">
+                            <div t-if="c.image_256"
+                                    t-attf-style="background-image:url('data:image/png;base64,#{c.image_256}')"
+                                    class="o_image_40_cover oe_img_bg o_bg_img_center"
+                                    t-att-alt="c.name "/>
+                            <span t-field="c.name"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

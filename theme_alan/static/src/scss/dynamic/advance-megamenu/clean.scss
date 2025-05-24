@@ -1,0 +1,55 @@
+.as-advance-mm-clean {
+    @include media-breakpoint-up(lg) {
+        .as-ah-level-2  {
+            display: block;
+            top: calc(100% + 15px);
+            opacity: 0;
+            pointer-events: none;
+            transition: ease all 0.35s;
+        }
+        .as-l1-items {
+            &:hover {
+                .as-ah-level-2  {
+                    opacity: 1;
+                    top: 100%;
+                    pointer-events: auto;
+                }
+            }
+        }
+    }
+
+    .as-l1-link {
+        padding: 8px 15px;
+        text-decoration: none;
+        line-height: 28px;
+        text-transform: uppercase;
+        font-size: 14px;
+    }
+
+    .as-l2-link {
+        font-size: 16px;
+        font-weight: 600;
+        width: 100%;
+        margin: 0 0 15px;
+        padding: 0;
+        position: relative;
+        a {
+            color: $dark;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+
+    .as-ah-level-3 {
+        position: relative;
+        a {
+            color: var(--body-color);
+            display: block;
+            &:hover {
+                color: $primary;
+            }
+        }
+    }
+
+}

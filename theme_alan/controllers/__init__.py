@@ -1,5 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
-from . import core
-from . import login
+from . import controllers
 from . import snippets

@@ -11,4 +11,4 @@ https://pypi.org/project/httpagentparser/
 
 ## OCA Dependencies:
 
-https://apps.odoo.com/apps/modules/15.0/auditlog/
+https://apps.odoo.com/apps/modules/17.0/auditlog/

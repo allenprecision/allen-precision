@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<templates>
-    <!-- Core front dialog -->
-    <div t-name="theme_alan.core_front_dialog">
-        <t t-out="widget.options.subTemplate"/>
-    </div>
-</templates>

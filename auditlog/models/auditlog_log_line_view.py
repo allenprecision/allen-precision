@@ -1,4 +1,4 @@
-from odoo import fields, models, tools
+from odoo import fields, models
 
 
 class AuditlogLogLineView(models.Model):
@@ -59,11 +59,6 @@ class AuditlogLogLineView(models.Model):
             JOIN auditlog_log alog ON alog.id = alogl.log_id
         """
 
-    def _query(self):
-        return "SELECT %s FROM %s" % (self._select_query(), self._from_query())
-
-    def init(self):
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute(
-            """CREATE or REPLACE VIEW %s as (%s)""" % (self._table, self._query())
-        )
+    @property
+    def _table_query(self):
+        return f"SELECT {self._select_query()} FROM {self._from_query()}"

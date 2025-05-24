@@ -29,6 +29,7 @@
                 <tree string="Feed Process Error Log" create="0" edit="0">
                     <field name="feed_id" />
                     <field name="product_id"/>
+                    <field name="variant_id" string="Variant"/>
                     <field name="error_datetime"/>
                     <field name="error_message" />
                     <field name="file_name" />

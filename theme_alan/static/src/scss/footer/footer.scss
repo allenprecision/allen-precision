@@ -1,0 +1,74 @@
+$-footer-color: o-color('footer-custom') or o-color('footer') or rgba(0, 0, 0, 0);
+@if ($-footer-color and color-contrast($-footer-color) != $color-contrast-dark) {
+    :root {
+        --as-footer-color: 255,255,255;
+    }
+}
+
+
+@if ($-footer-color and color-contrast($-footer-color) != $color-contrast-light) {
+    :root {
+        --as-footer-color: 0,0,0;
+    }
+}
+
+
+.o_footer {
+    @include o-apply-colors('footer');
+    @include o-apply-colors('footer-custom');
+    @include o-add-gradient('footer-gradient');
+    a:not(.btn) {
+        text-decoration: none;
+        color: rgba(var(--as-footer-color), 0.8);
+        &:hover {
+            color: rgba(var(--as-footer-color), 1);
+        }
+    }
+    .footer-title {
+        h5 {
+            color: rgba(var(--as-footer-color), 1);   
+        }
+    }
+}
+
+
+.o_footer_copyright {
+    position: relative;
+    font-size: 0.85rem;
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        pointer-events: none;
+        background: currentColor;
+        opacity: 0.1;
+    }
+    .o_footer_copyright_name {
+        color: rgba(var(--as-footer-color), 0.8);
+    }
+    .text-sm-end {
+        &.o_not_editable {
+            display: none;
+        }
+    }
+    .o_brand_promotion {
+        display: none;
+    }
+    .o_footer_copyright_name {
+        font-size: 14px;
+    }
+    .row > div {
+        display: flex;
+        align-items: center;
+    }
+    .js_language_selector {
+        margin-left: auto;
+        .btn {
+            background: none;
+            color: rgba(var(--as-footer-color), 0.8);
+        }
+    }
+}

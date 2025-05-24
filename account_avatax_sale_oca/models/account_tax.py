@@ -14,6 +14,7 @@ class AccountTax(models.Model):
         is_refund=False,
         handle_price_include=True,
         include_caba_tags=False,
+        fixed_multiplicator=1,
     ):
         res = super().compute_all(
             price_unit,
@@ -24,6 +25,7 @@ class AccountTax(models.Model):
             is_refund,
             handle_price_include,
             include_caba_tags=False,
+            fixed_multiplicator=fixed_multiplicator,
         )
         for_avatax_object = self.env.context.get("for_avatax_object")
         if for_avatax_object:
@@ -33,7 +35,7 @@ class AccountTax(models.Model):
             avatax_ids = self.env["account.tax"].search([("is_avatax", "=", True)]).ids
             for tax_data in [x for x in res["taxes"] if x["id"] in avatax_ids]:
                 line = for_avatax_object.order_line.filtered(
-                    lambda x: tax_data["id"] in x.tax_id.ids
+                    lambda x, tax_data=tax_data: tax_data["id"] in x.tax_id.ids
                     and x.product_id == product
                     and x.product_uom_qty == quantity
                     and x.price_unit == price_unit

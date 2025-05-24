@@ -1,0 +1,87 @@
+@if o-website-value('footer-template') == 'alan_footer3' {
+	.footer-top {
+        position: relative;
+        &:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            pointer-events: none;
+            background: currentColor;
+            opacity: 0.1;
+        }
+        .media {
+            display: flex;
+            .f-icon {
+                max-width: 55px;
+                height: 55px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 55px;
+                border-radius: 50%;
+                font-size: 1.45rem;
+                background-color: rgba(var(--as-footer-color), 0.1);
+                color: rgba(var(--as-footer-color), 1);
+                
+            }
+            .media-body {
+                flex: 1 0 0%;
+                padding-left: 15px;
+                h5 {
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    margin: 0 0 4px;
+                }
+                p {
+                    margin: 0;
+                    font-size: 0.85rem;
+                }
+            }
+        }
+    }
+
+    .footer-middle {
+        .footer-title {
+            padding: 0 0 20px;
+            h5 {
+                text-transform: uppercase;
+                font-weight: 400;
+                letter-spacing: 1px;
+                font-size: 1rem;
+                margin: 0;
+            }
+        }
+        .footer-link {
+            li {
+                + li {
+                    margin-top: 15px;
+                }
+            }
+            a {
+                font-size: 0.90em;
+                position: relative;
+                &:after {
+                    content: "";
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    height: 1px;
+                    width: 100%;
+                    background-color: currentColor;
+                    transition: ease all 0.35s;
+                    opacity: 0;
+                }
+                &:hover {
+                    &:after {
+                        opacity: 2;
+                    }
+                }
+            }
+        }
+    }
+}

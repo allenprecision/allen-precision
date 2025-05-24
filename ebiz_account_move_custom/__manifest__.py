@@ -2,9 +2,9 @@
 {
     # App information
     'name': 'Account Move Custom',
-    'version': '15.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Accounting/Accounting',
-    'license': '',
+    'license': 'OPL-1',
     'description': """This module is used to add custom fields and logic to the accounting application""",
     # Author
     'author': '',

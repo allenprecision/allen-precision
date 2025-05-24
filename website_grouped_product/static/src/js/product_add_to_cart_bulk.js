@@ -8,7 +8,6 @@ odoo.define('website_grouped_product.product_add_to_bulk_cart', function(require
     var utils = require('web.utils');
     var _t = core._t;
     var publicWidget = require('web.public.widget');
-    var wSaleUtils = require('website_sale.utils');
     var rpc = require('web.rpc');
     require('website_sale.website_sale');
 
@@ -41,7 +40,7 @@ odoo.define('website_grouped_product.product_add_to_bulk_cart', function(require
             }
             else {
                 this._super.apply(this, arguments);
-            }       
+            }
         },
     });
 
@@ -74,7 +73,7 @@ odoo.define('website_grouped_product.product_add_to_bulk_cart', function(require
             }
             else {
                 this._super.apply(this, arguments);
-            }  
+            }
         },
     });
 

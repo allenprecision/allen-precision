@@ -1,23 +1,23 @@
 <odoo>
-    <record id="view_picking_withcarrier_out_form_fixes" model="ir.ui.view">
-        <field name="name">fixes.stock.picking_withcarrier.form.view</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>
-        <field name="arch" type="xml">
-            <data>
-                <xpath expr="//div[hasclass('o_td_label')]" position="before">
-                    <field name="customer_number" string="Customer Number"/>
-                </xpath>
+<!--    <record id="view_picking_withcarrier_out_form_fixes" model="ir.ui.view">-->
+<!--        <field name="name">fixes.stock.picking_withcarrier.form.view</field>-->
+<!--        <field name="model">stock.picking</field>-->
+<!--        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <data>-->
+<!--                <xpath expr="//div[hasclass('o_td_label')]" position="before">-->
+<!--                    <field name="customer_number" string="Customer Number"/>-->
+<!--                </xpath>-->
 
-                <xpath expr='//label[@for="shipping_weight"]' position='attributes'>
-                    <attribute name="for">final_weight</attribute>
-                </xpath>
-                <field name="shipping_weight" position='replace'>
-                    <field name="final_weight" class="oe_inline"/>
-                </field>
-            </data>
-        </field>
-    </record>
+<!--                <xpath expr='//label[@for="shipping_weight"]' position='attributes'>-->
+<!--                    <attribute name="for">final_weight</attribute>-->
+<!--                </xpath>-->
+<!--                <field name="shipping_weight" position='replace'>-->
+<!--                    <field name="final_weight" class="oe_inline"/>-->
+<!--                </field>-->
+<!--            </data>-->
+<!--        </field>-->
+<!--    </record>-->
 
     <record id="vpicktree_inherit_ape" model="ir.ui.view">
         <field name="name">vpicktree.ape.inherit</field>

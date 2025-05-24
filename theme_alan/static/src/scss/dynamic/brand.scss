@@ -1,0 +1,251 @@
+.as-brand-card-01 {
+    background-color: $white;
+    border: 1px solid $gray-300;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    .as-brand-card-media {
+        position: relative;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        height: 110px;
+        img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+    }
+    .as-brand-card-body {
+        padding: 8px;
+        text-align: center;
+        a {
+            color: $dark !important;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+}
+
+.as-brand-card-02 {
+    border-right: 1px solid $gray-300;
+    margin-right: -2px;
+    margin-left: -15px;
+    .as-brand-card-media {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 110px;
+        img {
+            max-width: 100%;
+            max-height: 95px;
+        }
+    }
+    .as-brand-card-body {
+        padding: 8px;
+        text-align: center;
+        border-top: 1px solid $gray-300;
+        a {
+            color: $dark !important;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+}
+
+
+
+.as-brand-card-03 {
+    .as-brand-card-media {
+        text-align: center;
+        height: 110px;
+        img {
+            max-width: 100%;
+            max-height: 100px;
+        }
+    }
+    .as-brand-card-body {
+        text-align: center;
+        a {
+            color: $dark !important;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+    &:hover {
+        .as-brand-card-media {
+            img {
+                filter: grayscale(1);
+            }
+        }
+    }
+}
+
+
+
+
+.as-brand-card-04 {
+    .as-brand-card-media {
+        text-align: center;
+        margin: 2px;
+        border-radius: 0.625rem;
+        box-shadow: 0 0 3px 1px rgba($gray-900 ,0.10);
+        height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            max-width: 100%;
+            max-height: 90px;
+        }
+    }
+    .as-brand-card-body {
+        margin-top: -15px;
+        text-align: center;
+        margin-bottom: 0.625rem;
+        a {
+            color: $dark !important;
+            box-shadow: 0 0 3px 1px rgba($gray-900 ,0.10);
+            background: $white;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 20px;
+            border-radius: 30px;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+}
+
+
+
+.as-brand-card-05 {
+    .as-brand-card-media {
+        border: 1px solid $gray-300;
+        padding-bottom: 100%;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            margin: auto;
+        }
+    }
+    .as-brand-card-body {
+        text-align: center;
+        margin-top: 0.625rem;
+        a {
+            color: $dark !important;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+}
+
+
+/* Brand Page
+-------------------------------------*/
+.as-brand-breadcrumb {
+    background: $gray-100;
+    border-bottom: 1px solid $gray-300;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    a {
+        color: $dark;
+        text-decoration: none;
+    }
+}
+.as-all-brand-page {
+    padding: 40px 0;
+    .as-lp-brand-box {
+        border: 1px solid $gray-300;
+        position: relative;
+        .brand-img {
+            width: 100%;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            &:after {
+                content: "";
+                display: inline-block;
+                vertical-align: top;
+                padding-bottom: 120px;
+            }
+            img {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 0;
+                margin: auto;
+                max-height: 100%;
+                max-width: 100%;
+                object-fit: contain;
+                transform: scale(1);
+                transition: ease all 0.3s;
+            }
+        }
+        .as-lp-brand-info {
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid $gray-300;
+            h6 {
+                font-size: 16px;
+                margin-bottom: 2px;
+                a {
+                    color: $dark;
+                    text-decoration: none;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
+            }
+            .brand-count {
+                font-size: 14px;
+            }
+        }
+        &:hover {
+            .brand-img {
+                img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+    .pagination {
+        padding: 40px 0;
+    }
+}

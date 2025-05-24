@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Footer templates -->
+    <template id="alan_footer_1" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top">
+                    <div class="container">
+                        <div class="row g-3">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="d-flex footer-feature">
+                                    <div class="icon">
+                                        <img src="/theme_alan/static/src/img/footer_icon_delivery.svg" />
+                                    </div>
+                                    <div class="col">
+                                        <h5>Worldwide Delivery</h5>
+                                        <p>120+ countries and regions worldwide</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="d-flex footer-feature">
+                                    <div class="icon">
+                                        <img src="/theme_alan/static/src/img/footer_icon_payment.svg" />
+                                    </div>
+                                    <div class="col">
+                                        <h5>Secure Payment</h5>
+                                        <p>Pay with popular and secure payment methods</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="d-flex footer-feature">
+                                    <div class="icon">
+                                        <img src="/theme_alan/static/src/img/footer_icon_policy.svg" />
+                                    </div>
+                                    <div class="col">
+                                        <h5>60-day Return Policy</h5>
+                                        <p>Merchandise must be returned within 60 days.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="d-flex footer-feature">
+                                    <div class="icon">
+                                        <img src="/theme_alan/static/src/img/footer_icon_help.svg" />
+                                    </div>
+                                    <div class="col">
+                                        <h5>24/7 Help Center</h5>
+                                        <p>We'll respond to you within 24/7 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div class="row">
+                                    <div class="col-6 col-lg-3">
+                                        <div class="footer-title">
+                                            <h5>Get to Know Us</h5>
+                                        </div>
+                                        <ul class="list-unstyled m-0 footer-link">
+                                            <li><a href="#">About Us</a></li>
+                                            <li><a href="#">News and Blog</a></li>
+                                            <li><a href="#">Careers</a></li>
+                                            <li><a href="#">Investors</a></li>
+                                            <li><a href="#">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-lg-3">
+                                        <div class="footer-title">
+                                            <h5>Customer Service</h5>
+                                        </div>
+                                        <ul class="list-unstyled m-0 footer-link">
+                                            <li><a href="#">Help Center</a></li>
+                                            <li><a href="#">FAQ’s</a></li>
+                                            <li><a href="#">Accessibility</a></li>
+                                            <li><a href="#">Feedback</a></li>
+                                            <li><a href="#">Size Guide</a></li>
+                                            <li><a href="#">Payment Method</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-lg-3">
+                                        <div class="footer-title">
+                                            <h5>Orders and Returns</h5>
+                                        </div>
+                                        <ul class="list-unstyled m-0 footer-link">
+                                            <li><a href="#">Track Order</a></li>
+                                            <li><a href="#">Shipping and Delivery</a></li>
+                                            <li><a href="#">Return and Exchange</a></li>
+                                            <li><a href="#">Price Match Guarantee</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6 col-lg-3">
+                                        <div class="footer-title">
+                                            <h5>Legal</h5>
+                                        </div>
+                                        <ul class="list-unstyled m-0 footer-link">
+                                            <li><a href="#">Privacy Policy</a></li>
+                                            <li><a href="#">Terms of Use</a></li>
+                                            <li><a href="#">Legal</a></li>
+                                            <li><a href="#">Site Map</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="footer-title">
+                                            <h5>We accept</h5>
+                                        </div>
+                                        <div class="">
+                                            <img src="/theme_alan/static/src/img/footer-payment.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-3 mt-4 mt-lg-0">
+                                <ul class="list-unstyled m-0 footer-address">
+                                    <li class="d-flex fot-adrs">
+                                        <div class="f-icon">
+                                            <i class="fa fa-map-o"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <h5>Address</h5>
+                                            <p>250 Executive Park Blvd, Suite 3400 CA 94134, USA</p>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex fot-adrs">
+                                        <div class="f-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <h5>Email</h5>
+                                            <p><a href="#">info@yourcompany.com</a></p>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex fot-adrs">
+                                        <div class="f-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <h5>Phone</h5>
+                                            <p><a href="#">+1 (650) 555-0111</a></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_2" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <p>One of the most powerful, amazing and flexible themes on Odoo store</p>
+                                <div class="s_social_media text-start o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <h5 class="s_social_media_title d-none" contenteditable="true">Follow us</h5>
+                                    <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                        <i class="fa fa-facebook rounded-circle shadow-sm"/>
+                                    </a>
+                                    <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                        <i class="fa fa-twitter rounded-circle shadow-sm"/>
+                                    </a>
+                                    <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
+                                        <i class="fa fa-linkedin rounded-circle shadow-sm"/>
+                                    </a>
+                                    <a href="/" class="text-800">
+                                        <i class="fa fa-home rounded-circle shadow-sm"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Connect with us</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-address">
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-map-o"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            250 Executive Park Blvd, Suite 3400 CA 94134, USA
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">info@yourcompany.com</a>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">+1 (650) 555-0111</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_3" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 my-3">
+                                <div class="media">
+                                    <div class="f-icon">
+                                        <i class="fa fa-plane"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Free Shipping</h5>
+                                        <p>Free on all products</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 my-3">
+                                <div class="media">
+                                    <div class="f-icon">
+                                        <i class="fa fa-shield"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Secured Shopping</h5>
+                                        <p>We use the best security features</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 my-3">
+                                <div class="media">
+                                    <div class="f-icon">
+                                        <i class="fa fa-reply"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Free Returns</h5>
+                                        <p>Return for free within 30 days</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 my-3">
+                                <div class="media">
+                                    <div class="f-icon">
+                                        <i class="fa fa-headphones"></i>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5>Support</h5>
+                                        <p>Effective and Friendly Support</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-middle py-4 py-md-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>My Account</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Custom Link</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick Links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Store Location</a></li>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Orders Tracking</a></li>
+                                    <li><a href="#">Size Guide</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">Search</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms Condition</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Customer Service</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Shipping Policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#"> Contact Us</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_4" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-middle py-4 py-md-5 py-lg-6">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Shop</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">New In</a></li>
+                                    <li><a href="#">Women</a></li>
+                                    <li><a href="#">Men</a></li>
+                                    <li><a href="#">Shoes</a></li>
+                                    <li><a href="#">Bags &amp; Accessories</a></li>
+                                    <li><a href="#">Top Brands</a></li>
+                                    <li><a href="#">Sale &amp; Special Offers</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                    <li><a href="#">Reward Program</a></li>
+                                    <li><a href="#">Shipping &amp; Returns</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Customer Service</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Search Terms</a></li>
+                                    <li><a href="#">Advanced Search</a></li>
+                                    <li><a href="#">Orders And Returns</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Theme FAQs</a></li>
+                                    <li><a href="#">Consultant</a></li>
+                                    <li><a href="#">Store Locations</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>keep in touch</h5>
+                                </div>
+                                <div class="s_social_media no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <small class="s_social_media_title text-muted d-none" contenteditable="true"><b>Follow us</b></small>
+                                    <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                        <i class="fa fa-facebook m-1"/>
+                                    </a>
+                                    <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                        <i class="fa fa-twitter m-1"/>
+                                    </a>
+                                    <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
+                                        <i class="fa fa-linkedin m-1"/>
+                                    </a>
+                                    <a href="/website/social/github" class="s_social_media_github" target="_blank">
+                                        <i class="fa fa-github m-1"/>
+                                    </a>
+                                    <a href="/website/social/youtube" class="s_social_media_youtube" target="_blank">
+                                        <i class="fa fa-youtube m-1"/>
+                                    </a>
+                                    <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                        <i class="fa fa-instagram m-1"/>
+                                    </a>
+                                </div>
+                                <div class="footer-payment">
+                                    <div class="footer-title">
+                                        <h5>payment accept</h5>
+                                    </div>
+                                    <div class="row g-2">
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/paypal.svg" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/visa-card.svg" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/mastercard.svg" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/american-express.svg" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/apple-pay.svg" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <img width="70" src="/theme_alan/static/src/img/snippets/discover.svg" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_5" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 py-4 py-lg-6 footer-col-bg px-4">
+                                <div class="footer-title">
+                                    <h5>Connect with us</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-address">
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-map-o"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            250 Executive Park Blvd,<br /> Suite 3400 CA 94134, USA
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">info@yourcompany.com</a>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">+1 (650) 555-0111</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-4 py-lg-6">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-4 py-lg-6">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-4 py-lg-6">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-4 py-lg-6">
+                                <div class="footer-title">
+                                    <h5>My Account</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Custom Link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_6" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>My Account</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Custom Link</a></li>
+                                </ul>
+                            </div>
+                            <div class="offset-lg-1 col-lg-3 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <p>One of the most powerful, amazing and flexible themes on Odoo store</p>
+                                <div class="footer-play-btns d-flex">
+                                    <a href="#"><i class="fa fa-android"></i> Play Store</a>
+                                    <a href="#"><i class="fa fa-apple"></i> App Store</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_7" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <div class="s_social_media no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <small class="s_social_media_title text-muted d-none" contenteditable="true"><b>Follow us</b></small>
+                                    <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                        <i class="fa fa-facebook m-1"/>
+                                    </a>
+                                    <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                        <i class="fa fa-twitter m-1"/>
+                                    </a>
+                                    <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
+                                        <i class="fa fa-linkedin m-1"/>
+                                    </a>
+                                    <a href="/website/social/github" class="s_social_media_github" target="_blank">
+                                        <i class="fa fa-github m-1"/>
+                                    </a>
+                                    <a href="/website/social/youtube" class="s_social_media_youtube" target="_blank">
+                                        <i class="fa fa-youtube m-1"/>
+                                    </a>
+                                    <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                        <i class="fa fa-instagram m-1"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>My Account</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="#">Shopping Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Custom Link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_8" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+                        <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <p>One of the most powerful, amazing and flexible themes on Odoo store</p>
+                                <div class="pt-2">
+                                    <a class="footer-btn" href="#">Ask Questions</a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Connect with us</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-address">
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-map-o"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            250 Executive Park Blvd, Suite 3400 CA 94134, USA
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">info@yourcompany.com</a>
+                                        </div>
+                                    </li>
+                                    <li class="d-flex">
+                                        <div class="f-icon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="f-text">
+                                            <a href="#">+1 (650) 555-0111</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+
+    <template id="alan_footer_9" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+                        <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <p>One of the most powerful, amazing and flexible themes on Odoo store</p>
+                            </div>
+                            <div class="offset-lg-1 col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="py-3 footer-address">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-3 my-3">
+                                <div class="d-flex f-box">
+                                    <div class="f-icon">
+                                        <i class="fa fa-map-o"></i>
+                                    </div>
+                                    <div class="f-text">
+                                        250 Executive Park Blvd, Suite 3400 CA 94134, USA
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 my-3">
+                                <div class="d-flex f-box">
+                                    <div class="f-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <div class="f-text">
+                                        <a href="#">info@yourcompany.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 my-3">
+                                <div class="d-flex f-box">
+                                    <div class="f-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </div>
+                                    <div class="f-text">
+                                        <a href="#">+1 (650) 555-0111</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 my-3">
+                                <div class="d-flex f-box">
+                                    <div class="f-icon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </div>
+                                    <div class="f-text">
+                                        Monday to Sunday (9:00AM to 6:30PM)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_10" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+                        <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top pt-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 my-3">
+                                <div class="d-flex justify-content-center align-items-center feature-icon">
+                                    <div class="f-icon">
+                                        <i class="fa fa-truck"></i>
+                                    </div>
+                                    <div class="f-text ms-3">
+                                        Free Shipping
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 my-3">
+                                <div class="d-flex justify-content-center align-items-center feature-icon">
+                                    <div class="f-icon">
+                                        <i class="fa fa-gift"></i>
+                                    </div>
+                                    <div class="f-text ms-3">
+                                        Discount 40% Off
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 my-3">
+                                <div class="d-flex justify-content-center align-items-center feature-icon">
+                                    <div class="f-icon">
+                                        <i class="fa fa-repeat"></i>
+                                    </div>
+                                    <div class="f-text ms-3">
+                                        Free Return
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-middle py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                    <li><a href="#">Legal</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Services</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Order and returns</a></li>
+                                    <li><a href="#">Consultant</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Location</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4 py-3">
+                                <div class="footer-title">
+                                    <h5>Contact Info</h5>
+                                </div>
+                                <p>250 Executive Park Blvd, Suite 3400 San Francisco California (US) 94134 United States</p>
+                                <p>Call us:<a href="#"> +1 (650) 555-0111</a></p>
+                                <p>Email: <a href="#">info@yourcompany.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_11" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 py-3">
+                                <div class="footer-logo pb-4">
+                                    <img src="/theme_alan/static/src/img/snippets/footer-light-logo.svg" />
+                                </div>
+                                <p class="mb-3">250 Executive Park Blvd, Suite 3400 San Francisco California (US) 94134, United States</p>
+                                <p>Email: <a href="#">info@yourcompany.com</a></p>
+                                <p class="mb-4">Call us:<a href="#"> +1 (650) 555-0111</a></p>
+
+                                <div class="s_social_media no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <small class="s_social_media_title text-muted d-none" contenteditable="true"><b>Follow us</b></small>
+                                    <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                        <i class="fa fa-facebook m-1"/>
+                                    </a>
+                                    <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                        <i class="fa fa-twitter m-1"/>
+                                    </a>
+                                    <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
+                                        <i class="fa fa-linkedin m-1"/>
+                                    </a>
+                                    <a href="/website/social/github" class="s_social_media_github" target="_blank">
+                                        <i class="fa fa-github m-1"/>
+                                    </a>
+                                    <a href="/website/social/youtube" class="s_social_media_youtube" target="_blank">
+                                        <i class="fa fa-youtube m-1"/>
+                                    </a>
+                                    <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                        <i class="fa fa-instagram m-1"/>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Find</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Shop</a></li>
+                                    <li><a href="#">Categories</a></li>
+                                    <li><a href="#">Collection</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Sofa</a></li>
+                                    <li><a href="#">Chair</a></li>
+                                    <li><a href="#">Furniture</a></li>
+                                    <li><a href="#">Lamps</a></li>
+                                    <li><a href="#">Couch</a></li>
+                                    <li><a href="#">Tables</a></li>
+                                    <li><a href="#">Accessories</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Services</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                    <li><a href="#">Order Tracking</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Help</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 py-3">
+                                <div class="footer-title">
+                                    <h5>Company</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">The Team</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Our Blog</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_12" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top py-3">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-3 my-3">
+                                <h3>Newsletter</h3>
+                                <p>By clicking Subscribe you agree to our privacy policy.</p>
+                            </div>
+                            <div class="col-lg-6 my-3 footer-subscribe-col">
+                                <p class="footer-subscribe"></p>
+                            </div>
+                            <div class="col-lg-3 my-3">
+                                <div class="s_social_media no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                    <small class="s_social_media_title text-muted d-none" contenteditable="true"><b>Follow us</b></small>
+                                    <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                        <i class="fa fa-facebook m-1"/>
+                                    </a>
+                                    <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                        <i class="fa fa-twitter m-1"/>
+                                    </a>
+                                    <a href="/website/social/youtube" class="s_social_media_youtube" target="_blank">
+                                        <i class="fa fa-youtube m-1"/>
+                                    </a>
+                                    <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                        <i class="fa fa-instagram m-1"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-middle py-5">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">New In</a></li>
+                                    <li><a href="#">Sale &amp; Special Offers</a></li>
+                                    <li><a href="#">Women's</a></li>
+                                    <li><a href="#">Men's</a></li>
+                                    <li><a href="#">Shoes</a></li>
+                                    <li><a href="#">Bags &amp; Accessories</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Information</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Privacy policy</a></li>
+                                    <li><a href="#">Refund policy</a></li>
+                                    <li><a href="#">Shipping &amp; Return</a></li>
+                                    <li><a href="#">Term &amp; conditions</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Quick links</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My account</a></li>
+                                    <li><a href="#">Cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Product Compare</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3 py-3">
+                                <div class="footer-title">
+                                    <h5>Categories</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Appliances</a></li>
+                                    <li><a href="#">Computers &amp; Laptops</a></li>
+                                    <li><a href="#">Cameras</a></li>
+                                    <li><a href="#">Mobile Phones</a></li>
+                                    <li><a href="#">Video Games</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="alan_footer_13" inherit_id="website.layout" name="Default" active="False">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <section class="footer-top">
+                    <div class="container">
+                        <div class="row gx-sm-4 gx-lg-6">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="footer-title">
+                                    <h5>ABOUT</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Careers</a></li>
+                                    <li><a href="#">World of RL</a></li>
+                                    <li><a href="#">Our Brands</a></li>
+                                    <li><a href="#">Privacy</a></li>
+                                    <li><a href="#">Terms Of Use</a></li>
+                                    <li><a href="#">Terms Of Sale</a></li>
+                                    <li><a href="#">Imprint</a></li>
+                                    <li><a href="#">Cookies</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="footer-title">
+                                    <h5>ACCOUNT</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Check Order</a></li>
+                                    <li><a href="#">My Wishlist</a></li>
+                                    <li><a href="#">My Shopping Bag</a></li>
+                                    <li><a href="#">Reviews</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Sign Up</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="footer-title">
+                                    <h5>CUSTOMER SERVICE</h5>
+                                </div>
+                                <ul class="list-unstyled m-0 footer-link">
+                                    <li><a href="#">Help</a></li>
+                                    <li><a href="#">Shipping</a></li>
+                                    <li><a href="#">Free Online Returns</a></li>
+                                    <li><a href="#">Operating Guidelines</a></li>
+                                    <li><a href="#">Sitemap</a></li>
+                                    <li><a href="#">Affiliate Program</a></li>
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="#">Cookie settings</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="footer-title">
+                                    <h5>Sign up for newsletter</h5>
+                                </div>
+                                <div class="footer-newsletter">
+                                    <p>Sign up now and be the first to know about exclusive offers, latest fashion news &amp; style tips!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="footer-social-icons">
+                                    <div class="s_social_media no_icon_color o_not_editable" data-snippet="s_social_media" data-name="Social Media" contenteditable="false">
+                                        <small class="s_social_media_title text-muted d-none" contenteditable="true"><b>Follow us</b></small>
+                                        <a href="/website/social/facebook" class="s_social_media_facebook" target="_blank">
+                                            <i class="fa fa-facebook m-1"/>
+                                        </a>
+                                        <a href="/website/social/twitter" class="s_social_media_twitter" target="_blank">
+                                            <i class="fa fa-twitter m-1"/>
+                                        </a>
+                                        <a href="/website/social/linkedin" class="s_social_media_linkedin" target="_blank">
+                                            <i class="fa fa-linkedin m-1"/>
+                                        </a>
+                                        <a href="/website/social/github" class="s_social_media_github" target="_blank">
+                                            <i class="fa fa-github m-1"/>
+                                        </a>
+                                        <a href="/website/social/youtube" class="s_social_media_youtube" target="_blank">
+                                            <i class="fa fa-youtube m-1"/>
+                                        </a>
+                                        <a href="/website/social/instagram" class="s_social_media_instagram" target="_blank">
+                                            <i class="fa fa-instagram m-1"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+
+
+</odoo>

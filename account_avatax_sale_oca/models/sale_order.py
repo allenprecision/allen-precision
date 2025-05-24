@@ -7,11 +7,11 @@ class SaleOrder(models.Model):
     @api.depends(
         "order_line.tax_id", "order_line.price_unit", "amount_total", "amount_untaxed"
     )
-    def _compute_tax_totals_json(self):
+    def _compute_tax_totals(self):
         # Make the Sales Order data available to the AccountTax.compute_all() method
         # This is needed to take in consideration the additional Avatax fields
         enriched_self = self.with_context(for_avatax_object=self)
-        return super(SaleOrder, enriched_self)._compute_tax_totals_json()
+        return super(SaleOrder, enriched_self)._compute_tax_totals()
 
     @api.model
     @api.depends("company_id", "partner_id", "partner_invoice_id", "state")
@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
 
     hide_exemption = fields.Boolean(
         "Hide Exemption & Tax Based on shipping address",
-        compute=_compute_hide_exemption,  # For past transactions visibility
+        compute="_compute_hide_exemption",  # For past transactions visibility
         default=lambda self: self.env.company.get_avatax_config_company,
         help="Uncheck the this field to show exemption fields on SO/Invoice form view. "
         "Also, it will show Tax based on shipping address button",
@@ -39,9 +39,7 @@ class SaleOrder(models.Model):
         The setup for this is to add contact/addresses for the Invoicing Partner,
         for each of the states we can claim exepmtion for.
         """
-        res = super(SaleOrder, self).onchange_partner_shipping_id()
         self.tax_on_shipping_address = bool(self.partner_shipping_id)
-        return res
 
     @api.depends("partner_invoice_id", "tax_address_id", "company_id")
     def _compute_onchange_exemption(self):
@@ -54,7 +52,10 @@ class SaleOrder(models.Model):
                 invoice_partner | invoice_partner.child_ids
             ).filtered("property_tax_exempt")
             exemption_address_naive = exemption_addresses.filtered(
-                lambda a: a.country_id == ship_to_address.country_id
+                lambda a,
+                ship_to_address=ship_to_address,
+                invoice_partner=invoice_partner: a.country_id
+                == ship_to_address.country_id
                 and (
                     a.state_id == ship_to_address.state_id
                     or invoice_partner.property_exemption_country_wide
@@ -68,7 +69,7 @@ class SaleOrder(models.Model):
             order.exemption_code_id = exemption_address.property_exemption_code_id
 
     def _prepare_invoice(self):
-        invoice_vals = super(SaleOrder, self)._prepare_invoice()
+        invoice_vals = super()._prepare_invoice()
         invoice_vals.update(
             {
                 "exemption_code": self.exemption_code or "",
@@ -91,16 +92,16 @@ class SaleOrder(models.Model):
         """
         for order in self:
             order.tax_amount = 0
-            order.order_line.write({"tax_amt": 0})
+            order.order_line.tax_amt = 0
 
     @api.depends("order_line.price_total", "order_line.product_uom_qty", "tax_amount")
-    def _amount_all(self):
+    def _compute_amounts(self):
         """
         Compute fields amount_untaxed, amount_tax, amount_total
         Their computation needs to be overriden,
         to use the amounts returned by Avatax service, stored in specific fields.
         """
-        res = super()._amount_all()
+        res = super()._compute_amounts()
         for order in self:
             if order.tax_amount:
                 order.update(
@@ -143,7 +144,6 @@ class SaleOrder(models.Model):
         "res.partner",
         "Tax Address",
         readonly=True,
-        states={"draft": [("readonly", False)]},
         compute="_compute_tax_address_id",
         store=True,
     )
@@ -172,6 +172,7 @@ class SaleOrder(models.Model):
 
     def _avatax_compute_tax(self):
         """Contact REST API and recompute taxes for a Sale Order"""
+        # Override to handle lines with split taxes (e.g. TN)
         self and self.ensure_one()
         doc_type = self._get_avatax_doc_type()
         Tax = self.env["account.tax"]
@@ -203,7 +204,14 @@ class SaleOrder(models.Model):
                 # Should we check the rate with the tax amount?
                 # tax_amount = tax_result_line["taxCalculated"]
                 # rate = round(tax_amount / line.price_subtotal * 100, 2)
-                rate = tax_result_line["rate"]
+                # rate = tax_result_line["rate"]
+                tax_calculation = 0.0
+                if tax_result_line["taxableAmount"]:
+                    tax_calculation = (
+                        tax_result_line["taxCalculated"]
+                        / tax_result_line["taxableAmount"]
+                    )
+                rate = round(tax_calculation * 100, 4)
                 tax = Tax.get_avalara_tax(rate, doc_type)
                 if tax not in line.tax_id:
                     line_taxes = (
@@ -236,8 +244,7 @@ class SaleOrder(models.Model):
                     return addr.button_avatax_validate_address()
         if avatax_config:
             self.avalara_compute_taxes()
-        res = super(SaleOrder, self).action_confirm()
-        return res
+        return super().action_confirm()
 
     @api.onchange(
         "order_line",
@@ -266,25 +273,26 @@ class SaleOrder(models.Model):
                     self.calculate_tax_on_save = True
                     break
 
-    @api.model
-    def create(self, vals):
-        record = super(SaleOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        sales = super().create(vals_list)
         avatax_config = self.env.company.get_avatax_config_company()
-        if (
-            avatax_config.sale_calculate_tax
-            and record.calculate_tax_on_save
-            and not self._context.get("skip_second_write", False)
-        ):
-            record.with_context(skip_second_write=True).write(
-                {
-                    "calculate_tax_on_save": False,
-                }
-            )
-            record.avalara_compute_taxes()
-        return record
+        for sale in sales:
+            if (
+                avatax_config.sale_calculate_tax
+                and sale.calculate_tax_on_save
+                and not self._context.get("skip_second_write", False)
+            ):
+                sale.with_context(skip_second_write=True).write(
+                    {
+                        "calculate_tax_on_save": False,
+                    }
+                )
+                sale.avalara_compute_taxes()
+        return sales
 
     def write(self, vals):
-        result = super(SaleOrder, self).write(vals)
+        result = super().write(vals)
         avatax_config = self.env.company.get_avatax_config_company()
         for record in self:
             if (

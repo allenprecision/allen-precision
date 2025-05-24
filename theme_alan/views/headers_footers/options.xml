@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Header options -->
+    <template id="as_header_switches" inherit_id="website.snippet_options">
+            <xpath expr="//div/we-select[@data-variable='header-template']" position="inside">
+                <we-button title="Alan: Header 1"
+                    data-name="as_header_opt1"
+                    data-customize-website-views="theme_alan.as_header_1"
+                    data-customize-website-variable="'as_header1'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_1.svg"/>
+                
+                <we-button title="Alan: Header 2"
+                    data-name="as_header_opt2"
+                    data-customize-website-views="theme_alan.as_header_2"
+                    data-customize-website-variable="'as_header2'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_2.svg"/>
+                <we-button title="Alan: Header 3"
+                    data-name="as_header_opt3"
+                    data-customize-website-views="theme_alan.as_header_3"
+                    data-customize-website-variable="'as_header3'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_3.svg"/>
+                <we-button title="Alan: Header 4"
+                    data-name="as_header_opt4"
+                    data-customize-website-views="theme_alan.as_header_4"
+                    data-customize-website-variable="'as_header4'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_4.svg"/>
+                <we-button title="Alan: Header 5"
+                    data-name="as_header_opt5"
+                    data-customize-website-views="theme_alan.as_header_5"
+                    data-customize-website-variable="'as_header5'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_5.svg"/>
+                <we-button title="Alan: Header 6"
+                    data-name="as_header_opt6"
+                    data-customize-website-views="theme_alan.as_header_6"
+                    data-customize-website-variable="'as_header6'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_6.svg"/>
+                <we-button title="Alan: Header 7"
+                    data-name="as_header_opt7"
+                    data-customize-website-views="theme_alan.as_header_7"
+                    data-customize-website-variable="'as_header7'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_7.svg"/>
+                <we-button title="Alan: Header 8"
+                    data-name="as_header_opt8"
+                    data-customize-website-views="theme_alan.as_header_8"
+                    data-customize-website-variable="'as_header8'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_8.svg"/>
+                <we-button title="Alan: Header 9"
+                    data-name="as_header_opt9"
+                    data-customize-website-views="theme_alan.as_header_9"
+                    data-customize-website-variable="'as_header9'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_9.svg"/>
+
+                <we-button title="Alan: Header 10"
+                    data-name="as_header_opt10"
+                    data-customize-website-views="theme_alan.as_header_10"
+                    data-customize-website-variable="'as_header10'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_10.svg"/>
+                <we-button title="Alan: Header 11"
+                    data-name="as_header_opt11"
+                    data-customize-website-views="theme_alan.as_header_11"
+                    data-customize-website-variable="'as_header11'"
+                    data-img="/theme_alan/static/src/img/icons/as_headers_11.svg"/>
+            </xpath>
+
+            <xpath expr="//we-colorpicker[@data-color='header-sales_four']" position="after">
+                <we-colorpicker data-dependencies="as_header_opt1, as_header_opt2"
+                        data-customize-website-color="" data-color="header-alan_topbar"
+                        data-customize-website-layer2-color="" data-layer-color="header-alan_topbar-custom" data-layer-gradient="menu-secondary-gradient"
+                        data-no-bundle-reload="true"
+                        data-null-value="'NULL'"
+                        data-with-combinations="customizeWebsiteColor"
+                        data-with-gradients="true"/>
+            </xpath>
+    </template>
+
+    <!-- Footer Options -->
+    <template id="alan_footer_switches" inherit_id="website.snippet_options">
+        <xpath expr="//div/we-select[@data-variable='footer-template']" position="inside">
+            <we-button title="Alan: Footer 1"
+                data-customize-website-views="theme_alan.alan_footer_1"
+                data-customize-website-variable="'alan_footer1'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_1.svg"/>
+            <we-button title="Alan: Footer 2"
+                data-customize-website-views="theme_alan.alan_footer_2"
+                data-customize-website-variable="'alan_footer2'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_2.svg"/>
+            <we-button title="Alan: Footer 3"
+                data-customize-website-views="theme_alan.alan_footer_3"
+                data-customize-website-variable="'alan_footer3'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_3.svg"/>
+
+            <we-button title="Alan: Footer 4"
+                data-customize-website-views="theme_alan.alan_footer_4"
+                data-customize-website-variable="'alan_footer4'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_4.svg"/>
+
+            <we-button title="Alan: Footer 5"
+                data-customize-website-views="theme_alan.alan_footer_5"
+                data-customize-website-variable="'alan_footer5'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_5.svg"/>
+
+            <we-button title="Alan: Footer 6"
+                data-customize-website-views="theme_alan.alan_footer_6"
+                data-customize-website-variable="'alan_footer6'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_6.svg"/>
+
+            <we-button title="Alan: Footer 7"
+                data-customize-website-views="theme_alan.alan_footer_7"
+                data-customize-website-variable="'alan_footer7'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_7.svg"/>
+
+            <we-button title="Alan: Footer 8"
+                data-customize-website-views="theme_alan.alan_footer_8"
+                data-customize-website-variable="'alan_footer8'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_8.svg"/>
+
+            <we-button title="Alan: Footer 9"
+                data-customize-website-views="theme_alan.alan_footer_9"
+                data-customize-website-variable="'alan_footer9'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_9.svg"/>
+
+            <we-button title="Alan: Footer 10"
+                data-customize-website-views="theme_alan.alan_footer_10"
+                data-customize-website-variable="'alan_footer10'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_10.svg"/>
+
+            <we-button title="Alan: Footer 11"
+                data-customize-website-views="theme_alan.alan_footer_11"
+                data-customize-website-variable="'alan_footer11'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_11.svg"/>
+
+            <we-button title="Alan: Footer 12"
+                data-customize-website-views="theme_alan.alan_footer_12"
+                data-customize-website-variable="'alan_footer12'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_12.svg"/>
+
+            <we-button title="Alan: Footer 13"
+                data-customize-website-views="theme_alan.alan_footer_13"
+                data-customize-website-variable="'alan_footer13'"
+                data-img="/theme_alan/static/src/img/icons/as_footers_13.svg"/>
+
+        </xpath>
+    </template>
+
+</odoo>

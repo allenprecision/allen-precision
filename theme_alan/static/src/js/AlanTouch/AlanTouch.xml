@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="theme_alan.alan_configuration" owl="1">
+        <AlanConfigDialog title="Configuration" technical="false" header="false" footer="false">
+            <div class="row m-2">
+                <div class="col-6"><h4>Alan Settings</h4></div>
+                <div class="col-6 text-end"><button type="button" class="btn-close" aria-label="Close" onclick="location.reload()"></button></div>
+            </div>
+
+            <div class="as-alan-touch-popup">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="shop-tab" data-bs-toggle="tab" data-bs-target="#shop" type="button" role="tab" aria-controls="shop" aria-selected="false">Shop Page</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="product_page-tab" data-bs-toggle="tab" data-bs-target="#product_page" type="button" role="tab" aria-controls="product_page" aria-selected="false">Product Page</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <!--  General Settings -->
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                        <h6 class="as-alan-touch-title as-edit-title-01">General Configuration</h6>
+                        <div class="as-alan-touch-in">
+                            <form>
+                                <div class="row row-cols-4 g-3">
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_login_popup" type="checkbox" t-on-change="_setting_change" id="active_login_popup"
+                                                t-att-checked="this.configuration.active_login_popup ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_login_popup">
+                                                <i class="fa fa-key"></i> <span>Login Popup</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_mini_cart" type="checkbox" t-on-change="_setting_change" id="active_mini_cart"
+                                                t-att-checked="this.configuration.active_mini_cart ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_mini_cart">
+                                                <i class="asi asi-shopping-bag"></i> <span>Mini Cart</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_scroll_top" type="checkbox" t-on-change="_setting_change" id="active_scroll_top"
+                                                t-att-checked="this.configuration.active_scroll_top ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_scroll_top">
+                                                <i class="fa fa-angle-double-up"></i> <span>Scroll Top</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_b2b_mode" type="checkbox" t-on-change="_setting_change" id="active_b2b_mode"
+                                                t-att-checked="this.configuration.active_b2b_mode ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_b2b_mode">
+                                                <i class="fa fa-bold"></i> <span>B2B Mode</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_free_shipping" type="checkbox" t-on-change="_setting_change" id="active_free_shipping"
+                                                t-att-checked="this.configuration.active_free_shipping ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_free_shipping">
+                                                <i class="fa fa-truck"></i> <span>Free Shipping Eligibility In Mini Cart</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--  Shop Settings -->
+                    <div class="tab-pane fade" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+                        <h6 class="as-alan-touch-title as-edit-title-01">Shop Page Configuration</h6>
+                        <div class="as-alan-touch-in">
+                            <form>
+                                <div class="row row-cols-4 g-3">
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_quick_view" type="checkbox" t-on-change="_setting_change" id="active_shop_quick_view"
+                                                t-att-checked="this.configuration.active_shop_quick_view ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_quick_view">
+                                                <i class="asi asi-eye"></i> <span>Quick View</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_rating" type="checkbox" t-on-change="_setting_change" id="active_shop_rating"
+                                                t-att-checked="this.configuration.active_shop_rating ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_rating">
+                                                <i class="asi asi-star"></i> <span>Rating</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_similar_product" type="checkbox" t-on-change="_setting_change" id="active_shop_similar_product"
+                                                t-att-checked="this.configuration.active_shop_similar_product ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_similar_product">
+                                                <i class="asi asi-copy"></i> <span>Similar Product</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_offer_timer" type="checkbox" t-on-change="_setting_change" id="active_shop_offer_timer"
+                                                t-att-checked="this.configuration.active_shop_offer_timer ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_offer_timer">
+                                                <i class="asi asi-clock"></i> <span>Offer Timer</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_color_variant" type="checkbox" t-on-change="_setting_change" id="active_shop_color_variant"
+                                                t-att-checked="this.configuration.active_shop_color_variant ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_color_variant">
+                                                <i class="fa fa-paint-brush"></i> <span>Color Variant</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_stock_info" type="checkbox" t-on-change="_setting_change" id="active_shop_stock_info"
+                                                t-att-checked="this.configuration.active_shop_stock_info ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_stock_info">
+                                                <i class="asi asi-info"></i> <span>Stock Information</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_brand_info" type="checkbox" t-on-change="_setting_change" id="active_shop_brand_info"
+                                                t-att-checked="this.configuration.active_shop_brand_info ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_brand_info">
+                                                <i class="asi asi-box"></i> <span>Brand Information</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_hover_image" type="checkbox" t-on-change="_setting_change" id="active_shop_hover_image"
+                                                t-att-checked="this.configuration.active_shop_hover_image ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_hover_image">
+                                                <i class="asi asi-image"></i> <span>Hover image</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_label" type="checkbox" t-on-change="_setting_change" id="active_shop_label"
+                                                t-att-checked="this.configuration.active_shop_label ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_label">
+                                                <i class="asi asi-tag"></i> <span>Label</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_ppg" type="checkbox" t-on-change="_setting_change" id="active_shop_ppg"
+                                                t-att-checked="this.configuration.active_shop_ppg ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_ppg">
+                                                <i class="fa fa-sliders"></i> <span>Product Per Page</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_attribute_search" type="checkbox" t-on-change="_setting_change" id="active_attribute_search"
+                                                t-att-checked="this.configuration.active_attribute_search ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_attribute_search">
+                                                <i class="asi asi-search"></i> <span>Attribute Search</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_stock_only" type="checkbox" t-on-change="_setting_change" id="active_stock_only"
+                                                t-att-checked="this.configuration.active_stock_only ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_stock_only">
+                                                <i class="asi asi-check-circle"></i> <span>In Stock Only</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_load_more" type="checkbox" t-on-change="_setting_change" id="active_load_more"
+                                                t-att-checked="this.configuration.active_load_more ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_load_more">
+                                                <i class="fa fa-spinner"></i> <span>Ajax Product Load</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_brand_filter" type="checkbox" t-on-change="_setting_change" id="active_brand_filter"
+                                                t-att-checked="this.configuration.active_brand_filter ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_brand_filter">
+                                                <i class="fa fa-barcode"></i> <span>Brand Filter</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_rating_filter" type="checkbox" t-on-change="_setting_change" id="active_rating_filter"
+                                                t-att-checked="this.configuration.active_rating_filter ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_rating_filter">
+                                                <i class="fa fa-star"></i> <span>Rating Filter</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_attribute_count" type="checkbox" t-on-change="_setting_change" id="active_attribute_count"
+                                                t-att-checked="this.configuration.active_attribute_count ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_attribute_count">
+                                                <i class="fa fa-list-ol"></i> <span>Show Attribute Count</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_clear_filter" type="checkbox" t-on-change="_setting_change" id="active_shop_clear_filter"
+                                                t-att-checked="this.configuration.active_shop_clear_filter ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_clear_filter">
+                                                <i class="fa fa-sliders"></i> <span>Show Clear Filter</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_hide_zero_attribute" type="checkbox" t-on-change="_setting_change" id="active_hide_zero_attribute"
+                                                t-att-checked="this.configuration.active_hide_zero_attribute ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_hide_zero_attribute">
+                                                <i class="fa fa-eye-slash"></i> <span> Hide Extra Attribute</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-check as-edit-form-check-pill">
+                                            <input class="form-check-input" name="active_shop_product_reference" type="checkbox" t-on-change="_setting_change" id="active_shop_product_reference"
+                                                t-att-checked="this.configuration.active_shop_product_reference ? 'checked' : undefined" />
+                                            <label class="form-check-label" for="active_shop_product_reference">
+                                                <i class="fa fa-qrcode"></i> <span>Product SKU</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!--  Product Settings -->
+                    <div class="tab-pane fade" id="product_page" role="tabpanel" aria-labelledby="product_page-tab">
+                        <h6 class="as-alan-touch-title as-edit-title-01">Product Page Configuration</h6>
+                        <div class="as-alan-touch-in">
+                            <div class="row row-cols-4 g-3">
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_label" type="checkbox" t-on-change="_setting_change" id="active_product_label"
+                                            t-att-checked="this.configuration.active_product_label ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_label">
+                                            <i class="asi asi-tag"></i> <span>Product Labels</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_brand" type="checkbox" t-on-change="_setting_change" id="active_product_brand"
+                                            t-att-checked="this.configuration.active_product_brand ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_brand">
+                                            <i class="asi asi-box"></i> <span>Product Brand</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_offer_timer" type="checkbox" t-on-change="_setting_change" id="active_product_offer_timer"
+                                            t-att-checked="this.configuration.active_product_offer_timer ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_offer_timer">
+                                            <i class="asi asi-clock"></i> <span>Product Offer Timer</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_advance_info" type="checkbox" t-on-change="_setting_change" id="active_product_advance_info"
+                                            t-att-checked="this.configuration.active_product_advance_info ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_advance_info">
+                                            <i class="asi asi-info"></i> <span>Product Advance Information</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_variant_info" type="checkbox" t-on-change="_setting_change" id="active_product_variant_info"
+                                            t-att-checked="this.configuration.active_product_variant_info ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_variant_info">
+                                            <i class="fa fa-cogs"></i> <span>Variant Advance Information</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_reference" type="checkbox" t-on-change="_setting_change" id="active_product_reference"
+                                            t-att-checked="this.configuration.active_product_reference ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_reference">
+                                            <i class="fa fa-qrcode"></i> <span>Product SKU</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_category" type="checkbox" t-on-change="_setting_change" id="active_product_category"
+                                            t-att-checked="this.configuration.active_product_category ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_category">
+                                            <i class="fa fa-list-alt"></i> <span>Product Category</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_accessory" type="checkbox" t-on-change="_setting_change" id="active_product_accessory"
+                                            t-att-checked="this.configuration.active_product_accessory ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_accessory">
+                                            <i class="asi asi-package"></i> <span>Accessory Products</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_alternative" type="checkbox" t-on-change="_setting_change" id="active_product_alternative"
+                                            t-att-checked="this.configuration.active_product_alternative ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_alternative">
+                                            <i class="asi asi-package"></i> <span>Alternative Products</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_pager" type="checkbox" t-on-change="_setting_change" id="active_product_pager"
+                                            t-att-checked="this.configuration.active_product_pager ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_pager">
+                                             <i class="asi asi-fast-forward"></i> <span>Product Pager</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_sticky" type="checkbox" t-on-change="_setting_change" id="active_product_sticky"
+                                            t-att-checked="this.configuration.active_product_sticky ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_sticky">
+                                             <i class="fa fa-sticky-note-o"></i> <span>Product Sticky</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_bulk_save" type="checkbox" t-on-change="_setting_change" id="active_product_bulk_save"
+                                            t-att-checked="this.configuration.active_product_bulk_save ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_bulk_save">
+                                             <i class="fa fa-database"></i> <span>Product Bulk Save</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_last_month_count" type="checkbox" t-on-change="_setting_change" id="active_last_month_count"
+                                            t-att-checked="this.configuration.active_last_month_count ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_last_month_count">
+                                             <i class="fa fa-calendar-check-o"></i> <span>Product Last Month Selling</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_inquiry" type="checkbox" t-on-change="_setting_change" id="active_product_inquiry"
+                                            t-att-checked="this.configuration.active_product_inquiry ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_inquiry">
+                                             <i class="fa fa-question-circle"></i> <span>Product Any Queries</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check as-edit-form-check-pill">
+                                        <input class="form-check-input" name="active_product_discount" type="checkbox" t-on-change="_setting_change" id="active_product_discount"
+                                            t-att-checked="this.configuration.active_product_discount ? 'checked' : undefined" />
+                                        <label class="form-check-label" for="active_product_discount">
+                                             <i class="fa fa-percent"></i> <span>Product Discount</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </AlanConfigDialog>
+    </t>
+
+    <t t-name="theme_alan.alan_touch" owl="1">
+        <div class="o_menu_systray_item" t-on-click="show_configuration">
+            <a class="o_nav_entry" href="#" accesskey="c"><span class="fa fa-cog m-2"/>Alan</a>
+        </div>
+    </t>
+
+</templates>
