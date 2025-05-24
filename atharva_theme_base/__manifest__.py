@@ -56,8 +56,8 @@
 
     },
     'price': 6.00,
-    'pre_init_hook': 'pre_init_hook',
-    'post_init_hook': 'post_init_hook',
+    # 'pre_init_hook': 'pre_init_hook',
+    # 'post_init_hook': 'post_init_hook',
     'currency': 'EUR',
     'images': ['static/description/as-theme-base.png'],
     'installable': True,
