@@ -4,7 +4,7 @@
     <template inherit_id="portal.frontend_layout"
               id="website_maintenance" name="Maintenance Page">
         <xpath expr="//div[@id='wrapwrap']" position="attributes">
-           <attribute name="t-if">not
+            <attribute name="t-if">not
                 website.under_maintenance or user_id.has_group('base.group_user')
             </attribute>
         </xpath>
@@ -32,20 +32,20 @@
                         </nav>
                     </head>
                     <body>
-                        <div class="page">
-                            <img t-att-src="image_data_uri(website.maintenance_img)"/>
-                            <div class="container"
-                                 style=" position: sticky;z-index: 9;top: ;bottom: 400px;width: 100%;text-align: center;display: flex;justify-content: center;">
-                                <div class="container">
-                                    <div class="title-item">
-                                        <h2 t-att-style="'color: %s;' % website.maintenance_hdr_color">
-                                            <t t-esc="website.maintenance_hdr"/>
-                                        </h2>
-                                        <span t-att-style="'color: %s;' % website.maintenance_cont_color">
-                                            <t t-esc="website.maintenance_msg"/>
-                                        </span>
-                                    </div>
-                                </div>
+                        <div class="page" style="text-align: center;">
+                            <!-- Centered Image -->
+                            <img t-att-src="image_data_uri(website.maintenance_img)"
+                                 style="max-width: 100%; height: auto; margin: 0 auto; display: block;"/>
+
+                            <!-- Text in a new row, centered -->
+                            <div style="margin-top: 30px;">
+                                <h2 t-att-style="'color: %s;' % website.maintenance_hdr_color"
+                                    style="margin-bottom: 10px;">
+                                    <t t-esc="website.maintenance_hdr"/>
+                                </h2>
+                                <h4 t-att-style="'color: %s;' % website.maintenance_cont_color">
+                                    <t t-esc="website.maintenance_msg"/>
+                                </h4>
                             </div>
                         </div>
                     </body>
