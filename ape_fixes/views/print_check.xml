@@ -13,4 +13,26 @@
             <attribute name="class">ckus_amount_in_word ml-4</attribute>
         </xpath>
     </template>
+
+    <template id="ckus_stub_custom" inherit_id="l10n_us_check_printing.ckus_stub" priority="20">Add commentMore actions
+        <!-- Replace the entire summary_line <div> -->
+        <xpath expr="//div[@class='row summary_line']" position="replace">
+            <div class="row summary_line">
+            <div class="col-4">
+                <span t-out="page['partner_name']"/>
+            </div>
+            <div class="col-2">
+                <span t-out="page['date']"/>
+            </div>
+            <div class="col-3">
+                <span t-if="page['sequence_number']" t-out="page['sequence_number']"/>
+            </div>
+        </div>
+        </xpath>
+    </template>
+
+    <template id="ckus_check_custom" inherit_id="l10n_us_check_printing.ckus_check" priority="20">
+        <!-- Target the sequence_number div and replace it with a hidden version -->
+        <xpath expr="///div[@class='sequence_number']" position="replace"/>Add commentMore actions
+    </template>
 </odoo> 
