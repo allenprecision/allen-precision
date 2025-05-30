@@ -152,3 +152,13 @@ class AccountInvoiceReport(models.Model):
     def _select(self):
         return super()._select() + ", line.cost_cogs as cost_cogs"
 
+class AccountPayment(models.Model):
+    _inherit = 'account.payment'
+
+    @api.model
+    def default_get(self, fields_list):
+        defaults = super().default_get(fields_list)
+        if 'company_id' in self.env['account.payment']._fields and not defaults.get('company_id'):
+            defaults['company_id'] = self.env.company.id
+        return defaults
+
