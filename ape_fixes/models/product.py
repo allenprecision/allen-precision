@@ -43,23 +43,28 @@ class ProductDescriptionUpdater(models.TransientModel):
 
     @api.model
     def update_product_descriptions(self):
-        # Update path if the file is uploaded to a specific directory
-        file_path = 'src/user/ape_fixes/models/Product_Description_ID.csv'  # You will need to place the file here
+        file_path = 'src/user/ape_fixes/models/Product_Description_ID.csv'
 
         try:
             df = pd.read_csv(file_path)
         except Exception as e:
-            _logger.error(f"Failed to read Excel file: {e}")
+            _logger.error(f"Failed to read CSV file: {e}")
             return
 
-        for _, row in df.iterrows():
+        # Split the DataFrame into two halves
+        half_len = len(df) // 2
+        df_first_half = df.iloc[:half_len]
+        df_last_half = df.iloc[half_len:]
+
+        # Use df_first_half for updating records
+        for _, row in df_first_half.iterrows():
             product_id = int(row.get('ID', 0))
             description = row.get('Description Tab', '')
 
             if product_id:
                 product = self.env['product.template'].browse(product_id)
                 if product.exists():
-                    product.write({'product_tab_description': description})
+                    product.sudo().write({'product_tab_description': description})
 
 
 class ProductProduct(models.Model):
