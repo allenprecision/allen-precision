@@ -57,7 +57,7 @@ class ProductDescriptionUpdater(models.TransientModel):
         df_last_half = df.iloc[half_len:]
 
         # Use df_first_half for updating records
-        for _, row in df_first_half.iterrows():
+        for _, row in df_last_half.iterrows():
             product_id = int(row.get('ID', 0))
             description = row.get('Description Tab', '')
 
