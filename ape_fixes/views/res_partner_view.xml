@@ -40,17 +40,42 @@
         </field>
     </record>
 
-    <record id='view_res_partner_filter_ape' model="ir.ui.view">
+   <record id='view_res_partner_filter_ape' model="ir.ui.view">
         <field name="name">res.partner.select.ape</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_res_partner_filter"/>
         <field name="arch" type="xml">
             <field name="name" position="replace">
-                <field name="name" filter_domain="['|', '|', ('name', 'ilike', self), ('ref', 'ilike', self), ('email', 'ilike', self)]"/>
+                <field name="name" filter_domain="['|', '|', '|',  '|',  '|',  '|',  '|',  ('country_id', 'ilike', self),  ('street', 'ilike', self),  ('city', 'ilike', self),  ('state_id', 'ilike', self),  ('zip', 'ilike', self),  ('name', 'ilike', self), ('ref', 'ilike', self), ('email', 'ilike', self)]"/>
             </field>
         </field>
     </record>
 
 
+    <record id="view_res_partner_filter_inherit" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+
+                <!-- Add Street -->
+                <field name="street" string="Street"/>
+
+                <!-- Add City -->
+                <field name="city" string="City"/>
+
+                <!-- Add State -->
+                <field name="state_id" string="State"/>
+
+                <!-- Add Zip -->
+                <field name="zip" string="ZIP"/>
+
+                <!-- Add Country -->
+                <field name="country_id" string="Country"/>
+
+            </xpath>
+        </field>
+    </record>
 
 </odoo>
