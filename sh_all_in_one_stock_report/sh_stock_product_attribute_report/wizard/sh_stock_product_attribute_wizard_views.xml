@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+	<!-- Wizard Form view -->
+
+	<record id="sh_stock_product_attribute_wizard_form_view" model="ir.ui.view">
+		<field name="name">Stock Product Attribute Report</field>
+		<field name="model">sh.stock.product.attribute.wizard</field>
+		<field name="arch" type="xml">
+			<form string="stock Product Attribute Report">
+				<group>
+					<group>
+						<field name="sh_from_date" />
+						<field name="sh_company_id" />
+						<field name="sh_domain" invisible="1" />
+						<field name="sh_select_product_cat" widget="radio" />
+					</group>
+					<group>
+						<field name="sh_to_date" />
+						<field name="sh_horizontal_attribute_id" />
+						<field name="sh_vertical_attribute_id" />
+						<field name="sh_product_ids" widget="many2many_tags" invisible="sh_select_product_cat=='category'" domain="sh_domain" />
+						<field name="sh_category_ids" widget="many2many_tags" invisible="sh_select_product_cat=='product'" />
+					</group>
+				</group>
+				<footer>
+					<button name="sh_print_stock_report" class="btn btn-primary" type="object" string="Print Pdf Report" />
+					<button name="get_xls_report" class="btn btn-primary" type="object" string="Print Xls Report" />
+					<button string="Cancel" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+
+	<!-- Action -->
+
+	<record id="sh_stock_product_attribute_action_view" model="ir.actions.act_window">
+		<field name="name">Stock Product Attribute Report</field>
+		<field name="res_model">sh.stock.product.attribute.wizard</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<!-- Menu item -->
+
+	<menuitem id="sh_stock_product_attribute_menu" name="Stock Product Attribute Report" action="sh_stock_product_attribute_action_view" parent="stock.menu_warehouse_report" groups="sh_all_in_one_stock_report.sh_group_stock_attribute_report" />
+</odoo>

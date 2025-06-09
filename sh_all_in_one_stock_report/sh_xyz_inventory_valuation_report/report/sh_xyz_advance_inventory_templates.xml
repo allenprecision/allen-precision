@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="sh_xyz_report">
+		<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<div class="page">
+					<div class="oe_structure" />
+					<div class="row">
+						<div class="col-md-12 mx-auto">
+							<div class="text-center">
+								<span style="font-weight: 800;font-size: 25px;">
+                                   XYZ Stock Valuation Report
+                                </span>
+								
+							</div>
+						</div>
+					</div> 
+					<div class="w-100 text-center" >
+						<h5 ><b>Date: </b>
+							
+							<t t-esc="date"/>
+						</h5>
+					
+					</div>
+					<br />
+					<div class="d-inline-flex" style="width:100%">
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:5%;text-align:center;">No.</div>
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:40%;text-align:center;">Product</div>
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:15%;text-align:center;">Stock Valuation</div>
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:15%;text-align:center;">Stock Valuation(%)</div>
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:15%;text-align:center;">Cummulative</div>
+						<div  style="border-style: solid; border-width: 1px 0px 0px 1px;padding-left:3px; font-weight: bold;width:10%;text-align:center;">XYZ Analysis</div>
+					</div>
+					<t t-set="count" t-value="0" />
+					<t t-foreach="stock_valuation_list" t-as="stock">
+						<t t-set="count" t-value="count + 1" />
+						<div class="d-inline-flex"  style="width:100%">
+							<t t-if="stock[4]=='X'">
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:5%;text-align:right;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="count" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:40%;text-align:left;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="stock[0]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="stock[1]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="stock[2]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="stock[3]" /></div>
+								<div style="border-style: solid; border-width: 0px 1px 0px 1px;padding-left:3px;width:10%;text-align:center;"><span  style="padding-right:2px;color:#2e7d32;" t-esc="stock[4]" /></div>
+							</t>
+							<t t-if="stock[4]=='Y'">
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:5%;text-align:right;"><span style="padding-right:2px;color:#ff8f00;" t-esc="count" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:40%;text-align:left;"><span style="padding-right:2px;color:#ff8f00;" t-esc="stock[0]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#ff8f00;" t-esc="stock[1]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#ff8f00;" t-esc="stock[2]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#ff8f00;" t-esc="stock[3]" /></div>
+								<div style="border-style: solid; border-width: 0px 1px 0px 1px;padding-left:3px;width:10%;text-align:center;"><span style="padding-right:2px;color:#ff8f00;" t-esc="stock[4]" /></div>
+							</t>
+							<t t-if="stock[4]=='Z'">
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:5%;text-align:right;"><span style="padding-right:2px;color:#616161;" t-esc="count" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:40%;text-align:left;"><span style="padding-right:2px;color:#616161;" t-esc="stock[0]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#616161;" t-esc="stock[1]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#616161;" t-esc="stock[2]" /></div>
+								<div style="border-style: solid; border-width: 0px 0px 0px 1px;padding-left:3px;width:15%;text-align:right;"><span style="padding-right:2px;color:#616161;" t-esc="stock[3]" /></div>
+								<div style="border-style: solid; border-width: 0px 1px 0px 1px;padding-left:3px;width:10%;text-align:center;"><span style="padding-right:2px;color:#616161;" t-esc="stock[4]" /></div>
+							</t>
+						</div>
+					</t>
+					</div> 
+			</t>
+		</t>
+	</template>
+	<record id="sh_xyz_stock_report_action" model="ir.actions.report">
+		<field name="name">XYZ Report</field>
+		<field name="model">report.sh_all_in_one_stock_report.sh_xyz_report</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">sh_all_in_one_stock_report.sh_xyz_report</field>
+		<field name="print_report_name">'XYZ Report'</field>
+	</record>
+</odoo>

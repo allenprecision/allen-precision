@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_xyz_stock_valuation_wizard_id,access_sh_xyz_stock_valuation_wizard_name,model_sh_xyz_stock_valuation_wizard,sh_all_in_one_stock_report.sh_group_xyz_inventory_valuation_report,1,1,1,1

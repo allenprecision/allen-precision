@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard From view -->
+
+    <record id="sh_non_moving_product_report_wizard_view" model="ir.ui.view">
+        <field name="name">Non Moving Product Report</field>
+        <field name="model">sh.non.moving.product.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Non Moving Product Report">
+                <group>
+                    <group>
+                        <field name="sh_from_date" />
+                        <field name="sh_selection" />
+                    </group>
+                    <group>
+                        <field name="sh_to_date" />
+                        <field name="sh_warehouse_id"  
+                            invisible="sh_selection == 'location'"
+                            required=" sh_selection == 'warehouse'"/>
+                        <field name="sh_location_ids" widget="many2many_tags" invisible="sh_selection == 'warehouse'"/>
+                    </group>
+                </group>
+                <group><field name="sh_product_ids" widget="many2many_tags"/></group>
+                <footer>
+                    <button name="sh_print_stock_report" string="Print Pdf Report" class="oe_highlight" type="object" />
+                    <button name="get_xls_report" string="Print Xls Report" class="oe_highlight" type="object" />
+                    <button name="sh_non_moving_view" string="View" class="oe_highlight" type="object" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sh_non_moving_product_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Non Moving Product Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.non.moving.product.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Non Moving Product Report" parent="stock.menu_warehouse_report" action="sh_non_moving_product_report_wizard_action" id="sh_non_moving_product_report_id" groups="sh_all_in_one_stock_report.sh_group_non_moving_product_report" sequence=" 5" />
+
+
+</odoo>

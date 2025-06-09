@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Search View -->
+
+    <record id="sh_non_moving_product_view_search" model="ir.ui.view">
+        <field name="name">sh.non.moving.product.search</field>
+        <field name="model">sh.non.moving.product</field>
+        <field name="arch" type="xml">
+            <search string="Non Moving Product">
+                <filter string="No Sales" name="sh_no_delivery" domain="[('sh_no_picking', '=', True)]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Product" name="product" context="{'group_by':'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Tree view -->
+
+    <record id="sh_non_moving_product_view_tree" model="ir.ui.view">
+        <field name="name">sh.non.moving.product.tree</field>
+        <field name="model">sh.non.moving.product</field>
+        <field name="arch" type="xml">
+            <tree string="Non Moving Product" create="0">
+                <field name="product_id" />
+                <field name="default_code" />
+                <field name="onhand_qty" />
+                <field name="sh_last_sale" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sh_non_moving_products_action" model="ir.actions.act_window">
+        <field name="name">Non Moving Product</field>
+        <field name="res_model">sh.non.moving.product</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Non Moving Product View" parent="stock.menu_warehouse_report" action="sh_non_moving_products_action" id="sh_non_moving_product_id" groups="sh_all_in_one_stock_report.sh_group_non_moving_product_report" sequence="6" />
+
+
+</odoo>

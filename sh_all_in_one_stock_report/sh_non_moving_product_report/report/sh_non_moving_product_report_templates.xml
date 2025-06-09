@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="sh_non_moving_product">
+
+		<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<div class="page">
+					<div class="oe_structure" />
+						<div class="col-12 text-center" style="font-size: 25px;margin-bottom:20px;">
+							<b>Non Moving Product Report</b>
+						</div>
+						<div class="w-100 text-center">
+							<table class="w-100 table table-bordered" style="border-color:black!important;">
+								<thead style="background-color:#343a40;color:white;">
+									<th><span>From Date :</span></th>
+									<th><span>To Date :</span></th>
+									<t t-if="sh_selection=='warehouse'">
+										<th><span>Warehouse :</span></th>
+									</t>
+								</thead>
+								<tbody>
+									<tr>
+										<td><t t-esc="sh_from_date"/></td>
+										<td><t t-esc="sh_to_date"/></td>
+										<t t-if="sh_selection=='warehouse'">
+											<td><t t-esc="sh_warehouse"/></td>
+										</t>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<t t-if='non_move_stock'>
+							<table class="w-100 table table-bordered" style="border-color:black!important;">
+								<thead style="background-color:#343a40;color:white;">
+									<th><span>Sr No.</span></th>
+									<th><span>Product Name</span></th>
+									<th><span>Product Code</span></th>
+									<th><span>Onhand Qty</span></th>
+									<th><span>Last Sales</span></th>
+								</thead>
+								<t t-set="count" t-value="0"/>
+								<t t-foreach="non_move_stock" t-as="move_stock">
+									<tr>
+										<td>
+											<t t-set="count" t-value="count+1"/>
+											<t t-esc="count"/>
+										</td>
+										<td>
+											<t t-esc="move_stock[0]"/>
+										</td>
+										<td>
+											<t t-esc="move_stock[1]" class="text-right"/>
+										</td>
+										<td>
+											<t t-esc="move_stock[2]" class="text-center"/>
+										</td>
+										<td>
+											<t t-esc="move_stock[3]" class="text-center"/>
+										</td>
+									</tr>
+								</t>
+							</table>
+						</t>
+				</div>
+			</t>
+		</t>
+	</template>
+
+
+	<record id="sh_non_moving_product_report_action" model="ir.actions.report">
+        <field name="name">Non Moving Product</field>
+        <field name="model">report.sh_all_in_one_stock_report.sh_non_moving_product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_all_in_one_stock_report.sh_non_moving_product</field>
+        <field name="print_report_name">'Non Moving Product'</field>
+    </record>
+</odoo>

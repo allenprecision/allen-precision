@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Wizard From view -->
+
+    <record id="sh_stock_card_report_wizard_view" model="ir.ui.view">
+        <field name="name">Stock Card Report</field>
+        <field name="model">sh.stock.card.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Stock Card Report">
+                <group>
+                    <group>
+                        <field name="sh_from_date" />
+                        <field name="sh_company_id" options="{'no_create': True, 'no_open': True}" />
+                        <field name="sh_domain" invisible="1" />
+                        <field name="sh_domain_warehouse" invisible="1" />
+                        <field name="sh_location_id" domain="sh_domain" options="{'no_create': True, 'no_open': True}" />
+                        <field name="sh_product_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}" invisible="sh_select_product_cat == 'category'" />
+                        <field name="sh_category_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}" invisible="sh_select_product_cat == 'product'" />
+                    </group>
+                    <group>
+                        <field name="sh_to_date" />
+                        <field name="sh_warehouse_id" domain="sh_domain_warehouse" options="{'no_create': True, 'no_open': True}" />
+                        <field name="sh_select_product_cat" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="sh_print_stock_report" string="Print Pdf Report" class="oe_highlight" type="object" />
+                    <button name="get_xls_report" string="Print Xls Report" class="oe_highlight" type="object" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="sh_stock_card_report_wizard_action" model="ir.actions.act_window">
+        <field name="name">Stock Card Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sh.stock.card.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item -->
+    <menuitem name="Stock Card Report" parent="stock.menu_warehouse_report" action="sh_stock_card_report_wizard_action" id="sh_stock_card_report_menu_id" groups="sh_all_in_one_stock_report.sh_group_stock_card_report" sequence=" 5" />
+
+</odoo>

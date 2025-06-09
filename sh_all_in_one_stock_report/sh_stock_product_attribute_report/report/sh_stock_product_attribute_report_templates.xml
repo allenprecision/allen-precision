@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="sh_stock_report">
+		<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<div class="page">
+					<style>
+                        tr.attr_cls: last-child &gt;
+                        td,tr.row_cls: last-child &gt;
+                        td {
+                            border-bottom: 0px !important;
+                        }
+                        tr.row_cls td:last-child {
+                            border-right: 0px !important;
+                        }
+                        .sh_main_table tr.sh_main_tbl_tr:nth-child(odd) {
+                            background: #e7e7e7;
+                        }
+                        .sh_main_table tr.sh_main_tbl_tr:nth-child(even) {
+                            background: #ffffff;
+                        }
+                        * {
+                            border: 0px !important;
+                        }
+                    </style>
+					<div class="oe_structure" />
+					<div style="text-align: center; font-size: 25px; margin-bottom: 20px;">
+						<strong>Product Attribute Wise Stock Report</strong>
+					</div>
+
+					<!-- Print basic things in report -->
+
+					<t t-foreach="vals" t-as="v">
+						<div class="d-flex w-100 space-between row">
+							<!-- <h5 class="col-6"></h5> -->
+							<h5 class="col-6 text-start">
+								<b>From Date: </b>
+								<span t-esc="v.get('sh_from_date')" t-options="{'widget': 'date'}" />
+							</h5>
+							<!-- <h5 class="col-2"></h5> -->
+							<h5 class="col-6 text-end">
+								<b>To Date: </b>
+								<span t-esc="v.get('sh_to_date')" t-options="{'widget': 'date'}" />
+							</h5>
+							<!-- <h5 class="col-1"></h5> -->
+						</div>
+
+						<br />
+
+						<!-- Print Pdf report Product wise -->
+
+						<t t-if="v.get('sh_select_product_cat')=='product'">
+							<t t-if="stock_product">
+								<t t-set="count" t-value="0" />
+								<t t-if="count!=0">
+									<div style="page-break-before: always;" />
+									<br />
+								</t>
+								<t t-set="count" t-value="count + 1" />
+								<br />
+								<table class="table table-sm o_main_table table-bordered sh_main_table" style="table-layout: fixed; border: 0px;" id="">
+									<thead style="display: table-row-group;">
+										<tr style="border: 0px; background: #212121; color: #ffffff;">
+											<th style="border: 0px;vertical-align: middle;width:13%;" rowspan="2">Product</th>
+											<th style="border: 0px;vertical-align: middle;width:13%;" rowspan="2">Attributes</th>
+											<t t-foreach="v.get('horizontal_attr_list')" t-as="h_attr">
+												<th style="border: 0px; text-align: center;">
+													<span t-esc="h_attr" />
+												</th>
+											</t>
+										</tr>
+										<tr style="border: 0px;">
+											<t t-foreach="v.get('horizontal_attr_list')" t-as="h_attr">
+												<th style="border: 0px; text-align: center; background: #212121; color: #ffffff;width:100%;">
+													<div style="font-size: small;width:46%;word-break: break-word;padding: 0px 2px;display: inline-block;"><span>Open Stock</span></div>
+													<div style="font-size: small;width:46%;word-break: break-word;padding: 0px 2px;display: inline-block;"><span>Close Stock</span></div>
+												</th>
+											</t>
+										</tr>
+									</thead>
+									<tbody class="sale_tbody">
+										<t t-foreach="stock_product.keys()" t-as="product">
+											<tr class="sh_main_tbl_tr">
+												<td style="border: 0px;text-align: center;width:13%;" class="align-middle">
+													<span t-esc="product" />
+												</td>
+												<t t-set="h_len" t-value="len(v.get('horizontal_attr_list'))" />
+												<t t-set="v_len" t-value="len(v.get('vertical_attr_list'))" />
+												<td style="border: 0px;width:13%;" class="p-0 align-middle m-0">
+													<table class="table table-sm o_main_table" style="table-layout: fixed; width: 100%; margin: 0; border: 0;">
+														<t t-foreach="v.get('vertical_attr_list')" t-as="v_attr">
+															<tr class="attr_cls">
+																<td class="align-middle" style="border: 0px; margin: 0; padding-top: 7px;padding-bottom:7px;text-align: center;">
+																	<span t-esc="v_attr" />
+																</td>
+															</tr>
+														</t>
+													</table>
+												</td>
+												<td style="border: 0px;" t-att-colspan="h_len" class="p-0 align-middle m-0">
+													<table class="table table-sm o_main_table" style="table-layout: fixed; width: 100%; border: 0; margin: 0; padding: 0px;">
+														<t t-set="v_index" t-value="0" />
+														<t t-foreach="stock_product[product]" t-as="h_attrs">
+															<tr class="row_cls">
+																<t t-foreach="h_attrs" t-as="v_attrs">
+																	<td class="align-middle text-center" style="border: 0px;">
+																		<span t-esc="v_attrs" />
+																	</td>
+																</t>
+															</tr>
+															<t t-set="v_index" t-value="v_index+1" />
+														</t>
+													</table>
+												</td>
+											</tr>
+										</t>
+									</tbody>
+								</table>
+							</t>
+						</t>
+
+						<!-- Print Pdf report Category wise -->
+
+						<t t-if="v.get('sh_select_product_cat')=='category'">
+							<t t-if="stock_product">
+								<t t-set="count" t-value="0" />
+								<t t-foreach="stock_product.keys()" t-as="categ_key">
+									<t t-if="count!=0">
+										<div style="page-break-before: always;" />
+										<br />
+									</t>
+									<t t-set="count" t-value="count + 1" />
+									<div class="row">
+										<div class="col-3"></div>
+										<div class="col-6">
+											<h4>
+												<b>Category: </b>
+												<span t-esc="categ_key" />
+											</h4>
+										</div>
+										<div class="col-3"></div>
+									</div>
+									<br />
+									<table class="table table-sm o_main_table table-bordered sh_main_table" style="table-layout: fixed; border: 0px;" id="">
+										<thead style="display: table-row-group;">
+											<tr>
+												<th style="border: 0px; background: #212121; color: #ffffff;vertical-align: middle;" rowspan="2">Product</th>
+												<th style="border: 0px; background: #212121; color: #ffffff;vertical-align: middle;" rowspan="2">Attributes</th>
+												<t t-foreach="v.get('horizontal_attr_list')" t-as="h_attr">
+													<th style="border: 0px; text-align: center; background: #212121; color: #ffffff;">
+														<span t-esc="h_attr" />
+													</th>
+												</t>
+											</tr>
+											<tr style="border: 0px;">
+												<t t-foreach="v.get('horizontal_attr_list')" t-as="h_attr">
+													<th style="border: 0px; text-align: center; background: #212121; color: #ffffff;width:100%;">
+														<div style="font-size: small;width:46%;word-break: break-word;padding: 0px 2px;display: inline-block;"><span>Open Stock</span></div>
+														<div style="font-size: small;width:46%;word-break: break-word;padding: 0px 2px;display: inline-block;"><span>Close Stock</span></div>
+													</th>
+												</t>
+											</tr>
+										</thead>
+										<tbody class="sale_tbody">
+											<t t-foreach="stock_product[categ_key].keys()" t-as="product">
+												<tr class="sh_main_tbl_tr">
+													<td style="border: 0px;text-align: center;" class="align-middle">
+														<span t-esc="product" />
+													</td>
+													<t t-set="h_len" t-value="len(v.get('horizontal_attr_list'))" />
+													<t t-set="v_len" t-value="len(v.get('vertical_attr_list'))" />
+													<td style="border: 0px;" class="p-0 align-middle">
+														<table class="table table-sm o_main_table" style="table-layout: fixed; width: 100%; margin-bottom: 0; border: 0;">
+															<t t-foreach="v.get('vertical_attr_list')" t-as="v_attr">
+																<tr class="attr_cls">
+																	<td class="align-middle border-0" style="border: 0px;text-align: center;">
+																		<span t-esc="v_attr" />
+																	</td>
+																</tr>
+															</t>
+														</table>
+													</td>
+													<td style="border: 0px;" t-att-colspan="h_len" class="p-0 align-middle">
+														<table class="table table-sm o_main_table" style="table-layout: fixed;width:100%:border:0;margin:0">
+															<t t-set="v_index" t-value="0" />
+															<t t-foreach="stock_product[categ_key][product]" t-as="h_attrs">
+																<tr class="row_cls">
+																	<t t-foreach="h_attrs" t-as="v_attrs">
+																		<td class="align-middle text-center" style="border: 0px;">
+																			<span t-esc="v_attrs" />
+																		</td>
+																	</t>
+																</tr>
+																<t t-set="v_index" t-value="v_index+1" />
+															</t>
+														</table>
+													</td>
+												</tr>
+											</t>
+										</tbody>
+									</table>
+									<br />
+								</t>
+							</t>
+						</t>
+					</t>
+				</div>
+			</t>
+		</t>
+	</template>
+</odoo>

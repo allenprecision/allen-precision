@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sh_product_stock_by_location_tree_view_inherit" model="ir.ui.view">
+        <field name="name">product.stock.by.location.tree</field>
+        <field name="model">product.stock.by.location</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="location" />
+                <field name="on_hand" />
+                <field name="forecasted" />
+                <field name="incoming" />
+                <field name="outgoing" />
+            </tree>
+        </field>
+    </record>
+
+     <record id="sh_product_template_stock_by_location_form_views" model="ir.ui.view">
+        <field name="name">product.template.stock.by.location.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Product Stock by Location" invisible="detailed_type != 'product' or product_variant_ids == False" groups="sh_all_in_one_stock_report.sh_group_stock_by_location">
+            		<group string="Product Stock by Location">
+                    <group>
+                        <group>
+                            <field name="product_variant_ids" invisible="1"></field>
+                            <field name="stock_from_date" />
+                            <field name="stock_to_date" />
+                            <field name="prod_var" invisible="1" />
+                        </group>
+                    </group>
+                    <div class="d-flex justify-content-between mb-2">
+
+                        <button string="Print Stock by Location" name="%(sh_all_in_one_stock_report.report_template_stock_by_location)d" type="action" class="btn-primary" invisible="prod_var == True"/>
+                        <button string="Get Stock by Location" name="location_wise_stock" type="object" class="btn-primary" invisible="prod_var == False" />
+                        <button string="Clear Filter" name="clear_date_filter" type="object" class="btn-primary" invisible="prod_var == False" />
+                        <button string="Print Stock by Location" name="%(sh_all_in_one_stock_report.report_product_stock_by_location)d" type="action" class="btn-primary" invisible="prod_var == False"/>
+                        <button string="Print Stock by Location XLS" name="print_report_xls" type="object" class="btn-primary" />
+                    </div>
+                  
+                    <field name="product_stock_location_ids" nolabel="1" />
+                    
+                </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_product_product_stock_by_location_form_views" model="ir.ui.view">
+        <field name="name">product.product.stock.by.location.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Product Stock by Location" invisible="detailed_type != 'product'" groups="sh_all_in_one_stock_report.sh_group_stock_by_location">
+            		<group string="Product Stock by Location">
+                        <group>
+                            <field name="stock_from_date" />
+                            <field name="stock_to_date"  />
+                            <field name="prod_var" invisible="1" />
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                        <div class="">
+                            <button string="Print Stock by Location" name="%(sh_all_in_one_stock_report.report_template_stock_by_location)d" type="action" class="btn-primary m-2" invisible="prod_var == True"/>
+                            <button string="Get Stock by Location" name="location_wise_stock" type="object" class="btn-primary m-2" invisible="prod_var == False" />
+                            <button string="Clear Filter" name="clear_date_filter" type="object" class="btn-primary m-2" invisible="prod_var == False"/>
+                            <button string="Print Stock by Location" name="%(sh_all_in_one_stock_report.report_product_stock_by_location)d" type="action" class="btn-primary m-2" invisible="prod_var == False"/>
+                            <button string="Print Stock by Location XLS" name="print_report_xls" type="object" class="btn-primary m-2" />
+                        </div>
+                        <field name="product_stock_location_ids" nolabel="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+	<record id="view_non_moving_report_excel" model="ir.ui.view">
+            <field name="name">view.non.moving.report.excel </field>
+            <field name="model">non.moving.report.excel</field>
+            <field name="arch" type="xml">
+                <form string="Genrated xls File">
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="excel_file" readonly="1" filename="file_name"/>
+                    </group>
+                     <footer>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+     </record>
+
+        <record id="view_non_moving_product_wizard" model="ir.ui.view">
+            <field name="name">non.moving.product.wizard.view</field>
+            <field name="model">non.moving.product.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Non Moving Product">
+                    <group>
+	                    <field name="start_date"/>
+	                    <field name="end_date"/>
+	                    <field name="warehouse" widget="many2many_tags" />
+		            </group>
+                    <footer>
+                        <button string="Download Excel" name="print_exl_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_non_moving_product_wizard" model="ir.actions.act_window">
+            <field name="name">Non Moving Products</field>
+            <field name="res_model">non.moving.product.wizard</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+    <menuitem
+        id="menu_non_moving_product_wizard_id"
+        name="Non Moving Products"
+        parent="stock.menu_warehouse_report"
+        action="action_non_moving_product_wizard"
+       />
+     
+    </data>
+</openerp>

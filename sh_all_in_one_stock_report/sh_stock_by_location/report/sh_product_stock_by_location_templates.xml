@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="template_print_product_stock_by_location_document">
+        <t t-set="doc" t-value="doc" />
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure" />
+                <div class="col-sm-12">
+                    <span style="font-weight: 800;font-size: 25px;">
+                        Product Stock By Location
+                    </span>
+                    <br/>
+                </div>
+                <br />
+                <div class="row col-sm-12 ml-2"  style="font-family: 'Helvetica'; font-size: 18px;">
+                    <div t-if="doc.display_name" class="col-sm-12">
+                        <strong>Product Name : </strong>
+                        <span t-field="doc.display_name" />
+                    </div>
+                </div>
+                <div class="row col-12" style="font-family: 'Helvetica'; font-size: 18px;">
+                    <div t-if="doc.stock_from_date" class="col-4">
+                        <strong>From Date : </strong>
+                        <span t-field="doc.stock_from_date" />
+                    </div>
+                    <div t-if="doc.stock_to_date" class="col-3">
+                        <strong>To Date : </strong>
+                        <span t-field="doc.stock_to_date" />
+                    </div>
+                    <div class="col-5">
+                        <strong>Print Date : </strong>
+                        <span t-esc="time.strftime('%d-%m-%Y %H:%M:%S')" />
+                    </div>
+                </div>
+                <div class="row col-sm-12" align="center" style="margin-top: 30px;">
+                    <table>
+                        <tr>
+                            <td align="center" width="50%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Location Name</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>On Hand</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Forecasted</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Incoming</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Outgoing</b>
+                            </td>
+                        </tr>
+                        <tr t-foreach="doc.sudo().print_location_wise_stock()" t-as="t">
+                            <td align="left" width="20%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black; padding-left: 4px;">
+                                <span t-esc="t.get('location')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('on_hand')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('forecasted')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('incoming')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('outgoing')"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <br />
+            </div>
+        </t>
+    </template>
+    <template id="template_print_product_stock_by_location">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sh_all_in_one_stock_report.template_print_product_stock_by_location_document" />
+            </t>
+        </t>
+    </template>
+    <record id="report_product_stock_by_location" model="ir.actions.report">
+        <field name="name">Stock by Location</field>
+        <field name="model">product.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_all_in_one_stock_report.template_print_product_stock_by_location</field>
+        <field name="report_file">sh_all_in_one_stock_report.template_print_product_stock_by_location</field>
+        <field name="print_report_name">'Stock by Location'</field>
+        <field name="binding_model_id" ref="product.model_product_product" />
+        <field name="binding_type">report</field>
+    </record>
+
+
+
+     <template id="template_print_template_stock_by_location_document">
+        <t t-set="doc" t-value="doc" />
+            <div class="page">
+                <div class="oe_structure" />
+                <div class="col-sm-12" align="center">
+                    <span style="font-weight: 800;font-size: 25px;">
+                        Product Stock By Location
+                    </span>
+                    <br/>
+                </div>
+                <div class="col-sm-12 ml-2" style="font-family: 'Helvetica'; font-size: 18px;">
+                    <div t-if="doc.display_name" class="col-12">
+                        <strong>Product Name : </strong>
+                        <span t-field="doc.display_name" />
+                    </div>
+                    <div class="col-sm-12">
+                        <strong>Print Date : </strong>
+                        <span t-esc="time.strftime('%d-%m-%Y %H:%M:%S')" />
+                    </div>
+                </div>
+                <br />
+                <div class="col-sm-12" align="center">
+                    <table>
+                        <tr>
+                            <td align="center" width="50%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Location Name</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>On Hand</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Forecasted</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Incoming</b>
+                            </td>
+                            <td align="center" width="12%" style="font-family: 'Helvetica'; font-size: 18px; border: 1px solid black;">
+                                <b>Outgoing</b>
+                            </td>
+                        </tr>
+
+                        <tr t-foreach="doc.sudo().template_location_wise_stock()" t-as="t">
+                            <td align="left" width="20%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black; padding-left: 4px;">
+                                <span t-esc="t.get('location')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('on_hand')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('forecasted')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('incoming')"></span>
+                            </td>
+                            <td align="center" width="10%" style="font-family: 'Helvetica'; font-size: 16px; border: 1px solid black;">
+                                <span t-esc="t.get('outgoing')"></span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <br />
+                <br />
+            </div>
+    </template>
+
+    <template id="template_print_template_stock_by_location">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sh_all_in_one_stock_report.template_print_template_stock_by_location_document" />
+            </t>
+        </t>
+    </template>
+    <record id="report_template_stock_by_location" model="ir.actions.report">
+        <field name="name">Stock by Location</field>
+        <field name="model">product.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_all_in_one_stock_report.template_print_template_stock_by_location</field>
+        <field name="report_file">sh_all_in_one_stock_report.template_print_template_stock_by_location</field>
+        <field name="print_report_name">'Stock by Location'</field>
+        <field name="binding_model_id" ref="product.model_product_template" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sh_group_stock_card_report" model="res.groups">
+        <field name="name">Stock Card Report</field>
+    </record>
+</odoo>

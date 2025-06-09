@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sh_group_non_moving_product_report" model="res.groups">
+        <field name="name">Non Moving Product Report</field>
+    </record>
+</odoo>

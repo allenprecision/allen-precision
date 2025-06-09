@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_non_moving_product_report_wizard_id,access_sh_non_moving_product_report_wizard_name,model_sh_non_moving_product_report_wizard,,1,1,1,1
+access_sh_non_moving_product_id,access_sh_non_moving_product_name,model_sh_non_moving_product,,1,1,1,1

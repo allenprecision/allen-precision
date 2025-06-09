@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_advance_inventory_report_wizard_id,access_sh_advance_inventory_report_wizard_name,model_sh_advance_inventory_report_wizard,sh_all_in_one_stock_report.sh_group_fsn_report,1,1,1,1

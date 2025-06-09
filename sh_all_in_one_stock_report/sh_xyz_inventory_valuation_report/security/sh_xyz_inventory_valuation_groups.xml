@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sh_group_xyz_inventory_valuation_report" model="res.groups">
+        <field name="name">XYZ Inventory Valuation Report</field>
+    </record>
+</odoo>

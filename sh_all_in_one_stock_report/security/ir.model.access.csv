@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_report_sh_all_in_one_stock_report_sh_xyz_report_manager,report_sh_all_in_one_stock_report_sh_xyz_report_manager,model_report_sh_all_in_one_stock_report_sh_xyz_report,,1,1,1,1

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_non_moveing_products_id,bi_non_moveing_product,model_non_moving_product_wizard,base.group_user,1,1,1,1
+access_non_moving_report_excel,non.moving.report.excel,model_non_moving_report_excel,base.group_user,1,1,1,1

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sh_xyz_advance_inventory_valuation_wizard_view" model="ir.ui.view">
+		<field name="name">sh.xyz.stock.valuation.wizard</field>
+		<field name="model">sh.xyz.stock.valuation.wizard</field>
+		<field name="arch" type="xml">
+			<form string="FNS Report">
+                <group>
+                    <group>
+                        <field name="sh_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="sh_print_stock_report" string="Print Pdf Report" class="oe_highlight" type="object"/>
+                     <button name="get_xls_report" string="Print Xls Report" class="oe_highlight" type="object"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+		</field>
+	</record>
+      <record id="sh_xyz_advance_inventory_valuation_wizard_action" model="ir.actions.act_window">
+            <field name="name">XYZ Stock Valuation Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sh.xyz.stock.valuation.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+
+        </record>
+        <menuitem
+            name="XYZ Stock Valuation Report"
+            parent="stock.menu_warehouse_report"
+            action="sh_xyz_advance_inventory_valuation_wizard_action"
+            id="sh_xyz_advance_inventory_valuation_id"
+            groups="sh_all_in_one_stock_report.sh_group_xyz_inventory_valuation_report"
+            sequence="5"/>
+
+
+
+
+</odoo>

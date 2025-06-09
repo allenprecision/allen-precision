@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_stock_card_report_indent" model="report.paperformat">
+        <field name="name">Stock Card Indent</field>
+        <field name="default" eval="False" />
+        <field name="format">custom</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">50</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+    </record>
+    <record id="sh_stock_card_report_action" model="ir.actions.report">
+        <field name="name">Stock Card Report</field>
+        <field name="model">report.sh_all_in_one_stock_report.sh_inventory_card_report</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_all_in_one_stock_report.sh_inventory_card_report</field>
+        <field name="print_report_name">'Stock Card Report'</field>
+        <field name="paperformat_id" ref="sh_all_in_one_stock_report.paperformat_stock_card_report_indent" />
+    </record>
+</odoo>

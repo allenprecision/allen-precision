@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sh_group_stock_by_location" model="res.groups">
+        <field name="name">Stock By Location Report</field>
+    </record>
+</odoo>

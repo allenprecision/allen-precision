@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sh_stock_product_attribute_wizard,access_sh_stock_product_attribute_wizard,model_sh_stock_product_attribute_wizard,sh_all_in_one_stock_report.sh_group_stock_attribute_report,1,1,1,1
