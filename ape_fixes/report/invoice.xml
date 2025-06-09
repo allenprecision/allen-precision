@@ -1,16 +1,51 @@
 <odoo>
     <data>
         <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
-        <xpath expr = "//t[@t-set='information_block']" position='after'>
-            <div>
-            <p>
-                <span> Customer #:</span>
-                <strong><t t-esc="o.customer_number"/></strong>
-            </p>
-            </div>
-        </xpath>
+            <xpath expr="//div[@class='row']" position="replace">
+                <div class="row">
+                    <div class="col-6">
+                        <!-- <t t-set="address"> -->
+                            <strong>Invoice Address:</strong>
+                            <address class="mb-0" t-field="o.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            <div t-if="o.partner_id.vat" id="partner_vat_address_not_same_as_shipping">
+                                <t t-if="o.company_id.account_fiscal_country_id.vat_label"
+                                   t-out="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                                <t t-else="">Tax ID</t>:
+                                <span t-field="o.partner_id.vat"/>
+                            </div>
+                            <div>
+                                <br/>
+                                <p>
+                                    <span>Customer #:</span>
+                                    <strong>
+                                        <t t-esc="o.customer_number"/>
+                                    </strong>
+                                </p>
+                            </div>
+                        <!-- </t> -->
 
-        <xpath expr="//div[@class='mb-3'][p[@name='payment_communication']]" position="replace"/>
+
+                    </div>
+                    <t t-if="o.partner_shipping_id">
+                        <div class="col-6">
+                            <!-- <t t-set="information_block"> -->
+                                <div groups="account.group_delivery_invoice_address" name="shipping_address_block">
+                                    <strong>Shipping Address:</strong>
+                                    <div t-field="o.partner_shipping_id"
+                                         t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                                </div>
+                            <!-- </t> -->
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div class="col-6">
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@class='mb-3'][p[@name='payment_communication']]" position="replace"/>
 
         </template>
         <template id="custom_report_picking" inherit_id="stock.report_picking">
