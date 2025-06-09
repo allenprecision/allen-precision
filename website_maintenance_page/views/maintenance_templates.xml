@@ -9,7 +9,7 @@
             </attribute>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="before">
-            <t t-if="website.under_maintenance == True and user_id._is_public() or user_id.has_group('base.group_portal')">
+            <t t-if="website.under_maintenance == True and  (user_id._is_public() or user_id.has_group('base.group_portal')) and not request.httprequest.path=='/web/login'">
                 <html>
                     <head>
                         <nav class="navbar navbar-expand navbar-light bg-light">
