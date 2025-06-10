@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="partner_last_order_date_tree_view" model="ir.ui.view">
+        <field name="name">partner.last.order.date.tree.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="last_so_date" widget="remaining_days" optional="show"/>
+                <field name="last_po_date" widget="remaining_days" optional="show"/>
+                <field name="so_id" optional="hide"/>
+                <field name="po_id" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="partner_last_order_date_form_view" model="ir.ui.view">
+        <field name="name">partner.last.order.date.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='user_id']" position="after">
+                <field name="last_so_date"/>
+                <field name="so_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='purchase']" position="inside">
+                <field name="last_po_date"/>
+                <field name="po_id" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

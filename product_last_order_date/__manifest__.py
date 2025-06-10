@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+{
+    'name': 'Last Order & Order Date of Product',
+    'version': '17.0',
+    'sequence': '1',
+    'author': 'Creyox Technologies',
+    'price': '25.0',
+    'currency': 'USD',
+    "license": "OPL-1",
+    'category': 'Sales',
+    'description': """
+        Last Order & Order Date of Product,
+        Last Order & Order Date of Product in Odoo,
+        Display the Last Order of Product,
+        Display the Last Order Date of the Product,
+        Display the Last Order and Order Date of the Product,
+        Display the Last Sale Order of the Product,
+        Display the Last Sale Order of the Product in Odoo,
+        Display the Last Sale Order Date on the Product,
+        Display the Last Sale Order Date on the Product in Odoo,
+        Display the Last Purchase Order of the Product,
+        Display the Last Purchase Order of the Product in Odoo,
+        Display the Last Purchase Order Date on the Product,
+        Display the Last Purchase Order Date on the Product in Odoo,
+        Show the Last Order and Last Order Date on the Product,
+        Show the Last Order and Last Order Date on the Product in Odoo
+    """,
+    'summary': """It shows the last order and order date of product.""",
+    'depends': ['product'],
+    'data': [
+        'views/product_product_view.xml',
+    ],
+    'qweb': [],
+    'images': ['static/description/banner.png'],
+    'application': True,
+    'installable': True,
+    'auto_install': False,
+}
