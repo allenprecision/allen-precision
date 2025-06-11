@@ -46,7 +46,7 @@
         <field name="inherit_id" ref="base.view_res_partner_filter"/>
         <field name="arch" type="xml">
             <field name="name" position="replace">
-                <field name="name" filter_domain="['|', '|', '|',  '|',  '|',  '|',  '|',  ('country_id', 'ilike', self),  ('street', 'ilike', self),  ('city', 'ilike', self),  ('state_id', 'ilike', self),  ('zip', 'ilike', self),  ('name', 'ilike', self), ('ref', 'ilike', self), ('email', 'ilike', self)]"/>
+                <field name="name" filter_domain="['|', '|', '|',  '|',  '|',  '|',  '|', '|', '|', '|', '|',  ('category_id', 'ilike', self),  ('user_id', 'ilike', self),  ('phone', 'ilike', self),  ('parent_id', 'ilike', self),  ('country_id', 'ilike', self),  ('street', 'ilike', self),  ('city', 'ilike', self),  ('state_id', 'ilike', self),  ('zip', 'ilike', self),  ('name', 'ilike', self), ('ref', 'ilike', self), ('email', 'ilike', self)]"/>
             </field>
         </field>
     </record>
