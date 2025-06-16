@@ -1,6 +1,6 @@
 <!-- data/ir_cron_move_website_description.xml -->
 <odoo>
-    <data noupdate="0">
+    <data noupdate="1">
         <record id="ir_cron_move_website_description_to_tab" model="ir.cron">
             <field name="name">Move Website Description to Product Tab</field>
             <field name="model_id" ref="product.model_product_template"/>
