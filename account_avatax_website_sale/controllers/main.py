@@ -14,6 +14,24 @@ class AvataxWebsiteSale(WebsiteSale):
         order._avatax_compute_tax()
         return super().shop_payment(**post)
 
+class WebsiteSaleWithAvalara(WebsiteSale):
+
+    @http.route(['/shop/payment/validate'], type='http', auth="public", website=True, csrf=False)
+    def shop_payment_validate(self, sale_order_id=None, **post):
+        # Call the original method (this handles confirmation, payments, etc.)
+        response = super().shop_payment_validate(sale_order_id=sale_order_id, **post)
+
+        # After the original logic, fetch the confirmed order
+        order = request.env['sale.order'].sudo().browse(
+            request.session.get('sale_last_order_id')
+        ).exists()
+
+        # If Avalara is enabled, compute taxes
+        if order and order.state == 'sale':
+            order.avalara_compute_taxes()
+
+        return response
+
 class WebsiteSaleDeliveryEbiz(WebsiteSaleDelivery):
 
     @http.route()
