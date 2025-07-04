@@ -145,12 +145,20 @@ class AccountInvoiceReport(models.Model):
 
     cost_cogs = fields.Float(string="COGS", readonly=True)
 
-    _depends = {
-        'account.move.line': ['cost_cogs'],
-    }
-
     def _select(self):
-        return super()._select() + ", line.cost_cogs as cost_cogs"
+        return super()._select() + """,
+            CASE
+                WHEN line.id = (
+                    SELECT MIN(line2.id)
+                    FROM account_move_line line2
+                    WHERE line2.move_id = line.move_id
+                      AND line2.product_id IS NOT NULL
+                )
+                THEN move.cost_cogs
+                ELSE 0.0
+            END AS cost_cogs
+        """
+
 
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
