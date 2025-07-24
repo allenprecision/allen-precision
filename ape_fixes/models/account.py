@@ -145,18 +145,38 @@ class AccountInvoiceReport(models.Model):
 
     cost_cogs = fields.Float(string="COGS", readonly=True)
 
+    def _from(self):
+        return super()._from() + """
+            LEFT JOIN product_product prod ON prod.id = line.product_id
+            LEFT JOIN product_template tmpl ON tmpl.id = prod.product_tmpl_id
+        """
+
     def _select(self):
         return super()._select() + """,
-            CASE
-                WHEN line.id = (
-                    SELECT MIN(line2.id)
-                    FROM account_move_line line2
-                    WHERE line2.move_id = line.move_id
-                      AND line2.product_id IS NOT NULL
-                )
-                THEN move.cost_cogs
-                ELSE 0.0
-            END AS cost_cogs
+            (
+                CASE
+                    WHEN tmpl.type IN ('product', 'consu')
+                     AND line.id = (
+                        SELECT MIN(line2.id)
+                        FROM account_move_line line2
+                        WHERE line2.move_id = move.id
+                          AND line2.product_id = line.product_id
+                          AND line2.account_id NOT IN (
+                              SELECT id FROM account_account WHERE account_type = 'expense_direct_cost'
+                          )
+                    )
+                    THEN (
+                        SELECT COALESCE(SUM(aml.debit - aml.credit), 0.0)
+                        FROM account_move_line aml
+                        WHERE aml.move_id = move.id
+                          AND aml.product_id = line.product_id
+                          AND aml.account_id IN (
+                              SELECT id FROM account_account WHERE account_type = 'expense_direct_cost'
+                          )
+                    )
+                    ELSE 0.0
+                END
+            ) AS cost_cogs
         """
 
 
