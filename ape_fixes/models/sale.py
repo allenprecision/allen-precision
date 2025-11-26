@@ -12,15 +12,26 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    customer_number = fields.Char(related="partner_id.ref",string="Customer Number")
+    customer_number = fields.Char(related="partner_id.ref", string="Customer Number")
     partner_id = fields.Many2one(
         'res.partner', string='Customer', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         required=True, change_default=True, index=True, tracking=1,
-        domain="[('contact_type','!=','ven'),'|', ('company_id', '=', False), ('company_id', '=', company_id)]",)
+        domain="[('contact_type','!=','ven'),'|', ('company_id', '=', False), ('company_id', '=', company_id)]", )
 
-    delivery_address = fields.Html(string='Delivery Address ',compute='_delivery_address',store=True)
-    sales_agent = fields.Many2one('res.users',string='Sales Agent')
+    delivery_address = fields.Html(string='Delivery Address ', compute='_delivery_address', store=True)
+    sales_agent = fields.Many2one('res.users', string='Sales Agent')
+    processed = fields.Boolean('Processed', default=False)
+    processed_value = fields.Selection([('', ''), ('processed', 'Processed')], 'Processed',
+                                       compute="get_process_value")
+
+    def get_process_value(self):
+        for rec in self:
+            if rec.processed:
+                rec.processed_value = 'processed'
+            else:
+                rec.processed_value = ''
+
     @api.depends('partner_shipping_id')
     def _delivery_address(self):
         for rec in self:
@@ -31,8 +42,6 @@ class SaleOrder(models.Model):
                     rec.delivery_address = f"<pre>{rec.partner_shipping_id.street}<br>{rec.partner_shipping_id.city} {rec.partner_shipping_id.state_id.code} {rec.partner_shipping_id.zip}<br>{rec.partner_shipping_id.country_id.name}</pre>"
             else:
                 rec.delivery_address = False
-
-
 
 # @api.model
 # def create(self,vals):
