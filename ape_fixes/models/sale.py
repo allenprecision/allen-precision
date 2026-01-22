@@ -25,6 +25,46 @@ class SaleOrder(models.Model):
     processed_value = fields.Selection([('', ''), ('processed', 'Processed')], 'Processed',
                                        compute="get_process_value")
 
+
+    po_processed = fields.Boolean('PO', default=False)
+    po_processed_value = fields.Selection([('', ''), ('po_processed', 'PO ')], 'PO',
+                                       compute="get_po_process_value")
+
+    pay_processed = fields.Boolean('Payment Status', default=False)
+    pay_processed_value = fields.Selection([('not_paid', 'Unpaid'), ('paid', 'Paid')], 'Payment Status',
+                                       compute="get_pay_process_value")
+
+    def write(self, vals):
+        """
+        Override write to check updated values in vals
+        """
+        limit_date = datetime(2025, 11, 12, 0, 0, 0)
+        # Example 1: Check if a specific field is being updated
+        if 'state' in vals:
+            _logger.info(f'State: {vals}, payment terms: {self.payment_term_id}, create date: {self.create_date}')
+            if vals['state'] == 'sale' and self.payment_term_id.name == 'CHARGE CARD' and self.create_date > limit_date:
+                _logger.info('Condition matched')
+                vals['pay_processed'] = True
+        # elif 'payment_terms' in vals:
+        #     if self.state == 'sale' and vals['payment_term_id'] == 'CHARGE CARD' and self.date_order > limit_date:
+        #         vals['pay_processed'] = True
+        # Always call super
+        return super(SaleOrder, self).write(vals)
+
+    def get_pay_process_value(self):
+        for rec in self:
+            if rec.pay_processed:
+                rec.pay_processed_value = 'paid'
+            else:
+                rec.pay_processed_value = 'not_paid'
+
+    def get_po_process_value(self):
+        for rec in self:
+            if rec.po_processed:
+                rec.po_processed_value = 'po_processed'
+            else:
+                rec.po_processed_value = ''
+
     def get_process_value(self):
         for rec in self:
             if rec.processed:

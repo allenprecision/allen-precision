@@ -24,6 +24,8 @@
             </field>
             <field name="payment_term_id" position="after">
                 <field name="processed"/>
+                <field name="po_processed"/>
+                <field name="pay_processed"/>
             </field>
         </field>
     </record>
@@ -36,6 +38,10 @@
             <field name="state" position="before">
                 <field name="processed" column_invisible="1"/>
                 <field name="processed_value"/>
+                <field name="po_processed" column_invisible="1"/>
+                <field name="po_processed_value"/>
+                <field name="pay_processed" column_invisible="1"/>
+                <field name="pay_processed_value" decoration-success="pay_processed == True" decoration-danger="pay_processed == False" widget="badge"/>
             </field>
         </field>
      </record>
