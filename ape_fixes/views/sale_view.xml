@@ -25,7 +25,7 @@
             <field name="payment_term_id" position="after">
                 <field name="processed"/>
                 <field name="po_processed"/>
-                <field name="pay_processed"/>
+                <field name="pay_processed" invisible="state != 'sale'"/>
             </field>
         </field>
     </record>

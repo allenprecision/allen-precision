@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
                                        compute="get_po_process_value")
 
     pay_processed = fields.Boolean('Payment Status', default=False)
-    pay_processed_value = fields.Selection([('not_paid', 'Unpaid'), ('paid', 'Paid')], 'Payment Status',
+    pay_processed_value = fields.Selection([('empty', ''), ('not_paid', 'Unpaid'), ('paid', 'Paid')], 'Payment Status',
                                        compute="get_pay_process_value")
 
     def write(self, vals):
@@ -53,10 +53,12 @@ class SaleOrder(models.Model):
 
     def get_pay_process_value(self):
         for rec in self:
-            if rec.pay_processed:
+            if rec.pay_processed and rec.state == 'sale':
                 rec.pay_processed_value = 'paid'
-            else:
+            elif rec.state == 'sale':
                 rec.pay_processed_value = 'not_paid'
+            else:
+                rec.pay_processed_value = 'empty'
 
     def get_po_process_value(self):
         for rec in self:
