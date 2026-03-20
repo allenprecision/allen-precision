@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="portal.Composer" t-inherit-mode="extension">
+        <xpath expr="//button[contains(@class, 'o_portal_chatter_attachment_btn')]" position="replace"/>
+        <xpath expr="//input[contains(@class, 'o_portal_chatter_file_input')]" position="replace"/>
+        <xpath expr="//div[contains(@class, 'o_portal_chatter_attachments')]" position="replace"/>
+    </t>
+
+</templates>
