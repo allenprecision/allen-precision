@@ -13,7 +13,7 @@ And to add some new generic fields
 """,
     'author': 'Confianz Global,Inc.',
     'website': 'https://www.confianzit.com',
-    'depends': ['sale_management','sale_renting','stock','sale','delivery','account_reports','l10n_us_check_printing', 'stock_delivery', 'portal'],
+    'depends': ['sale_management','sale_renting','stock','sale','delivery','account_reports','l10n_us_check_printing', 'stock_delivery', 'portal', 'website_sale', 'portal_rating'],
     'data': [
         'report/purchase_order.xml',
         'report/sale_report.xml',
@@ -36,6 +36,7 @@ And to add some new generic fields
  'assets': {
     'web.assets_frontend': [
         'ape_fixes/static/src/xml/portal_composer.xml',
+        'ape_fixes/static/src/js/portal_chatter.js',
     ],
 },
 
