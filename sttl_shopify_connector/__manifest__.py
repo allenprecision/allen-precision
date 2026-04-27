@@ -13,6 +13,7 @@
     'depends': ['product', 'stock', 'sale_management', 'website_sale'],
     'data': [
         'security/ir.model.access.csv',
+        'data/ir_cron_data.xml',
         'views/shopify_instance_views.xml',
         'views/product_template_views.xml',
         'views/product_public_category_views.xml',

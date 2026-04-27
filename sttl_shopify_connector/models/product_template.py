@@ -2,749 +2,685 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import requests
 import json
-import base64
 import re
 import logging
+from html import unescape
 
 _logger = logging.getLogger(__name__)
 
+
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
+
     shopify_product_id = fields.Char(string='Shopify Product ID', copy=False)
     shopify_instance_id = fields.Many2one('shopify.instance', string='Shopify Instance')
     is_exported_to_shopify = fields.Boolean(string='Exported to Shopify', default=False, copy=False)
 
+    # ─────────────────────────────────────────────────────────────────────────
+    # Public actions
+    # ─────────────────────────────────────────────────────────────────────────
+
     def action_export_to_shopify(self):
-        # Support bulk export
         success_count = 0
-        error_count = 0
         error_messages = []
+        session = requests.Session()
 
         for product in self:
             try:
-                product._export_to_shopify()
+                product._export_to_shopify(session=session)
                 success_count += 1
             except Exception as e:
-                error_count += 1
-                error_messages.append(f"{product.name}: {str(e)}")
+                error_messages.append(f"{product.name}: {e}")
+                _logger.warning("Shopify Export failed for '%s': %s", product.name, e, exc_info=True)
 
-        message = _("%s products exported successfully.") % success_count
-        if error_count > 0:
-            message += _("\n%s products failed. Errors: %s") % (error_count, "; ".join(error_messages[:5]))
-        _logger.info("EXPORT RESULT: %s", message)
+        error_count = len(error_messages)
+        message = _("%s product(s) exported successfully.") % success_count
+        if error_count:
+            message += _("\n%s product(s) failed:\n%s") % (error_count, "\n".join(error_messages[:5]))
+
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': _('Shopify Sync Results'),
                 'message': message,
-                'type': 'success' if error_count == 0 else 'warning',
-                'sticky': error_count > 0,
-            }
+                'type': 'success' if not error_count else 'warning',
+                'sticky': bool(error_count),
+            },
         }
 
-    def _export_to_shopify(self):
-        """Internal method to export a single product to Shopify."""
+    @api.model
+    def action_scheduled_export_to_shopify(self):
+        self = self.with_context(
+            auditlog_disabled=True,
+            tracking_disable=True,
+            no_recompute=True,
+        )
+        instances = self.env['shopify.instance'].search([('state', '=', 'confirmed')])
+        if not instances:
+            _logger.warning("Shopify Scheduled Export: No confirmed instance found.")
+            return
+
+        products = self.env['product.template'].search(
+            [('is_exported_to_shopify', '=', False), ('product_sku', '!=', False)],
+            limit=100,
+        )
+
+        # products = self.env['product.template'].search(
+        #     [('id', 'in', [
+        #         402, 7302, 2400, 971
+        #     ])]
+        # )
+
+        # for product in products:
+        #     product.is_exported_to_shopify = False
+        #     product.shopify_product_id = False
+
+        if not products:
+            _logger.info("Shopify Scheduled Export: Nothing to export.")
+            return
+
+        # Claim row-level locks; skip products already locked by a parallel session
+        self.env.cr.execute(
+            'SELECT id FROM product_template WHERE id = ANY(%s) FOR UPDATE SKIP LOCKED',
+            (list(products.ids),),
+        )
+        locked_ids = {r[0] for r in self.env.cr.fetchall()}
+        products = products.filtered(lambda p: p.id in locked_ids)
+        if not products:
+            return
+
+        if len(instances) == 1:
+            products.filtered(lambda p: not p.shopify_instance_id).write(
+                {'shopify_instance_id': instances[-1].id}
+            )
+
+        _logger.info("Shopify Scheduled Export: Processing %s product(s).", len(products))
+        success = failed = 0
+        session = requests.Session()
+
+        for product in products:
+            try:
+                with self.env.cr.savepoint():
+                    product._export_to_shopify(session=session)
+                success += 1
+            except Exception as e:
+                failed += 1
+                _logger.warning(
+                    "Shopify Scheduled Export: Failed '%s' (ID %s): %s",
+                    product.name, product.id, e, exc_info=True,
+                )
+
+        _logger.info("Shopify Scheduled Export: Done — %s succeeded, %s failed.", success, failed)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Metafields
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def build_product_metafields(self):
+        """Return product-level Shopify metafields (no variant-specific data)."""
+        self.ensure_one()
+        mfs = []
+
+        def add(key, value, mtype, namespace="custom"):
+            if value is None or value is False:
+                return
+            val_str = str(value).strip()
+            if val_str in ("", "False", "false"):
+                return
+            if mtype == "single_line_text_field":
+                val_str = re.sub(r"\s+", " ", val_str)[:255]
+            mfs.append({"namespace": namespace, "key": key, "value": val_str, "type": mtype})
+
+        def clean_html(val):
+            return unescape(re.sub(r"<[^>]+>", "", val or "")).strip()
+
+        # SKU — only for single-variant products
+        if len(self.product_variant_ids) <= 1 and self.default_code:
+            add("default_code", self.default_code, "single_line_text_field")
+
+        # Text fields
+        add("barcode", self.barcode, "single_line_text_field")
+        add("volume", str(self.volume) if self.volume else None, "single_line_text_field")
+        add("hs_code", getattr(self, "hs_code", None), "single_line_text_field")
+        add("description_sale", getattr(self, "description_sale", None), "single_line_text_field")
+        add("website_url", getattr(self, "website_url", None), "single_line_text_field")
+        add("variant_color_images", str(getattr(self, "variant_color_images", "") or ""), "single_line_text_field")
+        add("out_of_stock_message", getattr(self, "out_of_stock_message", None), "multi_line_text_field")
+        add("website_description", clean_html(getattr(self, "website_description", None)), "multi_line_text_field")
+
+        # Numeric fields
+        add("weight", str(float(self.weight)) if self.weight else None, "number_decimal")
+        wx = getattr(self, "website_size_x", None)
+        wy = getattr(self, "website_size_y", None)
+        color = getattr(self, "color", None)
+        threshold = getattr(self, "available_threshold", None)
+        add("website_size_x", str(int(wx)) if wx else None, "number_integer")
+        add("website_size_y", str(int(wy)) if wy else None, "number_integer")
+        add("color", str(int(color)) if color is not None else None, "number_integer")
+        add("available_threshold", str(float(threshold)) if threshold is not None else None, "number_decimal")
+
+        # Boolean fields
+        for key in ("purchase_ok", "sale_ok", "show_availability",
+                    "has_configurable_attributes", "allow_negative_stock", "have_color_attribute"):
+            val = getattr(self, key, None)
+            if val is not None:
+                add(key, "true" if val else "false", "boolean")
+
+        # Unit of measure
+        if self.uom_id:
+            add("uom", self.uom_id.name, "single_line_text_field")
+            add("uom_id", self.uom_id.name, "single_line_text_field")
+        if self.uom_po_id:
+            add("uom_po_id", self.uom_po_id.name, "single_line_text_field")
+
+        return mfs
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Core export
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def _export_to_shopify(self, session=None):
+        self.ensure_one()
+        if session is None:
+            session = requests.Session()
+
+        # ── Resolve instance ──────────────────────────────────────────────────
         if not self.shopify_instance_id:
             instances = self.env['shopify.instance'].search([('state', '=', 'confirmed')])
             if len(instances) == 1:
                 self.shopify_instance_id = instances[0].id
             else:
-                raise UserError(_("Please select a Shopify Instance first for product: %s") % self.name)
+                raise UserError(_("Please select a Shopify Instance for: %s") % self.name)
 
         instance = self.shopify_instance_id
-
-        shop_url = instance.shop_url or ""
-        shop_url = shop_url.replace('https://', '').replace('http://', '').strip('/')
-
-        headers = {
+        shop_url = (instance.shop_url or "").replace("https://", "").replace("http://", "").strip("/")
+        session.headers.update({
             "X-Shopify-Access-Token": instance.access_token,
-            "Content-Type": "application/json"
-        }
-        spec_plain = ""
-        spec_list = []
-        spec_dict = {}
-        if self.attribute_line_ids:
-            for line in self.attribute_line_ids:
-                # Key for individual metafield mapping
-                attr_key = line.attribute_id.name.lower().replace(" ", "_")
-                val_names = line.value_ids.mapped('name')
-                spec_dict[attr_key] = val_names
+            "Content-Type": "application/json",
+        })
 
-                # Dynamic Label Format: "Attribute Name: Value1 or Value2"
-                attr_label = line.attribute_id.name
-                attr_values = " or ".join(val_names)
-                spec_list.append(f"{attr_label}: {attr_values}")
-                        
-                # Plain Text format with Newlines (for Multi-line Metafield)
-                spec_plain += f"{attr_label}: {attr_values}\n"
-        
-        # -------- SHORT DESCRIPTION --------
-        description_html = (
-            getattr(self, 'description_ecommerce', '')
-            or getattr(self, 'website_description', '')
-            or self.description_sale
-            or self.name
-            or ""
-        ).strip()
-        
-        short_description = ""
-        if description_html:
-            clean_text = re.sub('<[^<]+?>', '', description_html)
-            clean_text = ' '.join(clean_text.split())
-        
-            limit = 1000
-            if len(clean_text) > limit:
-                short_description = ""
-                for idx, char in enumerate(clean_text):
-                    if idx < limit:
-                        short_description += char
-                short_description += "..."
-            else:
-                short_description = clean_text
-        
-        # -------- BODY HTML --------
-        body_html = description_html or ""
-        
-        # -------- LONG DESCRIPTION SPLIT --------
-        long_description = getattr(self, 'product_tab_description', '') or ""
-        
-        # Get base URL for absolute image paths
-        base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
-        
-        tab_images_to_upload = []
-        if long_description:
-            # 1. Extract regular Odoo images (/web/image/...) and upload them as actual Shopify assets
-            # This is the most reliable way for Odoo.sh
-            odoo_img_matches = re.findall(r'src=["\'](\/web\/image\/([^?^"^\']+))["\']', long_description)
-            for i, (path, img_id) in enumerate(odoo_img_matches):
-                # We can fetch the image content directly from Odoo database if we have the ID/Path
-                # or use a placeholder for now to upload it as a product image.
-                # Let's try to get binary from Odoo.
+        # ── Vendor ────────────────────────────────────────────────────────────
+        if getattr(self, "product_brand_id", None) and self.product_brand_id:
+            vendor = self.product_brand_id.name
+        elif self.seller_ids:
+            vendor = self.seller_ids[0].partner_id.name
+        else:
+            vendor = self.name
+
+        # ── Tags ─────────────────────────────────────────────────────────────
+        raw_tags = [cat.display_name for cat in getattr(self, "public_categ_ids", []) if cat.display_name]
+        raw_tags += getattr(self, "product_tag_ids", self.env["product.tag"]).mapped("name")
+        flat_tags = set()
+        for t in raw_tags:
+            flat_tags.update(p.strip() for p in t.split(" / ") if p.strip())
+        tags_str = ", ".join(sorted(flat_tags))
+
+        # ── Body HTML ─────────────────────────────────────────────────────────
+        # Short description — used as body_html fallback if no product_tab_description
+        ecom_src = (getattr(self, "description_ecommerce", "") or "").strip()
+        body_html = ecom_src
+
+        # Images are uploaded once on initial create only.
+        # Including images in a PUT tells Shopify to DELETE all existing images and
+        # recreate them — resetting image-variant links and making the product appear
+        # replaced on every export. Skip image extraction entirely on updates.
+        is_initial_create = not bool(self.shopify_product_id)
+
+        # Long description — extract embedded images on initial create only
+        product_desc = getattr(self, "product_tab_description", "") or ""
+        description_images = []
+        b64_inline_count = 0
+
+        if product_desc and is_initial_create:
+            # Odoo /web/image/ references: fetch attachment and upload to Shopify image gallery
+            for i, path in enumerate(
+                    re.findall(r'src=["\'](\/web\/image\/[^?"\']+)["\']', product_desc)
+            ):
                 try:
-                    # Try finding the attachment via ID in path
-                    match_id = re.search(r'\/(\d+)\-', path)
-                    if match_id:
-                        attachment = self.env['ir.attachment'].sudo().browse(int(match_id.group(1)))
-                        if attachment.exists() and attachment.datas:
-                            tab_images_to_upload.append({
-                                "attachment": attachment.datas.decode('utf-8'),
-                                "filename": f"desc_img_{self.id}_{i}.jpg"
+                    m = re.search(r'/(\d+)-', path)
+                    if m:
+                        att = self.env['ir.attachment'].sudo().browse(int(m.group(1)))
+                        if att.exists() and att.datas:
+                            b64 = att.datas.decode('utf-8') if isinstance(att.datas, bytes) else str(att.datas)
+                            description_images.append({
+                                "attachment": b64,
+                                "filename": f"desc_img_{self.id}_{i}.jpg",
                             })
-                except:
+                except Exception:
                     pass
 
-            # 2. Extract Base64 images and upload as actual Shopify assets
-            b64_matches = re.findall(r'src=["\'](data:image\/([^;]+);base64,([^"\']+))["\']', long_description)
-            for i, (full_src, fmt, b64_data) in enumerate(b64_matches):
-                filename = f"tab_img_{self.id}_{i}.{fmt}"
-                tab_images_to_upload.append({
+            # Inline base64 images: replace with placeholder, upload to Shopify image gallery
+            for i, (full_src, fmt, b64_data) in enumerate(
+                    re.findall(r'src=["\'](data:image/([^;]+);base64,([^"\']+))["\']', product_desc)
+            ):
+                alt_tag = f"desc_b64_{self.id}_{i}"
+                description_images.append({
                     "attachment": b64_data,
-                    "filename": filename
+                    "filename": f"{alt_tag}.{fmt}",
+                    "alt": alt_tag,
                 })
-                # Remove the giant string to keep payload small
-                long_description = long_description.replace(full_src, f"#IMAGE_DESC_{i+1}#")
+                product_desc = product_desc.replace(full_src, f"#DESC_B64_{i}#")
+                b64_inline_count += 1
 
-            # Clean up whitespace
-            long_description = re.sub(r'\s+', ' ', long_description)
+            product_desc = re.sub(r'\s+', ' ', product_desc)
 
-        # Clean up empty tags
-        long_description = re.sub(r'<p>\s*</p>', '', long_description, flags=re.IGNORECASE)
-        long_description = re.sub(r'<div>\s*</div>', '', long_description, flags=re.IGNORECASE)
-        
-        MAX = 60000
-        parts = [long_description[i:i+MAX] for i in range(0, len(long_description), MAX)]
-        
-        # -------- TAGS & CATEGORY --------
-        tags_list = []
-        # Removed categ_id export as tags per user request
-        
-        # Explicitly map Odoo Public Categories (eCommerce Categories) as Shopify Tags
-        if hasattr(self, 'public_categ_ids') and self.public_categ_ids:
-            for cat in self.public_categ_ids:
-                if cat.name:
-                    tags_list.append(cat.display_name)
-        
-        if hasattr(self, 'product_tag_ids') and self.product_tag_ids:
-            tags_list.extend(self.product_tag_ids.mapped('name'))
-        
-        # Clean and unique tags
-        final_tags = set()
-        for t in tags_list:
-            if t:
-                # Only split if there are spaces around the slash (Odoo hierarchy pattern)
-                # This ensures "Brands / Sitepro" splits, but "Brands/Sitepro" stays single.
-                if ' / ' in t:
-                    final_tags.update([part.strip() for part in t.split(' / ')])
-                else:
-                    final_tags.add(t.strip())
-        
-        tags_str = ", ".join(sorted(list(final_tags)))
+        product_desc = re.sub(r'<p>\s*</p>', '', product_desc, flags=re.IGNORECASE)
+        product_desc = re.sub(r'<div>\s*</div>', '', product_desc, flags=re.IGNORECASE)
 
-        # -------- METAFIELDS --------
-        metafields = []
-        
-        # Odoo Metadata
-        metafields.append({"namespace": "odoo", "key": "id", "value": str(self.id), "type": "single_line_text_field"})
-        
-        # Descriptions & Tabs
-        if short_description:
-            metafields.append({"namespace": "custom", "key": "short_info", "value": short_description, "type": "single_line_text_field"})
+        # ── Metafields ────────────────────────────────────────────────────────
+        product_metafields = self.build_product_metafields()
 
-        # Master Specification (Plain Text with Newlines for Multi-line Metafield)
-        if spec_plain:
-            metafields.append({
-                "namespace": "custom", 
-                "key": "product_specification", 
-                "value": spec_plain, 
-                "type": "multi_line_text_field"
-            })
+        seo_title = (getattr(self, "website_meta_title", None) or "")
+        seo_description = (getattr(self, "website_meta_description", None) or "")
 
-        # Brand / Manufacturer / Vendor
-        vendor_name = "Odoo"
-        if self.seller_ids:
-            # Prioritize Odoo's Primary Vendor (Seller) as Shopify Vendor
-            vendor_name = self.seller_ids[0].partner_id.name
-        elif hasattr(self, 'product_brand_id') and self.product_brand_id:
-            vendor_name = self.product_brand_id.name
-        else:
-            vendor_name = self.name # Fallback to product name if no vendor/brand
-        
-        # Add brand metafield for enhanced filtering
-        brand_val = getattr(self, 'product_brand_id', False)
-        if brand_val and hasattr(brand_val, 'name'):
-            metafields.append({"namespace": "custom", "key": "brand", "value": brand_val.name, "type": "single_line_text_field"})
+        metafields = [
+            {"namespace": "custom", "key": "id", "value": str(self.id), "type": "single_line_text_field"},
+        ]
+        if seo_title:
+            metafields.append(
+                {"namespace": "global", "key": "title_tag", "value": seo_title, "type": "single_line_text_field"})
+        if seo_description:
+            metafields.append({"namespace": "global", "key": "description_tag", "value": seo_description,
+                               "type": "multi_line_text_field"})
+        if getattr(self, "website_meta_keywords", None):
+            metafields.append(
+                {"namespace": "custom", "key": "website_meta_keyword", "value": str(self.website_meta_keywords),
+                 "type": "single_line_text_field"})
+        if ecom_src:
+            clean_ecom = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", ecom_src)).strip()
+            if clean_ecom:
+                metafields.append({"namespace": "custom", "key": "ecommerce_description", "value": clean_ecom,
+                                   "type": "multi_line_text_field"})
+        metafields += product_metafields
 
-        # odoo_sku Metafield Logic:
-        # 1. If multiple variants exist, HIDE odoo_sku from the main product page (it lives in variants).
-        # 2. If single product (variants <= 1), display odoo_sku on the main product page.
-        if len(self.product_variant_ids) <= 1:
-            odoo_sku_val = self.default_code or getattr(self, 'odoo_sku', False)
-            if odoo_sku_val:
-                metafields.append({"namespace": "custom", "key": "odoo_sku", "value": str(odoo_sku_val), "type": "single_line_text_field"})
-        
-        if self.barcode:
-            metafields.append({"namespace": "custom", "key": "barcode", "value": str(self.barcode), "type": "single_line_text_field"})
+        # ── Variants + Options ────────────────────────────────────────────────
+        variants_payload, options_payload = self._shopify_build_variants_payload(product_metafields)
 
-        if self.weight:
-            metafields.append({"namespace": "custom", "key": "weight", "value": str(self.weight), "type": "single_line_text_field"})
+        if not variants_payload:
+            # Simple product: no attribute variants, single Shopify variant
+            sku = getattr(self, "product_sku", None) or self.default_code or ""
+            bin_loc = getattr(self, "bin_location_id", False)
+            variants_payload = [{
+                "sku": sku,
+                "price": str(self.list_price),
+                "weight": float(self.weight) if self.weight else 0.0,
+                "barcode": self.barcode or "",
+                "taxable": bool(self.taxes_id),
+                "metafields": self._build_variant_metafields(self.id, self.default_code, bin_loc, product_metafields),
+            }]
 
-        if self.volume:
-            metafields.append({"namespace": "custom", "key": "volume", "value": str(self.volume), "type": "single_line_text_field"})
+        # ── Images (initial create only) ─────────────────────────────────────
+        def to_b64(field):
+            if not field:
+                return None
+            return field.decode("utf-8") if isinstance(field, bytes) else str(field)
 
-        if self.hs_code:
-            metafields.append({"namespace": "custom", "key": "hs_code", "value": str(self.hs_code), "type": "single_line_text_field"})
+        images = []
+        if is_initial_create:
+            if self.image_1920:
+                images.append({"attachment": to_b64(self.image_1920), "filename": f"{self.id}_main.jpg"})
+            for extra in getattr(self, "product_template_image_ids", []):
+                if extra.image_1920:
+                    images.append(
+                        {"attachment": to_b64(extra.image_1920), "filename": f"{self.id}_extra_{extra.id}.jpg"})
+            for v in self.product_variant_ids:
+                if v.image_1920 and v.image_1920 != self.image_1920:
+                    images.append({
+                        "attachment": to_b64(v.image_1920),
+                        "filename": f"variant_{v.id}.jpg",
+                        "alt": f"variant_{v.id}",
+                    })
+            images.extend(description_images)
 
-        # UOM
-        if self.uom_id:
-            metafields.append({"namespace": "custom", "key": "uom", "value": self.uom_id.name, "type": "single_line_text_field"})
-            metafields.append({"namespace": "custom", "key": "uom_id", "value": self.uom_id.name, "type": "single_line_text_field"})
-        
-        if self.uom_po_id:
-            metafields.append({"namespace": "custom", "key": "uom_po_id", "value": self.uom_po_id.name, "type": "single_line_text_field"})
-
-        # Availability / Website Settings
-        if hasattr(self, 'out_of_stock_message') and self.out_of_stock_message:
-            metafields.append({"namespace": "custom", "key": "out_of_stock_message", "value": self.out_of_stock_message, "type": "single_line_text_field"})
-
-        if hasattr(self, 'website_size_x') and self.website_size_x:
-            metafields.append({"namespace": "custom", "key": "website_size_x", "value": str(self.website_size_x), "type": "single_line_text_field"})
-
-        if hasattr(self, 'website_size_y') and self.website_size_y:
-            metafields.append({"namespace": "custom", "key": "website_size_y", "value": str(self.website_size_y), "type": "single_line_text_field"})
-
-        if hasattr(self, 'purchase_ok'):metafields.append({"namespace": "custom", "key": "purchase_ok", "value": "true" if self.purchase_ok else "false", "type": "single_line_text_field"})
-
-        if hasattr(self, 'sale_ok'):metafields.append({"namespace": "custom", "key": "sale_ok", "value": "true" if self.sale_ok else "false", "type": "single_line_text_field"})
-
-        if hasattr(self, 'show_availability'):
-            metafields.append({"namespace": "custom", "key": "show_availability", "value": "true" if self.show_availability else "false", "type": "single_line_text_field"})
-
-        # SEO Shorthand Variables
-        seo_title = ""
-        seo_description = ""
-
-        # Mapping Odoo SEO to Shopify SEO (global namespace)
-        if hasattr(self, 'website_meta_title') and self.website_meta_title:
-             seo_title = self.website_meta_title
-             metafields.append({"namespace": "global", "key": "title_tag", "value": str(seo_title), "type": "single_line_text_field"})
-        if hasattr(self, 'website_meta_description') and self.website_meta_description:
-             seo_description = self.website_meta_description
-             metafields.append({"namespace": "global", "key": "description_tag", "value": str(seo_description), "type": "multi_line_text_field"})
-
-        # -------- FINAL PAYLOAD --------
+        # ── Assemble payload ──────────────────────────────────────────────────
         product_data = {
             "product": {
                 "title": self.name,
-                "body_html": long_description or body_html,
-                "vendor": vendor_name,
-                # "product_type": self.categ_id.name if self.categ_id else "Default",
+                "body_html": product_desc or body_html,
+                "vendor": vendor,
                 "tags": tags_str,
-                "status": "active" if self.sale_ok else "archived",
+                "status": "active" if self.sale_ok else "draft",
                 "metafields": metafields,
+                "variants": variants_payload,
             }
         }
-        # Build variants payload
-        # Build variants payload
-        variants_payload, options_payload = self._shopify_build_variants_payload()
-        if variants_payload:
-            product_data["product"]["variants"] = variants_payload
-            if options_payload:
-                product_data["product"]["options"] = options_payload
-        else:
-            # Single product SKU: Map ES Product SKU as the Primary SKU
-            # Check both possible custom field names
-            sku = (
-                getattr(self, 'es_product_sku', False) 
-                or getattr(self, 'product_sku', False)
-                or self.default_code 
-                or ""
-            )
-            product_data["product"]["variants"] = [{
-                "sku": sku or "",
-                "price": str(self.list_price),
-                "weight": self.weight if hasattr(self, 'weight') else 0.0,
-                "barcode": self.barcode or "",
-                # "inventory_management": "shopify" if self.detailed_type == 'product' else None,
-                "taxable": True if self.taxes_id else False,
-            }]
-
-        # -----------------------------
-        # FIX 1: MULTIPLE IMAGES EXPORT (Template + Variants)
-        # -----------------------------
-        images = []
-
-        # Main image
-        if self.image_1920:
-            image_b64 = base64.b64encode(base64.b64decode(self.image_1920)).decode('utf-8')
-            images.append({
-                "attachment": image_b64,
-                "filename": f"{self.name.replace(' ', '_')}_main.jpg"
-            })
-
-        # Template extra images
-        if hasattr(self, 'product_template_image_ids'):
-            for img in self.product_template_image_ids:
-                if img.image_1920:
-                    image_b64 = base64.b64encode(base64.b64decode(img.image_1920)).decode('utf-8')
-                    images.append({
-                        "attachment": image_b64,
-                        "filename": f"{self.name.replace(' ', '_')}_{img.id}.jpg"
-                    })
-
-        # Variant specific images
-        for variant in self.product_variant_ids:
-            if variant.image_1920 and variant.image_1920 != self.image_1920:
-                image_b64 = base64.b64encode(base64.b64decode(variant.image_1920)).decode('utf-8')
-                filename = f"variant_{variant.id}.jpg"
-                img_payload = {
-                    "attachment": image_b64,
-                    "filename": filename,
-                    "alt": f"variant_{variant.id}",
-                }
-                if variant.shopify_variant_id:
-                    img_payload["variant_ids"] = [int(variant.shopify_variant_id)]
-                
-                images.append(img_payload)
-
+        if options_payload:
+            product_data["product"]["options"] = options_payload
         if images:
             product_data["product"]["images"] = images
-        
-        # Add images extracted from the tab description
-        if tab_images_to_upload:
-            if "images" not in product_data["product"] or not isinstance(product_data["product"]["images"], list):
-                product_data["product"]["images"] = []
-            product_data["product"]["images"].extend(tab_images_to_upload)
 
-        # -----------------------------
-        # FIX 2: PREVENT DUPLICATES (SKU LOOKUP) & SAFE UPDATE
-        # -----------------------------
-        # Attempt to find by SKU if no ID is stored locally to prevent duplicates
-        if not self.shopify_product_id:
-            # Match by the Primary SKU source (ES Product SKU)
-            sku_to_match = getattr(self, 'es_product_sku', self.default_code)
-            if sku_to_match:
-                # Search Shopify for product with this SKU in any variant
-                search_url = f"https://{shop_url}/admin/api/2024-01/products.json?vendor={vendor_name}"
+        # PUT payload: strip metafields and images
+        # - Shopify rejects resending existing metafield keys
+        # - images are excluded so Shopify does not delete/recreate them on every update
+        product_data_put = json.loads(json.dumps(product_data))
+        product_data_put["product"].pop("metafields", None)
+        product_data_put["product"].pop("images", None)
+        for v in product_data_put["product"].get("variants", []):
+            v.pop("metafields", None)
+
+        # ── Send to Shopify ───────────────────────────────────────────────────
+        response = self._send_to_shopify(session, shop_url, product_data, product_data_put)
+
+        if response.status_code not in (200, 201):
+            raise UserError(
+                _("Shopify export failed for '%s'. Status %s:\n%s") % (
+                    self.name, response.status_code, response.text[:500]
+                )
+            )
+
+        # ── Process response ──────────────────────────────────────────────────
+        shopify_product = response.json().get("product", {})
+        self.shopify_product_id = shopify_product.get("id")
+        self.is_exported_to_shopify = True
+
+        # SEO via GraphQL — only needed on update (200); POST already includes metafields
+        if response.status_code == 200 and (seo_title or seo_description):
+            self._apply_seo_graphql(session, shop_url, seo_title, seo_description)
+
+        # Save Shopify variant IDs and sync stock levels
+        shopify_images = shopify_product.get("images", [])
+        location_id = instance.location_id
+        for odoo_v, shopify_v in zip(self.product_variant_ids, shopify_product.get("variants", [])):
+            odoo_v.shopify_variant_id = shopify_v.get("id")
+            if location_id and shopify_v.get("inventory_item_id"):
                 try:
-                    s_res = requests.get(search_url, headers=headers, timeout=15)
-                    if s_res.status_code == 200:
-                        products = s_res.json().get('products', [])
-                        for p in products:
-                            for v in p.get('variants', []):
-                                if v.get('sku') == sku_to_match:
-                                    self.shopify_product_id = str(p.get('id'))
-                                    break
-                            if self.shopify_product_id: break
-                except:
+                    session.post(
+                        f"https://{shop_url}/admin/api/2024-01/inventory_levels/set.json",
+                        data=json.dumps({
+                            "location_id": int(location_id),
+                            "inventory_item_id": int(shopify_v["inventory_item_id"]),
+                            "available": int(odoo_v.qty_available),
+                        }),
+                        timeout=15,
+                    )
+                except Exception:
                     pass
 
-        if self.shopify_product_id:
-            product_id = str(self.shopify_product_id).split("/")[-1]
-            url = f"https://{shop_url}/admin/api/2024-01/products/{product_id}.json"
-            response = requests.put(url, headers=headers, data=json.dumps(product_data), timeout=60)
-            _logger.info("Shopify Export: PUT Update Response for %s: %s - %s", self.name, response.status_code, response.text)
+        # Link variant-specific images by alt tag
+        variant_img_updates = []
+        for odoo_v in self.product_variant_ids:
+            alt = f"variant_{odoo_v.id}"
+            match = next((img for img in shopify_images if img.get("alt") == alt), None)
+            if match and odoo_v.shopify_variant_id:
+                variant_img_updates.append({"id": odoo_v.shopify_variant_id, "image_id": match["id"]})
 
-            # If product not found in Shopify (deleted there), reset locally and recreate
-            if response.status_code == 404:
-                self.shopify_product_id = False
-                url = f"https://{shop_url}/admin/api/2024-01/products.json"
-                response = requests.post(url, headers=headers, data=json.dumps(product_data), timeout=60)
-                _logger.info("Shopify Export: POST Re-create Response for %s: %s - %s", self.name, response.status_code, response.text)
-        else:
-            # Create new
-            url = f"https://{shop_url}/admin/api/2024-01/products.json"
-            response = requests.post(url, headers=headers, data=json.dumps(product_data), timeout=60)
-            _logger.info("Shopify Export: POST Create Response for %s: %s - %s", self.name, response.status_code, response.text)
+        # Replace inline base64 placeholders with Shopify CDN URLs (matched by alt tag)
+        original_body = product_desc or body_html
+        updated_body = original_body
+        if b64_inline_count:
+            b64_shopify_imgs = sorted(
+                [img for img in shopify_images if img.get("alt", "").startswith(f"desc_b64_{self.id}_")],
+                key=lambda img: int(img["alt"].rsplit("_", 1)[-1]),
+            )
+            for img in b64_shopify_imgs:
+                idx = int(img["alt"].rsplit("_", 1)[-1])
+                updated_body = updated_body.replace(f"#DESC_B64_{idx}#", img["src"])
 
-        # -----------------------------
-        # RESPONSE HANDLING
-        # -----------------------------
-        if response.status_code in [200, 201]:
-            res_data = response.json()
-            shopify_product = res_data.get("product", {})
-            self.shopify_product_id = shopify_product.get("id")
-            self.is_exported_to_shopify = True
-            if self.shopify_product_id:
-                gql_url = f"https://{shop_url}/admin/api/2024-01/graphql.json"
-
-                headers = {
-                    "X-Shopify-Access-Token": instance.access_token,
-                    "Content-Type": "application/json",
-                }
-
-                query = """
-                mutation UpdateProductSEO($input: ProductUpdateInput!) {
-                productUpdate(product: $input) {
-                    product {
-                    id
-                    seo {
-                        title
-                        description
-                    }
-                    }
-                    userErrors {
-                    field
-                    message
-                    }
-                }
-                }
-                """
-
-                payload = {
-                    "query": query,
-                    "variables": {
-                        "input": {
-                            "id": f"gid://shopify/Product/{self.shopify_product_id}",
-                            "seo": {
-                                "title": self.website_meta_title or "",
-                                "description": self.website_meta_description or ""
-                            }
-                        }
-                    }
-                }
-
-                gql_response = requests.post(gql_url, headers=headers, json=payload, timeout=60)
-
-                print("SEO Status:", gql_response.status_code)
-                print("SEO Response:", gql_response.text)
-
-                data = gql_response.json()
-
-                if data.get("errors"):
-                    print("GraphQL errors:", data["errors"])
-
-                user_errors = (
-                    data.get("data", {})
-                        .get("productUpdate", {})
-                        .get("userErrors", [])
+        # Final update: apply variant image links and/or updated body_html.
+        # Wrapped in try/except so a timeout here does NOT roll back the savepoint —
+        # shopify_product_id and is_exported_to_shopify must survive even if this fails.
+        if variant_img_updates or updated_body != original_body:
+            update_payload = {"product": {"id": self.shopify_product_id}}
+            if variant_img_updates:
+                update_payload["product"]["variants"] = variant_img_updates
+            if updated_body != original_body:
+                update_payload["product"]["body_html"] = updated_body
+            try:
+                session.put(
+                    f"https://{shop_url}/admin/api/2024-01/products/{self.shopify_product_id}.json",
+                    data=json.dumps(update_payload),
+                    timeout=15,
+                )
+            except Exception as e:
+                _logger.warning(
+                    "Shopify: image/variant link update failed for '%s' (non-critical): %s",
+                    self.name, e,
                 )
 
-                if user_errors:
-                    print("User errors:", user_errors)
-                else:
-                    print("SEO updated successfully")
-            # SAVE VARIANT IDS AND SYNC STOCK
-            shopify_variants = shopify_product.get("variants", [])
-            location_id = instance.location_id
-            for odoo_variant, shopify_variant in zip(self.product_variant_ids, shopify_variants):
-                odoo_variant.shopify_variant_id = shopify_variant.get("id")
-                inventory_item_id = shopify_variant.get("inventory_item_id")
-                
-                # Sync Stock if location_id is configured
-                if location_id and inventory_item_id:
-                    stock_qty = odoo_variant.qty_available
-                    inventory_url = f"https://{shop_url}/admin/api/2024-01/inventory_levels/set.json"
-                    inv_data = {
-                        "location_id": int(location_id),
-                        "inventory_item_id": int(inventory_item_id),
-                        "available": int(stock_qty)
-                    }
-                    try:
-                        requests.post(inventory_url, headers=headers, data=json.dumps(inv_data), timeout=15)
-                    except:
-                        pass
+    # ─────────────────────────────────────────────────────────────────────────
+    # HTTP helpers
+    # ─────────────────────────────────────────────────────────────────────────
 
-            # Link Variant Images
-            shopify_images = shopify_product.get("images", [])
-            variant_updates = []
-            for odoo_variant in self.product_variant_ids:
-                marker = f"variant_{odoo_variant.id}"
-                matching_img = next((img for img in shopify_images if img.get('alt') == marker), None)
-                if matching_img:
-                    variant_updates.append({
-                        "id": odoo_variant.shopify_variant_id,
-                        "image_id": matching_img.get('id')
-                    })
-            
-            # --- IMAGE URL REPLACEMENT PASS ---
-            # Replace #IMAGE_DESC_N# placeholders in body_html with actual Shopify URLs
-            updated_body_html = long_description or body_html
-            desc_img_count = 1
-            for img in shopify_images:
-                # Based on the filename pattern used in the first pass
-                if f"desc_img_{self.id}_" in img.get('src', '') or f"tab_img_{self.id}_" in img.get('src', ''):
-                    marker = f"#IMAGE_DESC_{desc_img_count}#"
-                    real_url = img.get('src')
-                    if real_url:
-                        updated_body_html = updated_body_html.replace(marker, real_url)
-                    desc_img_count += 1
-            
-            if variant_updates or (desc_img_count > 1):
-                update_url = f"https://{shop_url}/admin/api/2024-01/products/{self.shopify_product_id}.json"
-                update_payload = {"product": {"id": self.shopify_product_id}}
-                if variant_updates:
-                    update_payload["product"]["variants"] = variant_updates
-                if desc_img_count > 1:
-                    update_payload["product"]["body_html"] = updated_body_html
-                
-                requests.put(update_url, headers=headers, data=json.dumps(update_payload), timeout=15)
+    def _send_to_shopify(self, session, shop_url, product_data, product_data_put):
+        """PUT if product exists, POST if new. Handles 404 recovery and 422 retry."""
+        if self.shopify_product_id:
+            pid = str(self.shopify_product_id).split("/")[-1]
+            url = f"https://{shop_url}/admin/api/2024-01/products/{pid}.json"
+            resp = session.put(url, data=json.dumps(product_data_put), timeout=60)
+            _logger.info("Shopify PUT '%s' → %s", self.name, resp.status_code)
+
+            if resp.status_code == 404:
+                _logger.warning("Shopify: '%s' not found by stored ID — searching by Odoo ID.", self.name)
+                self.shopify_product_id = False
+                existing_id = self._find_shopify_product_by_odoo_id(shop_url, session)
+                if existing_id:
+                    self.shopify_product_id = existing_id
+                    pid = str(existing_id).split("/")[-1]
+                    url = f"https://{shop_url}/admin/api/2024-01/products/{pid}.json"
+                    resp = session.put(url, data=json.dumps(product_data_put), timeout=60)
+                    _logger.info("Shopify PUT (recovered) '%s' → %s", self.name, resp.status_code)
+                else:
+                    resp = session.post(
+                        f"https://{shop_url}/admin/api/2024-01/products.json",
+                        data=json.dumps(product_data), timeout=60,
+                    )
+                    _logger.info("Shopify POST (after 404) '%s' → %s", self.name, resp.status_code)
+
+            if resp.status_code == 422:
+                try:
+                    variant_errors = resp.json().get("errors", {}).get("variants", [])
+                    err_text = " ".join(variant_errors) if isinstance(variant_errors, list) else str(variant_errors)
+                    if "do not exist" in err_text or "do not belong" in err_text:
+                        retry = json.loads(json.dumps(product_data_put))
+                        for v in retry.get("product", {}).get("variants", []):
+                            v.pop("id", None)
+                        resp = session.put(url, data=json.dumps(retry), timeout=60)
+                        _logger.info("Shopify PUT retry (stripped variant IDs) '%s' → %s", self.name, resp.status_code)
+                except Exception:
+                    pass
         else:
-            raise UserError(_("Shopify Export Failed for %s. Status: %s. Response: %s") % (
-                self.name, response.status_code, response.text))
-        
-    def _shopify_build_variants_payload(self):
-        """
-        Build Shopify variants + options from Odoo variants with consistent ordering.
-        Supports custom ES Product SKU fields.
-        """
+            resp = session.post(
+                f"https://{shop_url}/admin/api/2024-01/products.json",
+                data=json.dumps(product_data), timeout=60,
+            )
+            _logger.info("Shopify POST '%s' → %s", self.name, resp.status_code)
+
+        return resp
+
+    def _apply_seo_graphql(self, session, shop_url, seo_title, seo_description):
+        """Apply SEO title/description to an existing Shopify product via GraphQL."""
+        payload = {
+            "query": """
+            mutation UpdateProductSEO($input: ProductUpdateInput!) {
+              productUpdate(product: $input) {
+                userErrors { field message }
+              }
+            }
+            """,
+            "variables": {
+                "input": {
+                    "id": f"gid://shopify/Product/{self.shopify_product_id}",
+                    "seo": {"title": seo_title, "description": seo_description},
+                }
+            },
+        }
+        try:
+            resp = session.post(
+                f"https://{shop_url}/admin/api/2024-01/graphql.json",
+                json=payload, timeout=30,
+            )
+            errors = resp.json().get("data", {}).get("productUpdate", {}).get("userErrors", [])
+            if errors:
+                _logger.warning("Shopify SEO GraphQL errors for '%s': %s", self.name, errors)
+        except Exception as e:
+            _logger.warning("Shopify SEO GraphQL failed for '%s': %s", self.name, e)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Variant builder
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def _shopify_build_variants_payload(self, product_metafields=None):
         self.ensure_one()
-        variants_payload = []
-        options_payload = []
-        
-        # 1. Define Options from Attribute Lines (Maintains ordering)
+        if product_metafields is None:
+            product_metafields = self.build_product_metafields()
+
         attribute_lines = self.attribute_line_ids
-        currency_symbol = self.currency_id.symbol or "$"
-        _logger.info("Shopify Export: Starting variant payload build for product '%s' (ID: %s)", self.name, self.id)
-        
+        currency = self.currency_id.symbol or "$"
+        bin_loc = getattr(self, "bin_location_id", False)
+
+        # ── Options ──────────────────────────────────────────────────────────
+        options_payload = []
         for line in attribute_lines:
             if not line.attribute_id.name:
                 continue
-                
-            # Get actual values for this attribute line for the Shopify 'Option values' field
-            # Use product_template_value_ids to capture the price_extra for this template
-            line_values = []
-            for ptav_template in line.product_template_value_ids:
-                name = ptav_template.name
-                if ptav_template.price_extra > 0:
-                    name += f" + {currency_symbol} {ptav_template.price_extra:,.2f}"
-                line_values.append(name)
-            
-            _logger.info("Shopify Export: Attribute '%s' found values: %s", line.attribute_id.name, line_values)
-                
-            if not line_values:
-                line_values = ["Default"] # Absolute fallback if no values exist
-                
-            options_payload.append({
-                "name": line.attribute_id.name,
-                "values": line_values
-            })
+            values = []
+            for ptav in line.product_template_value_ids:
+                label = ptav.name
+                if ptav.price_extra > 0:
+                    label += f" + {currency} {ptav.price_extra:,.2f}"
+                values.append(label)
+            options_payload.append({"name": line.attribute_id.name, "values": values or ["Default"]})
 
-        # 2. Build Variants mapping to option1, option2, option3
-        # Use child_attribute_line_ids or variant_ids to be safe in different Odoo versions
         odoo_variants = self.product_variant_ids
-        
-        # VIRTUAL VARIANT LOGIC:
-        # If Odoo is set to "Never Create Variants", it only has 1 variant record.
-        # We need to virtually generate the Shopify variants from the attribute lines.
-        if len(odoo_variants) <= 1 and self.attribute_line_ids:
+
+        # ── Virtual variant mode ("Never Create Variants") ────────────────────
+        if len(odoo_variants) <= 1 and attribute_lines:
             import itertools
-            _logger.info("Shopify Export: Generating virtual variants for 'Never' creation mode on %s", self.name)
-            
-            # Use ptav collections from lines for combinations
-            all_ptav_lines = [line.product_template_value_ids for line in attribute_lines[:3]]
-            all_combinations = list(itertools.product(*all_ptav_lines))
-            
-            for combo in all_combinations:
+            ptav_per_line = [line.product_template_value_ids for line in attribute_lines[:3]]
+            if not all(ptav_per_line):
+                return [], []
+
+            variants_payload = []
+            for combo in itertools.product(*ptav_per_line):
                 extra_price = sum(v.price_extra for v in combo)
-                sku_base = getattr(self, 'es_product_sku', self.default_code) or f"PROD-{self.id}"
-                # Create a unique SKU for each virtual variant
-                variant_sku = f"{sku_base}-" + "-".join([v.name[:3].upper() for v in combo])
-                
-                variant_dict = {
+                sku_base = getattr(self, "product_sku", None) or self.default_code or f"PROD-{self.id}"
+                variant_sku = sku_base + "-" + "-".join(v.name[:3].upper() for v in combo)
+
+                vdict = {
                     "sku": variant_sku,
                     "price": str(self.list_price + extra_price),
-                    "weight": getattr(self, 'weight', 0.0),
+                    "weight": float(self.weight) if self.weight else 0.0,
                     "barcode": self.barcode or "",
-                    "inventory_policy": "continue" if getattr(self, 'out_of_stock_action', False) == 'available' or getattr(self, 'allow_out_of_stock_order', False) else "deny",
+                    "inventory_policy": "continue" if (
+                            getattr(self, "out_of_stock_action", None) == "available"
+                            or getattr(self, "allow_out_of_stock_order", False)
+                    ) else "deny",
+                    "metafields": self._build_variant_metafields(
+                        self.id, self.default_code, bin_loc, product_metafields
+                    ),
                 }
-                
-                # Map option names
                 for i, ptav in enumerate(combo):
-                    name = ptav.name
+                    label = ptav.name
                     if ptav.price_extra > 0:
-                        name += f" + {currency_symbol} {ptav.price_extra:,.2f}"
-                    variant_dict[f"option{i+1}"] = name
-                
-                # Fill remaining options
-                for i in range(len(combo), 3):
-                    variant_dict[f"option{i+1}"] = None
-                
-                variants_payload.append(variant_dict)
-                _logger.info("Shopify Export: Generated Virtual Variant: %s", variant_dict)
-            
+                        label += f" + {currency} {ptav.price_extra:,.2f}"
+                    vdict[f"option{i + 1}"] = label
+
+                variants_payload.append(vdict)
+
             return variants_payload, options_payload
 
-        # STANDARD VARIANT LOGIC:
-        _logger.info("Shopify Export: Found %s variants in Odoo for product %s", len(odoo_variants), self.name)
-        
+        # ── Standard variant mode ─────────────────────────────────────────────
+        variants_payload = []
         for v in odoo_variants:
-            # PRIMARY SKU: Map ES Product SKU (from variant or template) as the main Shopify SKU
-            sku = (
-                getattr(v, 'es_product_sku', False) 
-                or getattr(self, 'es_product_sku', False)
-                or getattr(v, 'product_sku', False)
-                or getattr(self, 'product_sku', False)
-                or v.default_code 
-                or ""
-            )
-
-            variant_dict = {
-                "sku": sku or "",
+            sku = getattr(v, "product_sku", None) or getattr(self, "product_sku", None) or v.default_code or ""
+            vdict = {
+                "sku": sku,
                 "price": str(v.lst_price if hasattr(v, "lst_price") else self.list_price),
-                "weight": v.weight if hasattr(v, 'weight') else getattr(self, 'weight', 0.0),
+                "weight": float(v.weight) if getattr(v, "weight", None) else float(self.weight) if self.weight else 0.0,
                 "barcode": v.barcode or self.barcode or "",
-                # "inventory_management": "shopify" if self.detailed_type == 'product' else None,
-                "inventory_policy": "continue" if getattr(self, 'out_of_stock_action', False) == 'available' or getattr(self, 'allow_out_of_stock_order', False) else "deny",
+                "inventory_policy": "continue" if (
+                        getattr(self, "out_of_stock_action", None) == "available"
+                        or getattr(self, "allow_out_of_stock_order", False)
+                ) else "deny",
+                "metafields": self._build_variant_metafields(v.id, v.default_code, bin_loc, product_metafields),
             }
-            
-            # Include Shopify ID if it exists to ensure update instead of recreation
-            if hasattr(v, 'shopify_variant_id') and v.shopify_variant_id:
-                variant_dict["id"] = int(str(v.shopify_variant_id).split("/")[-1])
-            
-            # Sync custom metafields for variant
-            v_metafields = []
-            
-            # 1. odoo_sku (Internal Reference)
-            odoo_sku_variant = v.default_code or getattr(v, 'odoo_sku', False) or getattr(self, 'default_code', False)
-            if odoo_sku_variant:
-                v_metafields.append({"namespace": "custom", "key": "odoo_sku", "value": str(odoo_sku_variant), "type": "single_line_text_field"})
 
-            # 2. weight
-            weight_variant = v.weight if hasattr(v, 'weight') and v.weight else getattr(self, 'weight', False)
-            if weight_variant:
-                v_metafields.append({"namespace": "custom", "key": "weight", "value": str(weight_variant), "type": "single_line_text_field"})
+            if getattr(v, "shopify_variant_id", None):
+                vdict["id"] = int(str(v.shopify_variant_id).split("/")[-1])
 
-            # 3. volume
-            vol_v = v.volume if hasattr(v, 'volume') and v.volume else getattr(self, 'volume', False)
-            if vol_v:
-                v_metafields.append({"namespace": "custom", "key": "volume", "value": str(vol_v), "type": "single_line_text_field"})
-
-            # 4. height
-            h_v = getattr(v, 'height', False) or getattr(self, 'height', False)
-            if h_v:
-                v_metafields.append({"namespace": "custom", "key": "height", "value": str(h_v), "type": "single_line_text_field"})
-
-            # 5. country_of_origin
-            coo = getattr(v, 'country_of_origin', False) or getattr(self, 'country_of_origin', False)
-            if coo:
-                coo_val = coo.name if hasattr(coo, 'name') else str(coo)
-                v_metafields.append({"namespace": "custom", "key": "country_of_origin", "value": coo_val, "type": "single_line_text_field"})
-
-            # 6. bin_location_id
-            bin_v = getattr(v, 'bin_location_id', False) or getattr(self, 'bin_location_id', False)
-            if bin_v:
-                v_metafields.append({"namespace": "custom", "key": "bin_location_id", "value": str(bin_v.name), "type": "single_line_text_field"})
-
-            # 7. is_published
-            pub_v = getattr(v, 'is_published', False) or getattr(self, 'is_published', False)
-            if pub_v:
-                v_metafields.append({"namespace": "custom", "key": "is_published", "value": str(pub_v), "type": "single_line_text_field"})
-
-            # 8. variant_color_images
-            vc_v = getattr(v, 'variant_color_images', False) or getattr(self, 'variant_color_images', False)
-            if vc_v:
-                v_metafields.append({"namespace": "custom", "key": "variant_color_images", "value": str(vc_v), "type": "single_line_text_field"})
-
-            barcode_variant = v.barcode if hasattr(v, 'barcode') and v.barcode else getattr(self, 'barcode', False)
-            if barcode_variant:
-                v_metafields.append({"namespace": "custom", "key": "barcode", "value": str(barcode_variant), "type": "single_line_text_field"})  
-            
-            # 8. purchase_ok
-            purchase_v = getattr(v, 'purchase_ok', None)
-            if purchase_v is None:
-                purchase_v = getattr(self, 'purchase_ok', False)
-            
-            v_metafields.append({"namespace": "custom","key": "purchase_ok","value": "true" if purchase_v else "false","type": "single_line_text_field"})
-            
-            sale_v = getattr(v, 'sale_ok', None)
-            if sale_v is None:
-                sale_v = getattr(self, 'sale_ok', False)
-            v_metafields.append({"namespace": "custom","key": "sale_ok","value": "true" if sale_v else "false","type": "single_line_text_field"})   
-
-            show_v = getattr(v, 'show_availability', None)
-            if show_v is None:
-                show_v = getattr(self, 'show_availability', False)
-            v_metafields.append({"namespace": "custom","key": "show_availability","value": "true" if show_v else "false","type": "single_line_text_field"})   
-
-            # Unit of Measure
-            uom_v = getattr(v, 'uom_id', self.uom_id)
-            if uom_v:
-                v_metafields.append({"namespace": "custom","key": "uom_id","value": str(uom_v.name),"type": "single_line_text_field"})
-            
-            uom_po_v = getattr(v, 'uom_po_id', self.uom_po_id)
-            if uom_po_v:
-                v_metafields.append({"namespace": "custom","key": "uom_po_id","value": str(uom_po_v.name),"type": "single_line_text_field"})
-            
-            website_size_x = getattr(v, 'website_size_x', False) or getattr(self, 'website_size_x', False)
-            if website_size_x:
-                v_metafields.append({"namespace": "custom","key": "website_size_x","value": str(website_size_x),"type": "single_line_text_field"})
-            
-            website_size_y = getattr(v, 'website_size_y', False) or getattr(self, 'website_size_y', False)
-            if website_size_y:
-                v_metafields.append({"namespace": "custom","key": "website_size_y","value": str(website_size_y),"type": "single_line_text_field"})
-
-
-            if v_metafields:
-                variant_dict["metafields"] = v_metafields
-
-            # Map the specific variant values to Shopify option positions (This sets the Variant Name)
+            # Map attribute values to option1/option2/option3 positionally
+            # Fix: capture `line.attribute_id` at definition time to avoid closure bug
             has_option = False
-            v_values_log = []
             for i, line in enumerate(attribute_lines[:3]):
-                ptav = v.product_template_attribute_value_ids.filtered(lambda x: x.attribute_id == line.attribute_id)
+                ptav = v.product_template_attribute_value_ids.filtered(
+                    lambda x, attr=line.attribute_id: x.attribute_id == attr
+                )
                 if ptav:
-                    name = ptav[0].name
+                    label = ptav[0].name
                     if ptav[0].price_extra > 0:
-                        name += f" + {currency_symbol} {ptav[0].price_extra:,.2f}"
-                    variant_dict[f"option{i+1}"] = name
-                    v_values_log.append(f"Option{i+1}: {name}")
+                        label += f" + {currency} {ptav[0].price_extra:,.2f}"
+                    vdict[f"option{i + 1}"] = label
                     has_option = True
                 else:
-                    variant_dict[f"option{i+1}"] = "Default"
-                    v_values_log.append(f"Option{i+1}: Default (Not Found)")
+                    vdict[f"option{i + 1}"] = "Default"
 
-            # Fallback if filtered mapping yielded nothing (but attributes exist)
-            if not has_option and v.product_template_attribute_value_ids:
+            if not has_option:
                 for i, ptav in enumerate(v.product_template_attribute_value_ids[:3]):
-                    name = ptav.name
+                    label = ptav.name
                     if ptav.price_extra > 0:
-                        name += f" + {currency_symbol} {ptav.price_extra:,.2f}"
-                    variant_dict[f"option{i+1}"] = name
-                    v_values_log.append(f"Fallback Option{i+1}: {name}")
-            
-            _logger.info("Shopify Export: Prepared Variant SKU %s with values: %s", variant_dict.get('sku'), ", ".join(v_values_log))
+                        label += f" + {currency} {ptav.price_extra:,.2f}"
+                    vdict[f"option{i + 1}"] = label
 
-            variants_payload.append(variant_dict)
+            variants_payload.append(vdict)
 
         return variants_payload, options_payload
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Utilities
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def _build_variant_metafields(self, variant_id, sku_code, bin_loc, product_metafields):
+        """Build variant-level metafields, filtering empty/false values, deduped."""
+        bin_loc_name = bin_loc.name if bin_loc else ""
+        raw = [
+                  {"namespace": "custom", "key": "variant_id", "value": str(variant_id),
+                   "type": "single_line_text_field"},
+                  {"namespace": "custom", "key": "bin_location_id", "value": bin_loc_name,
+                   "type": "single_line_text_field"},
+                  {"namespace": "custom", "key": "variant_color_images",
+                   "value": str(getattr(self, "variant_color_images", "") or ""), "type": "single_line_text_field"},
+                  {"namespace": "custom", "key": "volume", "value": str(self.volume) if self.volume else "0",
+                   "type": "single_line_text_field"},
+                  {"namespace": "custom", "key": "odoo_sku", "value": sku_code or "", "type": "single_line_text_field"},
+              ] + (product_metafields or [])
+        return self._dedup_metafields([
+            mf for mf in raw
+            if mf.get("value") is not None and str(mf["value"]).strip() not in ("", "False", "false")
+        ])
+
+    def _find_shopify_product_by_odoo_id(self, shop_url, session):
+        """Find a Shopify product by its Odoo ID using a single GraphQL query."""
+        payload = {
+            "query": """
+            query FindProductByOdooId($q: String!) {
+              products(first: 1, query: $q) {
+                edges { node { legacyResourceId } }
+              }
+            }
+            """,
+            "variables": {"q": f"metafield:custom.id:{self.id}"},
+        }
+        try:
+            resp = session.post(
+                f"https://{shop_url}/admin/api/2024-01/graphql.json",
+                json=payload, timeout=15,
+            )
+            if resp.status_code == 200:
+                edges = resp.json().get("data", {}).get("products", {}).get("edges", [])
+                if edges:
+                    return edges[0]["node"]["legacyResourceId"]
+        except Exception as e:
+            _logger.warning("Shopify GraphQL lookup failed for Odoo ID %s: %s", self.id, e)
+        return False
+
+    @staticmethod
+    def _dedup_metafields(metafields):
+        seen = set()
+        result = []
+        for mf in metafields:
+            k = (mf.get("namespace"), mf.get("key"))
+            if k not in seen:
+                seen.add(k)
+                result.append(mf)
+        return result
