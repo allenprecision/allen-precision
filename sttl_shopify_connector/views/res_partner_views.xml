@@ -13,6 +13,7 @@
                             <field name="shopify_customer_id" readonly="1" invisible="is_company"/>
                             <!-- <field name="shopify_company_id" readonly="1" invisible="not is_company"/> -->
                             <field name="is_exported_to_shopify" readonly="1"/>
+                            <field name="cant_export_to_shopify" readonly="1"/>
                         </group>
                     </group>
                     <button name="action_export_to_shopify" string="Export to Shopify" type="object" class="oe_highlight" invisible="not shopify_instance_id"/>

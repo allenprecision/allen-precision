@@ -7,6 +7,10 @@
             <form>
                 <header>
                     <button name="action_test_connection" string="Test Connection" type="object" class="oe_highlight"/>
+                    <button name="action_cleanup_duplicate_shopify_products" string="Cleanup Duplicate Products" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate products from Shopify. Products whose ID is stored in Odoo will be kept. Continue?"/>
+                    <button name="action_clear_shopify_product_type" string="Clear Product Type" type="object" invisible="state != 'confirmed'" confirm="This will set product_type to empty on all linked Shopify products. Continue?"/>
+                    <button name="action_find_duplicate_shopify_customers" string="Cleanup Duplicate Customers" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate customers from Shopify. Customers whose ID is stored in Odoo will be kept. Continue?"/>
+                    <button name="action_reconcile_export_log" string="Reconcile Export Log" type="object" invisible="state != 'confirmed'"/>
                     <!-- <button name="action_apply_to_all_products" string="Set on all Products" type="object" invisible="state != 'confirmed'"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,error"/>
                 </header>

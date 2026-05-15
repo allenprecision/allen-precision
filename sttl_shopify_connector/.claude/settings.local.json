@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Read(//c//**)",
+      "Bash(python3 -c ' *)",
+      "Bash(git *)",
+      "Bash(Get-ChildItem -Recurse -Filter \"customer_export.csv\" \"C:\\\\Users\\\\karim.gillani\\\\odoo17\\\\server\\\\allen-precision\")",
+      "Bash(Select-Object FullName)",
+      "Bash(python3 *)"
+    ]
+  }
+}
