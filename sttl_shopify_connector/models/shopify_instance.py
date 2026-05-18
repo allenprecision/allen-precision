@@ -201,15 +201,15 @@ class ShopifyInstance(models.Model):
         }
 
     def action_find_duplicate_shopify_customers(self):
-        """Delete duplicate Shopify customers by email, keeping the one linked to Odoo.
+        """Delete duplicate Shopify customers where the same Odoo partner
+        was exported more than once.
 
         Strategy:
-        - Fetch every customer from Shopify (paginated, fields=id,email only).
-        - Group by email; skip groups with only one customer.
-        - For each duplicate group, keep the Shopify customer whose ID is stored
-          in res.partner.shopify_customer_id. Delete all others.
-        - If no customer in the group matches an Odoo record, skip it entirely
-          (never delete blindly).
+        - Fetch ALL customers from Shopify (paginated bulk, same as before).
+        - Group by full name.
+        - For each duplicate name group, keep the one whose ID is in Odoo
+          (shopify_customer_id). For remaining candidates, verify by fetching
+          metafield custom.id — only delete if it matches the Odoo partner ID.
         """
         self.ensure_one()
         shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
@@ -220,16 +220,16 @@ class ShopifyInstance(models.Model):
             "Content-Type": "application/json",
         })
 
-        # ── 1. Build set of Shopify customer IDs that Odoo wants to keep ──────
+        # ── 1. Build Odoo ID map: shopify_customer_id → partner ──────────────
         odoo_partners = self.env['res.partner'].search([
             ('shopify_instance_id', '=', self.id),
             ('shopify_customer_id', '!=', False),
             ('shopify_customer_id', '!=', ''),
         ])
-        odoo_id_set = set(odoo_partners.mapped('shopify_customer_id'))
+        odoo_id_map = {p.shopify_customer_id: p for p in odoo_partners}
 
-        # ── 2. Fetch all Shopify customers (paginated) ────────────────────────
-        name_map = {}  # full name -> [{'id': ..., 'first_name': ..., 'last_name': ...}, ...]
+        # ── 2. Fetch all Shopify customers (paginated bulk) ───────────────────
+        name_map = {}
         url = f"https://{shop_url}/admin/api/2024-01/customers.json"
         params = {"fields": "id,first_name,last_name", "limit": 250}
 
@@ -248,47 +248,83 @@ class ShopifyInstance(models.Model):
                     url = part.strip().split(";")[0].strip().lstrip("<").rstrip(">")
                     break
 
-        # ── 3. Delete duplicates ──────────────────────────────────────────────
-        deleted = 0
-        failed = 0
-        skipped_no_odoo_match = 0
+        # ── 3. Process duplicate name groups ─────────────────────────────────
+        deleted = failed = skipped_no_match = 0
 
         for name, customers in name_map.items():
             if len(customers) <= 1:
                 continue
 
-            # Find which customer in this group is linked to Odoo
+            # Find which customer in this group is the correct Odoo-linked one
             keep_id = None
+            odoo_partner = None
             for c in customers:
-                if str(c["id"]) in odoo_id_set:
-                    keep_id = c["id"]
+                sid = str(c["id"])
+                if sid in odoo_id_map:
+                    keep_id = sid
+                    odoo_partner = odoo_id_map[sid]
                     break
 
-            if keep_id is None:
-                skipped_no_odoo_match += 1
-                _logger.warning("Shopify customer cleanup: skipping '%s' — no Odoo match among IDs %s",
-                                name, [c["id"] for c in customers])
+            if not keep_id or not odoo_partner:
+                skipped_no_match += 1
+                _logger.warning(
+                    "Duplicate cleanup: skipping '%s' — no Odoo match among IDs %s",
+                    name, [c["id"] for c in customers],
+                )
                 continue
 
+            # For each candidate (not the correct one), verify via metafield custom.id
             for c in customers:
-                if c["id"] == keep_id:
+                if str(c["id"]) == keep_id:
                     continue
-                del_url = f"https://{shop_url}/admin/api/2024-01/customers/{c['id']}.json"
-                del_resp = session.delete(del_url, timeout=30)
+
+                # Fetch metafield custom.id for this candidate
+                mf_resp = session.get(
+                    f"https://{shop_url}/admin/api/2024-01/customers/{c['id']}/metafields.json",
+                    params={"namespace": "custom", "key": "id"},
+                    timeout=15,
+                )
+                if mf_resp.status_code != 200:
+                    _logger.warning("Duplicate cleanup: metafield fetch failed for Shopify ID %s", c['id'])
+                    continue
+
+                odoo_id_in_shopify = None
+                for mf in mf_resp.json().get('metafields', []):
+                    if mf.get('namespace') == 'custom' and mf.get('key') == 'id':
+                        odoo_id_in_shopify = str(mf.get('value', ''))
+                        break
+
+                if odoo_id_in_shopify != str(odoo_partner.id):
+                    # Different Odoo partner — not our duplicate, leave it
+                    _logger.info(
+                        "Duplicate cleanup: Shopify ID %s has different Odoo ID (%s vs %s) — skipping.",
+                        c['id'], odoo_id_in_shopify, odoo_partner.id,
+                    )
+                    continue
+
+                # Confirmed duplicate — same Odoo ID → delete
+                del_resp = session.delete(
+                    f"https://{shop_url}/admin/api/2024-01/customers/{c['id']}.json",
+                    timeout=30,
+                )
                 if del_resp.status_code in (200, 204):
                     deleted += 1
-                    _logger.info("Shopify customer cleanup: deleted id=%s name='%s'", c["id"], name)
+                    _logger.info(
+                        "Duplicate cleanup: deleted Shopify ID %s (Odoo partner '%s' ID %s)",
+                        c['id'], odoo_partner.name, odoo_partner.id,
+                    )
                 else:
                     failed += 1
-                    _logger.warning("Shopify customer cleanup: failed to delete id=%s (%s): %s",
-                                    c["id"], del_resp.status_code, del_resp.text)
+                    _logger.warning(
+                        "Duplicate cleanup: failed to delete Shopify ID %s (%s): %s",
+                        c['id'], del_resp.status_code, del_resp.text[:200],
+                    )
 
-        # ── 4. Report ─────────────────────────────────────────────────────────
-        parts = [_("%d duplicate customer(s) deleted from Shopify.") % deleted]
+        parts = [_("%d duplicate(s) deleted from Shopify.") % deleted]
         if failed:
-            parts.append(_("%d deletion(s) failed — check server logs.") % failed)
-        if skipped_no_odoo_match:
-            parts.append(_("%d email group(s) skipped (no matching Odoo record found).") % skipped_no_odoo_match)
+            parts.append(_("%d deletion(s) failed — check logs.") % failed)
+        if skipped_no_match:
+            parts.append(_("%d name group(s) skipped (no Odoo match).") % skipped_no_match)
 
         return {
             'type': 'ir.actions.client',
@@ -296,7 +332,7 @@ class ShopifyInstance(models.Model):
             'params': {
                 'title': _('Shopify Duplicate Customer Cleanup'),
                 'message': " ".join(parts),
-                'type': 'warning' if (failed or skipped_no_odoo_match) else 'success',
+                'type': 'warning' if (failed or skipped_no_match) else 'success',
                 'sticky': True,
             },
         }
@@ -305,6 +341,7 @@ class ShopifyInstance(models.Model):
         """Delegate to res.partner — marks CSV error rows as success where the
         partner is now unblocked, exported, and has a Shopify customer ID."""
         return self.env['res.partner'].action_reconcile_export_log()
+
 
     def action_apply_to_all_products(self):
         """Set this instance on all product templates and partners that don't have one."""

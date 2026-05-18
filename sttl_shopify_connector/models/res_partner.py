@@ -527,12 +527,22 @@ class ResPartner(models.Model):
             with open(log_file, 'r', newline='', encoding='utf-8') as f:
                 rows = list(csv.DictReader(f))
 
-            # ── Step 1: deduplicate — one row per Odoo ID (latest date) ──────
-            best = {}
+            # ── Step 1: deduplicate — one row per Odoo ID ────────────────────
+            # Keep latest row by date. Also preserve the most recent error
+            # message across all rows so it isn't lost if a success row wins.
+            best = {}        # oid -> latest row
+            best_err_msg = {}  # oid -> most recent error message
+
             for row in rows:
                 oid = row.get('Odoo ID', '')
                 if not oid:
                     continue
+                # Track latest error message for this ID
+                if row.get('Status') == 'error' and row.get('Error Message', '').strip():
+                    existing_err_date = best_err_msg.get(oid, ('', ''))[0]
+                    if row.get('Export Date', '') >= existing_err_date:
+                        best_err_msg[oid] = (row.get('Export Date', ''), row['Error Message'])
+                # Keep latest row overall
                 existing = best.get(oid)
                 if existing is None or row.get('Export Date', '') > existing.get('Export Date', ''):
                     best[oid] = row
@@ -555,6 +565,7 @@ class ResPartner(models.Model):
                     and partner.shopify_customer_id
                     and not partner.cant_export_to_shopify
                 )
+                oid = row.get('Odoo ID', '')
                 if is_exported and row['Status'] != 'success':
                     row['Status'] = 'success'
                     row['Shopify Customer ID'] = partner.shopify_customer_id
@@ -562,7 +573,8 @@ class ResPartner(models.Model):
                     to_success += 1
                 elif not is_exported and row['Status'] != 'error':
                     row['Status'] = 'error'
-                    row['Error Message'] = 'blocked or not exported in Odoo'
+                    # Restore original error message if available
+                    row['Error Message'] = best_err_msg.get(oid, ('', ''))[1] or ''
                     to_error += 1
 
             fieldnames = ['Export Date', 'Customer Name', 'Odoo ID',

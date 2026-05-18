@@ -20,6 +20,7 @@
         'views/res_partner_views.xml',
         'views/sale_order_views.xml',
         'views/product_views.xml',
+        'views/shopify_order_export_wizard_views.xml',
     ],
     'installable': True,
     'application': True,

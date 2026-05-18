@@ -23,6 +23,17 @@
             <field name="doall">False</field>
             <field name="active">True</field>
         </record>
+        <record id="ir_cron_shopify_export_orders" model="ir.cron">
+            <field name="name">Shopify: Auto Export Orders</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.action_scheduled_export_to_shopify()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall">False</field>
+            <field name="active">True</field>
+        </record>
         <record id="ir_cron_shopify_recover_blocked_customers" model="ir.cron">
             <field name="name">Shopify: Recover Blocked Customers</field>
             <field name="model_id" ref="base.model_res_partner"/>
