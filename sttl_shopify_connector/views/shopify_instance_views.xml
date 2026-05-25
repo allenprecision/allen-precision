@@ -11,6 +11,7 @@
                     <button name="action_clear_shopify_product_type" string="Clear Product Type" type="object" invisible="state != 'confirmed'" confirm="This will set product_type to empty on all linked Shopify products. Continue?"/>
                     <button name="action_find_duplicate_shopify_customers" string="Cleanup Duplicate Customers" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate customers from Shopify. Customers whose ID is stored in Odoo will be kept. Continue?"/>
                     <button name="action_reconcile_export_log" string="Reconcile Export Log" type="object" invisible="state != 'confirmed'"/>
+                    <button name="action_prefix_customer_emails_stg" string="Prefix Emails: stg." type="object" invisible="state != 'confirmed'" confirm="This will prepend 'stg.' to ALL customer emails in Shopify that don't already have it. Continue?"/>
                     <!-- <button name="action_apply_to_all_products" string="Set on all Products" type="object" invisible="state != 'confirmed'"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,error"/>
                 </header>
@@ -45,7 +46,7 @@
         <field name="res_model">shopify.instance</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="menu_shopify_root" name="Shopify Connector" sequence="50" web_icon="sttl_shopify_connector,static/description/icon.png"/>
+    <menuitem id="menu_shopify_root" name="Shopify Connector" sequence="50" web_icon="sttl_shopify_connector,static/description/icon.png" action="action_shopify_instance"/>
     <menuitem id="menu_shopify_config" name="Configuration" parent="menu_shopify_root" sequence="100"/>
     <menuitem id="menu_shopify_instance" name="Instances" parent="menu_shopify_config" action="action_shopify_instance" sequence="10"/>
 </odoo>

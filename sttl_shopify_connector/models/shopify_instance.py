@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 import requests
 import json
 import logging
+import time
 
 _logger = logging.getLogger(__name__)
 
@@ -342,6 +343,87 @@ class ShopifyInstance(models.Model):
         partner is now unblocked, exported, and has a Shopify customer ID."""
         return self.env['res.partner'].action_reconcile_export_log()
 
+
+    def action_prefix_customer_emails_stg(self):
+        """Prepend 'stg.' to every Shopify customer email that doesn't already have it."""
+        self.ensure_one()
+        shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
+
+        session = requests.Session()
+        session.headers.update({
+            "X-Shopify-Access-Token": self.access_token,
+            "Content-Type": "application/json",
+        })
+
+        def _put_with_retry(url, payload):
+            for attempt in range(5):
+                resp = session.put(url, data=json.dumps(payload), timeout=30)
+                if resp.status_code == 429:
+                    wait = int(resp.headers.get('Retry-After', 2))
+                    _logger.warning("Shopify rate limit hit — sleeping %ss", wait)
+                    time.sleep(wait)
+                    continue
+                return resp
+            return resp
+
+        # ── 1. Fetch all customers (paginated) ────────────────────────────────
+        customers = []
+        url = f"https://{shop_url}/admin/api/2024-01/customers.json"
+        params = {"fields": "id,email", "limit": 250}
+
+        while url:
+            resp = session.get(url, params=params, timeout=30)
+            if resp.status_code == 429:
+                time.sleep(int(resp.headers.get('Retry-After', 2)))
+                continue
+            if resp.status_code != 200:
+                raise UserError(_("Failed to fetch customers: %s %s") % (resp.status_code, resp.text[:300]))
+            customers.extend(resp.json().get("customers", []))
+            url = None
+            params = {}
+            for part in resp.headers.get("Link", "").split(","):
+                if 'rel="next"' in part:
+                    url = part.strip().split(";")[0].strip().lstrip("<").rstrip(">")
+                    break
+
+        # ── 2. Update emails ──────────────────────────────────────────────────
+        updated = skipped = failed = 0
+
+        for c in customers:
+            email = (c.get("email") or "").strip()
+            if not email or email.lower().startswith("stg."):
+                skipped += 1
+                continue
+
+            new_email = "stg." + email
+            resp = _put_with_retry(
+                f"https://{shop_url}/admin/api/2024-01/customers/{c['id']}.json",
+                {"customer": {"id": c["id"], "email": new_email}},
+            )
+            if resp.status_code == 200:
+                updated += 1
+                _logger.info("STG email prefix: %s → %s", email, new_email)
+            else:
+                failed += 1
+                _logger.warning("STG email prefix failed for ID %s (%s): %s",
+                                c["id"], resp.status_code, resp.text[:200])
+
+        parts = [_("%d customer email(s) updated with 'stg.' prefix.") % updated]
+        if skipped:
+            parts.append(_("%d already prefixed or no email — skipped.") % skipped)
+        if failed:
+            parts.append(_("%d update(s) failed — check server logs.") % failed)
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('STG Email Prefix'),
+                'message': " ".join(parts),
+                'type': 'warning' if failed else 'success',
+                'sticky': True,
+            },
+        }
 
     def action_apply_to_all_products(self):
         """Set this instance on all product templates and partners that don't have one."""

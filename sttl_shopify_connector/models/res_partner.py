@@ -67,10 +67,6 @@ class ResPartner(models.Model):
         blocked = customers.filtered(lambda p: p.cant_export_to_shopify)
         customers = customers - blocked
 
-        # Skip already-exported customers
-        already_exported = customers.filtered(lambda p: p.is_exported_to_shopify)
-        customers = customers - already_exported
-
         success_count = 0
         error_messages = []
 
@@ -89,9 +85,7 @@ class ResPartner(models.Model):
                 _logger.warning("Shopify customer export failed for '%s': %s", partner.name, e, exc_info=True)
 
         error_count = len(error_messages)
-        message = _("%s customer(s) exported successfully.") % success_count
-        if already_exported:
-            message += _("\n%s already exported — clear 'Exported to Shopify' and 'Shopify Customer ID' to re-export.") % len(already_exported)
+        message = _("%s customer(s) synced to Shopify.") % success_count
         if blocked:
             message += _("\n%s blocked from export (Cannot Export to Shopify is set).") % len(blocked)
         if not_customer:
@@ -105,7 +99,7 @@ class ResPartner(models.Model):
             'params': {
                 'title': _('Shopify Customer Sync'),
                 'message': message,
-                'type': 'warning' if (error_count or already_exported or blocked or not_customer) else 'success',
+                'type': 'warning' if (error_count or blocked or not_customer) else 'success',
                 'sticky': bool(error_count),
             },
         }

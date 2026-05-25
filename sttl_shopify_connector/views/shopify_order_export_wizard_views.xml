@@ -5,8 +5,10 @@
         <field name="model">shopify.order.export.wizard</field>
         <field name="arch" type="xml">
             <form string="Export Orders — Altera / Matrixify Format">
+                <field name="state" invisible="1"/>
                 <group invisible="state == 'done'">
                     <field name="only_unexported"/>
+                    <field name="batch_size" string="Records per file (Matrixify free = 10)"/>
                     <field name="offset" string="Skip first N orders (batch offset)"/>
                 </group>
                 <group invisible="state != 'done'">
@@ -32,9 +34,10 @@
         <field name="target">new</field>
     </record>
 
+    <menuitem id="menu_shopify_orders" name="Orders" parent="menu_shopify_root" sequence="10"/>
     <menuitem id="menu_shopify_order_export"
-              name="Export Orders (Altera/Matrixify)"
-              parent="menu_shopify_root"
+              name="Export Orders (Matrixify)"
+              parent="menu_shopify_orders"
               action="action_shopify_order_export_wizard"
-              sequence="20"/>
+              sequence="10"/>
 </odoo>
