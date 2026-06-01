@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="blocklist_demo_domain" model="email.domain.blocklist">
+            <field name="value">mailinator.com</field>
+            <field name="name">Example disposable email domain</field>
+        </record>
+    </data>
+</odoo>
