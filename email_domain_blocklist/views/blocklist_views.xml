@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_blocklist_tree" model="ir.ui.view">
+        <field name="name">email.domain.blocklist.tree</field>
+        <field name="model">email.domain.blocklist</field>
+        <field name="arch" type="xml">
+            <tree string="Blocklist" editable="bottom">
+                <field name="value"/>
+                <field name="name"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_blocklist_form" model="ir.ui.view">
+        <field name="name">email.domain.blocklist.form</field>
+        <field name="model">email.domain.blocklist</field>
+        <field name="arch" type="xml">
+            <form string="Blocklist Entry">
+                <sheet>
+                    <group>
+                        <field name="value"
+                               placeholder="gmail.com  /  xyz@gmail.com"/>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_blocklist_search" model="ir.ui.view">
+        <field name="name">email.domain.blocklist.search</field>
+        <field name="model">email.domain.blocklist</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="value"/>
+                <filter name="inactive" string="Archived" domain="[('active','=',False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_blocklist" model="ir.actions.act_window">
+        <field name="name">Email / Domain Blocklist</field>
+        <field name="res_model">email.domain.blocklist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a string to block</p>
+            <p>Any email containing a blocked string cannot register or check out.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_blocklist_root" name="Blocklist"
+              parent="base.menu_administration"
+              groups="email_domain_blocklist.group_blocklist_manager"
+              sequence="50"/>
+    <menuitem id="menu_blocklist" name="Email / Domain Blocklist"
+              parent="menu_blocklist_root"
+              action="action_blocklist"
+              sequence="10"/>
+</odoo>
