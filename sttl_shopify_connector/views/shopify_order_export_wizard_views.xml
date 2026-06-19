@@ -17,8 +17,10 @@
                     <field name="file_data" filename="file_name" widget="binary" string="Download Excel File"/>
                 </group>
                 <footer>
-                    <button name="action_generate" string="Generate Excel" type="object"
+                    <button name="action_generate_bulk" string="Generate 50 Files (ZIP)" type="object"
                             class="oe_highlight" invisible="state == 'done'"/>
+                    <button name="action_generate" string="Generate Single File" type="object"
+                            invisible="state == 'done'"/>
                     <button name="action_reset" string="Generate Another Batch" type="object"
                             invisible="state != 'done'"/>
                     <button string="Close" class="btn-secondary" special="cancel"/>
