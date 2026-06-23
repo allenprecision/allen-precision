@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shopify_instance_form" model="ir.ui.view">
+        <field name="name">shopify.instance.form</field>
+        <field name="model">shopify.instance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_test_connection" string="Test Connection" type="object" class="oe_highlight"/>
+                    <button name="action_cleanup_duplicate_shopify_products" string="Cleanup Duplicate Products" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate products from Shopify. Products whose ID is stored in Odoo will be kept. Continue?"/>
+                    <button name="action_find_duplicate_shopify_customers" string="Cleanup Duplicate Customers" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate customers from Shopify. Customers whose ID is stored in Odoo will be kept. Continue?"/>
+                    <button name="action_reconcile_export_log" string="Reconcile Export Log" type="object" invisible="state != 'confirmed'"/>
+                    <!-- <button name="action_apply_to_all_products" string="Set on all Products" type="object" invisible="state != 'confirmed'"/> -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,error"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="shop_url"/>
+                        </group>
+                        <group>
+                            <field name="access_token" password="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_shopify_instance_tree" model="ir.ui.view">
+        <field name="name">shopify.instance.tree</field>
+        <field name="model">shopify.instance</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="shop_url"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_shopify_instance" model="ir.actions.act_window">
+        <field name="name">Shopify Instances</field>
+        <field name="res_model">shopify.instance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_shopify_root" name="Shopify Connector" sequence="50" web_icon="sttl_shopify_connector,static/description/icon.png" action="action_shopify_instance"/>
+    <menuitem id="menu_shopify_config" name="Configuration" parent="menu_shopify_root" sequence="100"/>
+    <menuitem id="menu_shopify_instance" name="Instances" parent="menu_shopify_config" action="action_shopify_instance" sequence="10"/>
+</odoo>

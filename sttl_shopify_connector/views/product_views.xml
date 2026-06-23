@@ -1,0 +1,31 @@
+<odoo>
+    <record id="product_product_form_shopify" model="ir.ui.view">
+        <field name="name">product.product.form.shopify</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Shopify">
+                        <group>
+                            <field name="shopify_variant_id" readonly="1"/>
+                            <field name="is_exported_to_shopify" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+
+        </field>
+    </record>
+    <!-- Variant Action Menu (Gear Icon) -->
+    <record id="action_shopify_export_variant_menu" model="ir.actions.server">
+        <field name="name">Export to Shopify</field>
+        <field name="model_id" ref="product.model_product_product"/>
+        <field name="binding_model_id" ref="product.model_product_product"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+            records.action_export_to_shopify()
+        </field>
+    </record>
+</odoo>

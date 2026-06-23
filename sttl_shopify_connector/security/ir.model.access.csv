@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shopify_instance,shopify.instance,model_shopify_instance,base.group_user,1,1,1,1
+access_shopify_order_export_wizard,shopify.order.export.wizard,model_shopify_order_export_wizard,base.group_user,1,1,1,1

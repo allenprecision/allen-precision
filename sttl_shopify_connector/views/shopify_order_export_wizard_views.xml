@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shopify_order_export_wizard_form" model="ir.ui.view">
+        <field name="name">shopify.order.export.wizard.form</field>
+        <field name="model">shopify.order.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Orders — Altera / Matrixify Format">
+                <field name="state" invisible="1"/>
+                <group invisible="state == 'done'">
+                    <field name="only_unexported"/>
+                    <field name="batch_size" string="Records per file (max 1000)"/>
+                    <field name="offset" string="Skip first N orders (batch offset)"/>
+                </group>
+                <group invisible="state != 'done'">
+                    <field name="record_count" string="Orders in this file"/>
+                    <field name="file_name" invisible="1"/>
+                    <field name="file_data" filename="file_name" widget="binary" string="Download Excel File"/>
+                </group>
+                <footer>
+                    <button name="action_generate_bulk" string="Generate 50 Files (ZIP)" type="object"
+                            class="oe_highlight" invisible="state == 'done'"/>
+                    <button name="action_generate" string="Generate Single File" type="object"
+                            invisible="state == 'done'"/>
+                    <button name="action_reset" string="Generate Another Batch" type="object"
+                            invisible="state != 'done'"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shopify_order_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Orders to Shopify (Matrixify Format)</field>
+        <field name="res_model">shopify.order.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_shopify_orders" name="Orders" parent="menu_shopify_root" sequence="10"/>
+    <menuitem id="menu_shopify_order_export"
+              name="Export Orders (Matrixify)"
+              parent="menu_shopify_orders"
+              action="action_shopify_order_export_wizard"
+              sequence="10"/>
+</odoo>

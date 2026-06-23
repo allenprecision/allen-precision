@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_public_category_form_shopify" model="ir.ui.view">
+        <field name="name">product.public.category.form.shopify</field>
+        <field name="model">product.public.category</field>
+        <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
+        <field name="arch" type="xml">
+            <sheet position="inside">
+                <group string="Shopify Information">
+                    <field name="shopify_instance_id"/>
+                    <field name="shopify_collection_id" readonly="1"/>
+                </group>
+            </sheet>
+        </field>
+    </record>
+    <!-- Action for Export to Shopify -->
+    <record id="action_shopify_export_collection" model="ir.actions.server">
+        <field name="name">Export to Shopify Collection</field>
+        <field name="model_id" ref="website_sale.model_product_public_category"/>
+        <field name="binding_model_id" ref="website_sale.model_product_public_category"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.action_export_to_shopify()
+        </field>
+    </record>
+</odoo>
