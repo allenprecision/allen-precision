@@ -71,7 +71,7 @@ class ProductTemplate(models.Model):
 
         products = self.env['product.template'].search(
             [('is_exported_to_shopify', '=', False), ('product_sku', '!=', False)],
-            limit=300,
+            limit=120,
         )
 
         if not products:
