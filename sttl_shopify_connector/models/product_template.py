@@ -5,8 +5,11 @@ import json
 import re
 import itertools
 import logging
+import csv
+import os
 from html import unescape
 from datetime import datetime, timezone
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 API = "2024-01"
@@ -36,8 +39,10 @@ class ProductTemplate(models.Model):
             for product in products:
                 try:
                     product._export_to_shopify(session, instance)
+                    product._write_export_log('success', instance)
                 except Exception as e:
                     errors.append(f"{product.name}: {e}")
+                    product._write_export_log('error', instance, str(e))
                     _logger.warning("Shopify export failed for '%s': %s", product.name, e, exc_info=True)
 
         message = _("%s product(s) exported successfully.") % (len(self) - len(errors))
@@ -66,7 +71,7 @@ class ProductTemplate(models.Model):
 
         products = self.env['product.template'].search(
             [('is_exported_to_shopify', '=', False), ('product_sku', '!=', False)],
-            limit=300,
+            limit=120,
         )
 
         if not products:
@@ -98,8 +103,10 @@ class ProductTemplate(models.Model):
                 try:
                     with self.env.cr.savepoint():
                         product._export_to_shopify(session, instance)
+                    product._write_export_log('success', instance)
                     success += 1
                 except Exception as e:
+                    product._write_export_log('error', instance, str(e))
                     failed += 1
                     _logger.warning(
                         "Shopify scheduled export: failed '%s' (ID %s): %s",
@@ -170,7 +177,7 @@ class ProductTemplate(models.Model):
             if seo_title or seo_desc:
                 self._push_seo(session, shop_url, seo_title, seo_desc)
 
-        self._sync_variants(session, shop_url, shopify_product, instance.location_id)
+        self._sync_variants(session, shop_url, shopify_product)
         self._finalize(session, shop_url, shopify_product.get("images", []), body_html, b64_count)
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -461,7 +468,7 @@ class ProductTemplate(models.Model):
     # Post-send helpers
     # ─────────────────────────────────────────────────────────────────────────
 
-    def _sync_variants(self, session, shop_url, shopify_product, location_id):
+    def _sync_variants(self, session, shop_url, shopify_product):
         """Match variants by SKU (not position), sync metafields and stock levels."""
         shopify_by_sku = {v["sku"]: v for v in shopify_product.get("variants", []) if v.get("sku")}
         for odoo_v in self.product_variant_ids:
@@ -675,3 +682,28 @@ class ProductTemplate(models.Model):
                 seen.add(k)
                 result.append(mf)
         return result
+
+    def _write_export_log(self, status, instance, error_message=None):
+        try:
+            log_dir = os.path.join(config.get('data_dir', '/tmp'), 'shopify_logs')
+            os.makedirs(log_dir, exist_ok=True)
+            log_file = os.path.join(log_dir, 'product_export.csv')
+            file_exists = os.path.isfile(log_file)
+            with open(log_file, 'a', newline='', encoding='utf-8') as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow([
+                        'Export Date', 'Product Name', 'Odoo ID',
+                        'Shopify Product ID', 'Instance', 'Status', 'Error Message',
+                    ])
+                writer.writerow([
+                    datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    self.name,
+                    self.id,
+                    self.shopify_product_id or '',
+                    instance.name if instance else '',
+                    status,
+                    error_message or '',
+                ])
+        except Exception as e:
+            _logger.warning("Failed to write product export log for '%s': %s", self.name, e)

@@ -3,7 +3,6 @@ from odoo.exceptions import UserError
 import requests
 import json
 import logging
-import time
 
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +18,6 @@ class ShopifyInstance(models.Model):
         ('confirmed', 'Confirmed'),
         ('error', 'Error')
     ], string='Status', default='draft')
-    location_id = fields.Char(string='Shopify Location ID', help="Required for Stock Synchronization. Get this from Shopify Settings > Locations.")
 
     def action_test_connection(self):
         for record in self:
@@ -93,12 +91,10 @@ class ShopifyInstance(models.Model):
                 raise UserError(_("Failed to fetch Shopify products: %s %s") % (resp.status_code, resp.text))
             for p in resp.json().get("products", []):
                 all_shopify.setdefault(p["title"], []).append(p)
-            # Shopify cursor pagination via Link header
             url = None
             params = {}
             for part in resp.headers.get("Link", "").split(","):
                 if 'rel="next"' in part:
-                    # extract URL from <...>
                     url = part.strip().split(";")[0].strip().lstrip("<").rstrip(">")
                     break
 
@@ -155,51 +151,6 @@ class ShopifyInstance(models.Model):
             },
         }
 
-    def action_clear_shopify_product_type(self):
-        """Set product_type to empty string on all Shopify products linked to this instance."""
-        self.ensure_one()
-        shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
-
-        session = requests.Session()
-        session.headers.update({
-            "X-Shopify-Access-Token": self.access_token,
-            "Content-Type": "application/json",
-        })
-
-        odoo_products = self.env['product.template'].search([
-            ('shopify_instance_id', '=', self.id),
-            ('shopify_product_id', '!=', False),
-            ('shopify_product_id', '!=', ''),
-        ])
-
-        updated = 0
-        failed = 0
-
-        for product in odoo_products:
-            pid = str(product.shopify_product_id).split('/')[-1]
-            url = f"https://{shop_url}/admin/api/2024-01/products/{pid}.json"
-            resp = session.put(url, data=json.dumps({"product": {"id": pid, "product_type": ""}}), timeout=30)
-            if resp.status_code == 200:
-                updated += 1
-            else:
-                failed += 1
-                _logger.warning("Clear product_type failed for '%s' (id=%s): %s %s",
-                                product.name, pid, resp.status_code, resp.text)
-
-        parts = [_("%d product(s) updated — product type cleared.") % updated]
-        if failed:
-            parts.append(_("%d update(s) failed — check server logs.") % failed)
-
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('Clear Product Type'),
-                'message': " ".join(parts),
-                'type': 'warning' if failed else 'success',
-                'sticky': True,
-            },
-        }
 
     def action_find_duplicate_shopify_customers(self):
         """Delete duplicate Shopify customers where the same Odoo partner
@@ -343,87 +294,6 @@ class ShopifyInstance(models.Model):
         partner is now unblocked, exported, and has a Shopify customer ID."""
         return self.env['res.partner'].action_reconcile_export_log()
 
-
-    def action_prefix_customer_emails_stg(self):
-        """Prepend 'stg.' to every Shopify customer email that doesn't already have it."""
-        self.ensure_one()
-        shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
-
-        session = requests.Session()
-        session.headers.update({
-            "X-Shopify-Access-Token": self.access_token,
-            "Content-Type": "application/json",
-        })
-
-        def _put_with_retry(url, payload):
-            for attempt in range(5):
-                resp = session.put(url, data=json.dumps(payload), timeout=30)
-                if resp.status_code == 429:
-                    wait = int(resp.headers.get('Retry-After', 2))
-                    _logger.warning("Shopify rate limit hit — sleeping %ss", wait)
-                    time.sleep(wait)
-                    continue
-                return resp
-            return resp
-
-        # ── 1. Fetch all customers (paginated) ────────────────────────────────
-        customers = []
-        url = f"https://{shop_url}/admin/api/2024-01/customers.json"
-        params = {"fields": "id,email", "limit": 250}
-
-        while url:
-            resp = session.get(url, params=params, timeout=30)
-            if resp.status_code == 429:
-                time.sleep(int(resp.headers.get('Retry-After', 2)))
-                continue
-            if resp.status_code != 200:
-                raise UserError(_("Failed to fetch customers: %s %s") % (resp.status_code, resp.text[:300]))
-            customers.extend(resp.json().get("customers", []))
-            url = None
-            params = {}
-            for part in resp.headers.get("Link", "").split(","):
-                if 'rel="next"' in part:
-                    url = part.strip().split(";")[0].strip().lstrip("<").rstrip(">")
-                    break
-
-        # ── 2. Update emails ──────────────────────────────────────────────────
-        updated = skipped = failed = 0
-
-        for c in customers:
-            email = (c.get("email") or "").strip()
-            if not email or email.lower().startswith("stg."):
-                skipped += 1
-                continue
-
-            new_email = "stg." + email
-            resp = _put_with_retry(
-                f"https://{shop_url}/admin/api/2024-01/customers/{c['id']}.json",
-                {"customer": {"id": c["id"], "email": new_email}},
-            )
-            if resp.status_code == 200:
-                updated += 1
-                _logger.info("STG email prefix: %s → %s", email, new_email)
-            else:
-                failed += 1
-                _logger.warning("STG email prefix failed for ID %s (%s): %s",
-                                c["id"], resp.status_code, resp.text[:200])
-
-        parts = [_("%d customer email(s) updated with 'stg.' prefix.") % updated]
-        if skipped:
-            parts.append(_("%d already prefixed or no email — skipped.") % skipped)
-        if failed:
-            parts.append(_("%d update(s) failed — check server logs.") % failed)
-
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'display_notification',
-            'params': {
-                'title': _('STG Email Prefix'),
-                'message': " ".join(parts),
-                'type': 'warning' if failed else 'success',
-                'sticky': True,
-            },
-        }
 
     def action_apply_to_all_products(self):
         """Set this instance on all product templates and partners that don't have one."""

@@ -9,7 +9,7 @@
         - Supports Image sync.
         - Configure multiple Shopify instances.
     """,
-    'author': 'Antigravity',
+    'author': 'e-BizSoft Inc',
     'depends': ['product', 'stock', 'sale_management', 'website_sale'],
     'data': [
         'security/ir.model.access.csv',

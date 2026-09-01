@@ -8,7 +8,7 @@
                 <field name="state" invisible="1"/>
                 <group invisible="state == 'done'">
                     <field name="only_unexported"/>
-                    <field name="batch_size" string="Records per file (Matrixify free = 10)"/>
+                    <field name="batch_size" string="Records per file (max 1000)"/>
                     <field name="offset" string="Skip first N orders (batch offset)"/>
                 </group>
                 <group invisible="state != 'done'">
@@ -30,7 +30,7 @@
     </record>
 
     <record id="action_shopify_order_export_wizard" model="ir.actions.act_window">
-        <field name="name">Export Orders to Shopify (Altera Format)</field>
+        <field name="name">Export Orders to Shopify (Matrixify Format)</field>
         <field name="res_model">shopify.order.export.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

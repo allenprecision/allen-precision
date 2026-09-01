@@ -8,25 +8,10 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Shopify" name="shopify">
                     <group>
-                        <group>
-                            <field name="shopify_instance_id" options="{'no_create': True}"/>
-                            <field name="shopify_order_id" readonly="1"/>
-                            <field name="is_exported_to_shopify" readonly="1"/>
-                        </group>
+                        <field name="is_exported_to_shopify" readonly="1"/>
                     </group>
-                    <button name="action_export_to_shopify" string="Export to Shopify" type="object" class="oe_highlight" invisible="not shopify_instance_id"/>
                 </page>
             </xpath>
-        </field>
-    </record>
-    <record id="action_shopify_export_order_bulk" model="ir.actions.server">
-        <field name="name">Export to Shopify</field>
-        <field name="model_id" ref="sale.model_sale_order"/>
-        <field name="binding_model_id" ref="sale.model_sale_order"/>
-        <field name="binding_view_types">tree</field>
-        <field name="state">code</field>
-        <field name="code">
-            action = records.action_export_to_shopify()
         </field>
     </record>
 </odoo>
