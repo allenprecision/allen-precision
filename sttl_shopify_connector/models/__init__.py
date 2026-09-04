@@ -4,3 +4,4 @@ from . import product_template
 from . import res_partner
 from . import sale_order
 from . import product
+from . import shopify_customer_link_reconcile
