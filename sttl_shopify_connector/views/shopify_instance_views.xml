@@ -11,6 +11,7 @@
                     <button name="action_find_duplicate_shopify_customers" string="Cleanup Duplicate Customers" type="object" invisible="state != 'confirmed'" confirm="This will permanently delete duplicate customers from Shopify. Customers whose ID is stored in Odoo will be kept. Continue?"/>
                     <button name="action_reconcile_export_log" string="Reconcile Export Log" type="object" invisible="state != 'confirmed'"/>
                     <button name="action_link_existing_shopify_customers" string="Link Existing Shopify Customers" type="object" invisible="state != 'confirmed'" confirm="This will search Shopify by email for unlinked Odoo customers and link matching records (by name). Continue?"/>
+                    <button name="action_export_reconciled_customers" string="Export Reconciled Customers to Shopify" type="object" invisible="state != 'confirmed'" confirm="This will push full data (name, addresses, metafields) to Shopify for every customer linked by the reconciliation action above. Continue?"/>
                     <!-- <button name="action_apply_to_all_products" string="Set on all Products" type="object" invisible="state != 'confirmed'"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,error"/>
                 </header>

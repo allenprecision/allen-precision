@@ -13,6 +13,7 @@ from odoo.tools import config
 _logger = logging.getLogger(__name__)
 API = "2024-01"
 LINK_BATCH_SIZE = 1000
+EXPORT_LINKED_BATCH_SIZE = 500
 
 
 def _normalize_name(name):
@@ -39,9 +40,11 @@ class ResPartner(models.Model):
         copy=False,
         help="Set to True when this customer was linked to an already-existing "
              "Shopify customer by the 'Link Existing Shopify Customers' "
-             "reconciliation action (matched by email + name), as opposed to "
-             "being freshly exported by the normal export flow. Lets you filter "
-             "for what that action has already handled.",
+             "reconciliation action (matched by email + name) — linking only "
+             "sets the Shopify ID and the custom.id metafield, it doesn't push "
+             "the rest of the customer's data. Acts as a pending-export queue: "
+             "'Export Reconciled Customers to Shopify' picks up everyone with "
+             "this set to True, exports their full data, then clears it.",
     )
 
 
@@ -222,6 +225,56 @@ class ShopifyInstance(models.Model):
                 'sticky': True,
             },
         }
+
+    def action_export_reconciled_customers(self):
+        """Push full customer data to Shopify for everyone the reconciliation
+        action linked (shopify_reconcile_linked = True).
+
+        Linking only stores the Shopify ID on Odoo and sets the custom.id
+        metafield on Shopify — it does not sync name, addresses, or the rest
+        of the metafields. This reuses the existing, already-working
+        res.partner.action_export_to_shopify() (PUT, since shopify_customer_id
+        is now set) to bring the rest of the data across.
+
+        Processes at most EXPORT_LINKED_BATCH_SIZE partners per click.
+        shopify_reconcile_linked is cleared for the whole batch as it's picked
+        up (regardless of individual export success/failure — failures are
+        already tracked separately via cant_export_to_shopify and the existing
+        recovery cron), so repeated clicks naturally work through the rest
+        without needing a separate bookmark.
+        """
+        self.ensure_one()
+        partners = self.env['res.partner'].search(
+            [('shopify_reconcile_linked', '=', True)], limit=EXPORT_LINKED_BATCH_SIZE,
+        )
+
+        if not partners:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Export Reconciled Customers'),
+                    'message': _('No customers pending export (none have shopify_reconcile_linked set).'),
+                    'type': 'warning',
+                    'sticky': False,
+                },
+            }
+
+        remaining_after_batch = self.env['res.partner'].search_count([
+            ('shopify_reconcile_linked', '=', True), ('id', 'not in', partners.ids),
+        ])
+
+        partners.write({'shopify_reconcile_linked': False})
+        result = partners.action_export_to_shopify()
+
+        if isinstance(result, dict) and result.get('params'):
+            extra = (
+                _('\n%s more pending — click the button again to continue.') % remaining_after_batch
+                if remaining_after_batch else _('\nAll pending customers processed.')
+            )
+            result['params']['message'] = (result['params'].get('message') or '') + extra
+            result['params']['sticky'] = True
+        return result
 
     # ─────────────────────────────────────────────────────────────────────────
     # Shopify HTTP (rate-limit aware)
