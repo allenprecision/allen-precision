@@ -6,12 +6,13 @@ import logging
 import requests
 from datetime import datetime
 
-from odoo import models, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 API = "2024-01"
+LINK_BATCH_SIZE = 1000
 
 
 def _normalize_name(name):
@@ -19,8 +20,42 @@ def _normalize_name(name):
     return re.sub(r'\s+', ' ', (name or '').strip()).lower()
 
 
+def _strip_std_prefix(email):
+    """These Shopify customers were imported with a literal 'std' prefix
+    stuck onto every email (e.g. 'stdjohn@example.com' for 'john@example.com').
+    Strip it before matching against Odoo emails."""
+    email = (email or '').strip().lower()
+    if email.startswith('std'):
+        email = email[3:]
+    return email
+
+
+class ResPartner(models.Model):
+    _inherit = 'res.partner'
+
+    shopify_reconcile_linked = fields.Boolean(
+        string='Linked via Shopify Reconcile',
+        default=False,
+        copy=False,
+        help="Set to True when this customer was linked to an already-existing "
+             "Shopify customer by the 'Link Existing Shopify Customers' "
+             "reconciliation action (matched by email + name), as opposed to "
+             "being freshly exported by the normal export flow. Lets you filter "
+             "for what that action has already handled.",
+    )
+
+
 class ShopifyInstance(models.Model):
     _inherit = 'shopify.instance'
+
+    shopify_link_reconcile_last_id = fields.Integer(
+        string='Link Reconcile: Last Processed Partner ID',
+        default=0,
+        help="Bookmark for 'Link Existing Shopify Customers' — batches process "
+             f"{LINK_BATCH_SIZE} Odoo customers per click (ordered by ID) and advance "
+             "this automatically, so repeated clicks continue instead of "
+             "reprocessing the same batch. Reset to 0 to start over from the beginning.",
+    )
 
     def action_link_existing_shopify_customers(self):
         """One-time reconciliation for customers that were pushed to Shopify
@@ -30,15 +65,26 @@ class ShopifyInstance(models.Model):
         For each unlinked Odoo customer (same population the scheduled export
         cron uses):
         - Skip (and log) if the email belongs to more than one Odoo customer
-          — we can't safely know which one the Shopify record matches.
-        - Search Shopify by email. If found and the full name matches
-          (case-insensitive, whitespace-normalized), link both sides:
+          and no single one of them matches the Shopify name.
+        - If the full name matches (case-insensitive, whitespace-normalized)
+          the Shopify record for that email, link both sides:
             Odoo    -> shopify_customer_id + is_exported_to_shopify = True
             Shopify -> custom.id metafield = Odoo partner id
         - If the email is found on Shopify but the name doesn't match, skip
           and log it.
         - If the email isn't found on Shopify at all, skip silently (nothing
           to reconcile).
+
+        All Shopify customers are fetched once in bulk (paginated) and
+        indexed by email up front — matching is then done in memory instead
+        of one Shopify search call per Odoo candidate, which is what made
+        earlier per-customer search calls slow on large customer lists.
+
+        Processes at most LINK_BATCH_SIZE Odoo customers per call (ordered by
+        id, resuming from shopify_link_reconcile_last_id) so a single click
+        can't run long enough to time out the connection on large customer
+        lists — click the button repeatedly to work through the rest; the
+        bookmark advances automatically each time.
 
         Writes to a dedicated log file, separate from the regular
         product/customer export logs.
@@ -47,15 +93,25 @@ class ShopifyInstance(models.Model):
         shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
         session = self._make_link_session()
 
-        candidates = self.env['res.partner'].search([
+        # Deliberately NOT filtering on is_exported_to_shopify / cant_export_to_shopify
+        # here (unlike the scheduled export cron) — customers already blocked or
+        # marked exported may still have no shopify_customer_id, and those are
+        # exactly the ones this reconciliation needs to catch. Only real
+        # exclusion: already linked (shopify_customer_id already set).
+        base_domain = [
             ('customer_rank', '>', 0),
             ('parent_id', '=', False),
-            ('is_exported_to_shopify', '=', False),
             ('shopify_customer_id', '=', False),
-            ('cant_export_to_shopify', '=', False),
             ('email', '!=', False),
             ('email', '!=', ''),
-        ])
+        ]
+        candidates = self.env['res.partner'].search(
+            base_domain + [('id', '>', self.shopify_link_reconcile_last_id)],
+            order='id asc', limit=LINK_BATCH_SIZE,
+        )
+        remaining_after_batch = self.env['res.partner'].search_count(
+            base_domain + [('id', '>', max(candidates.ids, default=self.shopify_link_reconcile_last_id))]
+        )
 
         by_email = {}
         for partner in candidates:
@@ -63,26 +119,15 @@ class ShopifyInstance(models.Model):
             if email:
                 by_email.setdefault(email, []).append(partner)
 
+        shopify_by_email, shopify_raw_count, shopify_no_email_count = self._fetch_all_shopify_customers_by_email(
+            session, shop_url
+        )
+
         linked = 0
         log_rows = []
 
         for email, partners in by_email.items():
-            resp = self._link_request(
-                session, 'GET',
-                f"https://{shop_url}/admin/api/{API}/customers/search.json",
-                params={"query": f"email:{email}", "fields": "id,first_name,last_name,email"},
-            )
-            if resp.status_code != 200:
-                log_rows.append(self._link_log_row(
-                    email, 'shopify_search_failed', self._partners_label(partners), '',
-                    f"Status {resp.status_code}: {resp.text[:200]}",
-                ))
-                _logger.warning(
-                    "Shopify link: search failed for '%s': %s", email, resp.text[:200],
-                )
-                continue
-
-            shopify_customers = resp.json().get('customers', [])
+            shopify_customers = shopify_by_email.get(email, [])
             if not shopify_customers:
                 continue  # Not on Shopify at all — nothing to reconcile.
 
@@ -120,6 +165,7 @@ class ShopifyInstance(models.Model):
                 partner._write_shopify_sync({
                     'shopify_customer_id': str(sc['id']),
                     'is_exported_to_shopify': True,
+                    'shopify_reconcile_linked': True,
                 })
                 self._push_customer_id_metafield(session, shop_url, sc['id'], partner.id)
                 linked += 1
@@ -147,12 +193,31 @@ class ShopifyInstance(models.Model):
 
         self._write_link_log(log_rows)
 
+        if candidates:
+            self.write({'shopify_link_reconcile_last_id': max(candidates.ids)})
+
+        message = _(
+            'Batch done: %s Odoo candidate(s) checked (%s distinct emails). Shopify returned %s customer(s) '
+            '(%s had no email — likely missing protected-customer-data access) '
+            '(%s usable by email). %s linked. %s row(s) written to the reconcile log.'
+        ) % (
+            len(candidates), len(by_email), shopify_raw_count, shopify_no_email_count,
+            sum(len(v) for v in shopify_by_email.values()), linked, len(log_rows),
+        )
+        if remaining_after_batch:
+            message += _('\n%s more Odoo customer(s) left — click the button again to continue.') % remaining_after_batch
+        elif candidates:
+            message += _('\nThat was the last batch — all candidates processed.')
+        else:
+            message += _('\nNo candidates found from this bookmark onward. '
+                          'Reset "Link Reconcile: Last Processed Partner ID" to 0 to start over.')
+
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
                 'title': _('Shopify Customer Linking'),
-                'message': _('%s customer(s) linked. %s row(s) written to the reconcile log.') % (linked, len(log_rows)),
+                'message': message,
                 'type': 'success' if linked else 'warning',
                 'sticky': True,
             },
@@ -183,6 +248,52 @@ class ShopifyInstance(models.Model):
             time.sleep(0.6)
             return resp
         return resp
+
+    def _fetch_all_shopify_customers_by_email(self, session, shop_url, max_customers=None):
+        """Bulk-fetch Shopify customers (paginated, 250/page) and index by
+        lowercased email. One-time cost of a handful of calls instead of one
+        Shopify search request per Odoo candidate — that per-record search is
+        what made this slow on stores with many customers.
+
+        max_customers caps how many Shopify customers are pulled in total —
+        used for quick, small-batch testing instead of fetching the whole
+        store.
+
+        Returns (by_email, raw_count, no_email_count) so the caller can tell
+        apart "Shopify returned nothing at all" from "Shopify returned
+        customers but they had no email" (e.g. protected-customer-data
+        access not granted, which makes Shopify silently redact/omit fields
+        instead of erroring)."""
+        by_email = {}
+        total = 0
+        no_email = 0
+        url = f"https://{shop_url}/admin/api/{API}/customers.json"
+        page_limit = min(250, max_customers) if max_customers else 250
+        params = {"fields": "id,first_name,last_name,email", "limit": page_limit}
+
+        while url:
+            resp = self._link_request(session, 'GET', url, params=params)
+            if resp.status_code != 200:
+                raise UserError(
+                    _("Failed to fetch Shopify customers: %s %s") % (resp.status_code, resp.text[:300])
+                )
+            for c in resp.json().get('customers', []):
+                email = _strip_std_prefix(c.get('email'))
+                total += 1
+                if email:
+                    by_email.setdefault(email, []).append(c)
+                else:
+                    no_email += 1
+                if max_customers and total >= max_customers:
+                    return by_email, total, no_email
+            url = None
+            params = {}
+            for part in resp.headers.get('Link', '').split(','):
+                if 'rel="next"' in part:
+                    url = part.strip().split(';')[0].strip().lstrip('<').rstrip('>')
+                    break
+
+        return by_email, total, no_email
 
     def _push_customer_id_metafield(self, session, shop_url, shopify_customer_id, odoo_partner_id):
         """Set custom.id on the Shopify customer so it points back at the Odoo partner."""

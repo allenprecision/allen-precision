@@ -24,6 +24,9 @@
                             <field name="access_token" password="True"/>
                         </group>
                     </group>
+                    <group string="Link Existing Shopify Customers — Progress" invisible="state != 'confirmed'">
+                        <field name="shopify_link_reconcile_last_id"/>
+                    </group>
                 </sheet>
             </form>
         </field>
