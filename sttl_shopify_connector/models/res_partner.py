@@ -44,6 +44,17 @@ CUSTOMER_BOOL_MAP = {
 # Shopify metafield keys that must use multi_line_text_field
 CUSTOMER_MULTILINE_KEYS = {'notes', 'payment_terms'}
 
+# Shopify treats these as US states/provinces, not as separate countries.
+# Odoo stores them as their own res.country records (with these ISO codes),
+# so sending them as "country" gets rejected: {"addresses.country":["is invalid"]}.
+US_TERRITORY_NAMES = {
+    'PR': 'Puerto Rico',
+    'GU': 'Guam',
+    'AS': 'American Samoa',
+    'VI': 'U.S. Virgin Islands',
+    'MP': 'Northern Mariana Islands',
+}
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -385,17 +396,39 @@ class ResPartner(models.Model):
     def _address_dict(self, partner):
         first_name, last_name = self._split_name(partner)
         phone = self._normalize_phone(partner.phone or partner.mobile or "", partner)
-        return {
+        addr = {
             "address1":   partner.street or "",
             "address2":   partner.street2 or "",
             "city":       partner.city or "",
-            "province":   partner.state_id.name if partner.state_id else "",
             "zip":        partner.zip or "",
-            "country":    partner.country_id.name if partner.country_id else "",
             "first_name": first_name,
             "last_name":  last_name,
             "phone":      phone,
         }
+
+        country = partner.country_id
+        territory_name = US_TERRITORY_NAMES.get(country.code) if country else None
+
+        if territory_name:
+            # e.g. Puerto Rico / Guam: Shopify wants "United States" as the
+            # country and the territory itself as the province — sending the
+            # territory as "country" gets rejected as invalid.
+            addr["country"] = "United States"
+            addr["country_code"] = "US"
+            addr["province"] = territory_name
+            addr["province_code"] = country.code
+        else:
+            # Shopify validates country/province against its own name lists,
+            # which don't always match Odoo's (e.g. Odoo's "Russia" vs
+            # Shopify's "Russian Federation") and get rejected as "Country is
+            # invalid". The ISO codes are unambiguous, so send those instead
+            # of relying on the free-text name.
+            addr["country"] = country.name if country else ""
+            addr["country_code"] = country.code if country else ""
+            addr["province"] = partner.state_id.name if partner.state_id else ""
+            if partner.state_id and partner.state_id.code:
+                addr["province_code"] = partner.state_id.code
+        return addr
 
     @staticmethod
     def _normalize_phone(phone, partner):
