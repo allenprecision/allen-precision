@@ -15,6 +15,7 @@ API = "2024-01"
 LINK_BATCH_SIZE = 1000
 EXPORT_LINKED_BATCH_SIZE = 500
 DEDUP_BATCH_SIZE = 100
+STD_STRIP_BATCH_SIZE = 150
 
 
 def _normalize_name(name):
@@ -564,6 +565,98 @@ class ShopifyInstance(models.Model):
             },
         }
 
+    def action_strip_std_prefix_from_shopify_emails(self):
+        """Permanent, root-cause fix for the whole 'std' import-artifact
+        problem: bulk-fetch every Shopify customer, and for any whose email
+        still starts with the literal 'std' prefix (from the original
+        Klaviyo/Matrixify import), PUT their email to the de-prefixed
+        version — making Shopify's own data clean going forward, so none of
+        the std-vs-clean mismatches (blocked exports, missed reconciliation
+        matches, genuine duplicate Shopify customers) can happen again.
+
+        If de-prefixing would collide with an ALREADY-clean-email customer
+        (the genuine-duplicate scenario this connector also has a dedicated
+        cleanup for), Shopify safely rejects that one PUT with "email
+        already taken" — logged, not fatal; that customer is left with its
+        std-prefixed email until the duplicate itself gets resolved via
+        action_delete_genuine_duplicate_shopify_customers.
+
+        Re-fetches the full Shopify customer list every call (needed to see
+        what's still std-prefixed) and processes at most
+        STD_STRIP_BATCH_SIZE of them per click — click again for the rest;
+        already-fixed ones naturally drop out of the next fetch.
+        """
+        self.ensure_one()
+        shop_url = (self.shop_url or "").replace('https://', '').replace('http://', '').strip('/')
+        session = self._make_link_session()
+
+        std_customers = self._fetch_std_prefixed_shopify_customers(session, shop_url)
+        total_found = len(std_customers)
+        batch = std_customers[:STD_STRIP_BATCH_SIZE]
+        remaining = total_found - len(batch)
+
+        fixed = 0
+        collided = 0
+        failed = 0
+        log_rows = []
+
+        for c in batch:
+            sid = str(c['id'])
+            old_email = c.get('email') or ''
+            new_email = old_email[3:] if old_email.lower().startswith('std') else old_email
+            if new_email == old_email or not new_email:
+                continue
+
+            resp = self._link_request(
+                session, 'PUT', f"https://{shop_url}/admin/api/{API}/customers/{sid}.json",
+                json={"customer": {"id": int(sid), "email": new_email}},
+            )
+            if resp.status_code in (200, 201):
+                fixed += 1
+                log_rows.append(self._link_log_row(
+                    new_email, 'std_prefix_stripped', '', '',
+                    _("Shopify customer %s: email changed from '%s' to '%s'.") % (sid, old_email, new_email),
+                ))
+            elif resp.status_code == 422 and 'taken' in resp.text.lower():
+                collided += 1
+                log_rows.append(self._link_log_row(
+                    new_email, 'std_prefix_collision', '', '',
+                    _("Shopify customer %s: '%s' is already used by a different Shopify customer — "
+                      "left as '%s' until that duplicate is resolved.") % (sid, new_email, old_email),
+                ))
+            else:
+                failed += 1
+                log_rows.append(self._link_log_row(
+                    old_email, 'std_prefix_strip_failed', '', '',
+                    _("Shopify customer %s: failed to update email (%s): %s")
+                    % (sid, resp.status_code, resp.text[:200]),
+                ))
+                _logger.warning("std-strip: failed on Shopify ID %s: %s", sid, resp.text[:200])
+
+        self._write_link_log(log_rows)
+
+        message = _(
+            '%s std-prefixed Shopify customer(s) found. %s fixed. %s collided with an existing '
+            'clean-email duplicate (left as-is). %s failed.'
+        ) % (total_found, fixed, collided, failed)
+        if remaining:
+            message += _('\n%s more left — click the button again to continue.') % remaining
+        elif total_found:
+            message += _('\nThat was the last batch — all std-prefixed emails processed.')
+        else:
+            message += _('\nNo std-prefixed Shopify emails found.')
+
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Strip std Prefix from Shopify Emails'),
+                'message': message,
+                'type': 'warning' if (collided or failed) else 'success',
+                'sticky': True,
+            },
+        }
+
     # ─────────────────────────────────────────────────────────────────────────
     # Shopify HTTP (rate-limit aware)
     # ─────────────────────────────────────────────────────────────────────────
@@ -635,6 +728,34 @@ class ShopifyInstance(models.Model):
                     break
 
         return by_email, total, no_email
+
+    def _fetch_std_prefixed_shopify_customers(self, session, shop_url):
+        """Bulk-fetch every Shopify customer (paginated, 250/page) and return
+        only those whose RAW email still starts with the 'std' import
+        artifact — as plain {'id', 'email'} dicts, unlike
+        _fetch_all_shopify_customers_by_email which already strips it."""
+        found = []
+        url = f"https://{shop_url}/admin/api/{API}/customers.json"
+        params = {"fields": "id,email", "limit": 250}
+
+        while url:
+            resp = self._link_request(session, 'GET', url, params=params)
+            if resp.status_code != 200:
+                raise UserError(
+                    _("Failed to fetch Shopify customers: %s %s") % (resp.status_code, resp.text[:300])
+                )
+            for c in resp.json().get('customers', []):
+                email = c.get('email') or ''
+                if email.lower().startswith('std'):
+                    found.append({'id': c['id'], 'email': email})
+            url = None
+            params = {}
+            for part in resp.headers.get('Link', '').split(','):
+                if 'rel="next"' in part:
+                    url = part.strip().split(';')[0].strip().lstrip('<').rstrip('>')
+                    break
+
+        return found
 
     def _push_customer_id_metafield(self, session, shop_url, shopify_customer_id, odoo_partner_id):
         """Set custom.id on the Shopify customer so it points back at the Odoo partner."""
