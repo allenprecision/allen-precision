@@ -142,6 +142,20 @@ def _address_data_with_fallback(preferred, fallbacks, prefix):
     return {}
 
 
+def _order_tags(order):
+    """Build the Shopify tag list for an order: base tag plus one tag per
+    status flag that is set (Processed / PO / Paid), same fields already
+    sent as metafields."""
+    tags = ['Exported from Odoo']
+    if order.processed:
+        tags.append('Processed')
+    if order.po_processed:
+        tags.append('PO')
+    if order.pay_processed:
+        tags.append('Paid')
+    return ', '.join(tags)
+
+
 class ShopifyOrderExportWizard(models.TransientModel):
     _name = 'shopify.order.export.wizard'
     _description = 'Export Orders to Shopify — Altera Format'
@@ -316,7 +330,7 @@ class ShopifyOrderExportWizard(models.TransientModel):
                 'Phone':                   partner.phone or partner.mobile or '',
                 'Email':                   partner.email or '',
                 'Note':                    html2plaintext(order.note or ''),
-                'Tags':                    'Exported from Odoo',
+                'Tags':                    _order_tags(order),
                 'Tags Command':            'REPLACE',
                 'Created At':              order.date_order.strftime('%Y-%m-%d %H:%M:%S') if order.date_order else '',
                 'Processed At':            order.date_order.strftime('%Y-%m-%d %H:%M:%S') if order.date_order else '',

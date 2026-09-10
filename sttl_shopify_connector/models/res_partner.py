@@ -6,6 +6,7 @@ import json
 import re
 import csv
 import os
+import time
 import logging
 from html import unescape
 from datetime import datetime
@@ -43,6 +44,17 @@ CUSTOMER_BOOL_MAP = {
 
 # Shopify metafield keys that must use multi_line_text_field
 CUSTOMER_MULTILINE_KEYS = {'notes', 'payment_terms'}
+
+# Shopify treats these as US states/provinces, not as separate countries.
+# Odoo stores them as their own res.country records (with these ISO codes),
+# so sending them as "country" gets rejected: {"addresses.country":["is invalid"]}.
+US_TERRITORY_NAMES = {
+    'PR': 'Puerto Rico',
+    'GU': 'Guam',
+    'AS': 'American Samoa',
+    'VI': 'U.S. Virgin Islands',
+    'MP': 'Northern Mariana Islands',
+}
 
 
 class ResPartner(models.Model):
@@ -321,6 +333,22 @@ class ResPartner(models.Model):
                 addr.pop("phone", None)
             resp = self._send(session, shop_url, payload)
 
+        # Province/country 422 retry — Odoo address data Shopify's validation
+        # rejects (bad/missing state, a country it doesn't recognize) shouldn't
+        # block the rest of the customer from syncing. Strip only the field(s)
+        # actually flagged and retry once.
+        if resp.status_code == 422 and ('addresses.province' in resp.text or 'addresses.country' in resp.text):
+            strip_province = 'addresses.province' in resp.text
+            strip_country = 'addresses.country' in resp.text
+            for addr in payload["customer"].get("addresses", []):
+                if strip_province:
+                    addr.pop("province", None)
+                    addr.pop("province_code", None)
+                if strip_country:
+                    addr.pop("country", None)
+                    addr.pop("country_code", None)
+            resp = self._send(session, shop_url, payload)
+
         if resp.status_code not in (200, 201):
             raise UserError(
                 _("Shopify export failed for '%s'. Status %s:\n%s")
@@ -340,14 +368,29 @@ class ResPartner(models.Model):
     def _send(self, session, shop_url, payload):
         base = f"https://{shop_url}/admin/api/{API}/customers"
         if self.shopify_customer_id:
-            resp = session.put(
-                f"{base}/{self.shopify_customer_id}.json",
-                data=json.dumps(payload), timeout=15,
-            )
-            _logger.info("Shopify customer PUT '%s' → %s", self.name, resp.status_code)
+            method, url = 'PUT', f"{base}/{self.shopify_customer_id}.json"
         else:
-            resp = session.post(f"{base}.json", data=json.dumps(payload), timeout=15)
-            _logger.info("Shopify customer POST '%s' → %s", self.name, resp.status_code)
+            method, url = 'POST', f"{base}.json"
+        resp = self._send_with_retry(session, method, url, payload)
+        _logger.info("Shopify customer %s '%s' → %s", method, self.name, resp.status_code)
+        return resp
+
+    @staticmethod
+    def _send_with_retry(session, method, url, payload, retries=3):
+        """Retry on 429 (rate limit), honoring Shopify's Retry-After header.
+
+        Without this, a request that simply arrived too fast (2 calls/sec
+        limit) was treated as a hard failure — the customer got permanently
+        blocked (cant_export_to_shopify=True) even though nothing was
+        actually wrong with their data, purely because of request timing."""
+        resp = None
+        for attempt in range(retries):
+            resp = session.request(method, url, data=json.dumps(payload), timeout=15)
+            if resp.status_code == 429:
+                wait = int(resp.headers.get('Retry-After', 2)) + 1
+                time.sleep(wait)
+                continue
+            return resp
         return resp
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -385,17 +428,47 @@ class ResPartner(models.Model):
     def _address_dict(self, partner):
         first_name, last_name = self._split_name(partner)
         phone = self._normalize_phone(partner.phone or partner.mobile or "", partner)
-        return {
+        addr = {
             "address1":   partner.street or "",
             "address2":   partner.street2 or "",
             "city":       partner.city or "",
-            "province":   partner.state_id.name if partner.state_id else "",
             "zip":        partner.zip or "",
-            "country":    partner.country_id.name if partner.country_id else "",
             "first_name": first_name,
             "last_name":  last_name,
             "phone":      phone,
         }
+
+        country = partner.country_id
+        territory_name = US_TERRITORY_NAMES.get(country.code) if country else None
+
+        if territory_name:
+            # e.g. Puerto Rico / Guam: Shopify wants "United States" as the
+            # country and the territory itself as the province — sending the
+            # territory as "country" gets rejected as invalid.
+            addr["country"] = "United States"
+            addr["country_code"] = "US"
+            addr["province"] = territory_name
+            addr["province_code"] = country.code
+        elif country:
+            # Shopify validates country/province against its own name lists,
+            # which don't always match Odoo's (e.g. Odoo's "Russia" vs
+            # Shopify's "Russian Federation") and get rejected as "Country is
+            # invalid". The ISO codes are unambiguous, so send those instead
+            # of relying on the free-text name.
+            addr["country"] = country.name
+            addr["country_code"] = country.code or ""
+            if partner.state_id:
+                addr["province"] = partner.state_id.name
+                if partner.state_id.code:
+                    addr["province_code"] = partner.state_id.code
+        else:
+            # No country on the partner — never send a bare province/state in
+            # that case: Shopify has nothing to validate it against and
+            # rejects it outright as "addresses.province is invalid", even
+            # though the actual bad data is the missing country.
+            addr["country"] = ""
+            addr["country_code"] = ""
+        return addr
 
     @staticmethod
     def _normalize_phone(phone, partner):

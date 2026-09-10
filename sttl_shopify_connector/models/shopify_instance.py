@@ -294,6 +294,82 @@ class ShopifyInstance(models.Model):
         partner is now unblocked, exported, and has a Shopify customer ID."""
         return self.env['res.partner'].action_reconcile_export_log()
 
+    def action_unblock_all_customers(self):
+        """Clear cant_export_to_shopify on every currently-blocked customer.
+
+        Use after fixing an export bug (e.g. the Puerto Rico/Guam address
+        validation issue) to give everyone another shot: customers who were
+        only blocked because of that bug will now export fine on the next
+        attempt; customers with a genuine, still-unresolved problem (e.g. a
+        duplicate email) will simply get re-blocked when that attempt fails
+        again. Does not touch is_exported_to_shopify or shopify_customer_id —
+        only clears the block so the normal export flow (manual or scheduled)
+        picks them up again."""
+        blocked = self.env['res.partner'].search([('cant_export_to_shopify', '=', True)])
+        count = len(blocked)
+        blocked.write({'cant_export_to_shopify': False})
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': _('Unblock Customers'),
+                'message': _(
+                    '%s customer(s) unblocked. Re-run the export (manual selection or the '
+                    'scheduled cron) to retry them — genuine failures will re-block themselves.'
+                ) % count,
+                'type': 'success',
+                'sticky': True,
+            },
+        }
+
+    def action_reexport_stuck_exported_customers(self):
+        """Targeted fix-up for customers stuck with BOTH
+        is_exported_to_shopify=True and cant_export_to_shopify=True at the
+        same time — they exported successfully once, then a LATER data
+        update attempt failed and blocked them (e.g. the Puerto Rico/Guam
+        address bug), without the export flow ever clearing the earlier
+        success flag.
+
+        Unlike 'Unblock All Customers', this only touches that specific,
+        narrow set — not every blocked customer — and immediately re-exports
+        just them, updating their data on Shopify."""
+        self.ensure_one()
+        domain = [
+            ('is_exported_to_shopify', '=', True),
+            ('cant_export_to_shopify', '=', True),
+            ('shopify_customer_id', '!=', False),
+            ('shopify_customer_id', '!=', ''),
+        ]
+        partners = self.env['res.partner'].search(domain, limit=500)
+
+        if not partners:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': _('Re-export Stuck Customers'),
+                    'message': _("No customers found with both 'Exported to Shopify' and "
+                                 "'Cannot Export to Shopify' set."),
+                    'type': 'warning',
+                    'sticky': False,
+                },
+            }
+
+        remaining_after_batch = self.env['res.partner'].search_count(
+            domain + [('id', 'not in', partners.ids)]
+        )
+
+        partners.write({'cant_export_to_shopify': False})
+        result = partners.action_export_to_shopify()
+
+        if isinstance(result, dict) and result.get('params'):
+            extra = (
+                _('\n%s more stuck customer(s) left — click the button again to continue.') % remaining_after_batch
+                if remaining_after_batch else _('\nAll stuck customers processed.')
+            )
+            result['params']['message'] = (result['params'].get('message') or '') + extra
+            result['params']['sticky'] = True
+        return result
 
     def action_apply_to_all_products(self):
         """Set this instance on all product templates and partners that don't have one."""
